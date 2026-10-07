@@ -1,11 +1,11 @@
 # --- Web framework ---
-fastapi==0.115.6
+fastapi
 uvicorn[standard]==0.32.1
 python-multipart==0.0.19          # required by FastAPI for UploadFile handling
 
 # --- Configuration ---
-pydantic==2.10.3
-pydantic-settings==2.6.1
+pydantic<2.10
+pydantic-settings
 python-dotenv==1.0.1
 
 # --- Database ---
@@ -26,5 +26,4 @@ pytest==8.3.4
 httpx==0.28.1                     # required by FastAPI's TestClient
 
 # --- Frontend Client ---
-gradio==5.9.1
 requests==2.32.3

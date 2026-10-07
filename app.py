@@ -12,6 +12,10 @@ Two tabs:
   patient sessions from the database automatically.
 """
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+import spaces
 import logging
 import os
 import json
@@ -21,7 +25,7 @@ import requests
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
 PROCESS_TRIAGE_ENDPOINT = f"{BACKEND_URL}/api/v1/process-triage"
 SESSIONS_ENDPOINT = f"{BACKEND_URL}/api/v1/sessions"
 REQUEST_TIMEOUT_SECONDS = 120  
@@ -64,9 +68,6 @@ custom_css = """
 """
 
 def dict_to_html_card(data: dict) -> str:
-    """
-    Converts the triage dictionary into a styled HTML clinical card dynamically.
-    """
     if isinstance(data, str):
         try:
             data = json.loads(data)
@@ -84,13 +85,18 @@ def dict_to_html_card(data: dict) -> str:
             urgency_val = str(v).lower()
             break
             
-    if any(w in urgency_val for w in ["critical", "high", "severe", "red", "1", "2"]):
-        triage_class = "triage-critical"
-    elif any(w in urgency_val for w in ["medium", "moderate", "yellow", "3"]):
+    if any(w in urgency_val for w in ["high", "severe", "red"]):
+        triage_class = "triage-high"
+    elif any(w in urgency_val for w in ["medium", "moderate", "yellow"]):
         triage_class = "triage-medium"
+
+    session_id = data.get("Session Id", data.get("Session ID", "Unknown"))
 
     rows_html = ""
     for key, value in data.items():
+        if key.lower() in ["session id", "session_id"]:
+            continue
+            
         formatted_key = str(key).replace("_", " ").title()
         
         if isinstance(value, list):
@@ -102,7 +108,7 @@ def dict_to_html_card(data: dict) -> str:
         
     html_content = f'''
     <div class="clinical-card {triage_class}">
-        <div class="card-header">Patient Record ID: {data.get("Session Id", "Unknown")}</div>
+        <div class="card-header">Patient Record ID: {session_id}</div>
         <div class="card-body">
             {rows_html}
         </div>
@@ -174,6 +180,7 @@ def verify_pin(pin: str):
         gr.update(visible=is_authorized),  
     )
 
+@spaces.GPU
 def fetch_patients(severity_filter: str) -> str:
     """Fetches patient sessions from the backend and renders them as HTML cards."""
     params = {}
@@ -249,7 +256,7 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
             
             with gr.Row():
                 severity_radio = gr.Radio(
-                    choices=["All", "Critical", "High", "Medium", "Low"],
+                    choices=["All", "High", "Medium", "Low"],
                     value="All",
                     label="Filter by Severity",
                     interactive=True
@@ -267,5 +274,16 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
             outputs=[pin_status, portal_panel],
         )
 
+import threading
+import uvicorn
+
+from app.main import app as fastapi_app
+
+def run_backend():
+
+    uvicorn.run(fastapi_app, host="127.0.0.1", port=8000)
+
+threading.Thread(target=run_backend, daemon=True).start()
+
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7861)
+    demo.launch()

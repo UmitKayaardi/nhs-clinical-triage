@@ -36,7 +36,7 @@ class _WhisperModelSingleton:
     def get(cls):
         if cls._model is None:
             logger.info("Loading Whisper model '%s'...", settings.WHISPER_MODEL_NAME)
-            cls._model = whisper.load_model(settings.WHISPER_MODEL_NAME)
+            cls._model = whisper.load_model(settings.WHISPER_MODEL_NAME, device="cpu")
             logger.info("Whisper model loaded.")
         return cls._model
 
