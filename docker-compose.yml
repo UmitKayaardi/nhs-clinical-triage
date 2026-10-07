@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: nhs_triage_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nhs_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+      POSTGRES_DB: ${POSTGRES_DB:-nhs_triage}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nhs_user} -d ${POSTGRES_DB:-nhs_triage}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nhs_triage_api
+    restart: unless-stopped
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Composed from the same POSTGRES_* vars used by the db service, so
+      # the two never drift out of sync.
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-nhs_user}:${POSTGRES_PASSWORD:-change_me}@db:5432/${POSTGRES_DB:-nhs_triage}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      GROQ_MODEL_NAME: ${GROQ_MODEL_NAME:-openai/gpt-oss-20b}
+      WHISPER_MODEL_NAME: ${WHISPER_MODEL_NAME:-base.en}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      DEBUG: ${DEBUG:-false}
+      CORS_ALLOW_ORIGINS: ${CORS_ALLOW_ORIGINS:-["*"]}
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount named volume for the temp audio dir instead of a bind mount,
+      # since these files are ephemeral and container-local.
+      - audio_tmp:/tmp/nhs_triage_audio
+
+volumes:
+  pgdata:
+  audio_tmp:

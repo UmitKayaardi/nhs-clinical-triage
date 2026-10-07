@@ -1,0 +1,30 @@
+# --- Web framework ---
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.19          # required by FastAPI for UploadFile handling
+
+# --- Configuration ---
+pydantic==2.10.3
+pydantic-settings==2.6.1
+python-dotenv==1.0.1
+
+# --- Database ---
+sqlalchemy==2.0.36
+psycopg2-binary==2.9.10
+alembic==1.14.0                   # DB migrations
+
+# --- Audio transcription ---
+git+https://github.com/openai/whisper.git
+# Whisper depends on torch and ffmpeg (ffmpeg is a system package, not pip;
+# install via `apt-get install ffmpeg` in the deployment image / Dockerfile).
+
+# --- LLM integration ---
+groq==0.13.1
+
+# --- Testing (optional, for tests/) ---
+pytest==8.3.4
+httpx==0.28.1                     # required by FastAPI's TestClient
+
+# --- Frontend Client ---
+gradio==5.9.1
+requests==2.32.3
