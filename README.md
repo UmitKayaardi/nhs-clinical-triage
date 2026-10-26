@@ -139,7 +139,7 @@ The Space runs `app.py`, which starts FastAPI in a background thread and serves 
 | Secret | Required | Notes |
 |--------|----------|-------|
 | `GROQ_API_KEY` | yes | |
-| `DATABASE_URL` | yes | `sqlite:///./triage_data.db` |
+| `DATABASE_URL` | no | Defaults to `sqlite:///./triage_data.db` (the bundled database) |
 | `DOCTOR_PORTAL_PIN` | yes | Change from the default |
 | `ADMIN_API_KEY` | recommended | Protects feedback and admin endpoints. The Gradio app forwards it automatically |
 | `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`, `DOCTOR_WHATSAPP_NUMBER` | for live alerts | Without them, alerts are logged as `mocked` |

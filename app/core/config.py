@@ -28,7 +28,10 @@ class Settings(BaseSettings):
 
     # --- Database ---
     # Example: postgresql+psycopg2://user:password@localhost:5432/nhs_triage
-    DATABASE_URL: str = Field(..., description="PostgreSQL connection string")
+    DATABASE_URL: str = Field(
+        "sqlite:///./triage_data.db",
+        description="SQLAlchemy URL; defaults to the bundled SQLite database used by the Space",
+    )
 
     # --- Groq / LLM ---
     GROQ_API_KEY: str = Field(..., description="API key for the Groq API")
