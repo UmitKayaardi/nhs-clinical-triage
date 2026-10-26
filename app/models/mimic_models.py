@@ -23,7 +23,7 @@ Design notes:
     acuity 3.0      -> Medium
     acuity 4.0, 5.0 -> Low
   Storing it (rather than deriving it in Python each time) allows
-  `db_service.py` to filter and index directly on severity in SQL.
+  `retrieval_service.py` to filter and index directly on severity in SQL.
 """
 
 import enum
@@ -136,7 +136,7 @@ class Triage(Base):
     stay = relationship("EDStay", back_populates="triage")
 
     __table_args__ = (
-        # Supports the keyword search in db_service.py (ILIKE / full-text on chief_complaint)
+        # Supports the chief-complaint lookups (retrieval_service.py builds its TF-IDF index from this column)
         Index("ix_triage_chief_complaint_gin", "chief_complaint"),
     )
 
@@ -255,4 +255,18 @@ class TriageSession(Base):
     # back to the specific historical cases the LLM was shown.
     evidence_stay_ids = Column(Text, nullable=True)
 
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    # --- Added for Agents 3, 6 and 7 (all nullable so existing rows and
+    # databases stay valid; see app/db/schema.py:ensure_schema) ---
+    chief_complaint = Column(Text, nullable=True)       # structured intake, or the transcript
+    reasoning = Column(Text, nullable=True)             # Agent 3 explanation
+    required_actions = Column(Text, nullable=True)      # JSON-encoded list
+    evidence_scores = Column(Text, nullable=True)       # JSON-encoded list of similarity scores
+    intake_mode = Column(String(20), nullable=True)     # "audio" | "structured"
+
+    # Optional demographics, used only for drift and bias monitoring (Agent 7).
+    patient_id = Column(String(64), nullable=True, index=True)
+    age = Column(Integer, nullable=True)
+    gender = Column(String(1), nullable=True)           # "M" | "F" (MIMIC convention)
+    ethnicity = Column(String(100), nullable=True)
+
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False, index=True)

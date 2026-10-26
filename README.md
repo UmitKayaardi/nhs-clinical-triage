@@ -10,70 +10,162 @@ pinned: false
 
 # AI-Powered Clinical Triage Assistant
 
-An advanced clinical decision support system designed to assist healthcare professionals in Emergency Departments (ED). The application implements a Retrieval-Augmented Generation (RAG) pipeline combined with Large Language Models (LLMs) to analyze patient vitals, clinical histories, and audio transcripts, delivering evidence-based, 3-tier triage priority recommendations (High, Medium, Low).
+A clinical decision support system (CDSS) for Emergency Departments. A patient describes their symptoms by voice (or a clinician types them), the system retrieves similar historical cases from MIMIC-IV-ED, an LLM proposes a 3-tier triage level (High / Medium / Low) grounded in that evidence, and on-call staff are alerted on WhatsApp for High-priority cases. Clinicians review every decision, and the system monitors its own accuracy, data drift and bias after deployment.
 
-## System Architecture
+> **Decision support only.** Every output is a draft for clinician review. The system never makes the final triage decision.
 
-The project follows a decoupled, production-grade microservices architecture:
-* **Frontend: Gradio** - Provides a responsive, clinician-facing dashboard for multi-modal data input, rendering structured triage data into styled HTML report cards for real-time visualization. Includes a secured Doctor Portal.
-* **Backend: FastAPI** - Manages asynchronous routing, request validation, business logic orchestration, and RAG execution.
-* **Database & Storage: SQLite with SQLAlchemy ORM** - A self-contained, file-based relational database storing structured anonymized clinical histories for rapid vector-like retrieval.
-* **Inference Engine: Groq API (openai/gpt-oss-20b)** - Executes low-latency, high-throughput natural language generation and clinical reasoning.
-* **Speech-to-Text Pipeline: OpenAI Whisper (base.en)** - Transcribes clinician-patient voice interactions into structured textual symptom profiles, specifically configured for CPU execution to bypass strict GPU emulation constraints.
+**Live demo:** https://huggingface.co/spaces/UmitKayaardi/nhs-clinical-triage
 
-## Core Components & Data Flow
-
-* **Multi-Modal Data Ingestion:** Clinicians can input patient parameters via structured forms (vital signs, chief complaints, pain scales) or stream audio descriptions. Audio files are processed locally via Whisper to extract symptom text.
-* **Retrieval-Augmented Generation (RAG):** To provide clinical context, the system queries historical admissions from the MIMIC-IV-ED dataset. Based on the patient's presenting condition, the module retrieves the k-most similar historical cases (k=5).
-* **Clinical Synthesis & Decision Support:** The current patient profile, along with the retrieved historical precedents, is formatted into a structured prompt and sent to the LLM via Groq. The system strictly prioritizes the patient's actual reported symptoms to output a standardized 3-tier triage score (High/Medium/Low) accompanied by an explainable clinical rationale.
-
-## Dataset Structure
-
-The system utilizes a localized relational subset of the MIMIC-IV-ED (Medical Information Mart for Intensive Care) database, encompassing:
-* **edstays.csv:** Emergency department admission and discharge metrics.
-* **triage.csv:** Initial vital signs, acuity scores, and chief complaints.
-* **diagnosis.csv:** Coded clinical diagnoses.
-* **vitalsign.csv:** Time-series physiological measurements.
-* **pyxis.csv & medication records:** Pharmacological intervention history.
-
-## Project Structure
+## The 7 agents
 
 ```text
-nhs-clinical-triage/
-├── alembic/                # Database migration scripts
-├── app/
-│   ├── api/v1/             # FastAPI routers and endpoints
-│   ├── core/               # Configuration and security settings
-│   ├── db/                 # Database session and base definitions
-│   ├── models/             # SQLAlchemy ORM models (MIMIC schema)
-│   ├── schemas/            # Pydantic validation schemas
-│   └── services/           # Business logic (LLM, RAG, Audio processing)
-├── data/                   # Local CSV data sources for MIMIC-IV-ED subset
-├── scripts/                # Data import and initialization utilities
-├── app.py                  # Main application entry point
-├── Dockerfile              # Containerization configuration
-├── docker-compose.yml      # Multi-service orchestration definition
-└── requirements.txt        # Python dependencies
+ audio ─► [1 Intake/Whisper] ─┐
+ typed symptoms + vitals ─────┴► [2 Evidence Retrieval] ─► [3 Clinical Reasoning] ─► [4 Guardrail]
+                                   (all 6 MIMIC tables)      (Groq gpt-oss-20b)        (Pydantic)
+                                                                                           │
+                         TriageSession saved (audit) ◄─────────────────────────────────────┤
+                                                                                           ▼
+ clinician feedback ─► [6 Post-Deployment Monitor] ─► [7 Drift & Bias Monitor]   [5 WhatsApp alert]
+                       accuracy, hallucinations,      KS / Jensen-Shannon /      (Twilio, High only)
+                       monthly PMS report             chi-squared, alerts
 ```
 
-## Local Installation & Setup
+| # | Agent | Code | What it does |
+|---|-------|------|--------------|
+| 1 | Data Intake & Transcription | `app/services/audio_service.py` | Whisper `base.en` on CPU turns audio into text. Silent or empty audio is rejected with a clear message. A structured endpoint accepts typed symptoms and vitals instead. |
+| 2 | Evidence Retrieval | `app/services/retrieval_service.py` | Scores every historical stay across **all six** MIMIC-IV-ED tables and returns the top 5 with diagnoses, vitals, ED treatments and a similarity score in [0, 1]. |
+| 3 | Clinical Reasoning | `app/services/llm_service.py` | Groq `openai/gpt-oss-20b` at temperature 0. Returns symptoms, duration, possible conditions, severity, **reasoning** and **required actions**. |
+| 4 | Medical Guardrail | `app/schemas/triage_schema.py` | Strict Pydantic `TriageResult` schema. Any LLM output that doesn't validate is rejected (HTTP 502) and never shown to a clinician. |
+| 5 | Orchestrator & Action | `app/services/twilio_service.py` | Sends a WhatsApp alert to the on-call doctor via Twilio for High-severity cases. Retries transient errors with exponential backoff and logs every send or failure to `alert_log`. |
+| 6 | Post-Deployment Monitor | `app/services/monitoring_service.py` | Clinicians mark sessions correct or incorrect. Computes 30-day accuracy and hallucination rate, keeps a review queue of flagged sessions, and produces the monthly PMS CSV. |
+| 7 | Drift & Bias Monitor | `app/services/drift_service.py` | Detects performance drift, data drift and bias. Raises alerts and emails the admin. |
 
-1. Clone the repository:
-   git clone [https://github.com/UmitKayaardi/nhs-clinical-triage.git](https://github.com/UmitKayaardi/nhs-clinical-triage.git)
-   cd nhs-clinical-triage
+### Agent 2: how retrieval scores a case
 
-2. Install dependencies:
-   pip install -r requirements.txt
+Each historical stay gets a weighted score:
 
-3. Configure environment variables:
-   Create a .env file in the root directory and configure your keys and access credentials. The DOCTOR_PORTAL_PIN is set to 1234 by default for testing purposes:
-   DATABASE_URL=sqlite:///./triage_data.db
-   GROQ_API_KEY=your_groq_api_key_here
-   DOCTOR_PORTAL_PIN=1234
+| Component | Source tables | Weight |
+|-----------|---------------|--------|
+| Chief complaint | `triage.csv` | 1.0 (a complaint whose every word the patient said counts as an exact match = 1.0) |
+| Diagnoses | `diagnosis.csv` | 0.7 |
+| Vitals | `triage.csv`, `vitalsign.csv` (mean) | 0.5 (only when vitals are supplied) |
+| Medications | `medrecon.csv`, `pyxis.csv` | 0.3 |
+| Stay / disposition | `edstays.csv` | context returned to the LLM |
 
-4. Initialize the database and import sample clinical data:
-   python setup_db.py
-   python -m scripts.import_mimic_csv --data-dir data
+Text similarity is TF-IDF cosine after clinical normalisation. MIMIC abbreviations (`SOB`, `N/V`, `ABD PAIN`, `S/P FALL`) and lay phrasing ("can't catch my breath", "stomach", "threw up") map onto shared tokens. This is deliberately lexical rather than a neural embedding model: the Space stays CPU-only and every match can be explained. Vitals similarity uses a Gaussian kernel on clinically scaled differences. Weights can be changed with the `RETRIEVAL_WEIGHT_*` settings.
 
-5. Run the application:
-   python app.py
+### Agent 7: what is tested
+
+| Check | Method | Alert when |
+|-------|--------|------------|
+| Performance drift | Clinician-reviewed accuracy over 30 days, plus first-half vs second-half comparison | accuracy < 85% (at least 10 reviews) **or** a drop of more than 5 points |
+| Data drift | Jensen-Shannon distance (the bounded, symmetric form of KL divergence) of gender, ethnicity and severity mix vs the MIMIC reference; Kolmogorov-Smirnov test on age vs the previous 90 days | `drift_score` (largest per-feature score) > 0.3 |
+| Bias | Chi-squared test of independence on severity × group and on correct/incorrect × group, for gender, age band and ethnicity; Cramér's V as effect size | p < 0.05 |
+
+Severity genuinely differs with age, so an age × severity association is reported but not flagged as bias. An **error** disparity (the model is wrong more often for one group) is flagged for every demographic. Each alert type is raised at most once per 24 hours. Critical alerts are emailed when SMTP is configured.
+
+## API
+
+Interactive docs: `http://localhost:8000/docs`
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| POST | `/api/v1/process-triage` | Audio upload (`file`) plus optional `patient_id`, `age`, `gender` (`M`/`F`), `ethnicity` form fields |
+| POST | `/api/v1/process-triage/structured` | JSON `{chief_complaint, vitals?, patient_id?, age?, gender?, ethnicity?}` |
+| GET | `/api/v1/sessions?severity=High&limit=200` | Dashboard list, newest first, with each session's latest review |
+| POST | `/api/v1/feedback` 🔒 | `{session_id, feedback: "correct" \| "incorrect", notes?, reviewed_by?}` |
+| GET | `/api/v1/admin/accuracy` 🔒 | `{accuracy_30d, hallucination_rate, trend, accuracy_by_severity, ...}` |
+| GET | `/api/v1/admin/flagged` 🔒 | Sessions whose latest review is "incorrect" |
+| GET | `/api/v1/admin/pms-report?month=YYYY-MM` 🔒 | Monthly PMS CSV: `date, total_sessions, reviewed, correct, hallucinations, accuracy_%, alerts` |
+| GET | `/api/v1/admin/drift` 🔒 | `{drift_score, drift_detected, bias_detected, bias_scores_by_demographic, trend_graph_data, alerts}`. Stores a `drift_metrics` snapshot unless `persist=false` |
+| POST | `/api/v1/alerts` 🔒 | `{alert_type, severity: info\|warning\|critical, message, session_id?}` |
+| GET | `/api/v1/alerts` 🔒 | Alert log. `POST /api/v1/alerts/{id}/acknowledge` marks one handled |
+| GET | `/health` | Liveness |
+
+🔒 = requires header `X-Admin-Key` when `ADMIN_API_KEY` is set. Unexpected errors return a generic `{"error": "Internal server error"}`. Details go to the server log only.
+
+## Database
+
+The MIMIC reference tables are `ed_stays`, `triage`, `diagnoses`, `med_reconciliations`, `pyxis_medications` and `vital_signs`. Live tables:
+
+- `triage_sessions`: one row per triage, with transcript, structured output, reasoning, evidence stay IDs and scores, and optional demographics.
+- `triage_session_feedback`: `session_id, feedback, feedback_notes, reviewed_by, flagged_for_review, timestamp`.
+- `alert_log`: `session_id, alert_type, severity, message, status, external_id, timestamp, acknowledged`.
+- `drift_metrics`: `timestamp, accuracy_30d, hallucination_rate, drift_score, bias_by_demographic, retraining_needed`.
+
+On startup, `app/db/schema.py` creates any missing tables and adds missing nullable columns. This is how the Space's bundled `triage_data.db` gets upgraded without data loss. Postgres deployments should use `alembic upgrade head`; revision `c7d1e2f3a4b5` adds the monitoring schema.
+
+## Local setup
+
+```bash
+git clone https://github.com/UmitKayaardi/nhs-clinical-triage.git
+cd nhs-clinical-triage
+pip install -r requirements.txt          # Whisper also needs ffmpeg on PATH
+cp .env.example .env                     # then fill in GROQ_API_KEY etc.
+python app.py                            # Gradio UI on :7860, FastAPI on :8000
+```
+
+To rebuild the database from the CSVs: `python setup_db.py && python -m scripts.import_mimic_csv --data-dir data`.
+
+To see the monitoring dashboards with data (local or demo databases only, never with real patient sessions):
+
+```bash
+python -m scripts.seed_monitoring_demo --sessions 30 --accuracy 0.8
+python -m scripts.seed_monitoring_demo --purge
+```
+
+### Tests
+
+```bash
+pytest
+```
+
+44 tests cover retrieval ranking and synonyms, Twilio retry, mock and failure logging, feedback and accuracy maths, the monthly report, drift/bias statistics, and the full API flow (audio → triage → alert → feedback → accuracy). Whisper, Groq and Twilio are mocked, so no network access, GPU or credentials are needed and no WhatsApp message is ever sent.
+
+### Docker (PostgreSQL)
+
+```bash
+cp .env.example .env    # set GROQ_API_KEY, ADMIN_API_KEY, POSTGRES_PASSWORD, Twilio vars
+docker compose up -d db
+alembic upgrade head
+python -m scripts.import_mimic_csv --data-dir data
+docker compose up -d api
+```
+
+## Deploying to Hugging Face
+
+The Space runs `app.py`, which starts FastAPI in a background thread and serves the Gradio UI. Set these under **Settings → Variables and secrets**. Never commit a `.env` file.
+
+| Secret | Required | Notes |
+|--------|----------|-------|
+| `GROQ_API_KEY` | yes | |
+| `DATABASE_URL` | yes | `sqlite:///./triage_data.db` |
+| `DOCTOR_PORTAL_PIN` | yes | Change from the default |
+| `ADMIN_API_KEY` | recommended | Protects feedback and admin endpoints. The Gradio app forwards it automatically |
+| `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`, `DOCTOR_WHATSAPP_NUMBER` | for live alerts | Without them, alerts are logged as `mocked` |
+| `TWILIO_TEST_MODE` | optional | `true` forces mocking even with credentials |
+| `ADMIN_EMAIL`, `SMTP_*` | optional | Email for critical monitoring alerts |
+
+Note: Space storage is ephemeral unless persistent storage is enabled, so sessions, feedback and alerts written to `triage_data.db` are lost on restart. For real use, point `DATABASE_URL` at a managed Postgres.
+
+## Project structure
+
+```text
+├── app/
+│   ├── api/v1/          triage_routes.py (Agents 1-5), monitoring_routes.py (Agents 6-7)
+│   ├── core/            config.py, security.py (X-Admin-Key)
+│   ├── db/              base.py, session.py, schema.py (startup schema bootstrap)
+│   ├── models/          mimic_models.py, monitoring_models.py
+│   ├── schemas/         triage_schema.py (Agent 4 guardrail), monitoring_schema.py
+│   └── services/        audio, retrieval, llm, twilio, alert, monitoring, drift
+├── alembic/             migrations
+├── data/                MIMIC-IV-ED demo CSV subset
+├── scripts/             import_mimic_csv.py, seed_monitoring_demo.py
+├── tests/               unit + integration tests
+├── app.py               Gradio UI (Patient Kiosk + Doctor Portal) + embedded API
+└── Dockerfile, docker-compose.yml, requirements.txt, .env.example
+```
+
+## Data
+
+The system uses the de-identified MIMIC-IV-ED demo subset: `edstays`, `triage`, `diagnosis`, `vitalsign`, `medrecon`, `pyxis`. MIMIC timestamps are date-shifted, so they don't reflect real dates.

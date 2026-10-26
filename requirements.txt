@@ -21,6 +21,14 @@ git+https://github.com/openai/whisper.git
 # --- LLM integration ---
 groq==0.13.1
 
+# --- Agent 5: WhatsApp alerts ---
+twilio==9.3.7
+
+# --- Data import + Agents 6/7: monitoring, drift and bias statistics ---
+pandas>=2.2,<3
+numpy>=1.26,<3
+scipy>=1.13,<2
+
 # --- Testing (optional, for tests/) ---
 pytest==8.3.4
 httpx==0.28.1                     # required by FastAPI's TestClient
