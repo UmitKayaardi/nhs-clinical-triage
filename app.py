@@ -19,6 +19,7 @@ import spaces
 import logging
 import os
 import json
+import tempfile
 import gradio as gr
 import requests
 
@@ -28,6 +29,12 @@ logger = logging.getLogger(__name__)
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
 PROCESS_TRIAGE_ENDPOINT = f"{BACKEND_URL}/api/v1/process-triage"
 SESSIONS_ENDPOINT = f"{BACKEND_URL}/api/v1/sessions"
+FEEDBACK_ENDPOINT = f"{BACKEND_URL}/api/v1/feedback"
+ACCURACY_ENDPOINT = f"{BACKEND_URL}/api/v1/admin/accuracy"
+DRIFT_ENDPOINT = f"{BACKEND_URL}/api/v1/admin/drift"
+PMS_REPORT_ENDPOINT = f"{BACKEND_URL}/api/v1/admin/pms-report"
+# Sent on clinician/admin calls; must match the backend's ADMIN_API_KEY when that is set.
+ADMIN_HEADERS = {"X-Admin-Key": os.environ["ADMIN_API_KEY"]} if os.environ.get("ADMIN_API_KEY") else {}
 REQUEST_TIMEOUT_SECONDS = 120  
 
 DOCTOR_PIN = os.environ.get("DOCTOR_PORTAL_PIN", "1234")
@@ -130,17 +137,22 @@ def _guess_mime_and_filename(audio_path: str) -> tuple:
     mimetype = mime_map.get(ext, "application/octet-stream")
     return filename, mimetype
 
-def call_backend(audio_path: str) -> dict:
+_GENDER_CODES = {"Male": "M", "Female": "F"}
+
+
+def call_backend(audio_path: str, patient_form: dict = None) -> dict:
     if not audio_path or not os.path.exists(audio_path):
         raise RuntimeError("No audio was recorded. Please record your symptoms and try again.")
 
     filename, mimetype = _guess_mime_and_filename(audio_path)
+    form = {k: v for k, v in (patient_form or {}).items() if v not in (None, "")}
 
     try:
         with open(audio_path, "rb") as f:
             response = requests.post(
                 PROCESS_TRIAGE_ENDPOINT,
                 files={"file": (filename, f, mimetype)},
+                data=form,
                 timeout=REQUEST_TIMEOUT_SECONDS,
             )
     except requests.exceptions.ConnectionError as exc:
@@ -160,9 +172,15 @@ def call_backend(audio_path: str) -> dict:
 
     return response.json()
 
-def process_patient_recording(audio_path: str):
+def process_patient_recording(audio_path: str, patient_id: str = "", age=None, gender: str = "", ethnicity: str = ""):
+    patient_form = {
+        "patient_id": (patient_id or "").strip(),
+        "age": int(age) if age not in (None, "") else None,
+        "gender": _GENDER_CODES.get(gender or ""),
+        "ethnicity": ethnicity if ethnicity and ethnicity != "Prefer not to say" else None,
+    }
     try:
-        result = call_backend(audio_path)
+        result = call_backend(audio_path, patient_form)
     except RuntimeError as exc:
         return f"⚠️ {exc}"
 
@@ -209,13 +227,18 @@ def fetch_patients(severity_filter: str) -> str:
             except Exception:
                 conditions = []
 
+            review = s.get("latest_feedback")
             patient_data = {
-                "Session ID": str(s.get("id", "N/A"))[:8] + "...", # ID
+                "Session ID": str(s.get("id", "N/A")),
                 "Severity": s.get("severity", "Unknown"),
+                "Received": (s.get("created_at") or "")[:16].replace("T", " "),
                 "Duration": s.get("duration", "N/A"),
                 "Symptoms": symptoms,
                 "Possible Conditions": conditions,
-                "Transcript": s.get("transcript", "")
+                "Reasoning": s.get("reasoning") or "—",
+                "Required Actions": s.get("required_actions") or [],
+                "Transcript": s.get("transcript", ""),
+                "Clinician Review": {"correct": "✅ Correct", "incorrect": "⚠️ Incorrect (flagged)"}.get(review, "Not reviewed"),
             }
             
             dashboard_html += dict_to_html_card(patient_data)
@@ -224,6 +247,64 @@ def fetch_patients(severity_filter: str) -> str:
         
     except Exception as e:
         return f"<div style='color:red;'>Connection Error: {str(e)}</div>"
+
+def submit_feedback(session_id: str, verdict: str, notes: str, reviewer: str) -> str:
+    session_id = (session_id or "").strip()
+    if not session_id or verdict not in ("Correct", "Incorrect"):
+        return "⚠️ Enter a Session ID and choose Correct or Incorrect."
+    payload = {"session_id": session_id, "feedback": verdict.lower(), "notes": notes or None,
+               "reviewed_by": reviewer or None}
+    try:
+        r = requests.post(FEEDBACK_ENDPOINT, json=payload, headers=ADMIN_HEADERS, timeout=10)
+    except requests.exceptions.RequestException as exc:
+        return f"⚠️ Could not reach backend: {exc}"
+    if r.status_code != 201:
+        return f"⚠️ Backend error ({r.status_code}): {r.text}"
+    flagged = r.json().get("flagged_for_review")
+    return "✅ Feedback saved." + (" Session flagged for hallucination review." if flagged else "")
+
+
+def _pct(value) -> str:
+    return "—" if value is None else f"{value:.0%}"
+
+
+def load_monitoring():
+    """Agent 6 + 7 summary for the Doctor Portal."""
+    try:
+        acc = requests.get(ACCURACY_ENDPOINT, headers=ADMIN_HEADERS, timeout=15)
+        drift = requests.get(DRIFT_ENDPOINT, headers=ADMIN_HEADERS, timeout=30)
+    except requests.exceptions.RequestException as exc:
+        return f"⚠️ Could not reach backend: {exc}", {}
+    if acc.status_code != 200 or drift.status_code != 200:
+        return f"⚠️ Backend error ({acc.status_code}/{drift.status_code})", {}
+    a, d = acc.json(), drift.json()
+    score = d.get("drift_score")
+    summary = (
+        f"**30-day accuracy:** {_pct(a.get('accuracy_30d'))}  ·  "
+        f"**Hallucination rate:** {_pct(a.get('hallucination_rate'))}  ·  "
+        f"**Reviewed:** {a.get('reviewed_sessions', 0)} / {a.get('total_sessions', 0)} sessions\n\n"
+        f"**Drift score:** {'—' if score is None else f'{score:.2f}'}  ·  "
+        f"**Retraining needed:** {'Yes' if d.get('retraining_needed') else 'No'}  ·  "
+        f"**Data drift:** {'Yes' if d.get('data_drift_detected') else 'No'}  ·  "
+        f"**Bias flagged:** {'Yes' if d.get('bias_detected') else 'No'}"
+    )
+    return summary, d
+
+
+def download_pms_report(month: str):
+    month = (month or "").strip()
+    try:
+        r = requests.get(PMS_REPORT_ENDPOINT, params={"month": month} if month else None,
+                         headers=ADMIN_HEADERS, timeout=30)
+    except requests.exceptions.RequestException:
+        return None
+    if r.status_code != 200:
+        return None
+    path = os.path.join(tempfile.gettempdir(), f"pms_report_{month or 'current'}.csv")
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        f.write(r.text)
+    return path
+
 
 # --- UI layout ---
 with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="slate", neutral_hue="gray"), css=custom_css) as demo:
@@ -237,12 +318,21 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
     with gr.Tab("Patient Kiosk"):
         gr.Markdown("### Please describe your symptoms")
         patient_audio = gr.Audio(sources=["microphone"], type="filepath", label="Record your symptoms")
+        with gr.Accordion("Optional details (used only for audit and fairness monitoring)", open=False):
+            with gr.Row():
+                patient_id_in = gr.Textbox(label="Patient / NHS number", max_lines=1)
+                age_in = gr.Number(label="Age", precision=0, minimum=0, maximum=120)
+                gender_in = gr.Dropdown(["", "Male", "Female"], value="", label="Sex")
+                ethnicity_in = gr.Dropdown(
+                    ["", "WHITE", "BLACK", "ASIAN", "HISPANIC", "OTHER", "Prefer not to say"],
+                    value="", label="Ethnicity",
+                )
         patient_submit_btn = gr.Button("Submit", variant="primary")
         patient_output = gr.Textbox(label="Status", interactive=False)
 
         patient_submit_btn.click(
             fn=process_patient_recording,
-            inputs=[patient_audio],
+            inputs=[patient_audio, patient_id_in, age_in, gender_in, ethnicity_in],
             outputs=[patient_output],
         )
 
@@ -267,6 +357,29 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
 
             severity_radio.change(fn=fetch_patients, inputs=[severity_radio], outputs=[patient_list_html])
             refresh_btn.click(fn=fetch_patients, inputs=[severity_radio], outputs=[patient_list_html])
+
+            with gr.Accordion("📝 Review a triage decision (Agent 6)", open=False):
+                with gr.Row():
+                    fb_session = gr.Textbox(label="Session ID (copy from a card above)", max_lines=1)
+                    fb_verdict = gr.Radio(["Correct", "Incorrect"], label="Was the AI triage level correct?")
+                with gr.Row():
+                    fb_notes = gr.Textbox(label="Notes (what was wrong?)", lines=2)
+                    fb_reviewer = gr.Textbox(label="Reviewed by", max_lines=1)
+                fb_btn = gr.Button("Save review", variant="primary")
+                fb_status = gr.Markdown()
+                fb_btn.click(fn=submit_feedback, inputs=[fb_session, fb_verdict, fb_notes, fb_reviewer],
+                             outputs=[fb_status])
+
+            with gr.Accordion("📈 Monitoring: accuracy, drift and bias (Agents 6 & 7)", open=False):
+                mon_btn = gr.Button("Run monitoring check")
+                mon_summary = gr.Markdown()
+                mon_details = gr.JSON(label="Full drift & bias report")
+                mon_btn.click(fn=load_monitoring, inputs=[], outputs=[mon_summary, mon_details])
+                with gr.Row():
+                    pms_month = gr.Textbox(label="PMS report month (YYYY-MM, blank = current)", max_lines=1)
+                    pms_btn = gr.Button("Download monthly PMS report")
+                pms_file = gr.File(label="PMS report (CSV)")
+                pms_btn.click(fn=download_pms_report, inputs=[pms_month], outputs=[pms_file])
 
         pin_input.submit(
             fn=verify_pin,

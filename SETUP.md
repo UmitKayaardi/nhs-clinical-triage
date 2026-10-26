@@ -1,5 +1,10 @@
 # NHS Triage Assistant — Setup Instructions
 
+> **Note:** this guide covers the original PostgreSQL/Docker setup. The Alembic
+> folder already exists, so skip `alembic init` and run `alembic upgrade head`.
+> See README.md for the 7-agent architecture, the Hugging Face deployment and
+> the new environment variables (Twilio, admin key, monitoring thresholds).
+
 ## 0. Prerequisites
 - Docker and Docker Compose installed.
 - The MIMIC-IV-ED demo CSVs (`edstays.csv`, `triage.csv`, `diagnosis.csv`,

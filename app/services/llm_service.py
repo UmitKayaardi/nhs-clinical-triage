@@ -2,7 +2,7 @@
 LLM integration service (Groq API).
 
 Generates the structured JSON triage report from a patient transcript
-and the historical evidence retrieved by db_service.py.
+and the historical evidence retrieved by retrieval_service.py (Agent 2).
 
 CRITICAL DOMAIN CONSTRAINT: this service must never let the model invent
 a severity level from its own clinical judgment. The system prompt
@@ -63,10 +63,15 @@ Rules:
 3. Base "Possible_Conditions" on the historical evidence, but if the patient has a clear minor \
    illness, you can suggest general conditions (e.g., "Common Cold", "Mild Tension Headache"). \
    If no evidence matches, do not say "Insufficient evidence", just suggest the most logical minor condition.
-4. Respond with ONLY a single JSON object, no prose, no markdown code fences, no explanation.
+4. In "Reasoning", explain in one to three sentences why you chose this severity, naming the \
+   red flags (or their absence) and which historical cases, if any, informed the decision.
+5. In "Required_Actions", list the immediate next steps for the triage nurse (e.g. "ECG within \
+   10 minutes", "Re-check vitals in 30 minutes"). These are suggestions for clinician review only.
+6. Respond with ONLY a single JSON object, no prose, no markdown code fences, no explanation.
 
 Required JSON schema (respond in exactly this shape):
-{{"Symptoms": ["..."], "Duration": "...", "Possible_Conditions": ["..."], "Severity": "High|Medium|Low"}}
+{{"Symptoms": ["..."], "Duration": "...", "Possible_Conditions": ["..."], "Severity": "High|Medium|Low", \
+"Reasoning": "...", "Required_Actions": ["..."]}}
 """
 
 _MARKDOWN_FENCE_RE = re.compile(r"^```(?:json)?\s*|\s*```$", re.MULTILINE)
@@ -86,8 +91,8 @@ def generate_triage_report(transcript: str, db_context: str) -> TriageResult:
 
     Args:
         transcript: The patient's transcribed speech.
-        db_context: Formatted historical evidence string from db_service.py
-            (see db_service.format_cases_as_context).
+        db_context: Formatted historical evidence string from retrieval_service.py
+            (see retrieval_service.format_cases_as_context).
 
     Returns:
         A validated TriageResult.

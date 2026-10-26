@@ -13,3 +13,4 @@ Base = declarative_base()
 # Import model modules so they register with Base.metadata.
 # Keep this import at the bottom to avoid circular imports.
 from app.models import mimic_models  # noqa: E402,F401
+from app.models import monitoring_models  # noqa: E402,F401
