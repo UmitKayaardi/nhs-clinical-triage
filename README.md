@@ -1,3 +1,5 @@
+**Doctor Portal PIN: 1234**
+
 ---
 title: NHS Clinical Triage
 colorFrom: blue
