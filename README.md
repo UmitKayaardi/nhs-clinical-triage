@@ -1,5 +1,3 @@
-**Doctor Portal PIN: 1234**
-
 ---
 title: NHS Clinical Triage
 colorFrom: blue
@@ -9,6 +7,8 @@ sdk_version: 5.9.1
 app_file: app.py
 pinned: false
 ---
+
+**Doctor Portal PIN: 1234**
 
 # AI-Powered Clinical Triage Assistant
 
