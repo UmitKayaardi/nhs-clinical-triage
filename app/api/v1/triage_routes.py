@@ -96,7 +96,7 @@ def dispatch_alert(twilio: TwilioService, n8n: N8nOrchestrator, db: Session, tra
             event = {"session_id": session_id, "severity": severity, "chief_complaint": chief_complaint[:300],
                      "reasoning": (reasoning or "")[:500], "news2_score": news2_score,
                      "low_evidence": low_evidence, "created_at": created_at, "message": body,
-                     "test_mode": not twilio.is_live}
+                     "test_mode": bool(twilio.settings.TWILIO_TEST_MODE)}
             try:
                 outcome = n8n.send(event)
                 log_alert(db, "whatsapp_triage", "critical", body, session_id=session_id,

@@ -13,3 +13,4 @@ docs/coursework/
 # Local build plan (not published)
 CN7050_PLAN.md
 evaluation/cache/*.log
+.local/

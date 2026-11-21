@@ -125,3 +125,25 @@ def test_n8n_down_falls_back_to_twilio(client, db):
 def test_trace_endpoint_errors(client):
     assert client.get("/api/v1/sessions/not-a-uuid/trace").status_code == 422
     assert client.get("/api/v1/sessions/00000000-0000-0000-0000-000000000000/trace").status_code == 404
+
+
+def test_feedback_and_drift_add_agent_6_and_7_trace_steps(client):
+    app.dependency_overrides[get_n8n_orchestrator] = lambda: N8nOrchestrator(n8n_settings(N8N_WEBHOOK_URL=None))
+    sid = structured(client).json()["session_id"]
+    assert client.post("/api/v1/feedback", json={"session_id": sid, "feedback": "correct"}).status_code == 201
+    steps = client.get(f"/api/v1/sessions/{sid}/trace").json()["steps"]
+    assert steps[-1]["agent_no"] == 6 and steps[-1]["output"]["verdict"] == "correct"
+    drift = client.get("/api/v1/admin/drift?persist=false").json()
+    assert drift["trace"][0]["agent_no"] == 7
+
+
+def test_system_health_never_leaks_errors(client, monkeypatch):
+    def broken():
+        raise RuntimeError("gsk_secret_key_text")
+    monkeypatch.setattr(llm_service, "_get_client", broken)
+    r = client.get("/api/v1/admin/system-health")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["groq"]["reachable"] is False and "secret" not in r.text
+    assert body["database"]["rows"]["ed_stays (MIMIC KB)"] == 8
+    assert body["models"]["agent3_llm"] == "openai/gpt-oss-20b"

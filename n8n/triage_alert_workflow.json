@@ -1,0 +1,178 @@
+{
+  "name": "NHS Triage - Agent 5 alert orchestration",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "triage-alert",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 300],
+      "webhookId": "6d3f8a52-2f1b-4e57-9c5e-7a1d0c9b0001"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 2},
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.headers['x-webhook-secret'] }}",
+              "rightValue": "={{ $env.TRIAGE_WEBHOOK_SECRET }}",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000002",
+      "name": "Check secret",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 2},
+          "conditions": [
+            {
+              "id": "c2",
+              "leftValue": "={{ $json.body.severity }}",
+              "rightValue": "High",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000003",
+      "name": "Severity needs alert?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [440, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 2},
+          "conditions": [
+            {
+              "id": "c3",
+              "leftValue": "={{ $json.body.test_mode }}",
+              "rightValue": true,
+              "operator": {"type": "boolean", "operation": "true", "singleValue": true}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000004",
+      "name": "Twilio test mode?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [660, 100]
+    },
+    {
+      "parameters": {},
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000005",
+      "name": "Test mode - do not send",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [880, 0]
+    },
+    {
+      "parameters": {
+        "from": "={{ $env.TWILIO_WHATSAPP_FROM }}",
+        "to": "={{ $env.DOCTOR_WHATSAPP_NUMBER }}",
+        "toWhatsapp": true,
+        "message": "={{ $('Webhook').item.json.body.message }}",
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000006",
+      "name": "Send WhatsApp (Twilio)",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [880, 200],
+      "credentials": {"twilioApi": {"id": "", "name": "Twilio account"}}
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({status: 'mocked', channel: 'n8n', message_sid: null, session_id: $('Webhook').item.json.body.session_id}) }}",
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000007",
+      "name": "Respond mocked",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1100, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({status: 'sent', channel: 'n8n', message_sid: $json.sid, session_id: $('Webhook').item.json.body.session_id}) }}",
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000008",
+      "name": "Respond sent",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1100, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({status: 'skipped', channel: 'n8n', message_sid: null, reason: 'severity ' + $json.body.severity + ' does not alert'}) }}",
+        "options": {}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000009",
+      "name": "Respond skipped",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [660, 360]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({status: 'unauthorized', channel: 'n8n'}) }}",
+        "options": {"responseCode": 401}
+      },
+      "id": "0b7c2f1e-5a51-4c4a-9a10-000000000010",
+      "name": "Respond unauthorized",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [440, 460]
+    }
+  ],
+  "connections": {
+    "Webhook": {"main": [[{"node": "Check secret", "type": "main", "index": 0}]]},
+    "Check secret": {"main": [
+      [{"node": "Severity needs alert?", "type": "main", "index": 0}],
+      [{"node": "Respond unauthorized", "type": "main", "index": 0}]
+    ]},
+    "Severity needs alert?": {"main": [
+      [{"node": "Twilio test mode?", "type": "main", "index": 0}],
+      [{"node": "Respond skipped", "type": "main", "index": 0}]
+    ]},
+    "Twilio test mode?": {"main": [
+      [{"node": "Test mode - do not send", "type": "main", "index": 0}],
+      [{"node": "Send WhatsApp (Twilio)", "type": "main", "index": 0}]
+    ]},
+    "Test mode - do not send": {"main": [[{"node": "Respond mocked", "type": "main", "index": 0}]]},
+    "Send WhatsApp (Twilio)": {"main": [[{"node": "Respond sent", "type": "main", "index": 0}]]}
+  },
+  "pinData": {},
+  "settings": {"executionOrder": "v1"},
+  "active": false,
+  "meta": {"templateCredsSetupCompleted": false},
+  "tags": []
+}
