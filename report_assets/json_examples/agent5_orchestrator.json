@@ -14,7 +14,7 @@
     "fallback_from_n8n": false
   },
   "status": "mocked",
-  "duration_ms": 11.5,
+  "duration_ms": 8.1,
   "messages_to": [
     "On-call clinician (WhatsApp)"
   ]

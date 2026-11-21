@@ -287,8 +287,8 @@ DEMO_CASES = {
     "Weak evidence": dict(complaint="Itchy bumps on my arms after gardening", age=45, sex="Female", temp=98.6,
                           hr=78, rr=14, spo2=99, sbp=124, dbp=76, pain=1, avpu="Alert", arrival="walk in",
                           injury=False),
-    "NEWS2 safety net": dict(complaint="Feeling generally unwell and more tired than usual since yesterday", age=81,
-                             sex="Female", temp=100.9, hr=104, rr=26, spo2=95, sbp=108, dbp=64, pain=2,
+    "NEWS2 safety net": dict(complaint="Cold and shivery after waiting outside for a long time, otherwise I feel fine",
+                             age=79, sex="Male", temp=94.6, hr=72, rr=14, spo2=97, sbp=132, dbp=78, pain=0,
                              avpu="Alert", arrival="walk in", injury=False),
 }
 _DEMO_FIELDS = ["complaint", "age", "sex", "temp", "hr", "rr", "spo2", "sbp", "dbp", "pain", "avpu", "arrival", "injury"]
@@ -301,6 +301,14 @@ def load_demo(name: str):
 
 def _num(v):
     return None if v in (None, "") else float(v)
+
+
+def _alert_text(alert: dict) -> str:
+    if not alert:
+        return "no alert (severity not in alert list)"
+    if alert.get("channel") == "mocked":
+        return "mocked: Twilio test mode, no WhatsApp message sent (n8n not configured)"
+    return f"{alert.get('status')} via {alert.get('channel')}"
 
 
 def render_result(body: dict) -> str:
@@ -323,7 +331,7 @@ def render_result(body: dict) -> str:
         "Reasoning": tr.get("Reasoning", ""),
         "Required Actions": tr.get("Required_Actions", []),
         "Guardrail attempts": body.get("guardrail_attempts"),
-        "Alert (Agent 5)": f"{alert.get('status')} via {alert.get('channel')}" if alert else "no alert (not High)",
+        "Alert (Agent 5)": _alert_text(alert),
     }
     sim = "".join(f"<tr><td>{i}</td><td>{_esc(c['chief_complaint'])}</td><td>{_esc(c['severity'])}</td>"
                   f"<td>{c['similarity_score']:.2f}</td></tr>" for i, c in enumerate(cases, 1))

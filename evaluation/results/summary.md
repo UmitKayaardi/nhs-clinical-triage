@@ -1,6 +1,6 @@
 # Evaluation summary (tables only)
 
-Generated 2026-11-21T00:32:27Z by `python scripts/evaluate.py --all`; seed 42. LLM: openai/gpt-oss-20b, temperature 0.0, reasoning_effort low. All LLM runs complete: False.
+Generated 2026-11-21T01:21:42Z by `python scripts/evaluate.py --all`; seed 42. LLM: openai/gpt-oss-20b, temperature 0.0, reasoning_effort low. All LLM runs complete: False.
 
 ## MIMIC
 
@@ -16,17 +16,25 @@ Generated 2026-11-21T00:32:27Z by `python scripts/evaluate.py --all`; seed 42. L
 
 | System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] | Weighted F1 | Kappa (linear) | High recall | Under-triage [95% CI] | Over-triage | ROC-AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| S0 Majority class | 31 | 54.8% [38.7%, 74.2%] | 33.3% | 0.236 [18.6, 41.5] | 0.388 | 0.000 | 100.0% | 0.0% [0.0%, 0.0%] | 45.2% | – |
-| S1 Retrieval-only (Agent 2 vote) | 31 | 58.1% [38.7%, 74.2%] | 41.9% | 0.389 [27.4, 70.8] | 0.556 | 0.178 | 41.2% | 32.3% [16.1%, 48.5%] | 9.7% | 0.783 |
-| S2a Logistic Regression | 31 | 67.7% [51.6%, 83.9%] | 47.2% | 0.459 [34.3, 82.7] | 0.669 | 0.399 | 64.7% | 19.4% [6.5%, 35.5%] | 12.9% | 0.659 |
-| S2b Random Forest | 31 | 71.0% [54.8%, 87.1%] | 48.6% | 0.477 [36.7, 83.8] | 0.699 | 0.450 | 76.5% | 12.9% [3.2%, 25.8%] | 16.1% | 0.693 |
+| S0 Majority class | 31 | 54.8% [38.7%, 74.2%] | 33.3% | 0.236 [0.186, 0.415] | 0.388 | 0.000 | 100.0% | 0.0% [0.0%, 0.0%] | 45.2% | – |
+| S1 Retrieval-only (Agent 2 vote) | 31 | 58.1% [38.7%, 74.2%] | 41.9% | 0.389 [0.274, 0.708] | 0.556 | 0.178 | 41.2% | 32.3% [16.1%, 48.5%] | 9.7% | 0.783 |
+| S2a Logistic Regression | 31 | 67.7% [51.6%, 83.9%] | 47.2% | 0.459 [0.343, 0.827] | 0.669 | 0.399 | 64.7% | 19.4% [6.5%, 35.5%] | 12.9% | 0.659 |
+| S2b Random Forest | 31 | 71.0% [54.8%, 87.1%] | 48.6% | 0.477 [0.367, 0.838] | 0.699 | 0.450 | 76.5% | 12.9% [3.2%, 25.8%] | 16.1% | 0.693 |
 
 ### LLM systems (test split)
 
 | System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] | Weighted F1 | Kappa (linear) | High recall | Under-triage [95% CI] | Over-triage | ROC-AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| S4 [kb=mimic-train] (INCOMPLETE 15/31) | 15 | 13.3% [0.0%, 26.7%] | 13.3% | 0.235 [0.0, 42.1] | 0.235 | 0.000 | 13.3% | 86.7% [73.3%, 100.0%] | 0.0% | – |
-| S4-noNEWS2 [kb=mimic-train] (INCOMPLETE 15/31) | 15 | 13.3% [0.0%, 26.7%] | 13.3% | 0.235 [0.0, 42.1] | 0.235 | 0.000 | 13.3% | 86.7% [73.3%, 100.0%] | 0.0% | – |
+| S4-promptv1 [kb=mimic-train] | 31 | 29.0% [12.9%, 45.2%] | 52.0% | 0.285 [0.166, 0.519] | 0.353 | 0.039 | 17.6% | 64.5% [48.4%, 80.6%] | 6.5% | – |
+| S4 [kb=mimic-train] | 31 | 61.3% [45.2%, 77.4%] | 40.3% | 0.391 [0.280, 0.718] | 0.584 | 0.244 | 82.4% | 9.7% [0.0%, 22.6%] | 29.0% | – |
+| S4-noNEWS2 [kb=mimic-train] | 31 | 61.3% [45.2%, 77.4%] | 40.3% | 0.391 [0.280, 0.718] | 0.584 | 0.244 | 82.4% | 9.7% [0.0%, 22.6%] | 29.0% | – |
+| S3 [kb=none] (INCOMPLETE 10/31) | 10 | 60.0% [30.0%, 90.0%] | 60.0% | 0.750 [0.462, 0.947] | 0.750 | 0.000 | 60.0% | 40.0% [10.0%, 70.0%] | 0.0% | – |
+
+### LLM systems on the validation split (prompt check before the test run)
+
+| System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] | Weighted F1 | Kappa (linear) | High recall | Under-triage [95% CI] | Over-triage | ROC-AUC |
+|---|---|---|---|---|---|---|---|---|---|---|
+| S4 validation [kb=mimic-train] | 31 | 58.1% [41.9%, 74.2%] | 54.8% | 0.551 [0.370, 0.716] | 0.571 | 0.241 | 88.2% | 16.1% [6.4%, 29.0%] | 25.8% | – |
 
 ### 5-fold cross-validation (development = train + validation)
 
@@ -56,20 +64,22 @@ Method: 5-fold StratifiedGroupKFold on subject_id (train+validation, test untouc
 
 | Comparison | A right / B wrong | A wrong / B right | p |
 |---|---|---|---|
-| mimic:S4:kb=mimic-train vs S2b | 2 | 11 | 0.0225 |
+| mimic:S4:kb=mimic-train vs S2b | 7 | 10 | 0.6291 |
 | mimic:S4:kb=mimic-train vs S4-noNEWS2 | 0 | 0 | 1.0000 |
 
 ### Agent performance
 
 | Job | Cases | First-pass valid | Repair rate | Failed | NEWS2 overrides | Weak-evidence flags | Agent 2 ms (median) | Agent 3 ms (median / p95) | Agent 4 ms (median) | Tokens/case |
 |---|---|---|---|---|---|---|---|---|---|---|
-| mimic:S4:kb=mimic-train | 15 | 100.0% | 0.0% | 0 | 0 | 46.7% | 2.6 | 678 / 9313 | -677.70 | 1439 |
+| mimic:S4-promptv1:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 0 | 38.7% | 2.5 | 635 / 5642 | -634.80 | 1452 |
+| mimic:S4:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 0 | 38.7% | 2.5 | 573 / 985 | -572.40 | 1680 |
+| mimic:S3:kb=none | 10 | 100.0% | 0.0% | 0 | 0 | 100.0% | 0.0 | 417 / 598 | -416.75 | 1176 |
 
 ### Weak-evidence flag (S4)
 
 | Job | Flagged n | Flagged acc. | Flagged under-triage | Not flagged n | Not flagged acc. | Not flagged under-triage |
 |---|---|---|---|---|---|---|
-| mimic:S4:kb=mimic-train | 7 | 28.6% | 71.4% | 8 | 0.0% | 100.0% |
+| mimic:S4:kb=mimic-train | 12 | 50.0% | 16.7% | 19 | 68.4% | 5.3% |
 
 ### Subgroups (LLM case set)
 
@@ -77,8 +87,8 @@ Method: 5-fold StratifiedGroupKFold on subject_id (train+validation, test untouc
 |---|---|---|---|---|---|---|
 | S2b | sex | F | 20 | 75.0% | 0.512 | 10.0% |
 | S2b | sex | M | 11 | 63.6% | 0.607 | 18.2% |
-| S4 (mimic-train) | sex | F | 8 | 12.5% | 0.222 | 87.5% |
-| S4 (mimic-train) | sex | M | 7 | 14.3% | 0.250 | 85.7% |
+| S4 (mimic-train) | sex | F | 20 | 60.0% | 0.399 | 10.0% |
+| S4 (mimic-train) | sex | M | 11 | 63.6% | 0.542 | 9.1% |
 
 ### LOW_EVIDENCE_THRESHOLD selection
 
@@ -108,11 +118,11 @@ Method: 5-fold StratifiedGroupKFold on subject_id (train+validation, test untouc
 
 | System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] | Weighted F1 | Kappa (linear) | High recall | Under-triage [95% CI] | Over-triage | ROC-AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| S0 Majority class | 191 | 42.4% [35.6%, 49.7%] | 33.3% | 0.199 [17.5, 22.1] | 0.253 | 0.000 | 0.0% | 57.6% [50.3%, 64.4%] | 0.0% | – |
-| S1 Retrieval-only (Agent 2 vote) | 191 | 65.4% [58.1%, 72.3%] | 64.1% | 0.648 [57.5, 71.7] | 0.652 | 0.523 | 59.5% | 20.9% [15.2%, 26.7%] | 13.6% | 0.792 |
-| S2a Logistic Regression | 191 | 69.1% [62.3%, 75.9%] | 70.5% | 0.700 [63.1, 76.3] | 0.689 | 0.593 | 78.4% | 15.7% [11.0%, 20.9%] | 15.2% | 0.848 |
-| S2b Random Forest | 191 | 70.7% [63.9%, 77.0%] | 70.1% | 0.704 [63.4, 76.5] | 0.708 | 0.596 | 67.6% | 14.1% [9.4%, 19.4%] | 15.2% | 0.855 |
-| H Triage nurse (KTAS_RN) | 191 | 88.0% [83.2%, 92.7%] | 88.4% | 0.880 [83.1, 92.7] | 0.879 | 0.851 | 91.9% | 6.3% [3.1%, 9.9%] | 5.8% | – |
+| S0 Majority class | 191 | 42.4% [35.6%, 49.7%] | 33.3% | 0.199 [0.175, 0.221] | 0.253 | 0.000 | 0.0% | 57.6% [50.3%, 64.4%] | 0.0% | – |
+| S1 Retrieval-only (Agent 2 vote) | 191 | 65.4% [58.1%, 72.3%] | 64.1% | 0.648 [0.575, 0.717] | 0.652 | 0.523 | 59.5% | 20.9% [15.2%, 26.7%] | 13.6% | 0.792 |
+| S2a Logistic Regression | 191 | 69.1% [62.3%, 75.9%] | 70.5% | 0.700 [0.631, 0.763] | 0.689 | 0.593 | 78.4% | 15.7% [11.0%, 20.9%] | 15.2% | 0.848 |
+| S2b Random Forest | 191 | 70.7% [63.9%, 77.0%] | 70.1% | 0.704 [0.634, 0.765] | 0.708 | 0.596 | 67.6% | 14.1% [9.4%, 19.4%] | 15.2% | 0.855 |
+| H Triage nurse (KTAS_RN) | 191 | 88.0% [83.2%, 92.7%] | 88.4% | 0.880 [0.831, 0.927] | 0.879 | 0.851 | 91.9% | 6.3% [3.1%, 9.9%] | 5.8% | – |
 
 ### LLM systems (test split sample)
 
@@ -123,11 +133,11 @@ Method: 5-fold StratifiedGroupKFold on subject_id (train+validation, test untouc
 
 | System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] | Weighted F1 | Kappa (linear) | High recall | Under-triage [95% CI] | Over-triage | ROC-AUC |
 |---|---|---|---|---|---|---|---|---|---|---|
-| S0 Majority class | 117 | 34.2% [25.6%, 42.7%] | 33.3% | 0.170 [13.6, 20.0] | 0.174 | 0.000 | 0.0% | 65.8% [57.3%, 74.4%] | 0.0% | – |
-| S1 Retrieval-only (Agent 2 vote) | 117 | 67.5% [59.0%, 76.1%] | 67.3% | 0.674 [58.3, 75.0] | 0.674 | 0.569 | 59.5% | 21.4% [13.7%, 29.1%] | 11.1% | – |
-| S2a Logistic Regression | 117 | 72.6% [65.0%, 80.3%] | 72.8% | 0.727 [64.9, 80.2] | 0.725 | 0.673 | 78.4% | 14.5% [7.7%, 20.5%] | 12.8% | – |
-| S2b Random Forest | 117 | 68.4% [59.8%, 76.1%] | 68.4% | 0.688 [60.4, 76.7] | 0.687 | 0.604 | 67.6% | 17.9% [11.1%, 24.8%] | 13.7% | – |
-| H Triage nurse (KTAS_RN) | 117 | 87.2% [80.3%, 93.2%] | 87.3% | 0.874 [80.9, 92.9] | 0.872 | 0.854 | 91.9% | 6.8% [2.6%, 12.0%] | 6.0% | – |
+| S0 Majority class | 117 | 34.2% [25.6%, 42.7%] | 33.3% | 0.170 [0.136, 0.200] | 0.174 | 0.000 | 0.0% | 65.8% [57.3%, 74.4%] | 0.0% | – |
+| S1 Retrieval-only (Agent 2 vote) | 117 | 67.5% [59.0%, 76.1%] | 67.3% | 0.674 [0.583, 0.750] | 0.674 | 0.569 | 59.5% | 21.4% [13.7%, 29.1%] | 11.1% | – |
+| S2a Logistic Regression | 117 | 72.6% [65.0%, 80.3%] | 72.8% | 0.727 [0.649, 0.802] | 0.725 | 0.673 | 78.4% | 14.5% [7.7%, 20.5%] | 12.8% | – |
+| S2b Random Forest | 117 | 68.4% [59.8%, 76.1%] | 68.4% | 0.688 [0.604, 0.767] | 0.687 | 0.604 | 67.6% | 17.9% [11.1%, 24.8%] | 13.7% | – |
+| H Triage nurse (KTAS_RN) | 117 | 87.2% [80.3%, 93.2%] | 87.3% | 0.874 [0.809, 0.929] | 0.872 | 0.854 | 91.9% | 6.8% [2.6%, 12.0%] | 6.0% | – |
 
 ### 5-fold cross-validation (development = train + validation)
 

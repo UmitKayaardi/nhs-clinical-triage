@@ -40,7 +40,7 @@ Generated 2026-11-21 by `python scripts/build_report_assets.py`.
 | pytest | 8.3.4 |
 | httpx | 0.28.1 |
 | imageio-ffmpeg | 0.8.1 |
-| playwright | not installed |
+| playwright | 1.65.2 |
 
 ## Models and agent parameters
 

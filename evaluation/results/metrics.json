@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T00:32:27Z",
+  "generated_at": "2026-11-21T01:21:42Z",
   "seed": 42,
   "labels": [
     "Low",
@@ -18,6 +18,7 @@
     "S3": "LLM only (no evidence)",
     "S4": "Full system (Agents 2+3+4)",
     "S4-noNEWS2": "Full system without NEWS2 safety net",
+    "S4-promptv1": "Full system with the previous release prompt (v1)",
     "H": "Triage nurse (KTAS_RN)"
   },
   "llm": {
@@ -27,8 +28,8 @@
     "reasoning_effort": "low",
     "max_repair_attempts": 2,
     "run_stats": {
-      "cache_entries": 15,
-      "cache_hits": 15,
+      "cache_entries": 102,
+      "cache_hits": 103,
       "api_calls": 0,
       "tokens_used_this_run": 0,
       "budget": 150,
@@ -1227,82 +1228,84 @@
         "config_value": 0.5
       },
       "llm_systems": {
-        "mimic:S4:kb=mimic-train": {
+        "mimic:S4-promptv1:kb=mimic-train": {
           "job": {
-            "name": "mimic:S4:kb=mimic-train",
+            "name": "mimic:S4-promptv1:kb=mimic-train",
             "dataset": "mimic",
             "system": "S4",
-            "kb": "mimic-train"
+            "kb": "mimic-train",
+            "split": "test",
+            "prompt": "v1"
           },
-          "complete": false,
-          "n_done": 15,
+          "complete": true,
+          "n_done": 31,
           "n_target": 31,
           "n_failed": 0,
-          "stopped_reason": "cache miss in offline mode",
-          "S4": {
-            "n": 15,
-            "accuracy": 0.13333333333333333,
-            "balanced_accuracy": 0.13333333333333333,
-            "precision_macro": 1.0,
-            "recall_macro": 0.13333333333333333,
-            "f1_macro": 0.23529411764705882,
-            "precision_weighted": 1.0,
-            "recall_weighted": 0.13333333333333333,
-            "f1_weighted": 0.23529411764705882,
+          "stopped_reason": null,
+          "S4-promptv1": {
+            "n": 31,
+            "accuracy": 0.2903225806451613,
+            "balanced_accuracy": 0.5203619909502263,
+            "precision_macro": 0.4268518518518518,
+            "recall_macro": 0.5203619909502263,
+            "f1_macro": 0.2847269689374952,
+            "precision_weighted": 0.5929211469534049,
+            "recall_weighted": 0.2903225806451613,
+            "f1_weighted": 0.35264848337853427,
             "per_class": {
               "Low": {
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0.0,
-                "support": 0
+                "precision": 0.05555555555555555,
+                "recall": 1.0,
+                "f1": 0.10526315789473684,
+                "support": 1
               },
               "Medium": {
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0.0,
-                "support": 0
+                "precision": 0.625,
+                "recall": 0.38461538461538464,
+                "f1": 0.47619047619047616,
+                "support": 13
               },
               "High": {
-                "precision": 1.0,
-                "recall": 0.13333333333333333,
-                "f1": 0.23529411764705882,
-                "support": 15
+                "precision": 0.6,
+                "recall": 0.17647058823529413,
+                "f1": 0.2727272727272727,
+                "support": 17
               }
             },
-            "kappa_linear": 0.0,
-            "high_recall": 0.13333333333333333,
+            "kappa_linear": 0.03943661971830981,
+            "high_recall": 0.17647058823529413,
             "confusion_matrix": [
               [
-                0,
-                0,
-                0
-              ],
-              [
-                0,
+                1,
                 0,
                 0
               ],
               [
-                10,
-                3,
+                6,
+                5,
                 2
+              ],
+              [
+                11,
+                3,
+                3
               ]
             ],
             "confusion_matrix_normalised": [
               [
-                0.0,
-                0.0,
-                0.0
-              ],
-              [
-                0.0,
+                1.0,
                 0.0,
                 0.0
               ],
               [
-                0.6667,
-                0.2,
-                0.1333
+                0.4615,
+                0.3846,
+                0.1538
+              ],
+              [
+                0.6471,
+                0.1765,
+                0.1765
               ]
             ],
             "labels": [
@@ -1311,165 +1314,317 @@
               "High"
             ],
             "pred_distribution": {
-              "Low": 10,
-              "Medium": 3,
-              "High": 2
+              "Low": 18,
+              "Medium": 8,
+              "High": 5
             },
-            "under_triage_rate": 0.8666666666666667,
-            "over_triage_rate": 0.0,
-            "under_triage_n": 13,
-            "over_triage_n": 0,
-            "warning": "classes with <5 examples: []; classes absent from ground truth: ['Low', 'Medium'] -- per-class metrics for these are unreliable",
+            "under_triage_rate": 0.6451612903225806,
+            "over_triage_rate": 0.06451612903225806,
+            "under_triage_n": 20,
+            "over_triage_n": 2,
+            "warning": "classes with <5 examples: ['Low']; classes absent from ground truth: [] -- per-class metrics for these are unreliable",
             "ci95": {
               "accuracy": {
-                "low": 0.0,
-                "high": 0.26666666666666666
+                "low": 0.12903225806451613,
+                "high": 0.45161290322580644
               },
               "f1_macro": {
-                "low": 0.0,
-                "high": 0.42105263157894735
+                "low": 0.1657329598506069,
+                "high": 0.5192885047051713
               },
               "under_triage_rate": {
-                "low": 0.7333333333333333,
-                "high": 1.0
-              },
-              "n_boot": 1000
-            }
-          },
-          "S4-noNEWS2": {
-            "n": 15,
-            "accuracy": 0.13333333333333333,
-            "balanced_accuracy": 0.13333333333333333,
-            "precision_macro": 1.0,
-            "recall_macro": 0.13333333333333333,
-            "f1_macro": 0.23529411764705882,
-            "precision_weighted": 1.0,
-            "recall_weighted": 0.13333333333333333,
-            "f1_weighted": 0.23529411764705882,
-            "per_class": {
-              "Low": {
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0.0,
-                "support": 0
-              },
-              "Medium": {
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0.0,
-                "support": 0
-              },
-              "High": {
-                "precision": 1.0,
-                "recall": 0.13333333333333333,
-                "f1": 0.23529411764705882,
-                "support": 15
-              }
-            },
-            "kappa_linear": 0.0,
-            "high_recall": 0.13333333333333333,
-            "confusion_matrix": [
-              [
-                0,
-                0,
-                0
-              ],
-              [
-                0,
-                0,
-                0
-              ],
-              [
-                10,
-                3,
-                2
-              ]
-            ],
-            "confusion_matrix_normalised": [
-              [
-                0.0,
-                0.0,
-                0.0
-              ],
-              [
-                0.0,
-                0.0,
-                0.0
-              ],
-              [
-                0.6667,
-                0.2,
-                0.1333
-              ]
-            ],
-            "labels": [
-              "Low",
-              "Medium",
-              "High"
-            ],
-            "pred_distribution": {
-              "Low": 10,
-              "Medium": 3,
-              "High": 2
-            },
-            "under_triage_rate": 0.8666666666666667,
-            "over_triage_rate": 0.0,
-            "under_triage_n": 13,
-            "over_triage_n": 0,
-            "warning": "classes with <5 examples: []; classes absent from ground truth: ['Low', 'Medium'] -- per-class metrics for these are unreliable",
-            "ci95": {
-              "accuracy": {
-                "low": 0.0,
-                "high": 0.26666666666666666
-              },
-              "f1_macro": {
-                "low": 0.0,
-                "high": 0.42105263157894735
-              },
-              "under_triage_rate": {
-                "low": 0.7333333333333333,
-                "high": 1.0
+                "low": 0.4838709677419355,
+                "high": 0.8064516129032258
               },
               "n_boot": 1000
             }
           },
           "agent_performance": {
-            "n_cases": 15,
+            "n_cases": 31,
             "guardrail_first_pass_valid_rate": 1.0,
             "repair_rate": 0.0,
             "failed_after_repairs": 0,
             "news2_override_count": 0,
             "news2_available_rate": 1.0,
-            "low_evidence_flag_rate": 0.4666666666666667,
+            "low_evidence_flag_rate": 0.3870967741935484,
             "evidence_strength_counts": {
-              "strong": 7,
-              "weak": 7,
-              "moderate": 1
+              "strong": 14,
+              "weak": 12,
+              "moderate": 5
             },
             "confidence_counts": {
-              "High": 6,
-              "Medium": 6,
-              "Low": 3
+              "High": 14,
+              "Medium": 12,
+              "Low": 5
             },
-            "mean_tokens_per_case": 1439.2666666666667,
+            "mean_tokens_per_case": 1452.1612903225807,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.7600000000000002,
-                "median": 2.6,
-                "p95": 4.22,
-                "n": 15
+                "mean": 2.854838709677419,
+                "median": 2.5,
+                "p95": 4.55,
+                "n": 31
               },
               "agent3_llm": {
-                "mean": 1983.6200000000001,
-                "median": 677.9,
-                "p95": 9313.079999999998,
-                "n": 15
+                "mean": 1302.629032258064,
+                "median": 635.0,
+                "p95": 5641.5,
+                "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": -1983.34,
-                "median": -677.7,
-                "p95": -441.7600000000002,
-                "n": 15
+                "mean": -1302.3032258064518,
+                "median": -634.8,
+                "p95": -409.25,
+                "n": 31
+              }
+            },
+            "latency_note": "Agent 3 latency = original Groq API latency stored in the cache (cached re-runs reuse it)"
+          }
+        },
+        "mimic:S4:kb=mimic-train": {
+          "job": {
+            "name": "mimic:S4:kb=mimic-train",
+            "dataset": "mimic",
+            "system": "S4",
+            "kb": "mimic-train",
+            "split": "test",
+            "prompt": "v2"
+          },
+          "complete": true,
+          "n_done": 31,
+          "n_target": 31,
+          "n_failed": 0,
+          "stopped_reason": null,
+          "S4": {
+            "n": 31,
+            "accuracy": 0.6129032258064516,
+            "balanced_accuracy": 0.4027149321266968,
+            "precision_macro": 0.39730639730639733,
+            "recall_macro": 0.4027149321266968,
+            "f1_macro": 0.3908313908313908,
+            "precision_weighted": 0.5819485174323884,
+            "recall_weighted": 0.6129032258064516,
+            "f1_weighted": 0.5843296488457779,
+            "per_class": {
+              "Low": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 1
+              },
+              "Medium": {
+                "precision": 0.5555555555555556,
+                "recall": 0.38461538461538464,
+                "f1": 0.45454545454545453,
+                "support": 13
+              },
+              "High": {
+                "precision": 0.6363636363636364,
+                "recall": 0.8235294117647058,
+                "f1": 0.717948717948718,
+                "support": 17
+              }
+            },
+            "kappa_linear": 0.24390243902439035,
+            "high_recall": 0.8235294117647058,
+            "confusion_matrix": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                3,
+                14
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.3846,
+                0.6154
+              ],
+              [
+                0.0,
+                0.1765,
+                0.8235
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 0,
+              "Medium": 9,
+              "High": 22
+            },
+            "under_triage_rate": 0.0967741935483871,
+            "over_triage_rate": 0.2903225806451613,
+            "under_triage_n": 3,
+            "over_triage_n": 9,
+            "warning": "classes with <5 examples: ['Low']; classes absent from ground truth: [] -- per-class metrics for these are unreliable",
+            "ci95": {
+              "accuracy": {
+                "low": 0.45161290322580644,
+                "high": 0.7741935483870968
+              },
+              "f1_macro": {
+                "low": 0.27989172294468945,
+                "high": 0.7181818181818183
+              },
+              "under_triage_rate": {
+                "low": 0.0,
+                "high": 0.22580645161290322
+              },
+              "n_boot": 1000
+            }
+          },
+          "S4-noNEWS2": {
+            "n": 31,
+            "accuracy": 0.6129032258064516,
+            "balanced_accuracy": 0.4027149321266968,
+            "precision_macro": 0.39730639730639733,
+            "recall_macro": 0.4027149321266968,
+            "f1_macro": 0.3908313908313908,
+            "precision_weighted": 0.5819485174323884,
+            "recall_weighted": 0.6129032258064516,
+            "f1_weighted": 0.5843296488457779,
+            "per_class": {
+              "Low": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 1
+              },
+              "Medium": {
+                "precision": 0.5555555555555556,
+                "recall": 0.38461538461538464,
+                "f1": 0.45454545454545453,
+                "support": 13
+              },
+              "High": {
+                "precision": 0.6363636363636364,
+                "recall": 0.8235294117647058,
+                "f1": 0.717948717948718,
+                "support": 17
+              }
+            },
+            "kappa_linear": 0.24390243902439035,
+            "high_recall": 0.8235294117647058,
+            "confusion_matrix": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                3,
+                14
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.3846,
+                0.6154
+              ],
+              [
+                0.0,
+                0.1765,
+                0.8235
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 0,
+              "Medium": 9,
+              "High": 22
+            },
+            "under_triage_rate": 0.0967741935483871,
+            "over_triage_rate": 0.2903225806451613,
+            "under_triage_n": 3,
+            "over_triage_n": 9,
+            "warning": "classes with <5 examples: ['Low']; classes absent from ground truth: [] -- per-class metrics for these are unreliable",
+            "ci95": {
+              "accuracy": {
+                "low": 0.45161290322580644,
+                "high": 0.7741935483870968
+              },
+              "f1_macro": {
+                "low": 0.27989172294468945,
+                "high": 0.7181818181818183
+              },
+              "under_triage_rate": {
+                "low": 0.0,
+                "high": 0.22580645161290322
+              },
+              "n_boot": 1000
+            }
+          },
+          "agent_performance": {
+            "n_cases": 31,
+            "guardrail_first_pass_valid_rate": 1.0,
+            "repair_rate": 0.0,
+            "failed_after_repairs": 0,
+            "news2_override_count": 0,
+            "news2_available_rate": 1.0,
+            "low_evidence_flag_rate": 0.3870967741935484,
+            "evidence_strength_counts": {
+              "strong": 14,
+              "weak": 12,
+              "moderate": 5
+            },
+            "confidence_counts": {
+              "Medium": 21,
+              "High": 10
+            },
+            "mean_tokens_per_case": 1680.3548387096773,
+            "latency_ms": {
+              "agent2_retrieval": {
+                "mean": 2.4645161290322584,
+                "median": 2.5,
+                "p95": 2.8499999999999996,
+                "n": 31
+              },
+              "agent3_llm": {
+                "mean": 636.7935483870967,
+                "median": 572.6,
+                "p95": 985.2,
+                "n": 31
+              },
+              "agent4_guardrail_news2": {
+                "mean": -636.5612903225806,
+                "median": -572.4,
+                "p95": -404.85,
+                "n": 31
               }
             },
             "latency_note": "Agent 3 latency = original Groq API latency stored in the cache (cached re-runs reuse it)"
@@ -1480,48 +1635,436 @@
             "name": "mimic:S3:kb=none",
             "dataset": "mimic",
             "system": "S3",
-            "kb": "none"
+            "kb": "none",
+            "split": "test",
+            "prompt": "v2"
           },
           "complete": false,
-          "n_done": 0,
+          "n_done": 10,
           "n_target": 31,
           "n_failed": 0,
-          "stopped_reason": "budget exhausted earlier in this run"
+          "stopped_reason": "cache miss in offline mode",
+          "S3": {
+            "n": 10,
+            "accuracy": 0.6,
+            "balanced_accuracy": 0.6,
+            "precision_macro": 1.0,
+            "recall_macro": 0.6,
+            "f1_macro": 0.75,
+            "precision_weighted": 1.0,
+            "recall_weighted": 0.6,
+            "f1_weighted": 0.75,
+            "per_class": {
+              "Low": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+              },
+              "Medium": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+              },
+              "High": {
+                "precision": 1.0,
+                "recall": 0.6,
+                "f1": 0.75,
+                "support": 10
+              }
+            },
+            "kappa_linear": 0.0,
+            "high_recall": 0.6,
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                2,
+                6
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.2,
+                0.2,
+                0.6
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 2,
+              "Medium": 2,
+              "High": 6
+            },
+            "under_triage_rate": 0.4,
+            "over_triage_rate": 0.0,
+            "under_triage_n": 4,
+            "over_triage_n": 0,
+            "warning": "classes with <5 examples: []; classes absent from ground truth: ['Low', 'Medium'] -- per-class metrics for these are unreliable",
+            "ci95": {
+              "accuracy": {
+                "low": 0.3,
+                "high": 0.9
+              },
+              "f1_macro": {
+                "low": 0.46153846153846156,
+                "high": 0.9473684210526315
+              },
+              "under_triage_rate": {
+                "low": 0.1,
+                "high": 0.7
+              },
+              "n_boot": 1000
+            }
+          },
+          "agent_performance": {
+            "n_cases": 10,
+            "guardrail_first_pass_valid_rate": 1.0,
+            "repair_rate": 0.0,
+            "failed_after_repairs": 0,
+            "news2_override_count": 0,
+            "news2_available_rate": 1.0,
+            "low_evidence_flag_rate": 1.0,
+            "evidence_strength_counts": {
+              "weak": 10
+            },
+            "confidence_counts": {
+              "Medium": 9,
+              "Low": 1
+            },
+            "mean_tokens_per_case": 1176.1,
+            "latency_ms": {
+              "agent2_retrieval": {
+                "mean": 0.01,
+                "median": 0.0,
+                "p95": 0.054999999999999896,
+                "n": 10
+              },
+              "agent3_llm": {
+                "mean": 440.8500000000001,
+                "median": 417.0,
+                "p95": 597.985,
+                "n": 10
+              },
+              "agent4_guardrail_news2": {
+                "mean": -440.64,
+                "median": -416.75,
+                "p95": -288.47499999999997,
+                "n": 10
+              }
+            },
+            "latency_note": "Agent 3 latency = original Groq API latency stored in the cache (cached re-runs reuse it)"
+          }
+        }
+      },
+      "llm_validation": {
+        "mimic-val:S4:kb=mimic-train": {
+          "job": {
+            "name": "mimic-val:S4:kb=mimic-train",
+            "dataset": "mimic",
+            "system": "S4",
+            "kb": "mimic-train",
+            "split": "validation",
+            "prompt": "v2"
+          },
+          "complete": true,
+          "n_done": 31,
+          "n_target": 31,
+          "n_failed": 0,
+          "stopped_reason": null,
+          "S4": {
+            "n": 31,
+            "accuracy": 0.5806451612903226,
+            "balanced_accuracy": 0.5483193277310924,
+            "precision_macro": 0.8260869565217391,
+            "recall_macro": 0.5483193277310924,
+            "f1_macro": 0.5514705882352942,
+            "precision_weighted": 0.809256661991585,
+            "recall_weighted": 0.5806451612903226,
+            "f1_weighted": 0.5706831119544592,
+            "per_class": {
+              "Low": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+              },
+              "Medium": {
+                "precision": 1.0,
+                "recall": 0.21428571428571427,
+                "f1": 0.35294117647058826,
+                "support": 14
+              },
+              "High": {
+                "precision": 0.6521739130434783,
+                "recall": 0.8823529411764706,
+                "f1": 0.75,
+                "support": 17
+              }
+            },
+            "kappa_linear": 0.24143556280587275,
+            "high_recall": 0.8823529411764706,
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                3,
+                3,
+                8
+              ],
+              [
+                2,
+                0,
+                15
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.2143,
+                0.2143,
+                0.5714
+              ],
+              [
+                0.1176,
+                0.0,
+                0.8824
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 5,
+              "Medium": 3,
+              "High": 23
+            },
+            "under_triage_rate": 0.16129032258064516,
+            "over_triage_rate": 0.25806451612903225,
+            "under_triage_n": 5,
+            "over_triage_n": 8,
+            "warning": "classes with <5 examples: []; classes absent from ground truth: ['Low'] -- per-class metrics for these are unreliable",
+            "ci95": {
+              "accuracy": {
+                "low": 0.41935483870967744,
+                "high": 0.7419354838709677
+              },
+              "f1_macro": {
+                "low": 0.3695366132723112,
+                "high": 0.7161297728706187
+              },
+              "under_triage_rate": {
+                "low": 0.06370967741935488,
+                "high": 0.2903225806451613
+              },
+              "n_boot": 1000
+            }
+          },
+          "S4-noNEWS2": {
+            "n": 31,
+            "accuracy": 0.5806451612903226,
+            "balanced_accuracy": 0.5483193277310924,
+            "precision_macro": 0.8260869565217391,
+            "recall_macro": 0.5483193277310924,
+            "f1_macro": 0.5514705882352942,
+            "precision_weighted": 0.809256661991585,
+            "recall_weighted": 0.5806451612903226,
+            "f1_weighted": 0.5706831119544592,
+            "per_class": {
+              "Low": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+              },
+              "Medium": {
+                "precision": 1.0,
+                "recall": 0.21428571428571427,
+                "f1": 0.35294117647058826,
+                "support": 14
+              },
+              "High": {
+                "precision": 0.6521739130434783,
+                "recall": 0.8823529411764706,
+                "f1": 0.75,
+                "support": 17
+              }
+            },
+            "kappa_linear": 0.24143556280587275,
+            "high_recall": 0.8823529411764706,
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                3,
+                3,
+                8
+              ],
+              [
+                2,
+                0,
+                15
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.2143,
+                0.2143,
+                0.5714
+              ],
+              [
+                0.1176,
+                0.0,
+                0.8824
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 5,
+              "Medium": 3,
+              "High": 23
+            },
+            "under_triage_rate": 0.16129032258064516,
+            "over_triage_rate": 0.25806451612903225,
+            "under_triage_n": 5,
+            "over_triage_n": 8,
+            "warning": "classes with <5 examples: []; classes absent from ground truth: ['Low'] -- per-class metrics for these are unreliable",
+            "ci95": {
+              "accuracy": {
+                "low": 0.41935483870967744,
+                "high": 0.7419354838709677
+              },
+              "f1_macro": {
+                "low": 0.3695366132723112,
+                "high": 0.7161297728706187
+              },
+              "under_triage_rate": {
+                "low": 0.06370967741935488,
+                "high": 0.2903225806451613
+              },
+              "n_boot": 1000
+            }
+          },
+          "agent_performance": {
+            "n_cases": 31,
+            "guardrail_first_pass_valid_rate": 1.0,
+            "repair_rate": 0.0,
+            "failed_after_repairs": 0,
+            "news2_override_count": 0,
+            "news2_available_rate": 0.9354838709677419,
+            "low_evidence_flag_rate": 0.1935483870967742,
+            "evidence_strength_counts": {
+              "moderate": 14,
+              "strong": 11,
+              "weak": 6
+            },
+            "confidence_counts": {
+              "High": 19,
+              "Medium": 12
+            },
+            "mean_tokens_per_case": 1661.1935483870968,
+            "latency_ms": {
+              "agent2_retrieval": {
+                "mean": 2.7774193548387096,
+                "median": 2.5,
+                "p95": 4.9,
+                "n": 31
+              },
+              "agent3_llm": {
+                "mean": 642.7645161290322,
+                "median": 602.7,
+                "p95": 874.6500000000001,
+                "n": 31
+              },
+              "agent4_guardrail_news2": {
+                "mean": -642.5193548387098,
+                "median": -602.5,
+                "p95": -462.85,
+                "n": 31
+              }
+            },
+            "latency_note": "Agent 3 latency = original Groq API latency stored in the cache (cached re-runs reuse it)"
+          }
         }
       },
       "best_non_llm_by_validation": "S2b",
       "errors_file": {
         "path": "evaluation/results/errors_mimic.csv",
-        "rows": 13,
+        "rows": 12,
         "system": "mimic:S4:kb=mimic-train"
       },
       "mcnemar": {
         "mimic:S4:kb=mimic-train vs S2b": {
-          "a_correct_b_wrong": 2,
-          "a_wrong_b_correct": 11,
-          "discordant": 13,
-          "p_value_exact": 0.0224609375,
-          "n": 15
+          "a_correct_b_wrong": 7,
+          "a_wrong_b_correct": 10,
+          "discordant": 17,
+          "p_value_exact": 0.629058837890625,
+          "n": 31
         },
         "mimic:S4:kb=mimic-train vs S4-noNEWS2": {
           "a_correct_b_wrong": 0,
           "a_wrong_b_correct": 0,
           "discordant": 0,
           "p_value_exact": 1.0,
-          "n": 15
+          "n": 31
         }
       },
       "low_evidence_analysis": {
         "mimic:S4:kb=mimic-train": {
           "flagged_weak": {
-            "n": 7,
-            "accuracy": 0.2857142857142857,
-            "under_triage_rate": 0.7142857142857143
+            "n": 12,
+            "accuracy": 0.5,
+            "under_triage_rate": 0.16666666666666666
           },
           "not_flagged": {
-            "n": 8,
-            "accuracy": 0.0,
-            "under_triage_rate": 1.0
+            "n": 19,
+            "accuracy": 0.6842105263157895,
+            "under_triage_rate": 0.05263157894736842
           }
         }
       },
@@ -1545,16 +2088,16 @@
         "S4 (mimic-train)": {
           "sex": {
             "F": {
-              "n": 8,
-              "accuracy": 0.125,
-              "f1_macro": 0.2222222222222222,
-              "under_triage_rate": 0.875
+              "n": 20,
+              "accuracy": 0.6,
+              "f1_macro": 0.39855072463768115,
+              "under_triage_rate": 0.1
             },
             "M": {
-              "n": 7,
-              "accuracy": 0.14285714285714285,
-              "f1_macro": 0.25,
-              "under_triage_rate": 0.8571428571428571
+              "n": 11,
+              "accuracy": 0.6363636363636364,
+              "f1_macro": 0.5416666666666666,
+              "under_triage_rate": 0.09090909090909091
             }
           }
         }
@@ -2574,7 +3117,9 @@
             "name": "ktas:S4:kb=mimic-all",
             "dataset": "ktas",
             "system": "S4",
-            "kb": "mimic-all"
+            "kb": "mimic-all",
+            "split": "test",
+            "prompt": "v2"
           },
           "complete": false,
           "n_done": 0,
@@ -2587,7 +3132,9 @@
             "name": "ktas:S4:kb=ktas-train",
             "dataset": "ktas",
             "system": "S4",
-            "kb": "ktas-train"
+            "kb": "ktas-train",
+            "split": "test",
+            "prompt": "v2"
           },
           "complete": false,
           "n_done": 0,
@@ -2600,7 +3147,9 @@
             "name": "ktas:S3:kb=none",
             "dataset": "ktas",
             "system": "S3",
-            "kb": "none"
+            "kb": "none",
+            "split": "test",
+            "prompt": "v2"
           },
           "complete": false,
           "n_done": 0,
@@ -2609,6 +3158,7 @@
           "stopped_reason": "budget exhausted earlier in this run"
         }
       },
+      "llm_validation": {},
       "llm_subset": {
         "n": 117,
         "class_counts": {

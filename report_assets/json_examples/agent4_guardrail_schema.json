@@ -6,12 +6,12 @@
   "output": {
     "valid": true,
     "schema": "TriageResult",
-    "severity": "High",
-    "confidence": "High",
+    "severity": "Medium",
+    "confidence": "Medium",
     "confidence_capped": false
   },
   "status": "ok",
-  "duration_ms": 0.1,
+  "duration_ms": 0.2,
   "messages_to": [
     "NEWS2 safety net"
   ]

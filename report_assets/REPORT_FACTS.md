@@ -1,6 +1,6 @@
 # REPORT FACTS (bullet facts and numbers only -- not report text)
 
-- Source: `evaluation/results/metrics.json` generated 2026-11-21T00:32:27Z; seed 42
+- Source: `evaluation/results/metrics.json` generated 2026-11-21T01:21:42Z; seed 42
 - All LLM runs complete: False
 
 ## Datasets
@@ -44,16 +44,21 @@
 - S1 (Retrieval-only (Agent 2 vote)): n=31; accuracy 58.1% (95% CI 38.7%-74.2%); balanced accuracy 41.9%; macro-F1 0.389 (95% CI 0.274-0.708); weighted F1 0.556; linear kappa 0.178; High recall 41.2%; under-triage 32.3% (95% CI 16.1%-48.5%); over-triage 9.7%; ROC-AUC 0.783
 - S2a (Logistic Regression): n=31; accuracy 67.7% (95% CI 51.6%-83.9%); balanced accuracy 47.2%; macro-F1 0.459 (95% CI 0.343-0.827); weighted F1 0.669; linear kappa 0.399; High recall 64.7%; under-triage 19.4% (95% CI 6.5%-35.5%); over-triage 12.9%; ROC-AUC 0.659
 - S2b (Random Forest): n=31; accuracy 71.0% (95% CI 54.8%-87.1%); balanced accuracy 48.6%; macro-F1 0.477 (95% CI 0.367-0.838); weighted F1 0.699; linear kappa 0.450; High recall 76.5%; under-triage 12.9% (95% CI 3.2%-25.8%); over-triage 16.1%; ROC-AUC 0.693
-- S4 KB=mimic-train [INCOMPLETE 15/31]: n=15; accuracy 13.3% (95% CI 0.0%-26.7%); balanced accuracy 13.3%; macro-F1 0.235 (95% CI 0.000-0.421); weighted F1 0.235; linear kappa 0.000; High recall 13.3%; under-triage 86.7% (95% CI 73.3%-100.0%); over-triage 0.0%
-- S4-noNEWS2 KB=mimic-train [INCOMPLETE 15/31]: n=15; accuracy 13.3% (95% CI 0.0%-26.7%); balanced accuracy 13.3%; macro-F1 0.235 (95% CI 0.000-0.421); weighted F1 0.235; linear kappa 0.000; High recall 13.3%; under-triage 86.7% (95% CI 73.3%-100.0%); over-triage 0.0%
+- S4-promptv1 KB=mimic-train: n=31; accuracy 29.0% (95% CI 12.9%-45.2%); balanced accuracy 52.0%; macro-F1 0.285 (95% CI 0.166-0.519); weighted F1 0.353; linear kappa 0.039; High recall 17.6%; under-triage 64.5% (95% CI 48.4%-80.6%); over-triage 6.5%
+- S4 KB=mimic-train: n=31; accuracy 61.3% (95% CI 45.2%-77.4%); balanced accuracy 40.3%; macro-F1 0.391 (95% CI 0.280-0.718); weighted F1 0.584; linear kappa 0.244; High recall 82.4%; under-triage 9.7% (95% CI 0.0%-22.6%); over-triage 29.0%
+- S4-noNEWS2 KB=mimic-train: n=31; accuracy 61.3% (95% CI 45.2%-77.4%); balanced accuracy 40.3%; macro-F1 0.391 (95% CI 0.280-0.718); weighted F1 0.584; linear kappa 0.244; High recall 82.4%; under-triage 9.7% (95% CI 0.0%-22.6%); over-triage 29.0%
+- S3 KB=none [INCOMPLETE 10/31]: n=10; accuracy 60.0% (95% CI 30.0%-90.0%); balanced accuracy 60.0%; macro-F1 0.750 (95% CI 0.462-0.947); weighted F1 0.750; linear kappa 0.000; High recall 60.0%; under-triage 40.0% (95% CI 10.0%-70.0%); over-triage 0.0%
+- S4 on VALIDATION (mimic-val:S4:kb=mimic-train): n=31; accuracy 58.1% (95% CI 41.9%-74.2%); balanced accuracy 54.8%; macro-F1 0.551 (95% CI 0.370-0.716); weighted F1 0.571; linear kappa 0.241; High recall 88.2%; under-triage 16.1% (95% CI 6.4%-29.0%); over-triage 25.8%
 - 5-fold CV (5-fold StratifiedGroupKFold on subject_id (train+validation, test untouched)): S0 macro-F1 0.343 ± 0.085, accuracy 0.577 ± 0.117; S1 macro-F1 0.575 ± 0.108, accuracy 0.626 ± 0.049; S2a macro-F1 0.569 ± 0.052, accuracy 0.635 ± 0.086; S2b macro-F1 0.608 ± 0.118, accuracy 0.661 ± 0.057
 - Retrieval quality KB=mimic-train: P@1 0.655, P@3 0.540, P@5 0.579, mean top-1 similarity 0.587, no-evidence rate 6.5%
-- McNemar mimic:S4:kb=mimic-train vs S2b: 2 vs 11 discordant, exact p = 0.0225
+- McNemar mimic:S4:kb=mimic-train vs S2b: 7 vs 10 discordant, exact p = 0.6291
 - McNemar mimic:S4:kb=mimic-train vs S4-noNEWS2: 0 vs 0 discordant, exact p = 1.0000
-- Agent performance mimic:S4:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 46.7%, median latency Agent 2 2.6 ms / Agent 3 678 ms (p95 9313) / Agent 4 -677.70 ms, tokens per case 1439
-- Weak-evidence flag mimic:S4:kb=mimic-train: flagged n=7 accuracy 28.6% under-triage 71.4%; not flagged n=8 accuracy 0.0% under-triage 100.0%
+- Agent performance mimic:S4-promptv1:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 38.7%, median latency Agent 2 2.5 ms / Agent 3 635 ms (p95 5642) / Agent 4 -634.80 ms, tokens per case 1452
+- Agent performance mimic:S4:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 38.7%, median latency Agent 2 2.5 ms / Agent 3 573 ms (p95 985) / Agent 4 -572.40 ms, tokens per case 1680
+- Agent performance mimic:S3:kb=none: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 100.0%, median latency Agent 2 0.0 ms / Agent 3 417 ms (p95 598) / Agent 4 -416.75 ms, tokens per case 1176
+- Weak-evidence flag mimic:S4:kb=mimic-train: flagged n=12 accuracy 50.0% under-triage 16.7%; not flagged n=19 accuracy 68.4% under-triage 5.3%
 - Subgroup S2b by sex: F n=20 acc 75.0% under 10.0%; M n=11 acc 63.6% under 18.2%
-- Subgroup S4 (mimic-train) by sex: F n=8 acc 12.5% under 87.5%; M n=7 acc 14.3% under 85.7%
+- Subgroup S4 (mimic-train) by sex: F n=20 acc 60.0% under 10.0%; M n=11 acc 63.6% under 9.1%
 
 ## Results -- KTAS test
 - S0 (Majority class): n=191; accuracy 42.4% (95% CI 35.6%-49.7%); balanced accuracy 33.3%; macro-F1 0.199 (95% CI 0.175-0.221); weighted F1 0.253; linear kappa 0.000; High recall 0.0%; under-triage 57.6% (95% CI 50.3%-64.4%); over-triage 0.0%

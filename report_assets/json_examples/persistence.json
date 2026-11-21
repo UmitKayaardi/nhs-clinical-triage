@@ -4,11 +4,11 @@
     "table": "triage_sessions"
   },
   "output": {
-    "session_id": "21cce45d-d267-4a80-841d-04acf4183b5f",
+    "session_id": "92b17035-59de-47a4-87f5-8084fe4bff7d",
     "severity": "High"
   },
   "status": "ok",
-  "duration_ms": 14.6,
+  "duration_ms": 13.9,
   "messages_to": [
     "Agent 5",
     "Agent 6",
