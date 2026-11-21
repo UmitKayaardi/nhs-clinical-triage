@@ -5,7 +5,7 @@ Rule: a new session reads this file and continues from the **first unticked box*
 Python: global `Python 3.12.10` (no project venv; all requirements already installed there).
 
 ## Status
-- **Current step:** PR -> merge -> Space deploy (21 Nov). After that: daily LLM runs (KTAS), then final `--all --offline`, `build_report_assets.py`, re-deploy; Twilio sandbox help.
+- **Current step (21 Nov 01:40):** deployed. NEXT SESSION: (1) `git checkout feature/cn7050-final && git merge main`; (2) `python scripts/evaluate.py --llm-only --max-llm-calls 120` once per day until all jobs complete (MIMIC S3 21 left, KTAS 351 left); (3) `python scripts/evaluate.py --all --offline` + `python scripts/build_report_assets.py`; (4) commit, PR #2-followup, merge, redeploy Space (same space-deploy snapshot procedure: `git checkout space-deploy && git checkout main -- . && git add -A && git add --renormalize . && commit && git push space space-deploy:main`); (5) Twilio sandbox with student.
 - **MIMIC headline (final, 31 test stays):** S4 acc 61.3%, macro-F1 0.391, High recall 82.4%, under-triage 9.7%; S2b acc 71.0%, under-triage 12.9%; S4-promptv1 acc 29.0%, under-triage 64.5%; McNemar S4 vs S2b p=0.63. Weak flag: flagged 12 acc 50.0% vs not flagged 19 acc 68.4%. NEWS2 overrides on MIMIC test: 0.
 - **LLM cache status (21 Nov 01:15):** 102 entries. Done: mimic:S4-promptv1 31/31, mimic-val:S4 31/31, mimic:S4 31/31, mimic:S3 10/31. Remaining: mimic:S3 21, ktas:S4 kb=mimic-all 117, ktas:S4 kb=ktas-train 117, ktas:S3 117 (~372 calls, ~3 days). Next day: `python scripts/evaluate.py --llm-only --max-llm-calls 120` then finally `python scripts/evaluate.py --all --offline` and `python scripts/build_report_assets.py`.
 - **Local helpers:** ffmpeg at `.local/bin/ffmpeg.exe` (imageio-ffmpeg); demo DB copy `.local/demo.db`; demo audio `demo/demo_patient_chest_pain.wav`.
@@ -90,5 +90,16 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 
 ## WP9 — Screenshots, deploy, final checks
 - [x] Playwright screenshots: 16 PNG + console log in `report_assets/screenshots/` (`scripts/take_screenshots.py`; resumable with `--keep-db --demos ...`)
-- [ ] PR → merge → Space deploy → smoke test
-- [ ] Final self-check (§12.3)
+- [x] PR https://github.com/UmitKayaardi/nhs-clinical-triage/pull/2 merged (d2d654c); Space deployed (space/main 9906722, binaries via LFS); smoke test OK (Medium demo case returned a card; Evaluation tab shows tables + 12 figures)
+- [~] Final self-check (§12.3) -- see below; open items depend on the remaining LLM runs and student steps
+
+## Final self-check (§12.3) -- 21 Nov 2026
+- [x] Every row of the §2 table has its deliverable (1.2 agents_table + trace; 1.3 numbers in REPORT_FACTS; 2.2 WP2/WP3/nurse comparison code; 2.3 tools_table; 3.1 environment.md + json_examples; 3.2 agents_table; 3.3 evaluation/ + preprocessing.md; 4.1 trace + screenshots; 4.2 UI tabs + api_interactions.md; lecturer metrics = Evaluation tab)
+- [x] System matches the submitted workflow PDF: 7 agents, n8n (Agent 5), Twilio WhatsApp, Gradio, FastAPI, SQLite, MIMIC-IV-ED 6 tables, Pydantic guardrail, endpoints /process-triage, /feedback, /admin/accuracy, /admin/drift, /admin/pms-report all present
+- [~] `python scripts/evaluate.py --all --offline` reproduces all numbers from the cache without API calls -- true for everything cached so far; KTAS LLM systems + MIMIC S3 still to run
+- [x] All tests pass (121); no secrets in this branch's history (scanned for gsk_/ghp_/Twilio SID/phone patterns)
+- [x] Space works (new build running, demo case + Evaluation tab checked)
+- [x] report_assets/ contains no report prose (tables, bullet facts, JSON, figures, screenshots only)
+- [ ] Student: revoke the GitHub PAT that was in the old remote URL
+- [ ] Student: n8n live run + screenshots S1-S6 (report_assets/SCREENSHOTS.md)
+- [ ] Student: check Space secrets (list in final message / README "Deploying to Hugging Face")
