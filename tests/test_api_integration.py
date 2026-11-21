@@ -32,7 +32,7 @@ def fake_llm(monkeypatch):
     """Returns High for chest pain, Low otherwise, and records the evidence it was shown."""
     seen = {}
 
-    def _generate(transcript, db_context):
+    def _generate(transcript, db_context, **kwargs):
         seen["context"] = db_context
         severity = "High" if "chest" in transcript.lower() else "Low"
         return TriageResult(Symptoms=[transcript], Duration="2 hours", Possible_Conditions=["ACS"],
@@ -118,7 +118,7 @@ def test_unsupported_audio_and_silent_audio(client, monkeypatch):
 
 
 def test_llm_failure_is_502(client, monkeypatch):
-    def broken(transcript, ctx):
+    def broken(transcript, ctx, **kwargs):
         raise LLMGenerationError("LLM output was not valid JSON")
     monkeypatch.setattr(llm_service, "generate_triage_report", broken)
     assert post_audio(client, "chest pain", monkeypatch).status_code == 502

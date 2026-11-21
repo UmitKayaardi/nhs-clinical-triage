@@ -31,6 +31,7 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import (
+    Boolean,
     Column,
     String,
     Float,
@@ -268,5 +269,16 @@ class TriageSession(Base):
     age = Column(Integer, nullable=True)
     gender = Column(String(1), nullable=True)           # "M" | "F" (MIMIC convention)
     ethnicity = Column(String(100), nullable=True)
+
+    # --- Added for WP2-WP4 (nullable; added automatically by app/db/schema.py) ---
+    llm_severity = Column(String(10), nullable=True)      # Agent 3 severity before the NEWS2 safety net
+    news2_score = Column(Integer, nullable=True)
+    safety_override = Column(Boolean, nullable=True)
+    override_reason = Column(Text, nullable=True)
+    evidence_strength = Column(String(10), nullable=True)  # strong | moderate | weak
+    low_evidence = Column(Boolean, nullable=True)
+    top_similarity = Column(Float, nullable=True)
+    vitals_json = Column(Text, nullable=True)             # structured intake vitals (JSON)
+    agent_trace = Column(Text, nullable=True)             # JSON list of agent steps (WP4)
 
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False, index=True)

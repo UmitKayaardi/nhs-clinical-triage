@@ -109,16 +109,18 @@ class TwilioService:
         Sends (or mocks) the alert and records the outcome in AlertLog when `db` is given.
 
         Returns:
-            {"message_sid": str | None, "status": "sent" | "mocked" | "failed", "timestamp": ISO-8601}
+            {"message_sid": str | None, "status": "sent" | "mocked" | "failed", "timestamp": ISO-8601,
+             "channel": "twilio_direct" | "mocked"}
         """
         body = self.format_message(triage_level, chief_complaint, session_id, patient_id, reasoning)
         now = datetime.utcnow()
 
         if not self.is_live:
             logger.info("Twilio not live (test mode or missing credentials); mocking alert for %s", session_id)
-            result = {"message_sid": None, "status": "mocked", "timestamp": now.isoformat()}
+            result = {"message_sid": None, "status": "mocked", "timestamp": now.isoformat(), "channel": "mocked"}
             if db is not None:
-                log_alert(db, "whatsapp_triage", "critical", body, session_id=session_id, status="mocked")
+                log_alert(db, "whatsapp_triage", "critical", body, session_id=session_id, status="mocked",
+                          channel="mocked")
             return result
 
         last_error: Optional[Exception] = None
@@ -133,10 +135,11 @@ class TwilioService:
                     "message_sid": message.sid,
                     "status": "sent",
                     "timestamp": datetime.utcnow().isoformat(),
+                    "channel": "twilio_direct",
                 }
                 if db is not None:
                     log_alert(db, "whatsapp_triage", "critical", body, session_id=session_id,
-                              status="sent", external_id=message.sid)
+                              status="sent", external_id=message.sid, channel="twilio_direct")
                 return result
             except Exception as exc:  # twilio raises TwilioRestException plus transport errors
                 last_error = exc
@@ -151,5 +154,6 @@ class TwilioService:
         if db is not None:
             log_alert(db, "whatsapp_failure", "critical",
                       f"WhatsApp alert could not be delivered: {last_error}\n---\n{body}",
-                      session_id=session_id, status="failed")
-        return {"message_sid": None, "status": "failed", "timestamp": datetime.utcnow().isoformat()}
+                      session_id=session_id, status="failed", channel="twilio_direct")
+        return {"message_sid": None, "status": "failed", "timestamp": datetime.utcnow().isoformat(),
+                "channel": "twilio_direct"}

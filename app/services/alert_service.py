@@ -38,9 +38,11 @@ def log_alert(
     status: Optional[str] = "logged",
     external_id: Optional[str] = None,
     timestamp: Optional[datetime] = None,
+    channel: Optional[str] = None,
 ) -> AlertLog:
     """Persists one alert. Commits immediately so the record survives a later failure."""
     alert = AlertLog(
+        channel=channel,
         session_id=_as_uuid(session_id),
         alert_type=alert_type,
         severity=severity,

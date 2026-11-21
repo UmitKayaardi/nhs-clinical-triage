@@ -58,6 +58,7 @@ class AlertLog(Base):
     message = Column(Text, nullable=False)
     status = Column(String(30), nullable=True)      # sent | mocked | failed | logged | emailed
     external_id = Column(String(64), nullable=True)  # Twilio message SID
+    channel = Column(String(20), nullable=True)      # n8n | twilio_direct | mocked (Agent 5)
     timestamp = Column(DateTime, default=datetime.utcnow, nullable=False, index=True)
     acknowledged = Column(Boolean, default=False, nullable=False)
 
