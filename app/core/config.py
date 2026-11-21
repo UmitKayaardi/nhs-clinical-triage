@@ -44,6 +44,8 @@ class Settings(BaseSettings):
     LLM_REASONING_EFFORT: Optional[str] = Field(default="low")
     # Agent 4 -> Agent 3 repair loop: re-prompts after a rejected output.
     LLM_MAX_REPAIR_ATTEMPTS: int = Field(default=2)
+    # Agent 3 system prompt: v2 = ESI/KTAS-aligned definitions (default); v1 = previous release (ablation).
+    LLM_PROMPT_VERSION: str = Field(default="v2")
 
     # --- Whisper / Audio ---
     WHISPER_MODEL_NAME: str = Field(default="base.en")

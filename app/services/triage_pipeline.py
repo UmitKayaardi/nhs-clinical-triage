@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Optional
 
 from app.core.config import get_settings
+from app.models.mimic_models import SeverityLevel
 from app.schemas.triage_schema import TriageResult
 from app.services import llm_service, retrieval_service
 from app.services.news2 import apply_safety_net, calculate_news2
@@ -61,6 +62,7 @@ def run_clinical_agents(
     retrieve_kwargs: Optional[Dict] = None,
     completion_fn: Optional[Callable] = None,
     news2_enabled: Optional[bool] = None,
+    prompt_version: Optional[str] = None,
 ) -> ClinicalOutcome:
     """
     Runs Agents 2 -> 3 -> 4 for one patient.
@@ -104,6 +106,7 @@ def run_clinical_agents(
         data.complaint, db_context,
         evidence=evidence, structured_context=data.structured_context(),
         completion_fn=completion_fn, trace=trace, attempts_out=attempts,
+        **({"prompt_version": prompt_version} if prompt_version else {}),
     )
     timings["agent3_4_reasoning_guardrail"] = (time.perf_counter() - t0) * 1000
     timings["agent3_llm"] = sum((a.get("latency_ms") or 0.0) for a in attempts)
@@ -121,7 +124,7 @@ def run_clinical_agents(
             safety = {"severity": llm_severity, "safety_override": False, "override_reason": None,
                       "news2_score": news2.score}
         if safety["safety_override"]:
-            result = result.model_copy(update={"Severity": safety["severity"]})
+            result = result.model_copy(update={"Severity": SeverityLevel(safety["severity"])})
             step["status"] = "overridden"
         timings["agent4_news2"] = (time.perf_counter() - t0) * 1000
         step["output"] = {"news2": news2.as_dict(), "final_severity": safety["severity"],

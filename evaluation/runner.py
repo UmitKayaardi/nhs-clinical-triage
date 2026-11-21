@@ -12,6 +12,10 @@ from evaluation.llm_runner import LLMJob, make_index, run_job
 from evaluation.splits import ktas_llm_sample, make_or_load, subset
 
 LLM_JOBS = [  # order = run order (MIMIC first, then KTAS)
+    # Prompt ablation: the previous release prompt (v1) on the MIMIC test split.
+    LLMJob("mimic:S4-promptv1:kb=mimic-train", "mimic", "S4", "mimic-train", prompt="v1"),
+    # Prompt v2 checked on the MIMIC validation split before any v2 test run.
+    LLMJob("mimic-val:S4:kb=mimic-train", "mimic", "S4", "mimic-train", split="validation"),
     LLMJob("mimic:S4:kb=mimic-train", "mimic", "S4", "mimic-train"),
     LLMJob("mimic:S3:kb=none", "mimic", "S3", "none"),
     LLMJob("ktas:S4:kb=mimic-all", "ktas", "S4", "mimic-all"),
@@ -33,9 +37,9 @@ def load_all() -> Dict:
     return {"data": data, "splits": splits, "parts": parts, "logs": logs}
 
 
-def llm_cases(bundle: Dict, dataset: str, ktas_per_class: int) -> pd.DataFrame:
-    test = bundle["parts"][dataset]["test"]
-    if dataset == "mimic":
+def llm_cases(bundle: Dict, dataset: str, ktas_per_class: int, split: str = "test") -> pd.DataFrame:
+    test = bundle["parts"][dataset][split]
+    if dataset == "mimic" or split != "test":
         return test
     ids = set(ktas_llm_sample(test, per_class=ktas_per_class))
     return test[test["case_id"].isin(ids)].reset_index(drop=True)
@@ -46,7 +50,7 @@ def run_llm_jobs(bundle: Dict, completion: CachedCompletion, ktas_per_class: int
     """Runs the LLM jobs in order; returns (results per job, all_complete)."""
     results, all_complete, exhausted = {}, True, False
     for job in jobs or LLM_JOBS:
-        cases = llm_cases(bundle, job.dataset, ktas_per_class)
+        cases = llm_cases(bundle, job.dataset, ktas_per_class, job.split)
         if exhausted:
             results[job.name] = {"job": job.__dict__, "records": [], "n_target": len(cases), "n_done": 0,
                                  "complete": False, "stopped_reason": "budget exhausted earlier in this run"}

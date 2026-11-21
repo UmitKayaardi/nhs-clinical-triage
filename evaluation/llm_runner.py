@@ -32,6 +32,8 @@ class LLMJob:
     dataset: str         # mimic | ktas
     system: str          # S3 | S4
     kb: str              # none | mimic-train | mimic-all | ktas-train
+    split: str = "test"  # test | validation
+    prompt: str = "v2"   # Agent 3 prompt version (v1 = ablation of the previous release prompt)
 
 
 def triage_input(row: pd.Series) -> TriageInput:
@@ -71,11 +73,12 @@ def run_job(job: LLMJob, cases: pd.DataFrame, index, completion: CachedCompletio
     for i, (_, row) in enumerate(cases.iterrows(), start=1):
         trace = AgentTrace()
         rec = {"system": job.system, "dataset": job.dataset, "kb": job.kb, "case_id": row["case_id"],
-               "true": row["label"]}
+               "true": row["label"], "split": job.split, "prompt": job.prompt}
         attempts_before = completion.api_calls
         try:
             out = run_clinical_agents(None, triage_input(row), trace=trace,
-                                      retrieve_kwargs={"index": index}, completion_fn=completion)
+                                      retrieve_kwargs={"index": index}, completion_fn=completion,
+                                      prompt_version=job.prompt)
         except BudgetExhausted as exc:
             stopped_reason = str(exc)
             break

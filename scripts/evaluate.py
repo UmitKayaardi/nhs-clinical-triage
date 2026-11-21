@@ -33,6 +33,7 @@ def main() -> int:
     p.add_argument("--offline", action="store_true", help="never call the API; cache only")
     p.add_argument("--max-llm-calls", type=int, default=150)
     p.add_argument("--ktas-llm-sample", type=int, default=40, help="KTAS LLM sample size per class")
+    p.add_argument("--jobs", default="", help="comma-separated LLM job names to run (default: all, in order)")
     args = p.parse_args()
     if not (args.all or args.llm_only or args.no_llm):
         p.error("choose --all, --llm-only or --no-llm")
@@ -46,7 +47,9 @@ def main() -> int:
 
     llm_results, llm_complete = {}, True
     if not args.no_llm:
-        llm_results, llm_complete = run_llm_jobs(bundle, completion, args.ktas_llm_sample)
+        wanted = [j.strip() for j in args.jobs.split(",") if j.strip()]
+        jobs = [j for j in LLM_JOBS if not wanted or j.name in wanted]
+        llm_results, llm_complete = run_llm_jobs(bundle, completion, args.ktas_llm_sample, jobs)
 
     if args.all or args.no_llm:
         from evaluation.report import build_everything  # heavy imports only when needed

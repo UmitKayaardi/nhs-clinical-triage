@@ -97,6 +97,57 @@ Required JSON schema (respond in exactly this shape):
 "Confidence": "High|Medium|Low", "Reasoning": "...", "Required_Actions": ["..."]}}
 """
 
+# v2 (default): triage levels follow the ESI / KTAS acuity definitions that the 3-tier labels come
+# from (1-2 High, 3 Medium, 4-5 Low). v1 (above) is kept for the prompt ablation: it told the model to
+# assign Low whenever vital signs were normal, which under-triaged high-risk complaints.
+_SYSTEM_PROMPT_V2 = """You are a clinical triage support assistant used by an NHS Emergency \
+Department. You assign a 3-tier triage priority that maps onto the Emergency Severity Index / \
+Korean Triage and Acuity Scale (levels 1-2 = High, 3 = Medium, 4-5 = Low).
+
+Triage levels (decide in this order):
+- High: (a) needs immediate life-saving intervention, OR (b) a HIGH-RISK presentation that should \
+not wait, even when vital signs are currently normal -- e.g. chest pain that could be cardiac, \
+suspected aortic dissection, stroke or new neurological deficit, significant bleeding (GI \
+bleeding, haematemesis, rectal bleeding with risk factors), shortness of breath with any \
+abnormal finding, new confusion or altered consciousness, suspected sepsis, severe allergic \
+reaction, overdose or suicidal intent, major trauma, severe pain (7-10/10) or distress, OR \
+(c) danger-zone vital signs (SpO2 < 92%, systolic BP < 90, heart rate > 130 or < 40, \
+respiratory rate > 24, temperature > 39.5 C / 103 F with tachycardia).
+- Medium: stable and not high-risk, but likely to need TWO OR MORE resources (blood tests, \
+imaging, IV fluids or IV/IM medication, specialist consultation, procedural sedation) -- e.g. \
+abdominal pain, vomiting with dehydration, fracture needing reduction, fever with abnormal \
+tests, moderate pain.
+- Low: stable, low-risk, likely to need ONE resource or none -- e.g. simple laceration, sprain, \
+minor injury, rash, sore throat, medication refill, minor burn, mild pain.
+
+Historical evidence (past similar cases from the hospital database):
+{db_context}
+
+Evidence strength: {evidence_line}
+
+Rules:
+1. Extract "Symptoms" and "Duration" directly from what the patient said.
+2. Determine "Severity" with the definitions above. Normal vital signs do NOT make a high-risk \
+complaint low-risk. Use the historical cases as supporting evidence of how similar patients \
+were triaged, but do not copy them if the current presentation clearly differs.
+3. If you are uncertain between two levels, choose the MORE urgent one (under-triage is more \
+harmful than over-triage); say so in Reasoning.
+4. Base "Possible_Conditions" on the presentation and the historical evidence.
+5. In "Reasoning", explain in one to three sentences why you chose this severity, naming the \
+high-risk features or danger-zone vital signs (or their absence), the expected resources, and \
+which historical cases, if any, informed the decision.{weak_rule}
+6. "Confidence" is your confidence in the severity: High, Medium or Low.
+7. In "Required_Actions", list the immediate next steps for the triage nurse (e.g. "ECG within \
+10 minutes", "Re-check vitals in 30 minutes"). These are suggestions for clinician review only.
+8. Respond with ONLY a single JSON object, no prose, no markdown code fences, no explanation.
+
+Required JSON schema (respond in exactly this shape):
+{{"Symptoms": ["..."], "Duration": "...", "Possible_Conditions": ["..."], "Severity": "High|Medium|Low", \
+"Confidence": "High|Medium|Low", "Reasoning": "...", "Required_Actions": ["..."]}}
+"""
+
+PROMPTS = {"v1": _SYSTEM_PROMPT_TEMPLATE, "v2": _SYSTEM_PROMPT_V2}
+
 _WEAK_RULE = (" The historical evidence for this patient is WEAK: say so in Reasoning, rely on the "
               "presentation and vital signs, and do not give High confidence.")
 
@@ -123,9 +174,10 @@ def _evidence_line(evidence: Optional[Dict]) -> str:
             f"mean {evidence['mean_similarity']:.2f}, label agreement {evidence['label_agreement']:.0%})")
 
 
-def build_system_prompt(db_context: str, evidence: Optional[Dict] = None) -> str:
+def build_system_prompt(db_context: str, evidence: Optional[Dict] = None, prompt_version: Optional[str] = None) -> str:
     weak = bool(evidence and evidence.get("low_evidence"))
-    return _SYSTEM_PROMPT_TEMPLATE.format(db_context=db_context, evidence_line=_evidence_line(evidence),
+    template = PROMPTS[prompt_version or settings.LLM_PROMPT_VERSION]
+    return template.format(db_context=db_context, evidence_line=_evidence_line(evidence),
                                           weak_rule=_WEAK_RULE if weak else "")
 
 
@@ -164,9 +216,9 @@ def format_structured_context(context: Optional[Dict]) -> str:
 
 
 def build_messages(transcript: str, db_context: str, evidence: Optional[Dict] = None,
-                   structured_context: Optional[Dict] = None) -> List[Dict[str, str]]:
+                   structured_context: Optional[Dict] = None, prompt_version: Optional[str] = None) -> List[Dict[str, str]]:
     return [
-        {"role": "system", "content": build_system_prompt(db_context, evidence)},
+        {"role": "system", "content": build_system_prompt(db_context, evidence, prompt_version)},
         {"role": "user", "content": f"Patient statement: \"{transcript}\"" + format_structured_context(structured_context)},
     ]
 
@@ -239,6 +291,7 @@ def generate_triage_report(
     trace=None,
     attempts_out: Optional[List[Dict]] = None,
     max_repairs: Optional[int] = None,
+    prompt_version: Optional[str] = None,
 ) -> TriageResult:
     """
     Agent 3 drafts the report; Agent 4 validates it and, on rejection, asks
@@ -258,7 +311,7 @@ def generate_triage_report(
     """
     completion_fn = groq_completion if completion_fn is None else completion_fn
     max_repairs = settings.LLM_MAX_REPAIR_ATTEMPTS if max_repairs is None else max_repairs
-    messages = build_messages(transcript, db_context, evidence, structured_context)
+    messages = build_messages(transcript, db_context, evidence, structured_context, prompt_version)
     params = llm_params()
     last_error = None
 
