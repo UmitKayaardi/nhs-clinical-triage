@@ -5,7 +5,8 @@ Rule: a new session reads this file and continues from the **first unticked box*
 Python: global `Python 3.12.10` (no project venv; all requirements already installed there).
 
 ## Status
-- **Current step:** WP9 Playwright screenshots (`scripts/take_screenshots.py`), then PR/deploy. LLM runs continue daily.
+- **Current step:** PR -> merge -> Space deploy (21 Nov). After that: daily LLM runs (KTAS), then final `--all --offline`, `build_report_assets.py`, re-deploy; Twilio sandbox help.
+- **MIMIC headline (final, 31 test stays):** S4 acc 61.3%, macro-F1 0.391, High recall 82.4%, under-triage 9.7%; S2b acc 71.0%, under-triage 12.9%; S4-promptv1 acc 29.0%, under-triage 64.5%; McNemar S4 vs S2b p=0.63. Weak flag: flagged 12 acc 50.0% vs not flagged 19 acc 68.4%. NEWS2 overrides on MIMIC test: 0.
 - **LLM cache status (21 Nov 01:15):** 102 entries. Done: mimic:S4-promptv1 31/31, mimic-val:S4 31/31, mimic:S4 31/31, mimic:S3 10/31. Remaining: mimic:S3 21, ktas:S4 kb=mimic-all 117, ktas:S4 kb=ktas-train 117, ktas:S3 117 (~372 calls, ~3 days). Next day: `python scripts/evaluate.py --llm-only --max-llm-calls 120` then finally `python scripts/evaluate.py --all --offline` and `python scripts/build_report_assets.py`.
 - **Local helpers:** ffmpeg at `.local/bin/ffmpeg.exe` (imageio-ffmpeg); demo DB copy `.local/demo.db`; demo audio `demo/demo_patient_chest_pain.wav`.
 - **Prompt change (fact for report):** prompt v1 (previous release: 'assign Low if no red flags; NEVER default to Medium/High') under-triaged MIMIC test: acc 0.290, under-triage 0.645, High recall 0.176 (31 stays). Prompt v2 (ESI/KTAS definitions, high-risk complaints stay High, uncertain -> more urgent) written from triage definitions and checked on MIMIC **validation** first: acc 0.581, macro-F1 0.551, under-triage 0.161, High recall 0.882 (31 stays). v2 is default (`LLM_PROMPT_VERSION=v2`); v1 kept as ablation job `mimic:S4-promptv1`. Note: v2 was written after seeing v1 test errors -> state this in the report as a limitation.
@@ -85,9 +86,9 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 ## WP8 — Report assets (facts only)
 - [x] environment.md, agents_table.md, tools_table.md, preprocessing.md, api_interactions.md (`scripts/build_report_assets.py` regenerates environment + facts)
 - [x] json_examples/ (14 files from a real demo session + LLM cache)
-- [~] REPORT_FACTS.md generated (rerun build_report_assets.py after LLM runs); SCREENSHOTS.md TODO
+- [x] REPORT_FACTS.md generated (rerun `python scripts/build_report_assets.py` after LLM runs) + SCREENSHOTS.md
 
 ## WP9 — Screenshots, deploy, final checks
-- [ ] Playwright screenshots
+- [x] Playwright screenshots: 16 PNG + console log in `report_assets/screenshots/` (`scripts/take_screenshots.py`; resumable with `--keep-db --demos ...`)
 - [ ] PR → merge → Space deploy → smoke test
 - [ ] Final self-check (§12.3)
