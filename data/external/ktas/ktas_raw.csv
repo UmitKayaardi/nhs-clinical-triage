@@ -1,0 +1,1268 @@
+Group,Sex,Age,Patients number per hour,Arrival mode,Injury,Chief_complain,Mental,Pain,NRS_pain,SBP,DBP,HR,RR,BT,Saturation,KTAS_RN,Diagnosis in ED,Disposition,KTAS_expert,Error_group,Length of stay_min,KTAS duration_min,mistriage
+2,2,71.0,3,3,2,right ocular pain,1,1,2.0,160,100,84,18,36.6,100,2,Corneal abrasion,1,4,2,86.0,5.0,1
+1,1,56.0,12,3,2,right forearm burn,1,1,2.0,137,75,60,20,36.5,,4,"Burn of hand, firts degree dorsum",1,5,4,64.0,3.95,1
+2,1,67.5,8,2,2,"arm pain, Lt",1,1,2.0,130,80,102,20,36.6,98,4,"Fracture of surgical neck of humerus, closed",2,5,4,862.0,1.0,1
+1,2,71.0,8,1,1,ascites tapping,1,1,3.0,139,94,88,20,36.5,,4,Alcoholic liver cirrhosis with ascites,1,5,6,108.0,9.833333,1
+1,2,58.0,4,3,1,"distension, abd",1,1,3.0,91,67,93,18,36.5,,4,Ascites,1,5,8,109.0,6.6,1
+2,1,54.3,6,4,1,fever,1,1,3.0,140,90,94,20,38.1,98,3,"Fever, unspecified",2,4,1,9246.0,2.0,1
+2,2,48.5,11,3,1,With chest discomfort,1,1,3.0,110,70,70,20,36.2,98,2,"Angina pectoris, unspecified",1,3,2,400.0,3.0,1
+1,2,78.0,14,3,1,"pain, chest",1,1,3.0,169,86,80,20,36,,2,Acute coronary syndrome,1,3,2,247.0,10.23333,1
+1,2,32.0,10,3,1,LBP - Low back pain,1,1,3.0,140,75,91,20,36.6,,4,Herniated disc disease of lumbar spine with radiculopathy,1,5,4,59.0,3.233333,1
+2,1,38.3,6,3,1,"Eczema, Eyelid",1,1,3.0,130,80,80,20,36.3,97,4,Ocular pain,1,5,4,185.0,4.0,1
+1,2,43.0,3,3,1,acute epigastric pain,1,1,3.0,148,104,72,16,36.5,,3,Acute gastritis,1,4,4,176.0,7.533333,1
+1,2,45.0,3,3,1,"pain, leg",1,1,3.0,141,81,86,18,36.6,,4,Gout site unspecified,1,5,4,45.0,7.15,1
+2,1,52.9,10,3,1,epigastric pain,1,1,3.0,120,80,106,20,36.2,98,3,Infectious or septic colitis,1,4,4,8067.0,5.0,1
+1,2,55.0,9,3,1,abd pain,1,1,3.0,121,78,80,20,36.4,,2,Acute peritonitis,2,4,4,217.0,8.0,1
+1,2,58.0,4,3,1,headache,1,1,3.0,135,82,106,20,37.6,,3,Infective endocarditis,2,4,4,1318.0,9.883333,1
+2,1,65.1,12,4,1,headache,1,1,3.0,140,100,80,20,36.0,98,3,"Subarachnoid haemorrhage, unspecified",2,4,4,153.0,3.0,1
+1,2,69.0,11,2,1,설사,1,1,4.0,121,76,85,20,37.4,,3,Acute gastroenteritis,1,4,1,363.0,10.53333,1
+2,2,53.3,12,2,2,Open Wound,1,1,4.0,130,80,100,20,36.4,97,2,"Open wound of other parts of head, face",2,3,2,613.0,4.0,1
+2,1,19.5,10,3,1,RUQ pain,1,1,4.0,100,60,90,20,36.4,98,2,Hepatitis NOS,1,3,4,745.0,4.0,1
+1,2,38.0,3,2,1,Gingival swelling,1,1,4.0,133,93,109,16,36.5,,3,Odontogenic infection,1,4,4,349.0,12.45,1
+2,1,79.0,3,4,2,chin pain,1,1,4.0,110,70,80,20,36.2,98,3,"Closed fracture of humerus, NOS",2,4,4,8199.0,3.0,1
+1,2,20.0,12,3,2,Finger Injury,1,1,5.0,140,62,68,20,36.5,,3,Dislocation of finger,1,4,2,105.0,10.23333,1
+1,1,24.0,4,3,1,skin rash,1,1,5.0,110,66,125,20,37,,2,Anaphylaxis,1,3,2,118.0,9.483334,1
+2,2,59.2,8,4,1,Rt. side motor weakness,1,1,5.0,140,80,88,20,36.5,97,2,"Intracranial haemorrhage (nontraumatic), unspecified",2,3,2,143.0,4.0,1
+1,2,77.0,6,2,1,Lt. hip joint pain,1,1,5.0,124,72,94,16,37.1,,3,"Fracture of femur, intertrochanter closed",5,4,2,599.0,5.5,1
+1,2,37.0,6,2,2,face laceration,2,1,5.0,118,79,76,20,36.8,,3,Acute intoxication of alcohol,1,4,4,553.0,8.783334,1
+2,1,61.5,2,3,1,throat pain,1,1,6.0,140,90,98,22,36.8,98,2,Acute epiglottitis without obstruction,2,3,4,1242.0,4.0,1
+2,2,74.3,12,4,2,chest wall pain right,1,1,8.0,80,50,98,22,36.1,98,1,"Multiple fracture of involving three ribs,Closed",2,2,1,207.0,4.0,1
+1,2,44.0,5,3,1,"pain, arm",1,1,9.0,140,90,101,18,36,,3,"Complex regional pain syndrome, type I multiple site",1,4,4,65.0,8.166667,1
+1,2,49.0,3,2,1,Seizure Like Activity,1,0,,180,82,101,18,37.4,,2,Seizure,1,3,5,304.0,5.3,1
+1,2,32.0,10,3,1,post seizure,1,0,,124,81,101,18,36.7,,2,Fracture of mandible open,2,3,1,321.0,7.416667,1
+1,1,65.0,12,6,1,vomiting,1,0,,125,82,74,20,36.1,,3,Vomiting,1,4,1,183.0,12.48333,1
+1,1,74.0,8,3,1,palpitation,1,1,,91,74,145,18,36.8,,2,Paroxysmal supraventricular tachycardia,1,3,1,95.0,8.1,1
+1,2,16.0,7,2,1,syncope,1,0,,162,75,75,20,36,,2,Syncope,1,3,2,113.0,3.816667,1
+1,1,19.0,11,2,1,구토,1,0,,116,77,64,16,36.9,,2,Acute gastritis,1,4,2,108.0,14.6,1
+2,1,27.0,3,3,1,hematochezia,1,0,,120,80,84,20,36.8,97,2,"Gastrointestinal haemorrhage, unspecified",1,3,2,487.0,2.0,1
+1,1,30.0,4,2,2,"injury, finger",1,0,,152,76,91,16,36.3,,3,Laceration of finger with nail damage,2,4,2,473.0,6.866667,1
+1,1,37.0,6,3,1,syncope,1,0,,164,79,66,20,36.5,,2,Syncope,1,4,2,135.0,17.06667,1
+1,2,47.0,10,2,2,열상,1,0,,141,95,76,18,36.6,,3,Laceration of oral cavity,1,4,2,576.0,13.43333,1
+1,1,48.0,8,3,1,hyperventilation,1,0,,196,104,98,20,37.2,,3,Panic attack,1,4,2,82.0,6.566667,1
+1,1,87.0,9,2,1,involuntary movt.,1,0,,140,62,79,20,36.2,,3,Abnormal involuntary movement,1,4,2,172.0,6.0,1
+1,1,21.0,9,3,1,Urticarial rash,1,0,,144,97,117,20,36.2,,4,Acute urticaria,1,5,4,46.0,4.816667,1
+2,2,33.8,4,3,1,Foreign body sensation in neck,1,0,,120,70,106,20,36.6,98,4,Chronic sore throat,1,5,4,144.0,1.0,1
+1,2,36.0,6,3,1,throat pain,1,0,,148,90,90,20,36.9,,4,Acute pharyngitis,1,5,4,297.0,4.15,1
+1,2,52.0,9,2,2,"swelling, facial",1,0,,150,109,111,18,36.5,,4,Fracture of nasal bone closed,1,5,4,436.0,3.933333,1
+1,2,56.0,7,2,1,post seizure,1,0,,140,65,111,16,36.9,,2,Alcohol withdrawal seizure,2,3,5,1273.0,10.4,1
+1,2,70.0,1,2,1,dyspnea,1,0,,116,76,90,20,36.7,,2,Lobar pneumonia,2,3,5,753.0,5.316667,1
+2,1,81.3,7,4,1,mental change,2,0,,110,70,68,20,36.4,98,1,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,2,2,5,30.0,3.0,1
+2,2,65.4,5,3,1,fever,1,0,,130,80,110,20,36.7,98,2,Liver transplant status,2,3,6,8667.0,5.0,1
+2,2,88.8,8,4,1,melena,1,0,,100,60,74,20,36.2,95,2,"Acute with haemorrhage, duodenal ulcer",7,3,7,8397.0,4.0,1
+2,1,36.6,5,4,1,Abdominal pain (finding),1,1,3.0,120,80,101,20,36.8,98,3,"Maternal care for cervical incompetence, 22 weeks or more pregnant ~ less than 34 weeks pregnant",2,4,4,76.0,2.0,1
+2,1,38.7,17,3,1,both leg pain,1,1,3.0,130,80,93,20,36.3,99,4,"Rhabdomyolysis, lower leg",1,5,4,589.0,2.0,1
+2,1,81.2,5,4,2,Left leg pain,1,1,4.0,200,160,80,20,36.0,98,3,"Closed, fracture of shaft of femur",5,4,4,185.0,3.0,1
+2,2,29.2,3,3,1,knee pain,1,1,6.0,110,70,88,20,36.4,98,3,"Pain in limb, knee joint",1,4,4,34.0,2.0,1
+2,2,63.8,7,4,2,H-Headache,1,0,,150,90,85,20,36,95,1,Traumatic subdural hemorrhage without open intracranial wound,2,2,1,232.0,3.0,1
+1,1,30.0,12,1,2,needle stick injury,1,1,1.0,113,71,76,20,36.5,,5,Needlestick injury,1,3,2,24.0,4.066667,2
+2,2,72.4,6,3,1,Left chest pain,1,1,2.0,110,70,92,20,36.7,96,3,Unstable angina,1,2,2,10141.0,4.0,2
+1,1,68.0,7,3,1,palpitation,1,1,2.0,119,60,93,16,36.8,,4,Palpitation,1,3,8,133.0,5.85,2
+1,2,59.0,3,3,1,fever,1,1,3.0,156,97,126,22,38,,3,Liver abscess,2,2,1,513.0,4.116667,2
+1,1,83.0,6,2,1,abd pain,3,1,3.0,165,80,93,20,37,,4,Functional gastrointestinal disorder,1,2,5,334.0,5.5,2
+1,1,59.0,7,3,1,fever,1,1,3.0,132,65,85,20,38.3,,4,Fever,1,3,1,164.0,7.15,2
+2,1,69.6,8,2,1,dyspnea,2,1,3.0,측불,측불,96,22,36.3,78,2,Dyspnoea,6,1,1,593.0,2.0,2
+1,2,23.0,8,3,1,vomiting,1,1,3.0,199,93,80,20,37.1,,4,Acute gastroenteritis,1,3,2,178.0,9.05,2
+1,2,25.0,10,3,2,lip laceration,1,1,3.0,138,71,76,20,36,,5,Laceration of oral cavity,1,4,2,33.0,10.18333,2
+2,1,45.3,10,3,1,ant. chest pain,1,1,3.0,110,80,101,20,36.3,100,3,Ischaemic chest pain,1,2,2,223.0,4.0,2
+1,1,70.0,10,3,1,목이 아픔,1,1,3.0,176,103,73,16,36.8,,5,Hyperventilation,1,4,4,161.0,4.966667,2
+2,1,25.9,5,4,1,right lower quadrant abdominal pain,1,1,3.0,120,80,84,20,36.6,98,4,"Benign neoplasm of ovary, right",1,3,7,7864.0,4.0,2
+2,1,83.3,6,4,1,right hemiparesis,1,1,3.0,160,100,83,20,36.3,99,3,Cerebral infarction due to thrombosis of middle cerebral artery,2,2,8,516.0,5.0,2
+1,2,72.0,4,3,1,"leg pain, Lt.",1,1,4.0,165,101,117,16,36.8,,5,Herniated disc disease of lumbar spine,1,4,2,117.0,6.65,2
+1,2,77.0,4,3,1,left wrist swelling,1,1,4.0,144,86,81,16,36.8,,5,Rheumatoid arthritis of wrist,1,4,4,96.0,9.083333,2
+2,1,22.0,6,3,1,watery diarrhea,1,1,4.0,110,70,84,20,36.5,99,4,Acute watery diarrhoea,1,3,2,9191.0,2.0,2
+1,1,25.0,10,3,1,abd pain,1,1,4.0,170,89,87,20,37.1,,4,Colitis,1,3,2,151.0,11.16667,2
+1,1,44.0,6,3,1,chest pain rt,1,1,4.0,116,72,70,20,36,,4,Atypical chest pain,1,3,2,403.0,5.016667,2
+1,1,53.0,9,3,1,epigastric pain,1,1,4.0,156,85,75,20,36.3,,4,Epigastric pain,1,3,2,132.0,4.133333,2
+2,1,69.7,3,2,1,epigastric pain,1,1,4.0,100,60,90,20,36.0,98,4,Infectious or septic colitis,1,3,2,714.0,4.0,2
+2,1,81.8,5,3,1,V - vomiting,1,1,4.0,110,60,72,20,36.0,97,5,Nause with vomiting,2,3,3,1312.0,4.0,2
+2,1,20.0,1,2,1,HA - Headache,1,1,4.0,100,70,84,20,37.6,98,4,Headache,2,3,4,1220.0,2.0,2
+2,1,21.8,12,3,2,both eye pain,1,1,4.0,110,70,74,20,36.4,98,5,Keratoconjunctivitis due to Acanthamoeba (H19.2*),1,3,4,697775.0,3.0,2
+2,2,28.9,5,3,1,leg pain left,1,1,4.0,110,70,110,20,36.4,98,5,Complex regional pain syndrome type II of lower limb,1,4,4,264.0,1.0,2
+1,2,33.0,15,3,1,tooth pain,1,1,4.0,162,107,62,20,36.2,,5,Toothache,1,4,4,60.0,2.85,2
+1,1,39.0,10,3,1,acute epigastric pain,1,1,4.0,118,71,90,18,36.5,,4,Functional gastrointestinal disturbance,1,3,4,118.0,6.766666,2
+2,2,56.3,13,4,1,upper abdominal pain,1,1,4.0,140,90,76,20,36.4,98,4,"Acute pancreatitis, unspecified",2,3,4,9703.0,4.0,2
+1,1,58.0,12,2,1,"Edema, Cheek",1,1,4.0,169,111,93,20,37.5,,5,Parotitis,1,4,4,174.0,15.13333,2
+2,2,61.3,4,3,1,headache,1,1,4.0,120,70,76,20,36.5,99,4,Headache,1,3,4,414.0,2.0,2
+2,1,64.6,5,3,1,epigastric pain,1,1,4.0,100,60,92,20,36.4,96,4,Epigastric pain,1,3,4,344.0,2.0,2
+2,1,73.8,4,3,1,epigastric pain,1,1,4.0,140,100,60,18,36.2,97,4,Unspecified abdominal pain,1,3,4,231.0,2.0,2
+2,1,74.5,11,3,1,fever,1,1,4.0,150,80,64,20,36.5,97,4,Unspecified abdominal pain,1,3,4,211.0,4.0,2
+1,2,27.0,1,3,2,"pain, low back",1,1,4.0,136,77,73,18,36.7,,4,Sprain of cervical spine,1,3,9,26.0,5.633333,2
+2,2,43.9,3,2,2,"Low Back Pain, Undetermined",1,1,4.0,110,70,78,20,36.9,99,4,"Low back pain, site unspecified",1,3,9,39.0,2.0,2
+1,1,29.0,5,3,1,"pain, low back",1,1,5.0,120,87,81,18,36.8,,4,Acute pyelonephritis,1,3,2,21.0,12.05,2
+2,1,58.8,10,3,1,hematuria,1,1,5.0,130,80,90,20,36.6,98,5,Gross hematuria,1,3,2,333.0,1.0,2
+1,2,77.0,4,2,1,"pain, back",1,1,5.0,138,80,87,18,36.8,,4,Non-ST elevation myocardial infarction,3,3,2,599.0,4.866667,2
+2,2,58.7,12,4,2,both wrist pain,1,1,5.0,100,60,64,18,36.6,100,4,Chronic alcoholism,4,2,3,9420.0,3.0,2
+2,2,17.5,4,3,1,testis pain,1,1,5.0,130,80,70,20,36.6,99,5,Torsion of testis,1,3,4,857.0,5.0,2
+2,1,21.8,1,3,1,right upper abdominal pain,1,1,5.0,100,60,80,20,36.2,98,4,"Female pelvic inflammatory disease, unspecified",1,3,4,698.0,3.0,2
+2,2,41.8,7,3,1,Generalized abdominal pain,1,1,5.0,120,70,108,22,36.4,99,4,Unspecified abdominal pain,1,3,4,7900.0,3.0,2
+1,2,53.0,5,3,1,"pain, low back",1,1,5.0,141,97,64,18,36.8,,4,Low back pain lumbar region,1,3,4,86.0,14.06667,2
+2,1,61.8,1,2,1,abd pain,1,1,5.0,130,90,92,22,38.2,98,4,"Urinary tract infection, site not specified",1,3,4,7980.0,3.0,2
+1,1,66.0,6,3,1,"pain, abdominal",1,1,5.0,141,74,76,18,36.5,,4,Urinary tract infection,1,3,4,400.0,7.016667,2
+1,1,76.0,14,3,1,"Pain, Hip",1,1,5.0,194,104,105,20,37.9,,5,Pelvic pain,2,4,4,401.0,12.16667,2
+2,2,77.9,7,3,1,acute epigastric pain,1,1,5.0,120,80,60,20,36.3,99,4,"Upper abdominal pain, unspecified",7,3,4,9527.0,2.0,2
+2,1,80.8,5,4,1,Abd. pain,1,1,5.0,140,90,88,20,37.1,97,4,"Calculus of bile duct with cholangitis, With obstruction",2,3,4,9798.0,2.0,2
+1,1,78.0,10,1,2,Elbow Injury,1,1,5.0,150,86,102,16,37.2,,4,"Fracture of humerus, supracondyle closed",2,3,7,215.0,9.833333,2
+1,2,32.0,9,1,1,fever,1,1,5.0,122,73,109,20,39.8,,3,Acute pyelonephritis,2,2,9,526.0,3.533333,2
+2,1,52.2,8,1,1,Rt. flank pain,1,1,6.0,110,60,75,20,36.5,98,4,Acute pyelonephritis,1,3,2,376.0,4.0,2
+2,2,21.7,3,2,2,H-Headache,1,1,6.0,110,70,80,20,36,97,4,Closed multiple fracture of thoracic spine,5,3,4,760.0,4.0,2
+2,1,32.8,8,1,1,headache,1,1,6.0,100,60,92,20,36.4,98,4,Tension-type headache,1,3,4,306.0,2.0,2
+2,1,43.7,10,3,1,LLQ pain,1,1,6.0,110,60,85,20,36.8,98,4,"Female pelvic inflammatory disease, unspecified",1,3,4,497.0,4.0,2
+2,1,55.9,10,1,1,rt flank pain,1,1,6.0,120,80,74,20,36.2,99,4,Ureteric stone,1,3,4,382.0,2.0,2
+2,1,58.0,5,3,2,occipital area headache,1,1,6.0,150,100,88,20,36.3,98,4,"Superficial injury of other parts of head, contusion",1,3,4,45.0,3.0,2
+2,2,68.1,10,3,1,Lt flank pain,1,1,6.0,160,80,66,20,36.2,99,4,Unspecified abdominal pain,1,3,4,262.0,3.0,2
+2,1,78.9,9,4,1,RLQ pain,1,1,6.0,130,80,80,22,36.8,96,4,Unspecified abdominal pain,1,3,4,9020.0,2.0,2
+2,1,85.2,8,3,1,Lt flank pain,1,1,6.0,110,60,86,20,36.0,98,4,"Urinary tract infection, site not specified",1,3,4,8861.0,5.0,2
+1,2,73.0,7,3,1,both leg pain,1,1,7.0,214,93,81,16,37.1,,4,Cellulitis,1,3,2,445.0,6.583333,2
+1,1,73.0,4,6,1,"ocular pain, Lt.",1,1,7.0,135,101,103,18,36.2,,4,Pupillary block glaucoma,1,3,4,0.43126157407823484,7.0,2
+2,2,18.7,7,4,2,Open Wound,1,1,7.0,80,50,110,22,36.0,98,3,Multiple contusion NOS,2,2,7,8124.0,2.0,2
+1,1,24.0,8,3,1,leg pain left,1,1,8.0,178,105,119,20,37.2,,4,"Complex regional pain syndrome, type I lower leg",1,3,4,257.0,5.333333,2
+1,2,32.0,5,3,1,headache,1,1,8.0,108,80,76,18,36.2,,3,Headache,4,2,4,60.0,3.583333,2
+1,1,81.0,3,1,2,Arm Injury,1,1,8.0,135,66,58,16,36.1,,4,Fracture of radius head closed,1,3,4,208.0,8.15,2
+1,2,54.0,7,3,1,HA,1,1,10.0,152,96,50,16,36.7,,3,Headache,1,2,4,77.0,8.6,2
+1,2,84.0,10,2,1,vomiting,2,0,,138,70,54,20,36.1,,4,Acute gastroenteritis,1,3,2,226.0,8.133333,2
+1,2,48.0,5,2,1,dyspnea,1,0,,측불,측불,측불,측불,측불,,2,Dyspnea,1,1,1,272.0,4.1,2
+1,1,50.0,9,3,1,"Blood Pressure, Low",3,0,,50,33,37,28,측불,,2,Colitis,3,1,1,496.0,6.4,2
+1,1,50.0,9,3,1,"Blood Pressure, Low",3,0,,50,33,37,28,측불,,2,Hypotension,3,1,1,496.0,6.4,2
+1,1,84.0,12,2,1,syncope,1,0,,145,73,77,18,37.4,,4,"Compression fracture of lumbar spine L1, closed",1,3,5,0.30721064814861165,9.0,2
+1,2,79.0,6,1,1,general weakness,1,0,,214,95,66,20,37.2,,3,Dizziness,1,2,6,0.23565972222422715,10.0,2
+1,1,28.0,9,3,1,dyspnea,1,0,,142,84,68,20,36.6,,4,Chronic urticaria,1,3,1,228.0,11.38333,2
+1,2,60.0,6,2,1,general weakness,1,0,,210,114,97,18,37.4,,4,Alcohol addiction,1,3,1,297.0,5.583333,2
+2,1,62.1,5,4,1,fever,1,0,,100,60,80,20,38.3,99,4,"Fever, unspecified",2,3,1,9312.0,2.0,2
+1,2,67.0,9,3,1,fever & chill,1,0,,143,70,130,20,38.1,,4,Fever,1,2,1,267.0,3.6,2
+2,1,74.7,7,4,1,fever,1,0,,100,60,92,20,38.0,96,3,"Fever, unspecified",5,2,1,8996.0,3.0,2
+2,2,79.9,6,4,1,dyspnea,1,0,,140,90,32,20,36.7,97,3,"Bradycardia, unspecified",2,2,1,9791.0,2.0,2
+2,2,82.4,6,4,1,dyspnea,1,0,,150,100,116,26,37.0,68,2,"Bacterial pneumonia, unspecified",2,1,1,9270.0,2.0,2
+1,1,90.0,9,2,1,acute dyspnea,1,1,,65,45,100,30,36,,2,"Colon cancer, sigmoid",5,1,1,126.0,9.583333,2
+2,1,91.9,9,3,1,dyspnea,1,0,,150,90,110,26,36.5,88,3,"Other specified chronic obstructive pulmonary disease, unspecified",2,2,1,699091.0,4.0,2
+1,1,34.0,5,2,1,general weakness,1,0,,129,94,120,18,36.5,,5,Necrotizing pancreatitis,2,3,2,749.0,5.3,2
+1,2,57.0,6,1,1,vomiting,1,0,,123,78,82,20,36.2,,4,Acute gastroenteritis,1,3,2,208.0,6.083333,2
+1,1,60.0,12,3,1,weakness,1,0,,158,79,93,20,36.1,,5,Presyncope,1,4,2,143.0,11.03333,2
+2,2,70.4,1,3,1,diffuse chest discomfort,1,0,,100,60,60,20,36.0,98,3,Unstable angina,2,2,2,11319.0,4.0,2
+1,2,71.0,9,3,1,dizziness,1,0,,187,98,84,20,36.5,,4,Dizziness,1,3,2,83.0,4.883333,2
+2,2,72.6,8,3,1,dyspnea,1,0,,140,80,86,24,36.4,89,3,,1,2,2,518.0,2.0,2
+2,1,74.0,8,1,1,dizziness,1,0,,140,100,58,20,36.1,99,4,"Acute renal failure, unspecified",2,3,2,475.0,4.0,2
+2,2,76.9,4,3,1,D - Diarrhea,1,0,,160,100,108,20,36.5,97,5,Illness NOS,1,4,2,366.0,5.0,2
+1,2,78.0,10,2,1,general weakness,1,0,,194,90,93,20,36.9,,5,Diabetic neuropathy polyneuropathy,1,4,2,129.0,6.083333,2
+2,1,78.7,10,3,1,dizziness,1,0,,120,80,80,20,36.4,99,4,Dizziness and giddiness,1,3,2,405.0,3.0,2
+1,1,88.0,10,3,1,low Hb,1,0,,96,59,100,20,36,,4,Stomach cancer advanced,1,3,2,483.0,16.38333,2
+1,1,36.0,12,5,2,Suicidal Attempt,1,0,,143,78,98,20,36.9,,3,Suicide tendency,1,2,3,1330.0,8.016666,2
+2,1,44.9,3,3,1,chest palpitation,1,0,,120,80,80,20,36,98,4,Panic attack,1,3,3,386.0,3.0,2
+2,2,56.8,7,3,1,general weakness,1,0,,120,80,74,20,36.3,97,5,Unspecified abdominal pain,1,3,3,278.0,3.0,2
+2,2,77.3,6,4,1,AVF site bleeding,2,0,,110,70,80,20,36.0,95,4,"Chronic kidney disease, unspecified",7,2,3,8592.0,4.0,2
+1,2,77.0,4,3,1,mental change,3,0,,측불,측불,측불,측불,측불,,2,End stage kidney disease on dialysis,2,1,4,323.0,13.9,2
+2,2,48.6,7,4,1,dyspnea,2,0,,110,70,65,20,36.3,97,3,"Hydrocephalus, unspecified",2,2,5,9697.0,2.0,2
+2,2,62.9,9,4,1,mental change,3,0,,110,70,140,24,36.2,92,3,"Encephalopathy, unspecified",5,2,5,8188.0,4.0,2
+2,2,64.5,7,2,2,mental change,3,0,,70,측불,100,20,36.0,94,2,Traumatic subdural hemorrhage without open intracranial wound,5,1,5,150.0,2.0,2
+2,2,74.2,8,3,1,acute delirium,1,0,,100,60,75,20,36.5,98,4,"Encephalopathy, unspecified",2,3,5,9954.0,4.0,2
+1,1,78.0,6,2,1,Motor weakness,4,0,,측불,측불,측불,측불,측불,,2,Dysarthria,2,1,5,234.0,9.35,2
+1,1,35.0,9,3,1,fever,1,0,,123,73,98,20,38.2,,4,Fever,1,2,6,242.0,4.316667,2
+1,1,61.0,8,1,1,fever,1,0,,102,81,109,20,39.4,,3,Community-acquired pneumonia,1,2,6,182.0,5.883333,2
+1,1,72.0,10,1,1,Catheter removal,1,0,,161,69,86,18,36.5,,5,Percutaneous catheter problem,1,4,6,270.0,13.15,2
+2,2,75.3,5,4,1,dyspnea,1,0,,100,60,64,20,36.2,95,4,"Heart failure, unspecified",2,3,6,1019.0,2.0,2
+2,2,56.8,7,4,1,Generalized abdominal pain,1,0,,90,60,128,22,36,99,3,Acidosis NOS,2,2,7,187.0,2.0,2
+1,1,77.0,5,4,1,melena,3,0,,측불,측불,측불,24,37.4,,2,Hematochezia,3,1,7,351.0,4.416667,2
+2,1,77.5,6,3,1,hematemesis,1,0,,80,40,100,20,36.4,98,3,"Gastrointestinal haemorrhage, unspecified",2,2,7,10918.0,4.0,2
+2,1,78.1,8,4,1,oliguria,1,0,,80,40,80,20,36.4,98,3,"Chronic kidney disease, unspecified",2,2,7,477.0,2.0,2
+2,1,80.0,7,4,1,dyspnea,3,0,,100,60,100,측불,36.6,측불,2,Dyspnoea,5,1,7,20098.0,3.0,2
+2,2,19.2,7,4,1,both leg  motor weakness,1,0,,130,100,88,20,36.7,98,4,Hypokalaemic periodic paralysis(familial),2,3,8,804.0,5.0,2
+1,2,49.0,3,2,2,Drug Intoxication,3,0,,105,71,97,18,37,,3,Drug intoxication,4,2,8,347.0,6.633333,2
+2,1,56.2,9,2,1,Amnesia,1,0,,100,60,90,20,36.4,98,4,Transient global amnesia,1,2,8,8703.0,3.0,2
+1,2,63.0,8,3,1,limb paresthesia,1,0,,164,92,79,16,36.7,,4,Acute pain,1,3,8,33.0,7.15,2
+2,1,79.2,11,4,1,right hemiparesis,1,0,,160,100,64,20,36.5,94,3,Intracerebral haemorrhage in basal ganglia,2,2,8,244.0,3.0,2
+1,1,27.0,5,1,1,fever,1,0,,124,83,109,20,38.8,,3,Acute pharyngotonsillitis,1,2,9,213.0,6.0,2
+1,1,27.0,14,3,1,fever,1,0,,140,94,105,20,39.5,,3,Acute pyelonephritis,2,2,9,94.0,9.666667,2
+2,2,64.8,13,3,1,AVF malfunction,1,0,,130,100,86,20,36.5,97,5,"Chronic kidney disease, unspecified",2,4,9,701.0,4.0,2
+2,2,27.0,7,3,1,post neck pain,1,1,6.0,130,80,82,20,37.2,98,4,"Cellulitis, unspecified",2,3,4,9689.0,4.0,2
+2,2,53.2,9,3,1,generalized urticaria,1,0,,120,80,92,20,36.1,94,5,Allergic urticaria,1,3,2,606.0,2.0,2
+2,1,29.6,6,3,1,headache,1,1,4.0,120,70,95,20,36.5,100,4,Headache,1,3,4,291.0,3.0,2
+2,1,59.0,6,3,1,left facial numbness,1,1,5.0,120,80,80,20,36.4,100,5,Cellulitis of external ear,5,4,2,10301.0,4.0,2
+2,1,29.7,12,3,1,upper abdominal pain,1,1,5.0,120,80,74,20,36.3,98,4,Observation for suspected malignant neoplasm,2,3,9,490.0,2.0,2
+2,2,32.1,2,3,1,Rt. flank pain,1,1,7.0,110,60,70,22,36.0,98,4,Ureteric stone,1,3,4,267.0,2.0,2
+2,2,52.4,12,3,1,"arm pain, Rt",1,1,8.0,140,100,78,20,36.5,99,5,Complex regional pain syndrome type II,1,4,4,406.0,4.0,2
+2,2,42.7,17,3,1,"erection, penile",1,0,,측불,측불,측불,측불,측불,측불,5,Priapism,1,2,2,594.0,5.0,2
+2,2,57.5,3,2,1,melena,2,0,,90,50,74,20,36.2,99,3,"Gastrointestinal haemorrhage, unspecified",2,2,5,780.0,4.0,2
+2,2,65.0,10,2,1,dysarthria,2,0,,160,90,84,20,37.2,99,4,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,2,3,5,572.0,4.0,2
+2,1,29.8,6,4,1,PPROM,1,0,,120,80,98,20,36.5,98,4,"Preterm labour without delivery, 22 weeks or more and less than 34weeks pregnant",2,3,6,74.0,1.0,2
+2,2,57.7,8,3,1,dyspnea,1,0,,130,80,36,20,36.2,97,3,"Atrioventricular block, complete",2,2,6,10052.0,3.0,2
+2,2,75.1,12,3,1,Facial Palsy,1,0,,100,60,70,20,36.5,98,4,Facial palsy,1,3,8,510.0,5.0,2
+1,2,55.0,11,1,1,Urticarial rash,1,1,1.0,196,102,72,20,37,,5,Allergic urticaria,1,5,0,122.0,9.65,0
+1,2,56.0,6,3,2,FB in eye,1,1,2.0,190,110,58,18,36.3,,5,Foreign body in eye,1,5,0,49.0,6.65,0
+1,1,79.0,6,2,1,abdomen discomfort,1,1,2.0,151,77,118,18,36.9,,4,Functional gastrointestinal disorder,1,4,0,122.0,8.916667,0
+1,1,79.0,15,3,2,턱이 빠진것 같다,1,1,2.0,137,76,77,20,36.3,,5,Dislocation of jaw,1,5,0,12.0,2.783333,0
+1,1,78.0,6,2,1,흉통,1,1,2.0,측불,측불,측불,16,35.9,,2,Chest pain,1,2,0,222.0,6.483333,0
+2,2,15.6,6,3,2,Open Wound,1,1,2.0,110,70,78,20,36.2,99,4,"Open wound of other parts of head, face",1,4,0,118.0,3.0,0
+1,1,18.0,5,3,1,hand tingling sense,1,1,2.0,194,101,79,18,36.8,,5,Injury of finger,1,5,0,112.0,5.1,0
+2,2,19.8,2,1,1,Dislocation of Jaw,1,1,2.0,130,90,82,20,36.4,98,4,Dislocation of jaw,1,4,0,4.0,2.0,0
+2,1,21.2,12,3,2,Foreign body sensation in throat,1,1,2.0,120,80,66,20,36.3,99,4,Chronic sore throat,1,4,0,138.0,2.0,0
+2,2,22.2,1,3,1,Rt. Chest pain,1,1,2.0,110,80,84,20,36.6,98,2,Other chest pain,1,2,0,8420.0,3.0,0
+1,2,23.0,8,3,1,chest wall pain left,1,1,2.0,143,78,79,20,37.2,,5,Pneumothorax,2,5,0,190.0,14.51667,0
+1,1,29.0,3,3,2,head trauma,1,1,2.0,151,95,80,18,36.6,,4,Head trauma,1,4,0,46.0,3.216667,0
+1,2,34.0,6,3,1,HA,1,1,2.0,142,87,75,16,36.5,,4,Superficial injury of head contusion,1,4,0,28.0,8.783334,0
+2,1,45.5,3,2,1,F/C-fever/chills,1,1,2.0,120,80,104,20,38.2,98,4,Cellulitis of leg,2,4,0,1101.0,2.0,0
+2,2,45.6,17,3,2,blurred vision,1,1,2.0,110,70,80,20,36.8,98,4,Hyphaema,1,4,0,258.0,4.0,0
+1,2,46.0,6,3,2,scalp lac.,1,1,2.0,142,94,103,16,35.7,,4,Laceration of scalp,1,4,0,80.0,4.416667,0
+2,2,48.5,6,3,1,Rt side numbness,1,1,2.0,140,80,68,20,36.5,98,3,Cerebrovascular accident NOS,1,3,0,7779.0,4.0,0
+2,2,51.8,4,4,1,epigastric pain,1,1,2.0,130,90,78,22,36,99,4,Obstructive ileus NOS,1,4,0,516.0,4.0,0
+1,1,52.0,6,3,1,vaginal bleeding,1,1,2.0,134,81,78,20,36.8,,2,Carcinoma in situ of cervix,1,2,0,119.0,8.383333,0
+1,1,54.0,8,3,1,vomiting,1,1,2.0,124,73,79,18,36.5,,4,Acute gastroenteritis,1,4,0,182.0,4.066667,0
+2,2,54.3,17,3,2,"Flank pain, Rt.",1,1,2.0,130,90,80,20,36.4,99,3,Contusion of front wall of thorax,2,3,0,305.0,4.0,0
+2,1,54.3,7,1,1,low abdominal pain,1,1,2.0,100,60,74,18,36.4,99,4,Liver transplant status,1,4,0,9036.0,3.0,0
+2,1,55.3,4,2,1,ant. chest pain,1,1,2.0,150,100,78,22,36.4,96,2,Unstable angina,1,2,0,497.0,3.0,0
+1,2,57.0,10,3,1,Ankle Injury,1,1,2.0,119,74,68,16,36.7,,5,Sprain of ankle,1,5,0,115.0,13.91667,0
+2,2,60.6,10,3,1,"pain, periumbilical",1,1,2.0,130,80,98,22,37.2,99,4,Acute cholecystitis,1,4,0,679.0,3.0,0
+2,1,61.3,2,3,1,"abdominal pain, Rt",1,1,2.0,130,80,74,20,37.6,98,4,Renal and perinephric abscess,2,4,0,555.0,4.0,0
+1,2,62.0,8,3,2,Arm Injury,1,1,2.0,129,68,74,16,36.6,,5,Fracture of clavicle closed,1,5,0,89.0,9.266666,0
+2,1,68.9,17,3,1,Abd. pain,1,1,2.0,120,70,60,20,36.4,98,4,Unspecified abdominal pain,2,4,0,698.0,5.0,0
+1,1,69.0,9,1,1,"Discomfort, Chest",1,1,2.0,106,70,73,20,36.6,,2,Acute coronary syndrome,2,2,0,233.0,10.23333,0
+2,2,79.2,5,2,2,mental change,4,1,2.0,160,90,88,측불,36.4,99,1,Traumatic subdural hemorrhage without open intracranial wound,2,1,0,101.0,5.0,0
+1,2,64.0,6,3,1,"pain, flank",1,1,3.0,150,87,79,18,36.5,,4,Ureter stone,1,4,0,172.0,3.433333,0
+1,2,33.0,5,3,1,Urticarial rash,1,1,3.0,149,92,101,20,36,,5,Urticaria,1,5,0,57.0,2.983333,0
+1,1,75.0,6,2,1,"pain, chest",1,1,3.0,141,77,45,18,36,,2,Chest pain,5,2,0,50.0,4.15,0
+1,1,74.0,2,3,1,abd pain,1,1,3.0,189,100,79,18,36.3,,4,Symptomatic gallbladder stone without obstruction,2,4,0,561.0,4.816667,0
+1,1,57.0,5,3,1,"pain, low back",1,1,3.0,197,109,74,18,36.8,,4,Low back pain sacral and sacrococcygeal region,1,4,0,106.0,7.816667,0
+1,1,58.0,5,3,1,"pain, chest",1,1,3.0,150,93,73,18,36.8,,2,Chest pain,1,2,0,239.0,5.266667,0
+1,2,82.0,12,2,2,LBP - Low back pain,1,1,3.0,155,84,71,20,37,,4,Injury of lower back,1,4,0,162.0,9.066667,0
+1,1,64.0,13,3,1,fever,1,1,3.0,180,103,100,20,37.5,,4,Fever,1,4,0,361.0,4.183333,0
+1,1,72.0,5,3,1,for A/tapping,1,1,3.0,131,54,69,16,37.4,,4,Liver cirrhosis Child-Pugh A,1,4,0,133.0,5.7,0
+1,1,45.0,6,3,1,"Discomfort, Chest",1,1,3.0,131,73,70,20,36.7,,4,Sprain and strain of rib,1,4,0,159.0,9.216666,0
+1,2,49.0,12,3,1,명치 아픔,1,1,3.0,133,101,121,20,36,,4,Epigastric pain,1,4,0,123.0,10.05,0
+1,1,59.0,7,2,1,변비가 있다,2,1,3.0,120,76,100,20,36,,4,Constipation,1,4,0,340.0,3.4,0
+1,2,66.0,3,2,1,HA,1,1,3.0,150,80,86,16,37.3,,4,Headache,1,4,0,32.0,3.316667,0
+1,2,75.0,11,3,1,headache,1,1,3.0,168,87,65,20,36.8,,3,Headache,1,3,0,105.0,7.866667,0
+1,1,35.0,9,3,1,acute epigastric pain,1,1,3.0,141,83,58,16,36.2,,4,Acute gastritis,1,4,0,78.0,10.7,0
+1,2,16.0,8,3,1,throat pain,1,1,3.0,161,97,90,20,39.3,,4,Acute pharyngotonsillitis,2,4,0,326.0,13.76667,0
+2,1,16.5,5,3,1,H-Headache,1,1,3.0,100,60,76,20,36.3,99,4,"Non-insulin-dependent diabetes of the young, with nonketotic hyperglycemic-hyperosmolar coma(NKHHC)",2,4,0,9736.0,2.0,0
+1,2,18.0,13,3,1,ocular pain,1,1,3.0,120,75,89,18,36.2,,4,Acute conjunctivitis,1,4,0,37.0,11.91667,0
+1,2,18.0,8,3,1,PTx - Pneumothorax,1,1,3.0,125,66,75,20,36.5,,4,Pneumothorax,1,4,0,132.0,10.25,0
+1,1,18.0,4,3,1,abd pain,1,1,3.0,136,90,98,20,37,,4,"Abdomen pain, generalized",1,4,0,180.0,3.316667,0
+2,2,18.0,6,3,1,Abd. pain,1,1,3.0,110,70,80,20,36.8,98,4,Hirschsprung's disease,1,4,0,8535.0,3.0,0
+2,1,18.5,3,3,1,lower abdominal pain,1,1,3.0,110,70,104,22,37.5,99,4,"Regional colitis, unspecified",1,4,0,373.0,1.0,0
+1,1,20.0,5,3,1,abd pain,1,1,3.0,120,70,105,18,36.3,,4,Acute gastroenteritis,1,4,0,144.0,8.0,0
+1,2,20.0,7,3,1,left knee swelling,1,1,3.0,166,77,85,18,36.8,,4,Cellulitis,1,4,0,222.0,5.916667,0
+1,2,20.0,15,3,1,sorethroat,1,1,3.0,126,75,83,20,37.2,,4,Peritonsillar abscess,2,4,0,285.0,6.883333,0
+1,2,21.0,8,2,2,"laceration, chin",1,1,3.0,115,82,115,18,36.2,,4,Laceration of face,1,4,0,552.0,6.616667,0
+1,1,22.0,7,2,1,abd pain,1,1,3.0,96,71,79,20,37,,4,Acute gastritis,1,4,0,156.0,8.0,0
+1,1,22.0,5,3,1,acute epigastric pain,1,1,3.0,128,75,111,18,36.2,,4,Acute gastroenteritis,1,4,0,67.0,7.75,0
+1,1,22.0,12,3,1,Vaginal Bleeding,1,1,3.0,114,79,119,20,37.1,,3,Vaginal bleeding,2,3,0,370.0,12.43333,0
+1,1,22.0,7,3,2,"Burn, arm",1,1,3.0,153,80,106,20,36.7,,4,"Burn, first degree",1,4,0,27.0,5.266667,0
+1,1,22.0,10,1,1,abd pain,1,1,3.0,140,92,109,20,37.2,,4,Colitis,2,4,0,276.0,11.78333,0
+1,1,23.0,7,3,1,epigastric pain,1,1,3.0,115,70,95,18,36.7,,4,Acute gastroenteritis,1,4,0,78.0,14.88333,0
+1,1,23.0,5,3,1,dysuria,1,1,3.0,139,67,95,20,36,,5,Acute cystitis,1,5,0,249.0,6.7,0
+1,2,23.0,6,2,1,"pain, chest",1,1,3.0,141,63,64,20,36,,2,Chest pain,1,2,0,194.0,3.716667,0
+1,1,24.0,7,3,1,Gingival bleeding,1,1,3.0,136,84,86,20,36.5,,4,Gingival disease,1,4,0,24.0,5.3,0
+1,1,24.0,8,3,1,anal bleeding,1,1,3.0,148,69,87,20,37.2,,4,Colitis,1,4,0,139.0,9.1,0
+1,2,25.0,2,3,1,"pain, chest",1,1,3.0,160,94,114,20,37.1,,3,Chest pain,1,3,0,126.0,5.25,0
+1,2,25.0,10,3,1,"swelling, neck",1,1,3.0,134,69,68,16,36.9,,4,Acute pharyngotonsillitis,1,4,0,28.0,10.25,0
+1,2,25.0,9,3,1,headache,1,1,3.0,152,96,74,20,36,,4,Headache,1,4,0,97.0,5.216667,0
+1,2,26.0,8,3,2,FB in pharynx,1,1,3.0,117,71,80,20,36,,4,Foreign body in throat food,1,4,0,91.0,5.916667,0
+1,2,26.0,5,3,1,abdomen pain,1,1,3.0,101,66,67,20,36,,4,Constipation,1,4,0,79.0,13.33333,0
+1,2,26.0,12,3,2,"injury, finger",1,1,3.0,159,83,74,20,36.5,,4,Laceration of finger without nail damage,1,4,0,67.0,10.01667,0
+1,1,26.0,7,3,1,abd pain,1,1,3.0,121,76,74,16,36,,4,Acute gastroenteritis,1,4,0,210.0,16.28333,0
+2,2,26.3,6,3,1,chest discomfort left,1,1,3.0,120,80,72,20,36.6,98,2,Other chest pain,1,2,0,405.0,3.0,0
+2,2,26.9,3,2,1,LLQ pain,1,1,3.0,130,80,92,20,36.5,97,4,Unspecified abdominal pain,1,4,0,493.0,2.0,0
+1,1,27.0,9,3,1,vomiting,1,1,3.0,115,74,85,16,36.7,,4,Vomiting,1,4,0,96.0,3.883333,0
+1,2,27.0,8,2,2,Knee Injury,1,1,3.0,136,79,94,16,36.2,,5,Multiple abrasion,1,5,0,99.0,6.466667,0
+1,1,27.0,2,2,2,LBP - Low back pain,1,1,3.0,149,90,95,20,36,,4,Fracture of coccyx closed,1,4,0,47.0,3.183333,0
+1,1,27.0,7,3,1,headache,1,1,3.0,119,95,75,18,36.5,,4,Headache,1,4,0,149.0,3.75,0
+1,2,27.0,9,3,2,facial injury,1,1,3.0,117,65,82,20,36.2,,4,Fracture of orbital wall closed,1,4,0,129.0,7.983334,0
+1,2,27.0,13,3,1,epigastric pain,1,1,3.0,145,78,73,20,36.2,,4,Acute gastroenteritis,1,4,0,129.0,9.383333,0
+1,2,28.0,6,2,2,eyebrow laceration,2,1,3.0,148,92,106,20,36.7,,4,Laceration of face,1,4,0,207.0,3.216667,0
+1,1,28.0,11,3,1,abd pain,1,1,3.0,120,72,90,20,37.3,,4,Acute appendicitis,2,4,0,311.0,3.983333,0
+1,2,28.0,10,3,2,"pain, foot",1,1,3.0,149,99,85,20,36.5,,4,Contusion of foot,1,4,0,61.0,8.783334,0
+2,2,28.6,8,3,2,blurred vision,1,1,3.0,100,60,86,20,36.3,99,4,Corneal abrasion,1,4,0,264.0,2.0,0
+1,2,29.0,6,3,1,"pain, chest",1,1,3.0,134,81,82,20,36.5,,4,Atypical chest pain,1,4,0,117.0,3.933333,0
+1,2,29.0,10,3,1,vomiting,1,1,3.0,138,88,97,20,36,,4,Acute gastroenteritis,1,4,0,102.0,10.1,0
+1,1,29.0,9,4,2,vaginal spotting,1,1,3.0,131,63,82,20,37,,3,"Injury of uterus (S376) without open wound, concussion injuries",1,3,0,171.0,4.083333,0
+1,2,29.0,10,3,1,abdomen pain,1,1,3.0,138,91,68,20,36,,4,Acute gastroenteritis,1,4,0,64.0,9.633333,0
+2,2,29.0,1,3,2,Open Wound,1,1,3.0,100,60,80,20,36.0,98,4,"Open wound of other parts of head, face",1,4,0,402.0,4.0,0
+1,2,30.0,7,3,1,anxiety,1,1,3.0,156,99,80,18,36.6,,4,Anxiety disorder,1,4,0,84.0,4.666667,0
+1,2,30.0,10,3,1,속이 거북함,1,1,3.0,199,112,111,20,36.9,,4,Nausea,1,4,0,61.0,4.55,0
+1,1,31.0,11,3,1,myalgia,1,1,3.0,136,72,106,20,37.3,,5,Acute tonsillitis not specified as recurrent,1,5,0,173.0,5.316667,0
+1,1,31.0,9,3,1,headache,1,1,3.0,105,77,67,20,37.1,,4,Acute gastroenteritis,1,4,0,110.0,9.65,0
+1,2,31.0,9,1,1,headache,1,1,3.0,125,83,64,16,36.6,,4,Headache,1,4,0,118.0,14.45,0
+2,1,31.5,7,4,1,right monoparesis,1,1,3.0,110,70,64,20,36.9,99,3,"Intracerebral haemorrhage in hemisphere, subcortical",2,3,0,600.0,3.0,0
+2,1,31.7,3,3,1,throat pain,1,1,3.0,100,60,98,20,36.1,98,4,Chronic sore throat,1,4,0,405.0,4.0,0
+2,2,32.6,15,3,1,"pain, periumbilical",1,1,3.0,100,70,74,20,36.1,99,4,"Other Crohn’s disease, unspecified",2,4,0,1004.0,3.0,0
+1,1,33.0,11,3,1,"pain, low back",1,1,3.0,109,77,79,16,36,,4,Back pain,1,4,0,68.0,11.38333,0
+1,2,33.0,6,1,1,Rt abd pain,1,1,3.0,121,86,80,16,36.2,,4,Acute gastroenteritis,1,4,0,138.0,4.516666,0
+1,2,33.0,8,3,1,RLQ abd. pain,1,1,3.0,114,82,94,20,36.7,,4,Acute appendicitis,2,4,0,179.0,9.133333,0
+1,2,33.0,6,3,2,Lt flank pain,1,1,3.0,178,122,85,20,36.5,,4,"Fracture of rib other, closed",1,4,0,191.0,5.25,0
+2,2,33.6,8,3,1,With chest discomfort,1,1,3.0,120,80,68,20,36.4,99,2,Other chest pain,1,2,0,606.0,2.0,0
+2,2,33.9,3,3,2,"ocular pain, Rt.",1,1,3.0,130,80,80,20,36,97,5,Corneal abrasion,1,5,0,126.0,3.0,0
+1,2,34.0,15,3,2,left eyelid laceration,1,1,3.0,178,102,72,20,36.5,,4,Laceration of face,1,4,0,139.0,12.4,0
+2,1,34.6,7,3,1,Chest pain NOS (finding),1,1,3.0,100,70,83,20,37,97,2,Obstructive hypertrophic cardiomyopathy,2,2,0,420.0,3.0,0
+2,1,34.7,10,3,1,"ocular pain, Lt.",1,1,3.0,110,70,74,20,36.6,98,4,Epidemic keratoconjunctivitis,1,4,0,272.0,2.0,0
+1,2,35.0,10,3,1,sorethroat,1,1,3.0,151,97,73,20,36.6,,4,Acute laryngitis,1,4,0,133.0,9.533334,0
+1,1,35.0,7,3,1,epigastric pain,1,1,3.0,136,79,74,20,36.7,,4,Acute gastroenteritis,1,4,0,69.0,6.116667,0
+1,1,35.0,7,3,1,Midmenstrual pain,1,1,3.0,131,79,60,16,36,,4,Dysmenorrhea,1,4,0,23.0,5.1,0
+2,2,35.3,7,3,1,fever,1,1,3.0,120,80,100,20,36.5,99,4,Ureteric stone,2,4,0,722.0,4.0,0
+2,1,35.8,8,3,1,diffuse abdominal pain,1,1,3.0,110,70,76,20,36.5,98,4,"Upper abdominal pain, unspecified",1,4,0,7963.0,2.0,0
+1,1,36.0,10,3,2,Eye Injury,1,1,3.0,113,76,59,20,36.5,,4,Subconjunctival hemorrhage,1,4,0,52.0,5.166667,0
+2,1,36.2,7,3,1,headache,1,1,3.0,100,60,80,20,36.4,98,4,Headache,5,4,0,854.0,2.0,0
+2,2,36.8,7,4,1,LOC - Loss of consciousness,1,1,3.0,140,80,105,20,36.8,98,3,Syncope,1,3,0,9989.0,5.0,0
+1,2,38.0,9,3,1,Lt flank pain,1,1,3.0,128,87,102,20,36.5,,4,Acute gastroenteritis,1,4,0,134.0,4.883333,0
+2,2,38.8,5,3,1,ant. chest pain,1,1,3.0,140,100,76,18,36.1,99,2,Unstable angina,1,2,0,389.0,4.0,0
+1,1,39.0,9,3,1,cough,1,1,3.0,157,109,86,22,36.8,,3,Cough,1,3,0,51.0,12.26667,0
+1,1,39.0,3,3,1,abd pain,1,1,3.0,114,77,77,16,37.4,,4,Epigastric pain,1,4,0,183.0,4.15,0
+1,2,40.0,8,3,1,painful skin lesion,1,1,3.0,161,101,76,18,36.2,,4,Herpes zoster,1,4,0,62.0,3.65,0
+2,2,40.0,15,3,1,ant. chest pain,1,1,3.0,120,80,82,20,36.1,100,3,Pericardial effusion (noninflammatory),2,3,0,848.0,4.0,0
+1,1,40.0,11,1,1,Rt abd pain,1,1,3.0,101,79,86,16,36.2,,4,Herpes zoster,1,4,0,23.0,7.133333,0
+1,2,40.0,10,3,1,upper abdominal pain,1,1,3.0,138,82,86,20,36.3,,4,Acute gastritis,1,4,0,156.0,6.4,0
+2,1,40.2,15,3,1,H-Headache,1,1,3.0,120,80,62,20,36.2,99,4,Headache,1,4,0,397.0,5.0,0
+2,2,40.3,3,3,1,"Leg pain, NOS",1,1,3.0,110,80,80,20,36.4,측불,5,Complex regional pain syndrome type II,1,5,0,60.0,2.0,0
+2,2,40.9,8,3,1,leg pain,1,1,3.0,120,80,88,20,36.6,98,5,Complex regional pain syndrome type II,1,5,0,20.0,3.0,0
+1,1,41.0,5,3,1,RLQ pain,1,1,3.0,144,96,97,18,37,,4,Ureter stone,1,4,0,145.0,4.116667,0
+2,2,41.0,11,3,1,abd pain,1,1,3.0,110,70,73,20,36.2,98,4,"Malignant neoplasm of body of stomach, early",2,4,0,944.0,3.0,0
+2,1,41.3,3,3,2,Open Wound,1,1,3.0,130,90,88,20,36.6,98,4,"Open wound of head, part unspecified",1,4,0,125.0,4.0,0
+2,1,41.5,3,3,2,Open Wound,1,1,3.0,120,70,70,18,36.4,98,4,"Open wound of other parts of head, face",1,4,0,86.0,5.0,0
+1,1,42.0,10,3,1,"bleeding, knee",1,1,3.0,129,83,70,20,36.8,,3,Hemangioma of knee,1,3,0,61.0,9.133333,0
+1,2,43.0,9,2,1,headache,1,1,3.0,148,90,108,20,36.9,,4,Headache,1,4,0,34.0,8.866667,0
+1,1,43.0,9,3,1,Rt. flank pain,1,1,3.0,123,72,75,20,36.4,,4,Ureter stone,1,4,0,46.0,5.7,0
+2,1,43.1,8,3,1,Rt. flank pain,1,1,3.0,120,80,98,20,36.8,99,4,Acute pyelonephritis,2,4,0,10806.0,2.0,0
+2,1,43.3,10,3,2,Open Wound,1,1,3.0,130,90,72,20,36.5,99,4,"Open wound of other parts of head, face",1,4,0,263.0,2.0,0
+2,1,43.8,2,2,1,LLQ pain,1,1,3.0,100,60,76,18,36.4,95,4,"Leiomyoma of uterus, unspecified",1,4,0,9296.0,2.0,0
+1,1,44.0,3,3,1,HA,1,1,3.0,136,97,91,16,37,,4,Headache,1,4,0,193.0,8.683333,0
+2,2,44.0,9,3,1,dyspnea,1,1,3.0,130,80,102,20,37.1,98,3,Acute HIV infection syndrome,1,3,0,9891.0,3.0,0
+2,2,44.2,10,3,1,"Pain, Ankle",1,1,3.0,120,80,80,20,36.0,98,5,"Gout, unspecified, ankle joint",1,5,0,76.0,3.0,0
+2,1,44.3,8,3,1,Abd. pain,1,1,3.0,120,80,72,20,36.9,98,3,Unspecified abdominal pain,1,3,0,8996.0,4.0,0
+1,1,46.0,13,3,1,abdomen pain,1,1,3.0,140,75,68,20,36,,4,Acute gastroenteritis,1,4,0,227.0,17.25,0
+2,2,46.3,1,4,1,chest palpitation,1,1,3.0,100,60,86,20,36.8,98,2,Palpitations,1,2,0,596.0,1.0,0
+1,2,47.0,6,3,1,"pain, neck",1,1,3.0,182,119,70,20,36.5,,4,Injury of neck,1,4,0,95.0,3.516667,0
+2,2,47.2,9,3,2,"ocular pain, Rt.",1,1,3.0,110,70,80,20,36.8,98,4,Corneal abrasion,1,4,0,167.0,3.0,0
+2,2,47.5,7,3,1,Foreign Body Sense,1,1,3.0,120,70,100,20,36.4,96,4,Chronic sore throat,1,4,0,7767.0,3.0,0
+2,1,47.7,4,3,1,abd pain,1,1,3.0,120,80,76,20,36.3,98,4,"Acute appendicitis, other and unspecified",7,4,0,489.0,3.0,0
+2,2,47.9,5,2,2,Open Wound,1,1,3.0,130,80,110,20,36.6,97,3,"Open wound of other parts of head, face",2,3,0,1013.0,4.0,0
+2,1,47.9,4,3,1,Abd. pain,1,1,3.0,110,70,80,20,36.3,98,4,Unspecified abdominal pain,1,4,0,342.0,1.0,0
+2,2,48.1,9,4,1,mental change,1,1,3.0,100,60,100,20,36.,90,2,Hypo-osmolality and hyponatraemia,2,2,0,9672.0,4.0,0
+2,1,48.9,2,3,2,Open Wound,1,1,3.0,120,80,74,20,36.2,98,4,"Open wound of other parts of head, face",1,4,0,134.0,2.0,0
+2,1,48.9,8,3,1,HA - Headache,1,1,3.0,150,90,62,20,36.0,98,4,Headache,1,4,0,332.0,3.0,0
+2,2,49.1,5,4,1,ant. chest pain,1,1,3.0,110,80,84,20,36.6,98,2,Ischaemic chest pain,2,2,0,7876.0,4.0,0
+1,1,50.0,5,2,1,whirling type vertigo,1,1,3.0,138,98,68,20,36,,3,Anxiety disorder,1,3,0,190.0,9.433333,0
+1,1,50.0,8,3,1,rt flank pain,1,1,3.0,145,92,65,20,36.6,,4,Kidney and ureter stone,1,4,0,177.0,5.116667,0
+1,2,50.0,4,3,1,rt. side neck pain,1,1,3.0,144,89,74,20,36,,4,Herniated disc disease of cervical spine,1,4,0,16.0,3.133333,0
+2,1,51.0,6,3,1,H-Headache,1,1,3.0,150,100,98,20,36.4,98,4,Headache,1,4,0,292.0,2.0,0
+2,2,51.2,4,2,1,diffuse abdominal pain,1,1,3.0,150,100,98,20,36.4,97,4,Unspecified abdominal pain,4,4,0,361.0,3.0,0
+2,2,51.2,10,3,1,fever,1,1,3.0,120,80,66,20,36.6,98,4,Abscess of liver,2,4,0,262.0,2.0,0
+2,2,51.4,8,3,2,Open Wound,1,1,3.0,110,70,88,20,36.7,98,4,"Open wound of other parts of head, face",1,4,0,177.0,3.0,0
+2,2,51.8,6,3,1,RUQ pain,1,1,3.0,110,70,100,20,37.0,98,4,Unspecified abdominal pain,2,4,0,10653.0,4.0,0
+2,1,52.6,5,3,1,ant. chest pain,1,1,3.0,110,70,72,20,36.1,99,2,Other chest pain,4,2,0,714.0,4.0,0
+2,2,52.9,8,3,1,arm pain,1,1,3.0,130,90,88,20,36.3,98,5,Complex regional pain syndrome type II,1,5,0,972.0,3.0,0
+1,2,53.0,4,3,2,finger laceration wound,1,1,3.0,182,101,80,18,36,,4,Laceration of finger without nail damage,1,4,0,80.0,15.76667,0
+1,2,55.0,2,3,2,head trauma,1,1,3.0,119,78,74,20,36.7,,4,"Injury of head, closed",1,4,0,72.0,4.15,0
+1,2,55.0,15,2,1,pain on Knee,2,1,3.0,111,69,101,20,36.5,,5,Alcohol abuse,4,5,0,63.0,12.48333,0
+1,2,55.0,3,3,1,abd pain,1,1,3.0,152,96,71,20,37,,4,Acute gastroenteritis,1,4,0,50.0,9.65,0
+2,2,55.6,9,3,1,Left chest pain,1,1,3.0,150,90,68,20,36.4,99,2,Ischaemic chest pain,2,2,0,9098.0,5.0,0
+2,2,56.0,10,4,1,Epigastric discomfort(+),1,1,3.0,120,80,78,20,36.2,97,4,Epigastric pain,1,4,0,385.0,1.0,0
+1,2,56.0,10,2,1,both leg pain,2,1,3.0,측불,측불,측불,측불,측불,,5,Knee pain,1,5,0,545.0,3.866667,0
+1,2,56.0,7,3,1,abd pain,1,1,3.0,155,89,81,20,36.3,,4,Cholangitis,2,4,0,803.0,3.4,0
+2,2,56.2,8,3,1,abd. Distension,1,1,3.0,110,70,94,20,36.2,98,4,Hepatocellular carcinoma,1,4,0,696.0,5.0,0
+1,2,57.0,3,3,1,epigastric pain,1,1,3.0,111,57,56,18,36.2,,4,Acute gastroenteritis,1,4,0,137.0,3.65,0
+1,2,57.0,7,3,1,for medication,1,1,3.0,133,74,98,20,36,,5,Small cell lung cancer left,1,5,0,17.0,6.916667,0
+2,2,57.1,12,3,2,"ocular pain, Rt.",1,1,3.0,110,70,84,20,36.0,97,4,Corneal abrasion,1,4,0,124.0,2.0,0
+2,2,57.2,10,3,1,Lt flank pain,1,1,3.0,120,80,96,20,36.5,99,4,"Acute pancreatitis, unspecified",5,4,0,9463.0,3.0,0
+2,1,57.2,7,2,1,ant. chest pain,1,1,3.0,140,90,70,20,36.3,99,2,Varient angina,2,2,0,9345.0,3.0,0
+2,1,57.3,6,2,1,headache,1,1,3.0,180,100,68,22,36.2,98,4,Headache,1,4,0,759.0,1.0,0
+2,2,57.5,5,4,1,Lt hemiparesis,1,1,3.0,150,100,55,20,36.0,98,2,Cerebral infarction due to thrombosis of middle cerebral artery,2,2,0,208.0,2.0,0
+2,2,57.6,7,3,1,ant. chest pain,1,1,3.0,140,100,70,20,36.0,98,2,Myocardial infarction with non-ST elevation,2,2,0,10342.0,3.0,0
+2,2,57.8,7,3,2,Open Wound,1,1,3.0,110,70,60,20,36.3,94,4,"Open wound of other parts of head, face",1,4,0,287.0,2.0,0
+2,2,57.8,11,3,1,"abdominal pain, Rt",1,1,3.0,160,100,98,20,36.5,97,4,"Acute pancreatitis, unspecified",2,4,0,10336.0,3.0,0
+2,1,58.0,10,3,1,Left chest pain,1,1,3.0,120,80,96,20,36.5,98,2,Other chest pain,1,2,0,793.0,2.0,0
+2,2,58.2,5,3,1,ant. chest pain,1,1,3.0,160,100,80,20,36.0,98,2,Unstable angina,1,2,0,443.0,3.0,0
+1,1,59.0,2,3,1,"pain, flank",1,1,3.0,128,78,69,18,36.5,,4,Ureter stone,1,4,0,63.0,7.25,0
+1,1,59.0,5,3,1,LLQ pain,1,1,3.0,142,89,135,20,36.8,,3,Constipation,1,3,0,76.0,7.0,0
+1,2,59.0,4,3,1,abd pain,1,1,3.0,163,83,71,20,36.2,,4,Spasm,1,4,0,71.0,2.966667,0
+2,2,59.7,7,3,1,upper abdominal pain,1,1,3.0,100,60,60,20,36.5,99,4,Obstructive ileus NOS,5,4,0,8571.0,5.0,0
+2,1,59.9,5,3,2,Open Wound,1,1,3.0,120,80,80,20,36.8,98,4,"Open wound of other parts of head, face",1,4,0,7979.0,3.0,0
+1,2,60.0,9,3,1,headache,1,1,3.0,167,86,60,20,36.8,,4,Granuloma,1,4,0,69.0,4.016667,0
+2,1,60.3,9,3,2,left eye pain,1,1,3.0,120,80,88,20,36.6,97,4,Corneal abrasion,1,4,0,185.0,3.0,0
+2,2,60.3,5,3,1,Rt hemiparesis,1,1,3.0,150,100,88,20,36.0,98,3,Cerebral infarction due to thrombosis of basilar artery,2,3,0,325.0,4.0,0
+2,1,60.6,12,3,2,ant. chest pain,1,1,3.0,100,60,84,20,36.4,98,4,Contusion of front wall of thorax,1,4,0,119.0,2.0,0
+1,1,61.0,5,3,1,피부병변,1,1,3.0,90,53,109,16,37,,5,Rash,2,5,0,291.0,6.916667,0
+2,1,62.0,3,3,1,ant. chest pain,1,1,3.0,150,90,100,20,37.4,98,2,"Pneumonia, unspecified",1,2,0,607.0,5.0,0
+2,2,62.1,4,3,1,dyspnea,1,1,3.0,110,70,67,20,36.0,96,2,"Atrial fibrillation and atrial flutter, unspecified",2,2,0,1124.0,4.0,0
+2,2,62.7,4,3,1,"abdominal pain, Rt",1,1,3.0,110,70,78,20,36.3,98,4,"Gallstone(impacted) of gallbladder with cholecystitis (chronic), With obstruction",1,4,0,8593.0,3.0,0
+1,1,63.0,12,3,2,head trauma,1,1,3.0,105,58,62,20,36.3,,4,Head trauma,1,4,0,104.0,4.833333,0
+2,1,64.4,7,2,1,ant. chest pain,1,1,3.0,130,90,78,20,36.3,97,2,Varient angina,2,2,0,888.0,3.0,0
+2,1,64.6,5,2,1,dizziness,1,1,3.0,150,80,61,20,36.4,97,3,"Atrial fibrillation and atrial flutter, unspecified",1,3,0,389.0,2.0,0
+2,1,64.7,9,3,1,Abd. pain,1,1,3.0,130,100,78,20,36.4,96,4,Unspecified abdominal pain,5,4,0,10015.0,4.0,0
+2,1,65.6,8,2,1,ant. chest pain,1,1,3.0,110,70,84,20,36.4,99,2,Ischaemic chest pain,2,2,0,580.0,1.0,0
+1,2,66.0,9,3,1,VOIDING PAIN,1,1,3.0,129,82,64,20,36.6,,4,Acute urinary retension,1,4,0,16.0,6.85,0
+1,1,66.0,6,3,1,상복부,1,1,3.0,127,63,97,20,37.5,,4,Acute gastroenteritis,1,4,0,155.0,8.383333,0
+2,2,66.3,8,3,1,LOC - Loss of consciousness,1,1,3.0,130,80,80,20,36.5,97,3,Dizziness and giddiness,1,3,0,598.0,4.0,0
+2,2,66.4,7,3,1,ant. chest pain,1,1,3.0,120,80,63,20,36.0,97,2,Other chest pain,1,2,0,625.0,5.0,0
+2,1,67.3,12,3,1,RLQ pain,1,1,3.0,120,80,88,20,36.3,97,4,"Acute appendicitis, other and unspecified",7,4,0,624.0,2.0,0
+2,2,67.8,5,2,1,LOC,1,1,3.0,110,70,62,22,36.0,95,2,Syncope,1,2,0,570.0,2.0,0
+1,2,68.0,5,3,1,"pain, chest",1,1,3.0,140,98,96,20,36,,2,Chest pain,1,2,0,174.0,8.916667,0
+1,1,69.0,13,2,1,"Pain, Eye",1,1,3.0,150,72,78,20,36.1,,4,Absolute glaucoma,1,4,0,77.0,4.516666,0
+2,1,69.2,6,2,1,dizziness,1,1,3.0,170,100,80,20,36.2,99,3,Dizziness and giddiness,1,3,0,285.0,2.0,0
+1,2,70.0,6,2,1,left thigh swelling,1,1,3.0,138,70,78,20,37,,3,Cellulitis,1,3,0,264.0,9.933333,0
+1,1,70.0,5,3,1,abd pain,1,1,3.0,126,70,86,20,36.5,,4,Acute gastroenteritis,1,4,0,432.0,5.6,0
+2,1,70.3,3,3,1,diarrhea,1,1,3.0,140,100,80,20,36.2,98,4,Acute watery diarrhoea,1,4,0,228.0,4.0,0
+2,1,70.8,4,1,1,ant. chest pain,1,1,3.0,160,90,74,20,36.7,98,2,Ischaemic chest pain,1,2,0,535.0,3.0,0
+1,2,71.0,11,3,1,소변이 잘 안나옴,1,1,3.0,149,80,94,20,36.8,,4,Benign prostatic hyperplasia with obstruction,1,4,0,158.0,3.733333,0
+2,2,71.1,7,3,1,abd pain,1,1,3.0,170,100,80,20,36.0,98,4,Observation for suspected malignant neoplasm,1,4,0,782.0,5.0,0
+2,1,71.4,6,4,1,ant. chest pain,1,1,3.0,100,60,54,20,36.5,96,2,"Atrial fibrillation and atrial flutter, unspecified",1,2,0,403.0,1.0,0
+2,2,71.5,15,4,1,ant. chest pain,1,1,3.0,150,80,66,20,36.2,95,2,"Acute myocardial infarction, unspecified",2,2,0,286.0,2.0,0
+2,1,71.6,6,3,1,diffuse chest discomfort,1,1,3.0,100,60,99,22,36.0,99,2,Pericardial effusion (noninflammatory),5,2,0,483.0,4.0,0
+2,1,71.6,9,4,1,dyspnea,1,1,3.0,100,60,106,20,36.1,93,2,Ischaemic chest pain,7,2,0,222.0,3.0,0
+1,1,72.0,11,3,1,epigastric pain,1,1,3.0,125,66,97,20,36,,4,Epigastric pain,1,4,0,147.0,9.766666,0
+2,1,72.4,7,3,1,general weakness,1,1,3.0,140,100,51,20,36.0,100,2,"Atrioventricular block, second degree",2,2,0,782.0,3.0,0
+2,2,72.6,5,3,1,abdomen pain,1,1,3.0,110,70,64,20,36.2,97,4,Acute abdomen,1,4,0,980.0,3.0,0
+2,2,73.1,7,3,1,Abd. pain,1,1,3.0,110,70,73,20,36.4,98,4,"Ileus, unspecified",2,4,0,10098.0,5.0,0
+2,1,73.8,12,2,2,Lower Back Pain,1,1,3.0,140,80,96,20,36.2,97,4,"Vertebra compression fracture, NOS, Lumbar region",5,4,0,643.0,4.0,0
+1,2,74.0,13,3,1,backache,1,1,3.0,121,80,101,16,36.9,,4,Herniated disc disease of lumbar spine with radiculopathy,1,4,0,102.0,7.733334,0
+2,1,74.1,8,4,1,abd pain,1,1,3.0,90,60,110,20,36.8,91,3,Unspecified abdominal pain,2,3,0,10781.0,1.0,0
+2,2,74.2,10,3,2,left forearm pain,1,1,3.0,100,60,72,18,36.6,97,5,"Fracture of lower end of radius with dorsal angulation, closed",2,5,0,297.0,3.0,0
+2,1,74.5,12,2,2,post neck pain,1,1,3.0,100,60,72,18,36.6,96,4,"Superficial injury of head, part unspecified, contusion",1,4,0,184.0,3.0,0
+1,2,75.0,8,2,1,fever,1,1,3.0,158,59,76,20,39.5,,3,Fever,2,3,0,1101.0,6.016667,0
+1,1,75.0,4,3,1,abd pain,1,1,3.0,142,85,109,16,36.6,,4,Acute abdomen,1,4,0,142.0,10.8,0
+2,2,75.4,8,4,1,both leg cellulitis,1,1,3.0,120,80,60,20,36.3,97,4,Cellulitis of lower limb,2,4,0,700427.0,2.0,0
+2,1,75.6,10,3,1,RLQ abdominal pain,1,1,3.0,110,70,80,20,36.0,98,4,Ureteric stone,1,4,0,299.0,2.0,0
+2,2,75.8,5,2,1,left side motor weakness,1,1,3.0,140,100,100,20,36.6,98,2,Intracerebral haemorrhage in thalamus,5,2,0,7834.0,2.0,0
+1,2,76.0,9,3,1,headache,1,1,3.0,147,89,86,20,37,,4,Headache,1,4,0,192.0,9.483334,0
+2,1,76.0,7,3,1,Abd. pain,1,1,3.0,120,80,98,20,36.3,97,4,Chronic viral hepatitis C,1,4,0,645.0,3.0,0
+2,2,76.3,12,2,1,dyspnea,1,1,3.0,110,70,61,20,36.4,98,2,"Heart failure, unspecified",2,2,0,700536.0,5.0,0
+2,2,76.6,5,3,1,Lt flank pain,1,1,3.0,120,80,67,20,36.3,93,4,Unspecified abdominal pain,1,4,0,231.0,4.0,0
+2,1,77.0,7,4,1,Low abd discomfort,1,1,3.0,110,70,89,20,36.7,96,4,Abscess of abdominopelvic,7,4,0,836.0,4.0,0
+2,1,77.4,2,3,1,fever,1,1,3.0,120,80,69,20,36.5,96,4,"Infective arthritis NOS, pelvic region and thigh",2,4,0,205.0,3.0,0
+2,1,77.6,10,3,1,RUQ pain,1,1,3.0,120,80,80,20,36.0,97,4,"Choledocholithiasis with cholangitis, With obstruction",2,4,0,9981.0,2.0,0
+1,2,78.0,8,2,1,alcohol smell,1,1,3.0,측불,측불,측불,측불,측불,,4,Acute intoxication of alcohol,1,4,0,393.0,7.05,0
+2,1,78.3,2,3,1,diffuse chest discomfort,1,1,3.0,150,100,82,20,36.8,95,3,Unstable angina,1,3,0,9989.0,2.0,0
+2,1,78.7,12,3,1,ant. chest pain,1,1,3.0,110,70,80,20,36.4,98,2,Unstable angina,2,2,0,396.0,3.0,0
+2,1,78.8,10,3,1,RUQ pain,1,1,3.0,110,70,90,20,36.2,98,4,"Empyema of gallbladder, without calculus",7,4,0,563.0,4.0,0
+2,2,78.8,5,3,1,abdomen pain,1,1,3.0,130,80,60,20,36.4,97,4,"Ileus, unspecified",2,4,0,10214.0,4.0,0
+1,1,79.0,7,3,1,abd pain,1,1,3.0,159,95,76,20,36.6,,4,Cholangitis,2,4,0,608.0,9.616667,0
+2,1,79.6,4,3,1,Left chest pain,1,1,3.0,100,60,68,20,36.8,96,2,Unstable angina,1,2,0,464.0,4.0,0
+2,2,79.7,10,3,1,dyspnea,1,1,3.0,120,80,118,20,36.0,76,2,Acute and subacute infective endocarditis,2,2,0,9984.0,4.0,0
+1,1,80.0,13,3,1,abdomen pain,1,1,3.0,142,80,106,20,37,,4,Acute gastroenteritis,1,4,0,192.0,5.233333,0
+1,2,80.0,8,3,1,Voiding Failure,1,1,3.0,153,75,99,20,37.2,,4,Percutaneous catheter problem,1,4,0,39.0,10.28333,0
+2,2,80.6,4,3,1,dyspnea,1,1,3.0,100,60,95,20,36.0,94,3,Paroxysmal atrial fibrillation,2,3,0,10519.0,4.0,0
+2,1,80.9,7,4,1,left motor weakness,1,1,3.0,130,100,65,20,36.6,95,3,Cerebral infarction due to unspecified occlusion or stenosis of posterior cerebral artery,2,3,0,411.0,3.0,0
+2,1,82.2,5,2,1,both eyelid swelling,1,1,3.0,140,100,64,20,36.3,96,3,Hypo-osmolality and hyponatraemia,2,3,0,10210.0,4.0,0
+2,1,82.6,9,4,1,ant. chest pain,1,1,3.0,140,90,72,22,36.1,93,2,Ischaemic chest pain,2,2,0,607.0,5.0,0
+2,1,83.4,13,3,1,Abd. pain,1,1,3.0,160,100,102,20,36.5,97,4,"Choledocholithiasis with cholecystitis (with cholangitis), Without mention of obstruction",2,4,0,781.0,4.0,0
+2,1,83.7,6,3,1,cough,1,1,3.0,110,80,92,20,36.9,97,3,Cough,2,3,0,509.0,4.0,0
+2,1,85.5,7,4,1,dizziness,1,1,3.0,120,80,80,20,36.7,95,3,Dizziness and giddiness,1,3,0,915.0,2.0,0
+2,2,85.6,2,4,1,Rt hemiparesis,1,1,3.0,140,80,80,20,36.4,98,2,Cerebrovascular accident NOS,2,2,0,834.0,2.0,0
+2,2,85.6,5,4,1,ant. chest pain,1,1,3.0,110,70,66,20,36.3,90,2,Myocardial infarction with non-ST elevation,2,2,0,11177.0,4.0,0
+1,1,87.0,9,2,1,fever,1,1,3.0,126,79,90,22,36.7,,4,Viral infection,1,4,0,201.0,5.316667,0
+2,2,87.6,11,4,1,ant. chest pain,1,1,3.0,110,70,104,24,36.6,97,2,Ischaemic chest pain,2,2,0,559.0,4.0,0
+2,1,93.9,5,3,1,"abdominal pain, LUQ",1,1,3.0,170,100,68,20,36.1,99,4,Unspecified abdominal pain,1,4,0,283.0,2.0,0
+1,2,52.0,11,2,1,distended abdomen,1,1,4.0,155,88,105,20,37.8,,3,Alcoholic liver disease,2,3,0,1400.0,16.31667,0
+1,2,56.0,6,2,1,ascites tapping,1,1,4.0,102,90,100,20,36,,4,Alcoholic liver cirrhosis with ascites,1,4,0,223.0,8.166667,0
+1,1,77.0,13,3,1,"pain, chest",1,1,4.0,115,88,100,16,36.8,,4,Acute bronchitis,1,4,0,236.0,5.816667,0
+1,1,70.0,15,3,1,"discomfort, chest",1,1,4.0,154,99,90,20,36.1,,2,Atypical chest pain,1,2,0,213.0,4.683333,0
+1,2,81.0,8,2,1,"pain, chest",1,1,4.0,152,70,60,20,36,,2,Chest pain,1,2,0,86.0,4.45,0
+1,1,85.0,10,3,1,palpitation,1,1,4.0,118,69,148,20,37.3,,3,Atrial flutter,2,3,0,296.0,7.233333,0
+2,2,15.5,4,3,2,Open Wound,1,1,4.0,120,70,82,20,36.6,98,4,"Open wound of other parts of head, face",1,4,0,818.0,2.0,0
+1,2,16.0,15,3,2,Ankle Injury,1,1,4.0,114,61,80,20,37.5,,4,Injury of ankle,1,4,0,197.0,11.68333,0
+1,1,18.0,7,3,2,right forearm laceration,1,1,4.0,120,84,88,18,36.8,,4,Laceration of forearm,1,4,0,36.0,3.85,0
+1,1,19.0,7,3,2,Ankle Injury,1,1,4.0,154,70,75,20,36,,4,Injury of ankle,1,4,0,73.0,4.2,0
+2,1,21.5,6,3,1,H-Headache,1,1,4.0,110,70,72,20,36.4,98,4,Infectious or septic colitis,1,4,0,8513.0,4.0,0
+2,2,21.8,7,3,2,Open Wound,1,1,4.0,110,70,100,20,36.5,99,4,"Open wound of other parts of head, face",1,4,0,414.0,1.0,0
+1,2,22.0,5,3,2,mandibular pain,1,1,4.0,160,73,117,18,36,,4,Injury of mandible,1,4,0,156.0,4.366667,0
+1,1,23.0,5,3,2,Toe injury,1,1,4.0,119,56,75,20,36.5,,4,Fracture of foot closed,1,4,0,57.0,4.733334,0
+1,1,23.0,7,2,2,both leg pain,1,1,4.0,115,70,79,20,37.2,,4,Rhabdomyolysis,2,4,0,210.0,4.066667,0
+2,2,23.9,6,3,1,Convulsion,1,1,4.0,120,80,88,20,36.4,97,3,"Open wound of other parts of head, face",1,3,0,697999.0,3.0,0
+1,1,24.0,12,3,1,abd pain,1,1,4.0,118,64,71,20,36.7,,3,"Pelvic inflammatory disease, female",1,3,0,178.0,6.583333,0
+1,2,24.0,5,3,1,"otalgia, Rt.",1,1,4.0,138,68,89,18,36.3,,4,Otalgia,1,4,0,40.0,3.75,0
+1,2,24.0,12,3,1,"pain, chest",1,1,4.0,112,76,88,20,36.4,,3,Sprain and strain of rib,1,3,0,161.0,8.9,0
+1,2,24.0,5,3,1,"otalgia, Lt.",1,1,4.0,137,68,62,18,36.7,,4,"Acute otitis media, unspecified unilateral or unspecified",1,4,0,27.0,12.6,0
+2,2,24.3,12,3,2,nausea,1,1,4.0,120,80,80,20,36.0,98,2,Toxic effect of unspecified substance,2,2,0,698879.0,5.0,0
+2,1,24.5,3,3,2,Open Wound,1,1,4.0,120,80,88,20,36.6,98,4,"Open wound of other parts of head, face",1,4,0,296.0,2.0,0
+1,1,25.0,12,3,2,Ankle Injury,1,1,4.0,118,66,76,20,36.5,,4,Injury of ankle,1,4,0,107.0,14.36667,0
+1,1,25.0,4,2,1,abd pain,1,1,4.0,109,63,62,18,36.7,,3,Primary dysmenorrhea,1,3,0,104.0,3.733333,0
+1,2,25.0,9,3,2,"Pain, Hand",1,1,4.0,137,110,89,20,36.9,,4,Multiple fracture of metacarpal bone closed,2,4,0,386.0,4.083333,0
+2,2,26.4,3,3,2,Open Wound,1,1,4.0,120,70,80,20,36.7,99,4,"Open wound of other parts of head, face",1,4,0,258.0,1.0,0
+2,2,26.8,6,3,1,abd pain,1,1,4.0,110,70,106,20,36.5,98,3,"Crohn’s disease, unspecified, unspecified",2,3,0,926.0,5.0,0
+1,1,27.0,3,2,2,facial injury,1,1,4.0,156,93,126,18,36.8,,4,Open wound of eyelid and periocular area,1,4,0,93.0,5.216667,0
+1,2,28.0,11,1,1,abd pain,1,1,4.0,156,89,80,16,36.4,,3,Diverticulitis of large intestine without bleeding,2,3,0,306.0,5.35,0
+1,2,30.0,5,2,2,facial injury,1,1,4.0,179,103,61,18,36.4,,4,Multiple abrasion,1,4,0,64.0,4.733334,0
+2,2,30.1,10,4,1,headache,1,1,4.0,140,80,76,20,36.3,99,3,"Subarachnoid haemorrhage, unspecified",7,3,0,211.0,3.0,0
+1,1,32.0,9,3,2,Arm Injury,1,1,4.0,143,92,85,20,36,,4,Injury of arm,1,4,0,83.0,4.716667,0
+1,1,33.0,12,3,2,Foot Injury,1,1,4.0,112,72,56,20,36.9,,4,Cellulitis of foot,1,4,0,24.0,7.333333,0
+1,1,34.0,10,3,1,cough,1,1,4.0,148,82,85,20,36.2,,3,Upper respiratory infection,1,3,0,266.0,6.016667,0
+1,2,34.0,6,2,1,abd pain,1,1,4.0,154,95,98,18,37.2,,3,Acute gastroenteritis,1,3,0,150.0,4.75,0
+2,2,36.9,6,3,2,"ocular pain, Rt.",1,1,4.0,140,90,68,20,36.4,98,4,Corneal abrasion,1,4,0,116.0,1.0,0
+1,2,37.0,6,3,2,ankle pain,1,1,4.0,149,72,94,18,36.7,,4,Fracture of medial malleolus closed,1,4,0,157.0,3.883333,0
+1,2,37.0,4,3,1,Toe redness,1,1,4.0,149,89,103,20,36.8,,4,Leg skin defect,2,4,0,364.0,9.3,0
+1,1,37.0,6,3,1,abd pain,1,1,4.0,108,71,106,20,38.7,,3,Acute abdomen,7,3,0,232.0,7.816667,0
+2,1,37.1,3,4,1,epigastric pain,1,1,4.0,90,60,86,20,36,98,2,Dehydration,5,2,0,1023.0,4.0,0
+1,2,38.0,2,3,1,ear pain lt,1,1,4.0,133,88,57,20,36,,4,Otalgia,1,4,0,19.0,3.366667,0
+1,2,39.0,6,3,1,toothache,1,1,4.0,176,106,74,18,36.8,,4,Toothache,1,4,0,52.0,2.433333,0
+2,2,40.0,8,3,1,Throat Pain,1,1,4.0,100,60,72,20,36.6,98,3,Retropharyngeal and parapharyngeal abscess,7,3,0,293.0,5.0,0
+2,2,42.6,6,3,2,Open Wound,1,1,4.0,130,80,88,20,36.1,96,4,Open wound of other parts of wrist and hand,1,4,0,115.0,3.0,0
+2,2,42.9,6,3,1,ant. chest pain,1,1,4.0,140,90,62,20,36.0,99,2,Ischaemic chest pain,2,2,0,10304.0,4.0,0
+1,1,43.0,6,3,2,"injury, finger",1,1,4.0,191,94,88,20,36.5,,4,Injury of finger,1,4,0,210.0,3.316667,0
+2,2,43.6,8,4,1,general weakness,1,1,4.0,140,80,50,20,36.0,98,3,Guillain-Barre syndrome,2,3,0,187.0,3.0,0
+2,2,43.7,10,1,2,Open Wound,1,1,4.0,150,90,88,20,36.4,98,4,Traumatic hyphaema,1,4,0,216.0,4.0,0
+2,2,44.2,5,1,1,facial painful swelling,1,1,4.0,110,70,110,20,37.2,98,4,Cellulitis of nose(septum),7,4,0,422.0,4.0,0
+2,2,45.7,7,4,1,dizziness,1,1,4.0,100,60,52,20,36.8,96,2,"Atrial fibrillation and atrial flutter, unspecified",2,2,0,9618.0,5.0,0
+1,1,46.0,5,3,1,"pain, chest",1,1,4.0,153,67,67,18,36.5,,3,Gastroesophageal reflux disease,1,3,0,96.0,6.983334,0
+2,1,46.8,8,3,1,"otalgia, Lt.",1,1,4.0,100,60,60,20,36.4,98,4,Otalgia,1,4,0,198.0,5.0,0
+1,1,47.0,6,2,2,facial injury,1,1,4.0,93,55,78,18,36.5,,4,Injury of face,1,4,0,132.0,5.65,0
+2,2,47.3,7,3,1,headache,1,1,4.0,160,80,62,20,36.4,97,3,Other chest pain,1,3,0,697887.0,5.0,0
+2,2,47.6,10,4,2,left leg pain,1,1,4.0,100,60,76,20,36.3,98,4,"Fracture of trochanteric section of femur, unspecified, closed",2,4,0,354.0,3.0,0
+2,2,47.9,9,2,1,diffuse abdominal pain,1,1,4.0,110,70,110,20,36.4,97,3,Hepatocellular carcinoma,2,3,0,29073.0,2.0,0
+2,2,48.0,3,3,1,ant. chest pain,1,1,4.0,140,90,56,20,36.6,100,2,Ischaemic chest pain,2,2,0,11697.0,2.0,0
+2,2,50.2,8,4,1,abd pain,1,1,4.0,120,70,78,18,36.4,98,3,"Cholecystitis with cholelithiasis NOS, With obstruction",7,3,0,435.0,2.0,0
+2,2,50.7,5,3,1,Left leg pain,1,1,4.0,120,70,76,20,36.1,98,4,"Pain in limb, hip (joint)",1,4,0,113.0,1.0,0
+2,1,51.3,3,3,2,ocular pain,1,1,4.0,120,80,72,20,36.4,98,4,"Fracture of medial wall of orbit, closed",1,4,0,370.0,2.0,0
+2,1,52.3,6,3,2,toe pain,1,1,4.0,110,70,80,20,36.8,98,4,"Contusion of toe(s), NOS",1,4,0,92.0,4.0,0
+2,2,52.5,6,2,1,Left chest pain,1,1,4.0,120,80,96,20,36.9,97,2,Brugada syndrome,2,2,0,229.0,4.0,0
+1,2,53.0,13,1,1,Rt abd pain,1,1,4.0,115,95,103,18,36.3,,4,Gallbladder cancer,1,4,0,272.0,7.766666,0
+1,1,53.0,10,3,2,"pain, foot",1,1,4.0,163,77,62,18,36.8,,4,Injury of foot,1,4,0,30.0,3.233333,0
+1,1,56.0,6,3,1,epigastric pain,1,1,4.0,132,72,70,20,36.6,,3,Acute gastritis,1,3,0,226.0,4.133333,0
+1,2,56.0,3,3,1,RLQ abd. pain,1,1,4.0,163,94,83,16,37,,3,Acute appendicitis,5,3,0,159.0,5.75,0
+2,2,56.5,9,3,2,Open Wound,1,1,4.0,120,80,78,18,36.4,99,4,"Open wound of other parts of head, face",1,4,0,212.0,3.0,0
+2,1,56.8,8,2,1,Left chest pain,1,1,4.0,120,80,76,20,36.5,99,2,Varient angina,1,2,0,383.0,3.0,0
+1,1,57.0,5,3,1,"Discomfort, Chest",1,1,4.0,151,77,79,20,36.9,,3,Depression,1,3,0,163.0,6.35,0
+1,1,57.0,9,3,2,facial injury,1,1,4.0,158,97,62,20,36.7,,4,Laceration of oral cavity,1,4,0,113.0,5.516666,0
+2,2,57.9,10,2,1,ant. chest pain,1,1,4.0,140,90,60,20,36.0,99,2,Ischaemic chest pain,2,2,0,9619.0,2.0,0
+1,1,59.0,8,1,1,left eye swelling,1,1,4.0,138,76,94,18,36.3,,4,Cellulitis,1,4,0,51.0,7.016667,0
+1,1,59.0,4,3,1,"pain, abdominal",1,1,4.0,98,70,75,16,36.3,,3,Colitis,1,3,0,346.0,5.483333,0
+1,2,60.0,7,2,1,abd pain,1,1,4.0,162,96,94,20,36.8,,3,Acute gastroenteritis,1,3,0,291.0,9.2,0
+1,1,60.0,1,3,2,"wrist pain, Lt",1,1,4.0,141,65,70,18,36.6,,4,Fracture of distal radius closed,1,4,0,278.0,3.116667,0
+1,2,60.0,5,2,1,epigastric pain,1,1,4.0,157,109,73,16,36.7,,3,Epigastric pain,1,3,0,148.0,9.183333,0
+1,1,60.0,10,3,1,abd pain,1,1,4.0,198,117,137,18,36.6,,3,Urinary retension,1,3,0,280.0,8.333333,0
+2,2,60.7,8,2,2,Open Wound,1,1,4.0,130,80,88,20,36.6,97,3,"Multiple fracture of unspecified ribs,Closed",2,3,0,8605.0,4.0,0
+2,2,62.8,3,4,1,ant. chest pain,1,1,4.0,140,100,62,20,36.2,99,2,Ischaemic chest pain,2,2,0,21492.0,2.0,0
+2,2,62.9,9,3,1,Left chest pain,1,1,4.0,140,90,98,24,36.,99,2,Unstable angina,1,2,0,421.0,4.0,0
+1,1,64.0,9,3,1,low abdominal pain,1,1,4.0,129,87,75,20,36.8,,3,Chronic gastritis,1,3,0,217.0,14.2,0
+2,2,64.1,5,4,1,Lt. side weakness,1,1,4.0,160,100,78,18,36.0,100,2,Cerebral infarction due to thrombosis of posterior cerebral artery,1,2,0,7708.0,3.0,0
+2,2,64.3,9,3,2,finger pain,1,1,4.0,140,90,66,20,36.4,97,4,Open wound of finger(s) without damage to nail,1,4,0,453.0,4.0,0
+1,1,65.0,9,3,1,hypertension,1,1,4.0,204,109,65,16,36.3,,3,Hypertension,1,3,0,166.0,9.183333,0
+2,1,65.2,11,2,1,ant. chest pain,1,1,4.0,110,70,52,20,36.0,98,2,Supraventricular tachycardia,1,2,0,457.0,4.0,0
+2,1,65.8,10,3,1,Rt. flank pain,1,1,4.0,120,80,51,20,36.5,98,3,Ureteric stone,1,3,0,426.0,5.0,0
+1,2,66.0,10,2,2,Head Injury,2,1,4.0,149,94,78,20,36.3,,3,Acute intoxication of alcohol,1,3,0,475.0,8.65,0
+2,1,66.1,12,3,1,right upper abdominal pain,1,1,4.0,110,70,95,20,36.3,99,3,Unspecified abdominal pain,2,3,0,632.0,3.0,0
+1,1,68.0,13,2,1,Rt abd pain,1,1,4.0,124,72,71,20,36.1,,4,Acute appendicitis,2,4,0,410.0,4.066667,0
+1,1,68.0,6,3,2,"shoulder pain, Lt",1,1,4.0,131,52,94,20,36,,4,Injury of arm,1,4,0,68.0,5.416667,0
+1,2,69.0,8,3,2,right leg injury,1,1,4.0,145,84,77,16,36.8,,4,Multiple abrasion,1,4,0,22.0,5.0,0
+2,1,72.0,5,2,1,Abd. pain,1,1,4.0,120,60,63,20,36.4,96,3,"Acute renal failure, unspecified",2,3,0,977.0,2.0,0
+1,1,73.0,9,1,1,피부병변,1,1,4.0,148,72,70,16,36.3,,4,Herpes zoster,1,4,0,35.0,7.7,0
+1,1,75.0,5,3,1,"leg swelling, Lt.",1,1,4.0,143,70,101,16,37.5,,4,"Lymphedema, lower limb",1,4,0,271.0,6.183333,0
+2,1,75.0,8,4,1,"abdominal pain, periumbilical area",1,1,4.0,110,70,80,20,37.3,96,3,Intussusception,7,3,0,389.0,2.0,0
+2,2,75.1,6,3,1,"ocular pain, Lt.",1,1,4.0,130,80,66,20,36.3,97,4,Corneal abrasion,1,4,0,89.0,1.0,0
+2,1,75.2,6,4,1,Abd. pain,1,1,4.0,110,70,86,20,36.9,97,3,Acute cholecystitis,2,3,0,930.0,3.0,0
+2,1,76.1,3,3,1,diarrhea,1,1,4.0,100,60,78,20,36.6,100,4,Acute watery diarrhoea,1,4,0,690.0,4.0,0
+2,2,76.8,8,4,2,hip pain Lt.,1,1,4.0,150,100,88,20,36.2,97,4,"Fracture of trochanteric section of femur, unspecified, closed",2,4,0,227.0,3.0,0
+2,1,77.5,3,2,2,both ocular pain,1,1,4.0,150,90,72,20,36.2,98,4,Punctate keratatitis,1,4,0,137.0,2.0,0
+2,1,81.0,5,3,2,"wrist pain, Rt",1,1,4.0,120,80,76,20,36.0,96,4,"Fracture of lower end of radius, unspecified, closed",2,4,0,581.0,3.0,0
+2,1,81.0,6,4,1,Abd. pain,1,1,4.0,100,60,110,22,37.1,93,3,Cholangitis NOS,2,3,0,10100.0,2.0,0
+2,1,81.8,2,2,1,dyspnea,1,1,4.0,140,90,64,22,36.4,96,2,"Asthma, unspecified",2,2,0,1101.0,2.0,0
+1,2,82.0,8,3,1,abd pain,1,1,4.0,134,83,95,16,36.8,,3,Acute gastroenteritis,1,3,0,464.0,3.983333,0
+2,2,88.3,7,2,2,Head pain,1,1,4.0,140,90,78,20,36.2,98,4,"Open wound of head, part unspecified",4,4,0,7992.0,2.0,0
+2,1,89.2,3,2,1,Left chest pain,1,1,4.0,100,60,48,20,36.0,95,2,Other chest pain,1,2,0,148.0,2.0,0
+1,2,48.0,7,4,1,abd pain,1,1,5.0,166,88,103,16,37.9,,3,Acute pancreatitis,2,3,0,339.0,5.866667,0
+1,2,64.0,7,3,1,dizziness,1,1,5.0,164,96,86,16,36.5,,3,Dizziness,1,3,0,201.0,9.3,0
+1,2,65.0,8,3,1,"leg swelling, Lt.",1,1,5.0,118,73,74,16,36.9,,4,Cellulitis,2,4,0,418.0,5.45,0
+1,1,68.0,5,3,1,vomiting,1,1,5.0,167,80,74,18,36.7,,3,Acute gastroenteritis,1,3,0,142.0,6.0,0
+1,2,48.0,10,2,1,abd pain,1,1,5.0,131,92,111,20,37.6,,3,Hypokalemia,4,3,0,402.0,11.85,0
+1,2,72.0,4,1,1,"pain, chest",1,1,5.0,145,83,73,20,37,,2,Chest pain,1,2,0,0.22247685184993315,6.0,0
+1,1,74.0,14,3,1,"leg pain, Rt.",1,1,5.0,177,101,78,20,37.7,,4,Deep vein thrombosis,2,4,0,541.0,11.68333,0
+1,2,85.0,9,2,2,Femur Lesion,1,1,5.0,195,90,87,20,36,,4,Fracture of femur closed,1,4,0,194.0,5.65,0
+2,1,16.2,4,3,2,"ocular pain, Lt.",1,1,5.0,100,60,76,20,36.6,98,4,Contusion of eyelid and periocular area,1,4,0,184.0,2.0,0
+1,1,17.0,8,3,1,abd pain,1,1,5.0,141,75,84,16,37,,3,Abdominal pain,1,3,0,168.0,8.25,0
+1,2,18.0,12,1,1,abd pain,1,1,5.0,107,64,109,20,38.4,,3,Abdominal pain,1,3,0,0.12855324074189411,6.0,0
+1,2,19.0,15,3,1,abd pain,1,1,5.0,113,58,101,20,37.2,,3,Acute abdomen,2,3,0,198.0,7.4,0
+1,2,19.0,6,3,1,abd pain,1,1,5.0,143,74,109,18,36.7,,3,Acute gastroenteritis,1,3,0,299.0,3.366667,0
+1,2,21.0,14,3,1,HA,1,1,5.0,138,82,67,16,36.9,,3,Headache,1,3,0,208.0,13.16667,0
+2,1,21.9,4,3,2,Eye Foreign Body,1,1,5.0,100,60,80,20,36,97,4,Punctate keratatitis,1,4,0,238.0,2.0,0
+1,2,22.0,2,3,1,abd pain,1,1,5.0,132,68,111,18,38.1,,3,Acute gastroenteritis,1,3,0,93.0,5.65,0
+1,2,22.0,11,3,2,Hand Injury,1,1,5.0,171,77,96,20,36.5,,4,Injury of hand,1,4,0,208.0,15.48333,0
+1,1,22.0,9,2,2,headache,1,1,5.0,106,69,71,16,36.5,,3,Multiple abrasion,1,3,0,148.0,6.866667,0
+1,2,23.0,5,3,1,"pain, abdominal",1,1,5.0,183,105,129,18,37.2,,3,Acute gastritis,1,3,0,143.0,2.916667,0
+1,1,23.0,5,3,1,"pain, abdominal",1,1,5.0,102,72,76,18,37.2,,3,Acute gastroenteritis,1,3,0,84.0,6.95,0
+1,2,24.0,5,3,2,finger lac.,1,1,5.0,128,62,94,18,36.9,,4,Laceration of finger without nail damage,1,4,0,27.0,8.25,0
+2,2,24.0,8,3,1,chest discomfort left,1,1,5.0,160,100,98,20,36.5,98,2,Ischaemic chest pain,1,2,0,588.0,4.0,0
+1,2,25.0,9,3,1,RLQ pain,1,1,5.0,152,88,90,20,36,,3,Diverticulitis of large intestine without bleeding,1,3,0,137.0,5.433333,0
+1,2,26.0,5,3,2,right shoulder pain,1,1,5.0,160,88,68,16,36.8,,4,"Fracture of clavicle, shaft closed",1,4,0,227.0,10.26667,0
+1,1,26.0,15,3,1,epigastric pain,1,1,5.0,134,97,97,20,36.2,,3,Somatization disorder,1,3,0,122.0,6.766666,0
+1,2,27.0,10,3,1,abd pain,1,1,5.0,144,81,70,20,36.1,,3,Acute gastroenteritis,1,3,0,103.0,6.966667,0
+1,1,27.0,9,3,2,foot swelling,1,1,5.0,129,67,80,20,36.5,,4,Injury of ankle,1,4,0,84.0,11.68333,0
+1,2,27.0,10,2,1,abd pain,1,1,5.0,152,85,98,16,37.5,,3,Acute pancreatitis,2,3,0,1439.0,3.066667,0
+1,1,28.0,10,3,2,Finger Injury,1,1,5.0,138,87,82,20,36.5,,4,Laceration of finger without nail damage,1,4,0,49.0,10.15,0
+1,1,28.0,6,3,1,"pain, abdominal",1,1,5.0,115,71,90,16,36.5,,3,Acute gastroenteritis,1,3,0,147.0,4.516666,0
+1,2,29.0,12,1,2,Wrist Injury,1,1,5.0,159,82,87,16,36.5,,4,Injury of wrist,1,4,0,96.0,4.266667,0
+1,2,30.0,10,3,1,myalgia,1,1,5.0,136,63,94,18,37.2,,4,Viral infection,1,4,0,155.0,7.233333,0
+2,2,30.5,8,3,2,Open Wound,1,1,5.0,170,90,112,22,36.4,99,4,"Open wound of head, part unspecified",1,4,0,8108.0,2.0,0
+1,1,31.0,6,3,1,abd pain,1,1,5.0,111,67,78,20,36.5,,3,Acute gastroenteritis,1,3,0,167.0,3.216667,0
+1,1,31.0,3,3,1,abd pain,1,1,5.0,91,54,98,18,36.9,,3,Acute gastroenteritis,1,3,0,180.0,6.083333,0
+1,1,31.0,11,3,1,abd pain,1,1,5.0,114,79,67,20,36.7,,3,Acute gastroenteritis,1,3,0,178.0,7.283333,0
+1,1,33.0,8,3,1,skin rash,1,1,5.0,121,82,75,16,37.2,,4,Acute urticaria,1,4,0,166.0,8.283334,0
+1,2,33.0,3,3,2,abd pain,1,1,5.0,119,63,97,16,37,,3,Contusion of abdominal wall,1,3,0,242.0,6.533333,0
+1,1,33.0,7,3,1,sorethroat,1,1,5.0,144,87,62,20,37.1,,3,Acute pharyngotonsillitis,1,3,0,310.0,11.56667,0
+2,1,33.9,2,3,1,Abdominal pain (finding),1,1,5.0,100,60,90,20,36.0,98,3,Gastroenteritis and colitis of unspecified origin,2,3,0,704.0,2.0,0
+1,2,34.0,14,3,1,fever,1,1,5.0,144,71,91,16,37.8,,3,Fever,2,3,0,238.0,11.76667,0
+1,2,34.0,9,1,2,head injury,1,1,5.0,145,84,65,16,36.6,,3,Head trauma,1,3,0,73.0,5.416667,0
+1,2,35.0,5,3,2,elbow painful swelling,1,1,5.0,164,111,94,18,36.7,,4,Cellulitis,1,4,0,47.0,4.583333,0
+1,1,35.0,4,3,1,headache,1,1,5.0,131,83,86,16,36,,3,Headache,1,3,0,143.0,5.283333,0
+1,2,36.0,3,3,1,abd pain,1,1,5.0,135,86,79,18,36.8,,3,Acute gastroenteritis,1,3,0,321.0,2.716667,0
+1,2,37.0,11,1,1,"pain, chest wall, Rt",1,1,5.0,129,65,70,18,37.2,,3,Sprain and strain of thorax,1,3,0,247.0,8.216666,0
+1,2,39.0,3,3,1,"pain, flank",1,1,5.0,163,100,78,18,36.9,,3,Ureter stone,1,3,0,112.0,3.05,0
+1,2,42.0,7,2,2,"Pain, Hip",1,1,5.0,145,71,80,18,36,,4,Fracture of femur shaft closed,1,4,0,106.0,7.0,0
+2,2,42.6,11,3,1,diffuse abdominal pain,1,1,5.0,140,90,87,20,36.0,96,3,Other acute pancreatitis,2,3,0,403.0,3.0,0
+2,1,43.3,8,2,2,elbow painful swelling lt.,1,1,5.0,140,100,108,20,36.4,98,4,Contusion of elbow,1,4,0,174.0,3.0,0
+1,2,44.0,5,3,2,ankle pain,1,1,5.0,139,80,97,18,36.3,,4,Injury of ankle and foot,1,4,0,51.0,4.233333,0
+1,1,45.0,4,3,1,LBP - Low back pain,1,1,5.0,146,88,75,20,36,,4,Sprain of lumbar spine,1,4,0,80.0,17.33333,0
+2,2,46.7,5,3,2,Open Wound,1,1,5.0,130,80,93,20,36.3,98,4,"Superficial injury of head, part unspecified, contusion",1,4,0,83.0,2.0,0
+1,2,47.0,13,2,2,backache,1,1,5.0,116,60,57,16,36.8,,3,Herniated disc disease of lumbar spine with radiculopathy,2,3,0,238.0,6.816667,0
+2,2,47.2,12,3,2,Open Wound,1,1,5.0,110,60,92,20,36.6,98,4,"Open wound of finger(s), NOS",1,4,0,127.0,2.0,0
+2,2,47.7,5,2,1,right chest pain,1,1,5.0,120,80,64,20,36.3,99,2,Unstable angina,1,2,0,8449.0,4.0,0
+1,1,49.0,12,3,2,Ankle Injury,1,1,5.0,140,86,95,20,36.5,,4,Sprain of ankle,1,4,0,684.0,8.033334,0
+1,2,50.0,9,3,1,epigastric pain,1,1,5.0,121,69,86,16,37.1,,3,Ampulla of vater cancer,1,3,0,285.0,12.13333,0
+1,2,50.0,7,3,2,Foot Injury,1,1,5.0,137,81,68,20,36.5,,4,Fracture of calcaneus closed,1,4,0,128.0,6.883333,0
+1,1,50.0,9,3,2,"injury, ankle",1,1,5.0,166,80,61,20,37,,4,Fracture of lower leg closed,1,4,0,182.0,7.316667,0
+1,1,50.0,9,3,2,"injury, ankle",1,1,5.0,166,80,61,20,37,,4,Pilon fracture closed,1,4,0,182.0,7.316667,0
+2,2,50.5,11,4,1,ant. chest pain,1,1,5.0,120,80,78,18,36.4,99,2,Unstable angina,1,2,0,7937.0,4.0,0
+2,1,51.0,5,3,1,headache,1,1,5.0,110,70,80,20,36.0,98,3,"Migraine, unspecified",1,3,0,7985.0,2.0,0
+2,2,51.4,3,3,1,abd pain,1,1,5.0,110,70,86,20,36.4,100,3,"Other and unspecified cirrhosis of liver, Child-Pugh C",2,3,0,10799.0,4.0,0
+1,2,53.0,9,1,2,FB in eye,1,1,5.0,149,107,74,18,36.2,,4,Foreign body in eye,1,4,0,47.0,3.8,0
+1,2,54.0,5,3,1,abdomen pain,1,1,5.0,137,77,129,20,37.8,,3,Liver abscess,2,3,0,478.0,17.23333,0
+1,2,54.0,5,3,1,abdomen pain,1,1,5.0,137,77,129,20,37.8,,3,Metastatic cancer to the liver,2,3,0,478.0,17.23333,0
+1,2,54.0,5,2,1,dizziness,1,1,5.0,143,70,115,18,36,,3,Stroke,4,3,0,333.0,6.25,0
+1,1,54.0,3,2,1,abd pain,1,1,5.0,190,92,69,20,36.6,,3,Abdominal pain,1,3,0,417.0,4.15,0
+1,2,54.0,3,3,1,Chin swelling,1,1,5.0,194,84,112,20,37.1,,4,Periodontal abscess,2,4,0,0.44873842592642177,4.0,0
+2,1,54.3,6,3,1,abd pain,1,1,5.0,120,80,100,20,36.3,97,3,"Gastrointestinal haemorrhage, unspecified",2,3,0,699878.0,4.0,0
+1,1,57.0,7,3,1,epigastric pain,1,1,5.0,140,87,68,20,36.4,,3,Acute gastroenteritis,1,3,0,105.0,4.0,0
+2,1,57.9,7,4,2,Open Wound,1,1,5.0,110,70,100,20,37.2,97,4,"Localized swelling, mass and lump, neck",2,4,0,9014.0,4.0,0
+1,1,58.0,11,1,1,"pain, chest",1,1,5.0,169,89,57,18,36.3,,2,Palpitation,1,2,0,173.0,11.46667,0
+1,1,58.0,7,2,1,abdomen pain,1,1,5.0,95,62,50,18,37.3,,3,Acute gastroenteritis,2,3,0,0.25350694444205146,13.0,0
+2,1,59.5,6,1,2,Rt. flank pain,1,1,5.0,140,90,80,20,36.6,98,4,Contusion of flank,1,4,0,280.0,2.0,0
+2,2,60.0,4,4,1,RUQ pain,1,1,5.0,140,100,104,20,38.1,97,3,Cholangitis,2,3,0,2014.0,1.0,0
+1,1,60.0,4,3,1,abd pain,1,1,5.0,140,84,102,20,36.7,,3,Ureter stone,1,3,0,158.0,8.2,0
+1,2,60.0,10,3,2,"Pain, Αnus",1,1,5.0,159,94,74,20,36.5,,3,Urinoma,1,3,0,265.0,5.566667,0
+2,1,60.8,6,2,2,"burn, face",1,1,5.0,140,90,72,20,36.3,97,4,"Burn of first degree of head and neck, multiple sites head, face, and neck",1,4,0,8034.0,3.0,0
+1,1,61.0,8,3,2,Lt. hip joint pain,1,1,5.0,146,80,101,16,36.7,,4,Contusion of hip,1,4,0,51.0,6.616667,0
+1,1,62.0,11,3,1,abd pain,1,1,5.0,107,58,83,20,36.8,,3,Acute gastroenteritis,1,3,0,121.0,10.93333,0
+1,2,62.0,9,3,1,"pain, abdominal",1,1,5.0,136,90,93,16,36.6,,3,Abdominal pain,1,3,0,360.0,7.566667,0
+2,2,62.3,7,3,1,Lt flank pain,1,1,5.0,160,90,101,20,36.7,98,3,"Chronic kidney disease, unspecified",2,3,0,9706.0,3.0,0
+1,1,63.0,1,3,1,abd pain,1,1,5.0,141,76,79,18,36.7,,3,Fecal impaction,1,3,0,79.0,2.85,0
+1,2,64.0,4,3,1,left leg pain,1,1,5.0,154,101,101,16,36.4,,5,Chondromalacia patellae,1,5,0,117.0,8.066667,0
+1,2,65.0,6,2,1,abd pain,1,1,5.0,135,79,57,18,36.6,,3,Urinary stone,1,3,0,312.0,4.183333,0
+1,2,66.0,7,3,1,voiding difficulty,1,1,5.0,136,84,89,20,36,,4,Acute urinary retension,1,4,0,41.0,5.383333,0
+1,1,67.0,5,3,1,myalgia,1,1,5.0,134,89,93,20,36.8,,3,Common cold,1,3,0,122.0,4.583333,0
+1,1,67.0,8,3,1,abd pain,1,1,5.0,196,94,101,20,37,,3,Constipation,1,3,0,152.0,16.21667,0
+2,1,67.3,4,3,1,ant. chest pain,1,1,5.0,140,90,85,20,36.2,95,3,Other chest pain,1,3,0,255.0,3.0,0
+1,1,68.0,5,2,2,Ankle Injury,1,1,5.0,171,72,74,16,37.1,,4,Fracture of ankle closed,2,4,0,250.0,7.183333,0
+1,2,68.0,7,3,1,"pain, abdominal",1,1,5.0,107,73,102,16,36.3,,3,Hepatic failure without coma,3,3,0,1127.0,7.233333,0
+1,1,68.0,10,3,1,abd pain,1,1,5.0,149,79,60,20,36.6,,3,Acute gastroenteritis,1,3,0,230.0,5.216667,0
+2,2,68.3,10,4,2,headache,1,1,5.0,120,80,88,22,36.4,98,3,Multiple contusion NOS,2,3,0,399.0,3.0,0
+2,1,68.3,2,2,1,abd pain,1,1,5.0,130,90,96,20,36.2,98,4,"Ileus, unspecified",2,4,0,10723.0,3.0,0
+2,2,71.0,5,3,1,Left chest pain,1,1,5.0,150,90,108,24,36.7,99,2,Ischaemic chest pain,2,2,0,535.0,5.0,0
+1,1,72.0,5,2,1,leg pain,1,1,5.0,165,78,64,16,36.8,,4,Transient ischemia attack,2,4,0,354.0,3.883333,0
+1,1,72.0,8,3,1,Urticarial rash,1,1,5.0,197,84,100,18,36.9,,4,Angioedema,1,4,0,120.0,5.116667,0
+1,1,73.0,12,2,1,headache,1,1,5.0,163,106,80,18,36.8,,4,Postnasal drip syndrome,1,4,0,244.0,9.266666,0
+2,2,73.2,4,3,2,TMJ pain,1,1,5.0,110,70,82,20,36.6,98,4,Derangement of temporomandibular joint,1,4,0,77.0,2.0,0
+1,2,74.0,8,3,1,abd pain,1,1,5.0,143,76,103,16,36.9,,3,Adenocarcinoma of prostate,1,3,0,253.0,8.75,0
+1,2,74.0,6,3,1,"shoulder pain, both",1,1,5.0,163,86,86,20,36.7,,4,Frozen shoulder,1,4,0,59.0,4.716667,0
+2,2,74.3,10,2,1,ant. chest pain,1,1,5.0,170,100,68,20,36.6,99,2,"Acute myocardial infarction, unspecified",2,2,0,9433.0,1.0,0
+1,2,75.0,5,3,2,"shoulder pain, Rt",1,1,5.0,109,65,72,20,36,,4,Contusion of forearm,1,4,0,48.0,7.85,0
+2,2,75.4,11,3,2,"pain, chest wall",1,1,5.0,110,70,74,20,36.3,95,3,"Multiple fracture of unspecified ribs,Closed",1,3,0,300.0,4.0,0
+1,1,77.0,9,1,1,lower chest wall pain,1,1,5.0,202,91,88,16,36.6,,4,"Abdomen pain, right upper quadrant",1,4,0,282.0,11.25,0
+1,2,78.0,8,3,1,headache,1,1,5.0,146,63,110,20,37.4,,3,Headache,2,3,0,1359.0,4.416667,0
+1,1,79.0,9,3,1,"pain, tooth",1,1,5.0,174,89,80,20,36,,4,Toothache,1,4,0,59.0,6.366667,0
+2,2,84.5,10,4,1,ant. chest pain,1,1,5.0,190,100,66,20,36.6,96,2,Unstable angina,2,2,0,10002.0,2.0,0
+1,1,85.0,4,3,2,"Burn, hand",1,1,5.0,141,61,97,20,36,,4,"Burn, second degree",1,4,0,53.0,7.016667,0
+1,1,86.0,3,3,1,general ache,1,1,5.0,137,67,72,16,37.6,,4,Pain,1,4,0,322.0,4.766666,0
+2,1,88.3,10,4,1,abd pain,1,1,5.0,110,70,80,18,36.9,94,3,"Gallstone(impacted) of cystic duct with acute cholecystitis, With obstruction",2,3,0,465.0,3.0,0
+1,2,54.0,10,2,1,"pain, chest",1,1,6.0,159,89,91,20,36.6,,2,Gastroesophageal reflux disease,1,2,0,214.0,4.95,0
+1,2,79.0,6,1,1,"pain, chest",1,1,6.0,113,56,110,20,36.3,,2,Chest pain,2,2,0,1.1312384259217652,11.0,0
+1,2,18.0,9,1,2,visual disturbance,1,1,6.0,157,72,103,18,36.6,,3,Injury of eye,1,3,0,160.0,16.26667,0
+2,2,21.3,12,3,1,scrotal pain,1,1,6.0,140,90,70,20,36.5,96,3,"Epididymo-orchitis, without abscess",1,3,0,177.0,2.0,0
+1,2,22.0,5,2,2,leg pain,1,1,6.0,123,70,74,18,36.5,,4,Multiple contusion,1,4,0,40.0,15.68333,0
+1,1,22.0,9,3,1,abd pain,1,1,6.0,108,71,64,20,36.6,,3,Acute gastroenteritis,1,3,0,140.0,4.9,0
+1,2,23.0,9,3,2,Finger Injury,1,1,6.0,159,89,108,20,36.2,,4,Injury of finger,2,4,0,333.0,5.95,0
+1,2,29.0,3,3,1,"pain, abdominal",1,1,6.0,137,92,58,18,37.6,,3,Allergic reaction,1,3,0,116.0,5.966667,0
+1,1,29.0,3,2,1,abd pain,1,1,6.0,140,73,50,16,36,,3,Dysmenorrhea,4,3,0,34.0,4.116667,0
+2,1,29.0,8,3,2,foreign body ingestion,1,1,6.0,140,100,84,20,36.5,측불,3,Chronic sore throat,1,3,0,122.0,5.0,0
+2,2,29.3,4,2,2,Open Wound,1,1,6.0,120,70,88,20,36.6,97,4,"Open wound of forearm, part unspecified",4,4,0,94.0,3.0,0
+1,1,30.0,7,3,1,RLQ pain,1,1,6.0,113,67,87,20,36,,3,Acute abdomen,2,3,0,222.0,5.233333,0
+1,1,31.0,4,2,1,headache,1,1,6.0,187,120,82,20,36.9,,3,Vascular headache,1,3,0,124.0,5.383333,0
+1,2,32.0,11,2,2,Wrist Injury,1,1,6.0,167,86,80,18,36,,4,Multiple trauma,4,4,0,37.0,12.53333,0
+2,1,33.4,8,3,1,Vaginal Bleeding,1,1,6.0,160,100,74,20,37.4,100,4,"Abnormal uterine and vaginal bleeding, unspecified",1,4,0,191.0,3.0,0
+1,2,36.0,15,2,1,"pain, flank",1,1,6.0,122,78,81,20,36.2,,3,Kidney and ureter stone,1,3,0,133.0,2.95,0
+2,2,36.9,5,3,2,"ocular injury, Lt.",1,1,6.0,120,80,78,18,36.1,99,4,Ocular pain,1,4,0,276.0,2.0,0
+2,1,41.8,12,3,2,Open Wound,1,1,6.0,100,60,72,18,37.2,97,4,"Open wound of other parts of head, face",1,4,0,37.0,4.0,0
+2,1,43.1,8,1,1,RUQ pain,1,1,6.0,110,60,90,20,36.5,98,3,"Calculus of gallbladder with other cholecystitis, Without mention of obstruction",2,3,0,8723.0,4.0,0
+2,2,44.5,5,3,1,ant. chest pain,1,1,6.0,140,100,96,20,36.5,98,2,"Angina pectoris, unspecified",1,2,0,315.0,3.0,0
+2,2,45.1,10,3,1,headache,1,1,6.0,180,100,94,26,36.8,99,3,Headache,1,3,0,364.0,5.0,0
+1,1,46.0,8,3,2,"pain, arm",1,1,6.0,176,78,93,16,36,,4,Contusion of forearm,1,4,0,46.0,4.633333,0
+2,2,47.2,13,2,2,lower extremity paraparesis,1,1,6.0,110,80,78,20,36.0,94,2,"Stress fracture of vertebra, Cervical region",2,2,0,399.0,4.0,0
+2,2,47.4,7,3,2,Foreign Body Sense,1,1,6.0,120,80,76,20,36.3,96,3,Foreign body in oesophagus,1,3,0,314.0,3.0,0
+2,2,49.9,12,4,1,upper back pain,1,1,6.0,120,60,64,20,36.5,97,2,Transmural myocardial infarction NOS,2,2,0,9921.0,3.0,0
+2,2,50.9,8,3,2,"ocular pain, Rt.",1,1,6.0,110,60,61,20,36.3,98,4,Corneal abrasion,1,4,0,99.0,4.0,0
+1,1,51.0,5,3,1,"pain, low back",1,1,6.0,153,85,75,18,36.3,,3,Herniated disc disease of lumbar spine,1,3,0,108.0,4.95,0
+1,1,54.0,6,3,1,ocular pain,1,1,6.0,154,99,70,18,37.1,,3,"Angle closure glaucoma, acute",1,3,0,341.0,7.616667,0
+1,2,55.0,12,1,2,bee sting,1,1,6.0,142,92,66,18,37.2,,4,Insect bites and stings,1,4,0,0.06472222222510027,15.0,0
+1,2,56.0,10,3,2,"pelvic pain, Lt",1,1,6.0,105,75,83,20,37,,4,Fracture of hip closed,2,4,0,712.0,10.15,0
+1,1,56.0,9,2,2,right elbow pain,1,1,6.0,141,77,78,20,36.4,,4,Contusion of elbow,1,4,0,64.0,13.06667,0
+2,1,57.0,5,2,1,palpitation,1,1,6.0,130,80,73,22,36.2,98,3,Palpitations,1,3,0,8065.0,2.0,0
+2,2,57.7,12,3,1,Left chest pain,1,1,6.0,160,100,110,20,36.5,98,2,"Angina pectoris, unspecified",2,2,0,10150.0,4.0,0
+2,2,58.0,8,3,2,"ocular pain, Lt.",1,1,6.0,160,100,84,20,36.5,97,4,,1,4,0,193.0,3.0,0
+2,2,58.1,7,4,1,ant. chest pain,1,1,6.0,110,60,62,20,36.2,97,2,Acute transmural myocardial infarction of inferior wall,2,2,0,274.0,4.0,0
+2,1,58.6,8,3,2,Open Wound,1,1,6.0,140,100,75,20,36.3,95,4,"Open wound of other parts of head, face",1,4,0,223.0,3.0,0
+2,2,60.2,3,3,1,dysuria,1,1,6.0,130,60,66,20,36.6,측불,4,Urinary tract obstruction NOS,1,4,0,55.0,2.0,0
+2,2,60.6,8,4,2,abd pain,1,1,6.0,측불,측불,측불,측불,측불,측불,1,Contusion of abdomen wall,6,1,0,275.0,5.0,0
+2,2,61.8,8,1,1,Left chest pain,1,1,6.0,110,80,78,20,36.2,98,2,Ischaemic chest pain,2,2,0,504.0,4.0,0
+2,2,65.6,6,3,1,D - Diarrhea,1,1,6.0,110,60,98,20,36.5,99,3,"Regional colitis, unspecified",2,3,0,315.0,2.0,0
+1,2,66.0,9,2,2,facial injury,1,1,6.0,86,44,66,20,36.3,,3,"Open wound of head, other part",1,3,0,269.0,3.916667,0
+2,1,67.6,5,3,1,headache,1,1,6.0,200,110,90,20,36.8,98,3,Tension-type headache,1,3,0,8805.0,4.0,0
+2,2,68.3,10,1,1,RUQ pain,1,1,6.0,120,80,78,20,36.8,98,3,Acute cholecystitis,2,3,0,197.0,3.0,0
+2,1,68.9,8,3,1,epigastric pain,1,1,6.0,160,100,72,20,36.4,98,2,Unstable angina,2,2,0,309.0,1.0,0
+2,2,69.3,12,2,1,chest discomfort,1,1,6.0,150,100,70,20,36.4,97,2,"Angina pectoris, unspecified",1,2,0,18980.0,3.0,0
+1,1,71.0,4,1,2,Rt. shoulder pain,1,1,6.0,154,73,78,20,37.1,,4,Contusion of shoulder and upper arm,1,4,0,375.0,8.033334,0
+2,2,71.9,5,4,2,Left chest pain,1,1,6.0,100,60,86,24,36.4,94,2,Contusion of abdomen wall,7,2,0,206.0,4.0,0
+1,2,72.0,13,3,1,"pain, flank",1,1,6.0,168,86,65,18,37.3,,3,Hydronephrosis,2,3,0,489.0,11.85,0
+1,1,74.0,7,3,1,abd pain,1,1,6.0,118,78,77,16,36.9,,3,Parkinsonism,1,3,0,56.0,8.716666,0
+2,2,74.3,8,4,1,ant. chest pain,1,1,6.0,110,60,60,20,36.6,96,2,Observation for suspected myocardial infarction,5,2,0,10268.0,2.0,0
+2,1,74.8,8,3,1,ant. chest pain,1,1,6.0,110,60,60,20,36.1,98,2,Ischaemic chest pain,2,2,0,19523.0,2.0,0
+2,1,76.5,2,4,1,headache,2,1,6.0,190,100,84,20,36.5,97,2,Intracerebral haemorrhage in cerebellum,7,2,0,189.0,2.0,0
+2,1,77.3,8,4,1,Hip joint pain,1,1,6.0,110,60,84,20,36.7,97,4,"Abscess of fascia, buttock",1,4,0,9377.0,3.0,0
+1,1,78.0,8,2,2,"pain, facial",1,1,6.0,94,47,86,18,36.2,,4,Superficial injury of face contusion,1,4,0,336.0,4.75,0
+2,1,78.2,6,4,1,ant. chest pain,1,1,6.0,120,60,100,20,36.3,99,2,Acute transmural myocardial infarction of unspecified site,2,2,0,475.0,2.0,0
+2,2,78.3,8,1,1,RUQ pain,1,1,6.0,110,60,65,20,36.0,95,3,Acute cholecystitis,2,3,0,8695.0,4.0,0
+1,1,53.0,4,3,1,epigastric pain,1,1,7.0,116,61,56,16,35.6,,3,Acute gastroenteritis,1,3,0,164.0,4.066667,0
+1,1,56.0,7,3,1,abd pain,1,1,7.0,133,72,88,18,36.5,,3,Abdominal pain,2,3,0,425.0,12.53333,0
+1,1,80.0,7,2,1,general weakness,1,1,7.0,144,94,96,20,36.8,,3,Liver cirrhosis Child-Pugh A,2,3,0,337.0,5.916667,0
+1,1,75.0,8,1,1,myalgia,1,1,7.0,150,98,84,18,36.8,,4,Functional dyspepsia,1,4,0,247.0,7.416667,0
+1,1,84.0,10,3,1,leg pain,1,1,7.0,166,71,102,20,36,,4,Spinal stenosis lumbosacral region,1,4,0,156.0,6.566667,0
+1,2,88.0,13,2,1,buttock pain,1,1,7.0,108,63,98,18,36.6,,4,Hip pain,1,4,0,122.0,10.53333,0
+1,1,20.0,9,3,1,abd pain,1,1,7.0,122,55,100,16,37.3,,3,Abdominal pain,2,3,0,412.0,7.766666,0
+1,1,21.0,6,3,1,abd pain,1,1,7.0,159,101,78,16,36.4,,3,Acute gastroenteritis,1,3,0,147.0,8.316667,0
+1,2,27.0,9,3,2,wrist laceration,1,1,7.0,182,91,93,16,36.5,,4,Laceration of wrist,1,4,0,156.0,6.0,0
+2,2,28.1,7,3,1,both leg pain,1,1,7.0,100,60,78,20,36.6,97,4,Complex regional pain syndrome type II,1,4,0,8118.0,3.0,0
+1,2,35.0,3,3,2,both shoulder pain,1,1,7.0,125,76,68,16,36.6,,4,Whiplash injury,1,4,0,149.0,4.816667,0
+1,1,36.0,8,3,1,abd pain,1,1,7.0,131,70,53,20,36.6,,3,Ureter stone,1,3,0,178.0,5.816667,0
+1,1,36.0,9,6,2,"Injury, Leg",1,1,7.0,135,85,96,24,36.6,,4,Multiple abrasion,1,4,0,294.0,12.26667,0
+1,1,37.0,5,3,2,COCCYGEAL PAIN,1,1,7.0,129,64,106,18,36.7,,4,"Injury of abdomen, lower back and pelvis",1,4,0,91.0,2.733333,0
+1,1,39.0,10,2,1,abd pain,1,1,7.0,146,81,95,20,36.5,,3,Constipation,1,3,0,126.0,2.816667,0
+1,2,39.0,8,3,1,Lt flank pain,1,1,7.0,178,108,87,16,36,,3,Ureter stone,1,3,0,130.0,12.23333,0
+1,2,43.0,8,3,1,Lt flank pain,1,1,7.0,200,105,88,16,35.6,,3,Ureter stone,1,3,0,98.0,4.516666,0
+1,2,52.0,6,3,1,abd pain,1,1,7.0,122,82,102,16,36.4,,3,Chronic pancreatitis,4,3,0,92.0,12.26667,0
+1,1,55.0,5,3,1,Lt flank pain,1,1,7.0,165,85,72,20,36.7,,3,Ureter stone,1,3,0,130.0,5.066667,0
+1,2,56.0,12,3,1,abd pain,1,1,7.0,190,116,76,22,36.8,,3,Ileus,1,3,0,324.0,5.116667,0
+1,2,56.0,12,3,1,LLQ pain,1,1,7.0,157,115,86,24,36.9,,3,Ureter stone,1,3,0,161.0,3.466667,0
+1,2,58.0,7,2,1,leg pain,1,1,7.0,150,70,89,18,37.1,,4,Herniated disc disease of lumbar spine,1,4,0,188.0,4.2,0
+1,1,58.0,6,2,1,"Flank pain, Rt.",1,1,7.0,139,63,61,24,36.1,,3,Ureter stone,1,3,0,0.27195601852145046,6.0,0
+1,2,63.0,9,3,1,epigastric pain,1,1,7.0,115,74,72,22,36,,3,Acute gastroenteritis,1,3,0,135.0,4.083333,0
+1,1,65.0,6,3,1,epigastric pain,1,1,7.0,187,103,115,16,35.5,,3,Unclassified epithelial ovarian cancer unspecified side,1,3,0,237.0,5.583333,0
+1,2,66.0,13,3,1,"pain, low back",1,1,7.0,132,74,84,18,37.9,,4,Squamous cell carcinoma of lung left,1,4,0,46.0,14.38333,0
+1,1,68.0,4,1,1,"tooth pain, Lt",1,1,7.0,181,92,68,16,36.2,,4,Gingivitis,1,4,0,159.0,7.9,0
+1,2,77.0,7,3,1,abd pain,1,1,7.0,135,72,89,16,36.7,,3,Advanced gastric cancer,1,3,0,303.0,12.58333,0
+1,1,88.0,7,3,2,"pain, shoulder",1,1,7.0,149,66,95,20,36,,3,Unspecified dislocation of shoulder,1,3,0,78.0,5.683333,0
+2,2,49.0,5,3,1,ant. chest pain,1,1,8.0,140,90,60,20,36.0,99,2,Myocardial infarction with non-ST elevation,2,2,0,10286.0,3.0,0
+1,1,55.0,6,2,2,finger pain,1,1,8.0,202,102,71,18,37.3,,3,Injury of hand,2,3,0,596.0,5.25,0
+2,2,55.7,7,4,1,upper back pain,1,1,8.0,180,100,84,22,36.0,100,2,"Abdominal aortic aneurysm, ruptured",2,2,0,234.0,2.0,0
+1,2,56.0,10,2,1,abdomen pain,1,1,8.0,114,71,112,28,38.1,,2,Alcoholic liver cirrhosis with ascites,2,2,0,411.0,6.65,0
+1,1,58.0,8,3,1,HA,1,1,10.0,134,90,84,16,37,,2,Headache,1,2,0,343.0,6.066667,0
+1,2,37.0,5,2,1,"pain, chest",1,1,10.0,75,54,95,28,36.3,,2,Chest pain,2,2,0,552.0,4.683333,0
+1,1,83.0,5,2,1,dyspnea,1,0,,164,65,88,20,36.7,,3,Dyspnea,2,3,0,286.0,5.816667,0
+1,1,67.0,7,3,1,dizziness,1,0,,211,105,102,18,36.8,,3,Dizziness,1,3,0,93.0,3.45,0
+1,2,71.0,7,3,1,for PEG tube change,2,0,,119,73,89,16,36.8,,4,Percutaneous catheter problem,2,4,0,537.0,8.166667,0
+1,1,51.0,3,3,1,Rt.arm weakness,2,0,,179,112,90,18,36.8,,3,Borderzone infarction,2,3,0,574.0,6.666667,0
+1,1,67.0,9,3,1,general weakness,1,0,,94,55,115,16,36.5,,4,Fever,2,4,0,543.0,6.866667,0
+1,1,69.0,5,3,1,high BSL,1,0,,197,88,63,16,36.8,,3,Hyperglycemia,2,3,0,168.0,8.683333,0
+1,1,70.0,14,2,1,dyspnea,2,0,,139,45,113,28,36.9,,3,Dyspnea,4,3,0,282.0,6.45,0
+1,1,73.0,4,3,1,"Discomfort, Chest",1,0,,119,65,35,16,36.7,,2,Bradycardia,3,2,0,312.0,11.65,0
+1,1,59.0,9,3,1,sezure like motion,1,0,,120,81,63,16,36.8,,4,Meningioma,2,4,0,332.0,5.9,0
+1,1,72.0,5,3,1,dizziness,1,0,,173,98,84,16,36.5,,3,Benign paroxysmal positional vertigo,1,3,0,183.0,8.033334,0
+1,2,73.0,14,3,1,dizziness,1,0,,128,72,64,16,37,,3,Orthostatic hypotension,1,3,0,160.0,8.166667,0
+1,2,74.0,9,2,1,general weakness,1,0,,123,66,54,16,36.2,,3,Syncope,1,3,0,172.0,5.65,0
+1,1,81.0,9,3,1,vomiting,1,0,,120,74,68,16,36.3,,3,Gastroduodenitis,2,3,0,235.0,12.86667,0
+1,1,81.0,5,2,1,dizziness,1,0,,154,96,78,18,35.7,,3,Dizziness,1,3,0,332.0,3.883333,0
+1,2,88.0,4,3,1,Nasal swelling,1,0,,124,84,105,16,36.9,,4,Abscess of nose,1,4,0,159.0,10.66667,0
+1,2,47.0,5,1,1,Sudden hearing loss,1,0,,156,95,91,16,36.6,,3,Tinnitus,1,3,0,229.0,7.85,0
+1,2,52.0,7,3,1,for A/tapping,1,0,,199,111,72,20,36.9,,5,Ascites,1,5,0,183.0,17.1,0
+1,2,56.0,8,2,1,hematemesis,1,0,,115,78,90,20,36,,2,Hematemesis,5,2,0,65.0,7.383333,0
+1,2,56.0,3,3,1,distended abdomen,1,0,,121,75,83,20,36,,5,Alcoholic liver cirrhosis with ascites,1,5,0,195.0,2.9,0
+1,2,57.0,15,2,1,dizziness,1,0,,152,97,98,20,36.2,,5,Dizziness,1,5,0,140.0,9.666667,0
+1,2,59.0,13,3,1,"distension, abd",1,0,,91,61,100,16,36.8,,5,Alcoholic hepatitis with ascites,1,5,0,215.0,12.83333,0
+1,1,60.0,15,3,1,decreased activity,1,0,,140,82,100,20,36.9,,3,Liver cirrhosis with hepatitis B Unspecified,2,3,0,1360.0,6.133333,0
+1,2,63.0,5,3,1,for ascites tapping,2,0,,137,69,62,20,36.6,,5,Hepatocellular carcinoma,1,5,0,125.0,12.48333,0
+1,2,64.0,11,4,1,fever,3,0,,100,70,100,24,36.9,,3,Nosocomial pneumonia,2,3,0,1229.0,15.01667,0
+1,2,67.0,6,3,1,sleeping tendency,2,0,,153,64,100,20,37.8,,2,Hepatic encephalopathy without coma,2,2,0,1246.0,7.333333,0
+1,1,68.0,5,3,1,hematochezia,1,0,,141,83,61,16,36.8,,2,Liver cirrhosis with hepatitis C Unspecified,2,2,0,182.0,6.25,0
+1,1,77.0,3,4,1,"distension, abd",1,0,,135,81,73,22,36.3,,5,Hepatocellular carcinoma,1,5,0,296.0,7.95,0
+1,1,68.0,6,2,1,vomiting,1,0,,147,69,66,20,37.3,,4,Acute gastroenteritis,1,4,0,213.0,9.95,0
+1,1,81.0,11,4,1,sezure like motion,1,0,,측불,측불,118,28,37,,3,Seizure,1,3,0,982.0,8.983334,0
+1,2,47.0,7,4,1,fever,3,0,,139,96,114,30,39.5,,2,Fever,2,2,0,1.3168171296274522,8.0,0
+1,2,52.0,11,3,1,rt. side weakness,1,0,,193,115,86,20,36.2,,3,Stroke,2,3,0,226.0,5.866667,0
+1,2,59.0,7,2,1,post seizure,2,0,,182,74,115,18,36,,2,Seizure,1,2,0,221.0,7.75,0
+1,2,59.0,6,3,1,"Retention, Bladder",1,0,,143,90,97,18,37.3,,4,Urinary retension,1,4,0,56.0,4.45,0
+1,2,59.0,9,1,1,Free voiding,1,0,,112,80,100,18,36.5,,4,Other urinary difficulty,1,4,0,522.0,11.91667,0
+1,2,62.0,3,3,1,소변이 적다,1,0,,170,100,108,20,36.5,,4,Benign prostatic hyperplasia,1,4,0,26.0,4.016667,0
+1,2,62.0,9,2,2,facial injury,1,0,,165,89,61,20,36.2,,4,Head trauma,1,4,0,196.0,6.666667,0
+1,1,65.0,9,1,1,Amnesia,1,0,,205,102,66,20,36.6,,3,Amnesia,1,3,0,479.0,15.91667,0
+1,1,69.0,5,2,1,dyspnea,1,0,,165,89,66,18,36.8,,3,"Edema, generalized",1,3,0,179.0,6.45,0
+1,2,70.0,5,2,1,dizziness,1,0,,94,54,85,18,35,,3,Anxiety disorder,1,3,0,451.0,5.3,0
+1,2,73.0,7,4,1,fever,1,0,,117,60,85,16,36.8,,4,Fever,2,4,0,620.0,9.75,0
+1,1,74.0,13,1,1,dyspnea,1,0,,168,73,75,20,36.1,,3,Anemia,2,3,0,498.0,6.266667,0
+1,2,75.0,14,4,1,for PEG tube change,3,0,,99,57,69,16,37,,4,Percutaneous catheter problem,1,4,0,344.0,8.916667,0
+1,2,76.0,11,3,1,anxiety,1,0,,158,85,66,16,36,,4,Dementia in Alzheimer`s disease with late onset,1,4,0,130.0,12.83333,0
+1,2,77.0,12,4,1,fever,2,0,,80,44,65,20,37.4,,2,Fever,2,2,0,542.0,7.15,0
+1,1,77.0,9,6,1,epistaxis,1,0,,122,65,86,18,36.8,,3,Epistaxis,1,3,0,152.0,9.75,0
+1,1,79.0,9,2,1,mental change,4,0,,80,45,61,20,36,,1,"Ruptured aneurysm, anterior communicating artery (AComA)",2,1,0,431.0,10.83333,0
+1,2,81.0,13,2,2,right hip pain,1,1,,90,55,53,20,36,,3,Hip pain,2,3,0,649.0,4.083333,0
+1,1,83.0,7,4,1,"F/C, C/S",3,0,,140,65,110,30,38.5,,3,Urinary tract infection,1,3,0,1063.0,8.866667,0
+1,2,84.0,10,3,1,for L-tube insertion,1,0,,116,64,102,20,38.4,,5,Percutaneous catheter problem,1,5,0,167.0,12.08333,0
+1,1,85.0,13,2,2,"swelling, facial",1,0,,120,80,74,20,36,,5,Injury of face,1,5,0,70.0,8.3,0
+1,2,91.0,12,4,1,fever,3,0,,142,86,110,24,38.6,,2,Aspiration pneumonia,2,2,0,1.1306712962978054,4.0,0
+1,2,34.0,4,3,1,dyspnea,1,0,,275,154,120,28,38.1,,2,End stage renal disease,2,2,0,993.0,7.366667,0
+1,2,39.0,11,3,1,"Discomfort, Chest",1,0,,198,101,103,20,36.5,,3,Type 2 diabetes mellitus with multiple complications,1,3,0,128.0,5.033333,0
+1,2,46.0,5,2,1,hypoglycemic symptom,2,0,,132,89,62,18,36.7,,2,Hypoglycemia,1,2,0,234.0,11.38333,0
+1,1,58.0,6,3,1,epistaxis,1,0,,173,97,76,20,36.9,,4,Epistaxis,1,4,0,23.0,2.5,0
+1,1,59.0,6,3,1,anxiety,1,0,,201,106,64,20,36.3,,3,Palpitation,1,3,0,127.0,4.7,0
+1,1,61.0,2,3,1,Voice changes,1,0,,137,77,80,20,36,,5,Hoarseness,1,5,0,74.0,5.2,0
+1,1,67.0,10,3,1,abnormal lab.,1,0,,137,72,84,16,37.2,,3,Atrial fibrillation,1,3,0,21.0,6.533333,0
+1,1,73.0,9,1,1,vomiting,1,0,,148,81,65,20,36.5,,3,Acute gastroenteritis,2,3,0,761.0,6.016667,0
+1,2,76.0,9,3,1,general weakness,1,0,,168,78,81,20,36.5,,3,Internal carotid artery occlusion,2,3,0,333.0,15.13333,0
+1,2,76.0,6,2,1,dyspnea,1,0,,116,85,112,28,37,,2,Dyspnea,2,2,0,1030.0,5.1,0
+1,2,76.0,3,3,1,mental change,4,0,,측불,측불,측불,측불,측불,,1,Cardiac arrest,5,1,0,150.0,8.9,0
+1,1,77.0,9,2,1,dizziness,1,0,,108,66,66,18,36.6,,3,Dizziness,1,3,0,405.0,6.166667,0
+1,1,80.0,7,2,1,dyspnea,1,0,,측불,측불,87,28,36.8,,2,Dyspnea,2,2,0,324.0,2.333333,0
+1,1,82.0,8,2,1,dyspnea,1,0,,181,74,61,22,36.3,,2,Heart failure,2,2,0,351.0,3.883333,0
+1,1,86.0,6,2,1,anemia w/u,1,0,,110,66,100,20,37,,3,Irritability and anger,1,3,0,602.0,8.066667,0
+1,2,86.0,6,4,2,DZ - Dizziness,1,0,,160,76,64,20,36,,3,Dizziness,2,3,0,356.0,17.36667,0
+1,1,88.0,5,3,1,"Discomfort, Chest",1,0,,119,66,75,20,36.5,,2,Dyspnea,1,2,0,272.0,6.833333,0
+1,2,16.0,7,2,2,forehead laceration,1,0,,137,79,81,16,37.7,,4,Injury of head,1,4,0,87.0,3.083333,0
+1,1,16.0,6,2,1,post seizure,1,0,,132,98,94,18,36.6,,3,Seizure,4,3,0,36.0,6.083333,0
+2,2,16.8,15,3,1,light headness,1,0,,100,60,68,20,36.2,98,3,Syncope,1,3,0,344.0,2.0,0
+2,1,17.2,5,1,1,H-Headache,1,0,,90,60,128,24,38.1,99,3,(Seizure) Convulsive NOS,1,3,0,8790.0,2.0,0
+1,2,18.0,9,4,1,altered mentality,3,0,,102,65,86,20,36.3,,2,Acute ethanol intoxication,1,2,0,254.0,7.85,0
+1,1,19.0,9,3,1,eye discomfort,1,0,,132,78,91,20,36.5,,4,Corneal erosion,1,4,0,50.0,3.45,0
+1,2,19.0,9,1,1,po medication,1,0,,117,70,72,16,36,,5,Acute urticaria,1,5,0,26.0,16.68333,0
+2,2,19.4,7,3,1,fever,1,0,,130,80,110,20,38.4,98,4,"Fever, unspecified",1,4,0,9470.0,4.0,0
+2,1,19.7,4,3,1,both hand numbness,1,0,,120,70,78,24,36,98,4,Hyperventilation,1,4,0,190.0,2.0,0
+1,2,20.0,8,3,1,이상한 행동을 한다,1,0,,163,85,100,20,36,,4,Schizophrenia,2,4,0,213.0,11.28333,0
+1,1,20.0,6,3,2,finger laceration,1,0,,154,86,98,18,36.4,,4,Laceration of finger without nail damage,1,4,0,32.0,3.233333,0
+1,1,20.0,3,3,2,Sexual Abuse of Adult,1,0,,150,87,115,18,36.5,,3,Sexual abuse,1,3,0,155.0,6.966667,0
+1,2,21.0,8,3,2,"DI, drug intoxication",2,0,,113,55,87,18,36.9,,2,Poisoning by benzodiazepine,4,2,0,183.0,6.333333,0
+2,2,21.0,6,3,1,dyspnea,1,0,,130,90,108,20,36.6,92,3,Other specified interstitial pulmonary diseases,2,3,0,625.0,3.0,0
+2,1,21.5,12,3,1,skin rash,1,0,,100,60,84,20,37.3,98,4,Rash and other nonspecific skin eruption,1,4,0,698654.0,2.0,0
+2,2,21.9,5,4,1,hematemesis,1,0,,100,60,84,20,36.6,98,3,Mallory - Weiss syndrome,2,3,0,9484.0,2.0,0
+1,1,22.0,10,3,1,"bleeding, gingival",1,0,,140,110,70,20,36.5,,4,Gingival hemorrhage,1,4,0,183.0,7.25,0
+1,1,22.0,13,3,1,심계항진,1,0,,99,65,74,20,36.6,,4,Palpitation,1,4,0,163.0,5.066667,0
+2,2,22.4,10,2,1,mental change,3,0,,100,60,98,24,37.6,85,2,Stupor,1,2,0,8703.0,4.0,0
+1,2,23.0,8,3,2,"laceration, scalp",1,0,,167,105,78,18,36.5,,4,Laceration of scalp,1,4,0,184.0,6.016667,0
+1,2,24.0,11,2,2,nasal injury,1,0,,132,77,65,18,36.4,,4,Fracture of nasal bone closed,1,4,0,192.0,4.15,0
+1,1,24.0,3,3,1,Near syncope,1,0,,139,77,70,18,36,,3,Syncope,1,3,0,190.0,4.05,0
+1,1,24.0,4,3,1,po medication,1,0,,129,69,89,20,36.9,,5,Prescription of emergency contraception,1,5,0,29.0,13.61667,0
+2,1,24.0,6,2,1,dyspnea,1,0,,110,70,82,20,36.0,99,3,Anaphylaxis NOS,1,3,0,9582.0,2.0,0
+1,2,24.0,2,2,1,post seizure,2,0,,144,84,88,18,37.4,,2,Seizure,1,2,0,0.09289351852203254,5.0,0
+1,1,24.0,5,2,1,syncope,1,0,,134,86,100,16,36.8,,4,Vasovagal syncope,1,4,0,150.0,4.316667,0
+1,1,24.0,13,3,1,vomiting,1,0,,120,75,84,16,36.9,,3,Acute gastroenteritis,1,3,0,482.0,15.2,0
+2,1,24.0,6,3,1,hematochezia,1,0,,130,80,90,20,36.2,99,3,"Crohn’s disease NOS, unspecified",2,3,0,275.0,5.0,0
+1,1,25.0,5,1,2,sexual violence,1,0,,103,66,80,18,37,,3,Sexual abuse of adult,1,3,0,95.0,8.583333,0
+1,2,25.0,10,3,2,eyelid laceration,1,0,,139,80,83,18,36.5,,4,Laceration of face,1,4,0,32.0,8.85,0
+1,1,25.0,12,3,1,dizziness,1,0,,127,73,85,20,36.5,,5,Dizziness,1,5,0,129.0,7.766666,0
+1,2,25.0,12,3,2,finger laceration,1,0,,183,92,117,20,37.5,,4,Injury of hand,1,4,0,332.0,3.4,0
+1,1,25.0,4,2,1,vomiting,1,0,,168,106,81,22,37,,4,Vasovagal syncope,4,4,0,0.21372685184906004,10.0,0
+1,1,26.0,12,3,2,sexual violence,1,0,,117,86,83,16,36,,4,Sexual abuse of adult,1,4,0,199.0,11.31667,0
+1,2,26.0,6,3,1,vomiting,1,0,,107,56,90,18,36.9,,4,Acute gastroenteritis,1,4,0,77.0,3.133333,0
+1,2,26.0,5,3,1,dizziness,1,0,,119,76,72,16,36,,3,Benign paroxysmal positional vertigo,1,3,0,182.0,5.9,0
+1,1,26.0,3,3,2,"laceration, chin",1,0,,145,91,114,16,36,,4,"Fracture of mandible, condylar process closed",1,4,0,200.0,3.183333,0
+1,2,26.0,3,3,1,"F/C, C/S",1,0,,165,106,102,20,37.3,,4,Fever,1,4,0,92.0,7.9,0
+1,2,26.0,10,3,1,general weakness,1,0,,158,109,77,20,36.6,,4,Dyspepsia,1,4,0,270.0,4.0,0
+1,1,27.0,10,3,1,cough,1,0,,118,85,86,20,36,,5,Cough,1,5,0,51.0,5.383333,0
+1,1,27.0,12,2,1,depression,1,0,,149,85,103,20,36.5,,4,Major depressive disorder,2,4,0,903.0,5.233333,0
+1,2,27.0,5,2,1,dizziness,1,0,,177,102,80,18,36.8,,3,Dizziness,1,3,0,142.0,3.266667,0
+1,2,27.0,5,2,1,hematemesis,1,0,,163,99,86,16,37.1,,2,Viral infection,1,2,0,430.0,3.933333,0
+1,2,27.0,3,3,1,fever,1,0,,86,77,97,16,37.3,,2,Aspiration pneumonia,2,2,0,542.0,8.766666,0
+1,1,27.0,9,3,1,Suicidal Attempt,1,0,,110,69,96,20,36.2,,3,Suicide tendency,2,3,0,442.0,7.416667,0
+1,2,28.0,5,2,1,"alcohol smelling state, drunken state",3,0,,122,68,96,18,35.5,,4,Acute intoxication of alcohol,1,4,0,423.0,6.533333,0
+1,1,28.0,10,3,1,Facial Palsy,1,0,,134,76,68,20,37,,3,Bell's palsy,1,3,0,75.0,3.066667,0
+1,2,29.0,8,3,2,finger laceration,1,0,,129,76,87,18,36.8,,4,Laceration of finger without nail damage,1,4,0,85.0,5.066667,0
+1,2,29.0,4,1,2,eyebrow laceration,1,0,,139,78,89,18,36.6,,4,Laceration of face,1,4,0,38.0,2.9,0
+1,1,29.0,7,3,1,skin rash,1,0,,146,72,77,18,36.1,,5,Allergy,1,5,0,55.0,6.533333,0
+1,2,29.0,11,3,1,diarrhea,1,0,,138,85,126,20,37.4,,3,Acute gastroenteritis,1,3,0,161.0,4.383333,0
+2,1,29.4,10,2,1,hallucination,1,0,,110,70,80,20,36.0,98,4,Paranoid schizophrenia,2,4,0,510.0,2.0,0
+2,1,29.7,6,3,1,erythematous papule,1,0,,110,70,80,20,36.0,96,5,Allergic urticaria,1,5,0,175.0,3.0,0
+2,1,30.3,12,3,1,fever & chill,1,0,,90,50,84,20,38.7,97,4,"Fever, unspecified",1,4,0,508.0,4.0,0
+2,1,30.5,7,4,1,dyspnea,1,0,,90,60,103,20,36.8,98,3,Cough with dyspnea,2,3,0,9619.0,5.0,0
+1,2,31.0,5,5,1,Suicidal thoughts (finding),1,0,,150,108,90,18,36.6,,3,Melena,2,3,0,142.0,13.51667,0
+2,1,31.9,7,3,1,right nasal bleeding,1,0,,160,100,108,22,36.4,98,4,Epistaxis,1,4,0,415.0,3.0,0
+1,1,32.0,10,3,1,fever,1,0,,117,68,108,18,36.8,,3,Viral infection,1,3,0,98.0,5.916667,0
+1,2,32.0,14,3,1,post seizure,1,0,,164,90,111,20,36,,3,Paranoid schizophrenia,1,3,0,204.0,17.25,0
+1,2,32.0,6,3,1,epistaxis,1,0,,136,85,100,16,36.1,,4,Epistaxis,1,4,0,20.0,10.88333,0
+1,2,33.0,8,3,1,seizure,4,0,,측불,측불,측불,측불,측불,,1,Seizure,4,1,0,56.0,7.416667,0
+1,2,33.0,11,3,1,eye discomfort,1,0,,147,87,81,20,37.2,,5,Allergy,1,5,0,49.0,6.316667,0
+2,1,33.2,12,3,2,nausea,1,0,,110,70,80,20,36.1,99,4,"Superficial injury of other parts of head, contusion",1,4,0,21.0,3.0,0
+1,2,34.0,4,2,1,Delusional Idea,1,0,,156,96,123,18,36.5,,3,Sore throat,4,3,0,156.0,8.216666,0
+1,1,34.0,10,3,1,dyspnea,1,0,,132,77,76,20,36.6,,3,Asthma,1,3,0,131.0,7.716667,0
+1,1,34.0,8,3,1,DZ - Dizziness,1,0,,117,80,76,16,36,,3,Dizziness,1,3,0,117.0,16.95,0
+1,1,34.0,7,3,2,cerebral concussion,1,0,,139,83,90,20,36,,4,Injury of head,1,4,0,252.0,9.433333,0
+2,1,34.0,7,3,1,fever,1,0,,170,100,80,20,36.0,98,4,Seasonal influenza virus identified influenzal acute upper respiratory infection,2,4,0,875.0,4.0,0
+2,1,34.0,4,3,1,fever,1,0,,110,70,87,20,36.3,99,4,Acute pyelonephritis,2,4,0,620.0,4.0,0
+2,1,34.1,2,4,1,Convulsion,1,0,,130,80,95,20,36.0,100,3,Other and unspecified convulsions,1,3,0,904.0,5.0,0
+2,2,34.3,5,4,2,anterior chest discomfort,1,0,,120,80,66,20,37.5,99,3,Toxic effect of carbon monoxide,1,3,0,9281.0,3.0,0
+2,1,34.9,8,2,1,Vaginal Bleeding,1,0,,100,60,102,20,36.5,99,3,Delayed and secondary postpartum haemorrhage,2,3,0,7894.0,1.0,0
+1,1,35.0,9,1,1,anxiety,1,0,,124,75,86,20,36.6,,3,Anxiety disorder,2,3,0,195.0,6.1,0
+1,1,35.0,8,3,1,Vaginal Bleeding,1,0,,99,64,58,20,36.4,,3,Vaginal bleeding,1,3,0,235.0,6.516666,0
+2,1,35.6,8,3,1,dyspnea,1,0,,120,80,68,24,36.4,100,3,Dyspnoea,1,3,0,10070.0,5.0,0
+1,1,36.0,9,3,2,vaginal bleeding,1,0,,129,69,58,16,36.7,,3,Threatened abortion,1,3,0,168.0,5.85,0
+1,1,36.0,4,4,1,abd pain,1,0,,126,65,108,18,38,,3,Abdominal pain,2,3,0,62.0,5.7,0
+1,2,36.0,9,3,1,어지러움,1,0,,157,100,66,22,36,,3,Dizziness,1,3,0,277.0,4.666667,0
+2,1,36.1,8,3,1,dizziness,1,0,,140,90,78,20,36.4,99,3,Dizziness and giddiness,1,3,0,423.0,3.0,0
+2,1,36.7,8,3,1,headache,1,0,,110,60,68,20,36.3,측불,4,Headache,1,4,0,210.0,4.0,0
+1,1,37.0,4,2,2,face laceration,2,0,,163,94,109,20,36,,4,Laceration of face,4,4,0,0.02671296296466608,5.0,0
+1,1,37.0,13,3,1,vaginal bleeding,1,0,,140,90,103,20,36.2,,3,Vaginal bleeding,2,3,0,274.0,6.2,0
+1,1,38.0,9,3,1,dizziness,1,0,,136,88,71,20,37.1,,3,Benign paroxysmal positional vertigo,1,3,0,83.0,3.616667,0
+1,2,38.0,3,3,1,fever,1,0,,153,84,119,16,39,,3,Liver abscess,2,3,0,422.0,7.466667,0
+2,2,38.8,10,4,1,Confusion state,3,0,,80,50,72,20,36.8,86,2,Hepatorenal syndrome,2,2,0,518.0,5.0,0
+1,1,39.0,4,3,1,Vaginal Bleeding,1,0,,96,78,86,16,36.2,,2,Vaginal bleeding,1,2,0,228.0,9.183333,0
+1,1,39.0,5,3,1,anxiety,1,0,,203,104,108,18,36.5,,4,Anxiety disorder,1,4,0,101.0,9.35,0
+2,1,39.6,10,3,2,Open Wound,1,0,,110,70,80,20,36.7,98,4,Contusion of other and unspecified parts of foot,1,4,0,27.0,5.0,0
+1,1,40.0,5,3,1,anxiety,1,0,,102,80,100,18,36.7,,4,Anxiety state,1,4,0,43.0,8.75,0
+1,1,40.0,10,3,2,sexual violence,1,0,,133,107,127,28,37.2,,3,Sexual abuse,1,3,0,256.0,11.15,0
+1,2,41.0,9,3,2,scratch wound,1,0,,194,130,102,18,36.5,,5,Superficial injury of forearm,1,5,0,30.0,4.516666,0
+1,2,41.0,9,2,2,facial injury,1,0,,158,93,89,16,36.7,,3,Acute pain,1,3,0,239.0,9.0,0
+1,1,41.0,13,3,2,scalp lac.,1,0,,123,65,86,18,36.6,,4,Laceration of scalp,1,4,0,28.0,11.91667,0
+1,1,41.0,10,3,1,diarrhea,1,0,,117,71,94,16,37.1,,4,Acute gastroenteritis,1,4,0,70.0,10.01667,0
+1,2,41.0,7,3,1,"distension, abd",1,0,,204,115,118,20,36.8,,3,Chronic cough,2,3,0,312.0,15.2,0
+1,2,41.0,9,1,1,facial palsy left,1,0,,150,82,70,16,36.4,,3,Paresthesia,1,3,0,163.0,14.73333,0
+1,2,41.0,9,1,2,FB in esophagus,1,0,,126,79,75,16,36.7,,4,Foreign body in throat food,1,4,0,59.0,4.15,0
+1,2,41.0,9,3,2,forehead laceration,1,0,,124,78,83,20,36.2,,4,Laceration of face,1,4,0,67.0,5.1,0
+1,1,42.0,4,2,1,left side weakness,1,0,,측불,측불,측불,16,37,,2,Muscle weakness other,2,2,0,264.0,6.533333,0
+1,2,42.0,6,2,1,epistaxis,2,0,,102,64,74,20,36.5,,4,Head trauma,1,4,0,276.0,4.35,0
+1,2,43.0,11,3,1,구토,1,0,,126,81,86,20,36.8,,4,Ureter stone,1,4,0,118.0,15.56667,0
+1,1,43.0,8,3,1,Facial Palsy,1,0,,160,94,88,20,36.4,,3,Bell's palsy,1,3,0,229.0,11.81667,0
+2,2,43.5,9,3,2,right ocular pain,1,0,,120,80,84,20,36.4,97,4,Corneal abrasion,1,4,0,91.0,5.0,0
+2,2,43.7,5,4,1,hematemesis,1,0,,150,70,84,20,36.5,96,3,"Gastrointestinal haemorrhage, unspecified",5,3,0,9627.0,2.0,0
+2,2,43.8,4,2,1,mental change,2,0,,180,100,82,22,36.7,96,2,Intracerebral haemorrhage in thalamus,7,2,0,189.0,4.0,0
+2,2,43.9,4,1,1,LOC,1,0,,100,60,75,20,36.2,98,3,Syncope,2,3,0,514.0,2.0,0
+1,2,44.0,4,3,1,손발이 저림,1,0,,139,86,51,16,36.2,,3,Paresthesia,2,3,0,249.0,6.233333,0
+1,1,44.0,4,3,1,dizziness,1,0,,170,92,70,20,37,,3,Benign paroxysmal positional vertigo,1,3,0,143.0,3.216667,0
+1,1,44.0,4,3,2,skin defect,1,0,,162,76,102,20,36,,4,"Amputation of hand and wrist, traumatic",1,4,0,188.0,12.2,0
+2,1,44.0,2,3,1,skin eruption,1,0,,110,60,110,20,37.5,98,4,Rash and other nonspecific skin eruption,2,4,0,9237.0,4.0,0
+2,2,44.7,12,4,1,syncope,1,0,,100,60,82,20,36.4,98,3,Syncope,2,3,0,699667.0,5.0,0
+1,1,45.0,10,3,1,fever,1,0,,105,62,93,20,38.6,,3,Breast cancer left,1,3,0,116.0,5.25,0
+1,1,45.0,13,2,1,dizziness,1,0,,145,83,67,20,36.7,,3,Vestibular neuronitis,1,3,0,184.0,12.88333,0
+1,2,45.0,10,2,1,general weakness,1,0,,122,81,88,18,37.7,,3,Hypocalcemia,2,3,0,268.0,11.43333,0
+2,2,45.5,5,3,2,Chemical Burn,1,0,,120,80,80,20,36.5,98,2,Burn of cornea and conjunctival sac,2,2,0,989.0,2.0,0
+1,1,46.0,4,2,1,"alcohol smelling state, drunken state",2,0,,154,81,94,16,36.4,,4,Acute intoxication of alcohol,1,4,0,621.0,5.133333,0
+2,2,46.2,7,3,1,diarrhea,1,0,,150,90,98,18,36.4,99,3,"Chronic kidney disease, unspecified",2,3,0,9963.0,2.0,0
+2,1,46.7,12,3,1,Urticarial rash,1,0,,100,60,72,22,36.8,98,4,Allergic urticaria,1,4,0,74.0,5.0,0
+1,1,47.0,7,3,1,dizziness,1,0,,104,77,72,18,36.6,,3,Dizziness,1,3,0,161.0,6.716667,0
+2,2,47.1,6,3,1,palpitation,1,0,,100,60,100,20,36.7,92,3,Other chest pain,1,3,0,698798.0,2.0,0
+2,1,47.6,6,2,1,Lt. hemiparesis,1,0,,160,90,66,20,36.6,98,2,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,2,2,0,7889.0,5.0,0
+1,2,48.0,8,2,2,knee pain,2,0,,121,87,71,18,36,,5,Headache,1,5,0,336.0,7.883333,0
+1,2,48.0,6,2,1,Suicidal ideation,1,0,,132,71,114,18,36.5,,3,Acute intoxication of alcohol,4,3,0,106.0,7.983334,0
+1,2,48.0,14,3,2,facial injury,1,0,,210,112,79,20,37.6,,4,Laceration of chin,1,4,0,223.0,6.166667,0
+1,1,48.0,5,3,1,dizziness,1,0,,102,45,59,18,36.3,,3,Benign paroxysmal positional vertigo,1,3,0,46.0,4.566667,0
+1,2,48.0,5,3,1,dyspnea,2,0,,79,40,125,20,36.9,,2,Dyspnea,2,2,0,462.0,2.866667,0
+2,2,48.5,9,4,1,hematemesis,1,0,,130,80,78,18,36.2,99,2,"Esophageal varices with bleeding, Idiopathic",2,2,0,2067.0,3.0,0
+1,2,49.0,8,3,2,finger laceration,1,0,,142,87,102,18,36.5,,4,Laceration of finger without nail damage,1,4,0,48.0,6.95,0
+1,1,49.0,9,2,2,Suicidal Attempt,1,0,,114,76,109,18,36.5,,2,Suicide tendency,4,2,0,231.0,8.983334,0
+1,2,49.0,8,3,2,"DI, drug intoxication",3,0,,210,131,121,24,37.5,,2,Drug intoxication,4,2,0,1388.0,13.61667,0
+2,1,49.2,9,3,1,nausea,1,0,,140,90,64,22,36.3,99,3,Nausea alone,1,3,0,190.0,5.0,0
+2,1,49.2,3,3,1,ant. chest pain,1,0,,110,60,76,20,36.0,99,4,Ischaemic chest pain,1,4,0,601.0,3.0,0
+1,2,50.0,7,3,2,eyelid laceration,1,0,,137,76,103,16,36.3,,4,Laceration of face,1,4,0,161.0,7.083333,0
+1,1,50.0,5,3,1,Urticarial rash,1,0,,140,73,91,22,37.4,,3,Dyspnea,2,3,0,740.0,6.733334,0
+1,1,50.0,7,3,1,우울증,1,0,,140,65,60,16,37,,3,Depression,2,3,0,172.0,13.68333,0
+1,2,50.0,9,3,2,skin defect,1,0,,151,93,74,16,36,,4,Injury of face,1,4,0,67.0,7.85,0
+2,1,50.3,9,3,1,vaginal bleeding,1,0,,140,100,68,20,36.2,98,3,Other specified abnormal uterine and vaginal bleeding,1,3,0,699303.0,3.0,0
+2,2,50.4,7,3,1,chest palpitation,1,0,,100,60,110,20,36.2,96,4,Supraventricular tachycardia,1,4,0,343.0,3.0,0
+2,2,50.8,1,4,1,hemoptysis,1,0,,130,90,90,20,36.3,98,3,Haemoptysis,1,3,0,12114.0,5.0,0
+1,1,51.0,11,6,1,Vaginal Bleeding,1,0,,118,54,111,18,36.1,,3,Vaginal bleeding,1,3,0,774.0,11.1,0
+1,2,51.0,13,3,1,CT film copy,1,0,,측불,측불,측불,측불,측불,,5,Hepatocellular carcinoma,1,5,0,32.0,6.383333,0
+2,1,51.3,1,4,1,mental change,4,0,,60,측불,72,측불,35.7,86,1,Cardiac arrest with successful resuscitation,6,1,0,392.0,5.0,0
+2,1,51.4,4,3,1,whirling type vertigo,1,0,,140,70,72,20,36.2,96,3,Dizziness and giddiness,1,3,0,287.0,2.0,0
+2,2,51.5,12,4,1,melena,1,0,,190,100,80,20,36.0,98,2,"Gastrointestinal haemorrhage, unspecified",2,2,0,10613.0,4.0,0
+2,1,51.8,11,4,1,fever,1,0,,70,측불,80,20,38.5,97,2,Acute pyelonephritis,2,2,0,9710.0,4.0,0
+1,2,52.0,6,2,1,altered mentality,1,0,,163,99,93,18,36,,3,Acute intoxication of alcohol,1,3,0,83.0,10.9,0
+1,2,52.0,11,3,1,dizziness,1,0,,169,106,70,20,37.1,,3,Dizziness,1,3,0,157.0,7.333333,0
+1,2,52.0,6,4,1,hematemesis,1,0,,119,68,86,16,36.5,,2,Hepatocellular carcinoma,2,2,0,279.0,5.7,0
+2,2,52.1,5,2,1,hematemesis,1,0,,100,60,100,20,36.6,98,2,"Gastrointestinal haemorrhage, unspecified",2,2,0,10386.0,3.0,0
+2,2,52.5,12,3,1,hematemesis,1,0,,130,90,84,20,36.0,99,3,"Gastrointestinal haemorrhage, unspecified",2,3,0,426.0,5.0,0
+2,2,52.5,8,3,1,hematemesis,1,0,,100,60,110,20,36.1,98,3,"Esophageal varices without bleeding, Sencondary",2,3,0,1022.0,3.0,0
+2,2,52.6,8,3,1,"Abnormality, Visual Acuity",1,0,,110,60,74,20,36.6,95,2,Cerebrovascular accident NOS,2,2,0,9542.0,4.0,0
+2,2,52.7,6,3,1,diarrhea,1,0,,100,60,84,20,36.4,97,3,"Chronic kidney disease, unspecified",2,3,0,10183.0,4.0,0
+1,1,53.0,9,3,1,dizziness,1,0,,221,111,62,20,36,,3,Vestibular neuritis,1,3,0,129.0,8.766666,0
+1,1,53.0,9,6,1,dizziness,1,0,,103,67,70,18,36.5,,3,Peripheral vertigo,2,3,0,78.0,3.466667,0
+1,2,53.0,9,2,2,head injury,1,0,,161,97,64,20,36.7,,3,Laceration of scalp,4,3,0,219.0,6.533333,0
+2,2,53.1,9,2,1,dizziness,1,0,,100,60,68,18,36.2,99,3,Orthostatic hypotension,1,3,0,2040.0,4.0,0
+2,2,53.1,5,4,1,anterior chest discomfort,1,0,,130,80,104,22,36.2,98,3,"Atrial fibrillation and atrial flutter, unspecified",2,3,0,701.0,3.0,0
+2,2,53.2,7,4,1,whirling type vertigo,1,0,,110,70,70,20,36.0,98,3,Vestibular neuronitis,1,3,0,484.0,2.0,0
+2,1,53.3,5,3,2,dizziness,1,0,,130,80,80,18,36.1,97,2,"Ingested mushrooms, toxic effect of",2,2,0,522.0,5.0,0
+2,1,53.6,12,4,2,D - Diarrhea,1,0,,130,80,101,20,36.5,96,2,"Pesticide, unspecified, toxic effect of",2,2,0,281.0,3.0,0
+2,1,53.8,3,3,1,cough,1,0,,180,100,108,24,36.6,80,3,Dyspnoea,2,3,0,10895.0,4.0,0
+1,2,54.0,15,2,2,dysarthria,1,0,,169,110,100,20,36.9,,3,Dysarthria,2,3,0,226.0,6.65,0
+2,2,54.1,2,3,1,hemoptysis,1,0,,130,90,90,20,36.2,97,3,Bronchiectasis,2,3,0,1045.0,2.0,0
+1,1,55.0,8,3,1,urinary Sx.-symptom,1,0,,137,78,80,20,36.4,,4,Acute cystitis,1,4,0,126.0,5.0,0
+1,1,55.0,9,3,1,syncope,1,0,,134,90,80,20,36.6,,3,Panic attack,1,3,0,120.0,6.95,0
+2,1,55.4,5,3,1,dizziness,1,0,,200,120,64,20,36.4,98,3,Headache,1,3,0,921.0,3.0,0
+1,2,56.0,9,1,1,for examination,1,0,,135,85,90,18,37.3,,5,Abnormal finding on abdominal and retroperitoneal imaging,1,5,0,222.0,10.68333,0
+1,1,56.0,10,3,1,voiding difficulty,1,0,,107,65,83,20,36,,4,Acute urinary retension,1,4,0,52.0,10.01667,0
+2,1,56.3,9,3,1,Urticarial rash,1,0,,120,70,78,20,36.6,97,4,Allergic urticaria,1,4,0,7800.0,3.0,0
+2,2,56.4,3,2,1,nausea,1,0,,100,60,72,20,36.5,97,3,Hepatocellular carcinoma,1,3,0,537.0,4.0,0
+1,2,57.0,4,3,1,right side weakness,1,0,,177,100,119,18,36.5,,3,Muscle weakness multiple site,2,3,0,547.0,7.183333,0
+1,2,57.0,7,4,1,desaturation,3,0,,124,74,78,28,37,,2,Dyspnea,2,2,0,998.0,8.166667,0
+1,2,57.0,7,3,2,eyebrow laceration,1,0,,133,67,89,16,36.8,,4,Laceration of face,1,4,0,90.0,10.46667,0
+1,2,57.0,3,3,2,eye trauma,1,0,,157,97,82,20,36,,2,"Hyphema, traumatic",1,2,0,106.0,6.816667,0
+2,2,57.0,8,3,1,palpitation,1,0,,130,90,106,20,36.5,99,3,Paroxysmal atrial fibrillation,1,3,0,525.0,2.0,0
+2,1,57.1,2,3,1,dysuria,1,0,,130,70,74,20,36.2,98,4,"Urinary tract infection, site not specified",1,4,0,622.0,4.0,0
+2,2,57.6,6,2,1,fever,1,0,,130,80,100,20,36.9,98,3,Hepatitis NOS,2,3,0,11339.0,2.0,0
+2,1,57.7,4,2,1,D - Diarrhea,1,0,,110,60,100,18,36.2,98,3,Acute watery diarrhoea,1,3,0,776.0,2.0,0
+2,1,57.7,1,4,2,post-CPR state,4,0,,140,80,122,측불,36.0,90,1,Cardiac arrest with successful resuscitation,2,1,0,1010.0,2.0,0
+2,2,57.8,5,4,2,"Discomfort, Throat",1,0,,100,60,104,28,36.7,94,2,"Ingested mushrooms, toxic effect of",2,2,0,522.0,2.0,0
+2,1,57.8,10,2,1,vomiting,1,0,,160,100,94,22,36.4,98,2,Nause with vomiting,1,2,0,8379.0,5.0,0
+2,2,57.9,15,4,1,post-CPR state,4,0,,측불,측불,측불,측불,측불,측불,1,"Cardiac arrest, unspecified",6,1,0,123.0,2.0,0
+1,1,58.0,4,1,1,facial lesion,1,0,,145,96,93,18,36.6,,5,Dermatitis,1,5,0,46.0,6.266667,0
+2,2,58.2,7,3,1,Rt. side motor weakness,1,0,,100,60,106,20,36.3,97,3,Secondary malignant neoplasm of brain,1,3,0,8064.0,5.0,0
+2,2,58.2,9,3,1,dizziness,1,0,,130,90,72,20,36.4,98,2,"Atrial fibrillation and atrial flutter, unspecified",5,2,0,9299.0,3.0,0
+2,1,58.3,3,4,1,right motor weakness,1,0,,160,100,84,20,36.7,98,2,Cerebral infarction due to thrombosis of unspecified cerebral arteries,2,2,0,262.0,2.0,0
+2,2,58.3,3,2,1,"Fever, Unspecified",1,0,,140,90,88,20,37.8,99,4,"Viral infection, unspecified",1,4,0,742.0,2.0,0
+2,1,58.4,8,4,1,melena,1,0,,110,60,70,20,36.5,98,3,"Gastrointestinal haemorrhage, unspecified",2,3,0,10175.0,3.0,0
+2,2,58.6,11,2,2,mental change,2,0,,160,100,66,20,36.5,99,2,Traumatic subdural hemorrhage without open intracranial wound,7,2,0,107.0,3.0,0
+1,2,59.0,5,2,1,palpitation,1,0,,179,98,70,18,36,,4,Palpitation,1,4,0,179.0,7.45,0
+1,2,59.0,9,3,1,dysarthria,1,0,,196,108,66,16,36,,3,Stroke,4,3,0,304.0,5.45,0
+1,2,59.0,11,1,1,itching,1,0,,149,100,97,18,36.4,,5,Acute urticaria,1,5,0,18.0,4.366667,0
+1,2,59.0,9,3,2,copy,1,0,,측불,측불,측불,측불,측불,,5,Stroke,1,5,0,21.0,6.883333,0
+2,1,59.5,8,3,1,hemoptysis,1,0,,120,80,76,20,36.3,98,3,Haemoptysis,1,3,0,334.0,4.0,0
+1,1,60.0,7,3,1,facial palsy left,1,0,,149,75,85,20,36.4,,3,Bell's palsy,1,3,0,133.0,6.133333,0
+1,2,60.0,8,2,1,DZ - Dizziness,1,0,,146,80,81,20,36,,3,Vestibular neuritis,1,3,0,199.0,13.66667,0
+2,2,60.0,5,3,1,Rt. side motor weakness,1,0,,120,60,110,20,36.8,95,4,Cerebrovascular accident NOS,1,4,0,194.0,5.0,0
+2,1,60.1,6,3,1,fever,1,0,,140,80,82,20,36.0,98,4,"Choledocholithiasis with cholangitis, With obstruction",2,4,0,651.0,4.0,0
+2,2,60.2,8,3,1,dyspnea,1,0,,130,80,98,20,36.4,99,3,Dilated cardiomyopathy,2,3,0,700092.0,2.0,0
+1,2,61.0,4,2,1,dyspnea,1,0,,143,61,73,16,36.7,,3,Dyspnea,2,3,0,444.0,7.133333,0
+1,2,61.0,12,2,2,Dental Problem,1,0,,136,71,81,20,37.1,,2,Avulsion of tooth,1,2,0,51.0,8.3,0
+1,1,61.0,12,1,1,skin rash,1,0,,122,68,67,16,36.2,,5,Urticaria,1,5,0,0.1343171296248329,5.0,0
+1,2,61.0,9,1,1,PTBD malfunction,1,0,,101,73,93,16,36.4,,4,Percutaneous catheter problem,1,4,0,286.0,6.766666,0
+1,2,61.0,9,1,1,PTBD malfunction,1,0,,101,73,93,16,36.4,,4,"Cholangiocarcinoma, extrahepatic",1,4,0,0.19890046296495711,6.0,0
+2,2,61.0,9,3,1,dizziness,1,0,,120,80,42,20,36.6,98,3,Other acute renal failure,2,3,0,363.0,2.0,0
+2,2,61.1,12,3,1,dizziness,1,0,,100,60,54,20,36.2,97,3,Dizziness and giddiness,1,3,0,351.0,3.0,0
+2,1,61.9,5,2,1,dizziness,1,0,,100,60,68,20,36.3,99,3,Vestibular neuronitis,2,3,0,524.0,2.0,0
+1,1,62.0,9,2,1,Lt. side weakness,1,0,,233,136,86,20,37,,3,Intracerebral hemorrhage,3,3,0,139.0,5.5,0
+2,1,62.1,10,3,1,mood depression,1,0,,120,80,80,20,36.0,99,3,Illness NOS,1,3,0,227.0,5.0,0
+2,2,62.4,12,2,1,dizziness,1,0,,110,70,64,20,36.0,98,3,Dizziness and giddiness,2,3,0,255.0,1.0,0
+2,2,62.5,4,3,1,Rt. side motor weakness,1,0,,160,100,90,20,36.4,98,2,Cerebrovascular accident NOS,5,2,0,321.0,5.0,0
+1,1,63.0,7,2,1,arrest,4,0,,측불,측불,측불,측불,측불,,1,Cardiac arrest,6,1,0,72.0,5.416667,0
+2,2,63.2,4,3,1,dyspnea,1,0,,140,100,88,24,36.3,94,3,"Chronic obstructive pulmonary disease, unspecified, unspecified",2,3,0,891.0,2.0,0
+1,2,64.0,8,3,1,"distension, abd",1,0,,120,79,86,16,36.7,,5,"Adenocarcinoma of colon, sigmoid",1,5,0,174.0,4.633333,0
+1,2,64.0,9,1,1,hiccup,1,0,,131,63,77,18,36.3,,5,Hiccup,1,5,0,141.0,13.65,0
+1,1,64.0,9,1,1,rigth side weakness,1,0,,155,106,100,18,36.6,,2,Seizure,1,2,0,330.0,6.35,0
+2,2,64.0,7,3,1,dysarthria,1,0,,130,70,98,20,36.4,98,3,Cerebral infarction due to thrombosis of middle cerebral artery,2,3,0,356.0,2.0,0
+2,1,64.0,8,3,1,hematochezia,1,0,,120,80,80,20,36.4,94,3,"Gastrointestinal haemorrhage, unspecified",2,3,0,30715.0,3.0,0
+2,2,64.3,8,4,1,Convulsion,1,0,,120,70,72,20,36.4,97,3,"Type 2 diabetes mellitus, without complications",5,3,0,952.0,4.0,0
+1,2,65.0,9,3,1,"distension, abd",1,0,,131,72,89,16,37,,5,Small cell lung cancer right,1,5,0,165.0,6.266667,0
+1,2,65.0,10,2,1,confuse mentality,3,0,,165,66,80,22,41,,2,Acute pyelonephritis,1,2,0,278.0,5.716667,0
+1,2,65.0,6,3,1,dyspnea,1,0,,206,96,102,24,36.7,,3,Chronic obstructive pulmonary disease severe,1,3,0,134.0,12.88333,0
+1,1,65.0,7,3,1,palpitation,1,0,,143,87,131,20,36,,3,Palpitation,1,3,0,110.0,9.533334,0
+1,1,65.0,11,3,1,cough,1,0,,161,81,89,23,36.9,,3,Heart failure,1,3,0,219.0,5.916667,0
+2,2,65.0,5,3,1,hematochezia,1,0,,130,100,74,20,36.3,99,3,"Cirrhosis (of liver) NOS, unspecified",2,3,0,1209.0,4.0,0
+2,2,65.1,7,2,1,mental change,1,0,,120,60,70,20,36.0,98,2,Cerebral infarction due to embolism of middle cerebral artery,2,2,0,237.0,4.0,0
+2,2,65.3,12,2,1,loss of consciousness,1,0,,60,측불,68,20,36.3,91,2,Anaphylaxis NOS,1,2,0,407.0,1.0,0
+2,1,65.3,5,4,1,hematemesis,1,0,,130,80,90,22,36.9,97,2,"Gastrointestinal haemorrhage, unspecified",5,2,0,9091.0,1.0,0
+2,2,65.6,8,2,1,Lt. side weakness,1,0,,120,80,90,20,36.2,98,2,Cerebral infarction due to thrombosis of middle cerebral artery,2,2,0,93.0,1.0,0
+1,2,66.0,5,3,1,Motor weakness,1,0,,156,73,82,18,36.9,,3,Stroke,2,3,0,696.0,7.483333,0
+1,2,66.0,8,3,1,hematemesis,1,0,,162,97,81,20,36.8,,2,Hematemesis,4,2,0,490.0,5.0,0
+1,2,66.0,4,3,1,myalgia,1,0,,97,57,85,20,37.3,,4,Liver abscess,2,4,0,644.0,3.933333,0
+1,2,66.0,12,3,1,general weakness,1,0,,101,64,93,20,37.6,,4,Dizziness,1,4,0,152.0,11.65,0
+2,1,66.7,8,1,1,left diplopia,1,0,,140,90,84,20,36.4,98,3,Diplopia,1,3,0,563.0,3.0,0
+2,1,66.9,9,3,1,fever,1,0,,160,100,87,20,36.3,99,4,"Fever, unspecified",1,4,0,303.0,4.0,0
+1,1,67.0,14,3,1,rotatory vertigo,1,0,,191,97,62,16,36.9,,3,Cerebral atherosclerosis,1,3,0,598.0,4.25,0
+1,1,67.0,7,3,1,dysarthria,1,0,,194,87,70,18,36.9,,3,Transient ischemia attack,2,3,0,207.0,9.083333,0
+1,2,67.0,5,2,1,dizziness,1,0,,152,56,61,16,36.3,,3,Benign paroxysmal positional vertigo,1,3,0,160.0,4.95,0
+1,2,67.0,7,3,1,dysarthria,1,0,,160,82,84,20,37.3,,3,Stroke,2,3,0,271.0,16.01667,0
+1,1,67.0,6,2,1,vomiting,1,0,,119,94,112,16,37.1,,4,Vomiting,1,4,0,109.0,4.266667,0
+1,2,67.0,9,3,1,Urticarial rash,1,0,,97,69,84,20,36.5,,5,Acute urticaria,1,5,0,105.0,6.65,0
+1,2,67.0,6,1,1,AVF malfunction,1,0,,124,81,96,16,36.5,,4,End stage renal disease,1,4,0,0.276018518517958,14.0,0
+1,2,67.0,9,2,1,general weakness,1,0,,97,71,103,24,37.3,,3,Squamous cell carcinoma of lung unspecified side,1,3,0,283.0,8.9,0
+2,2,67.0,13,7,1,dizziness,1,0,,150,80,110,24,36.5,98,3,Other syncope and collapse,1,3,0,273.0,2.0,0
+2,2,67.5,5,2,1,dyspnea,1,0,,110,70,100,20,36.5,96,3,Other bacterial pneumonia,2,3,0,10491.0,3.0,0
+2,1,67.7,8,4,1,mental change,4,0,,측불,측불,114,측불,35.8,95,1,Cardiac arrest with successful resuscitation,2,1,0,408.0,4.0,0
+1,1,68.0,9,2,1,drowsy mentality,3,0,,166,71,48,16,36.3,,2,Hypertension,2,2,0,841.0,4.95,0
+1,1,68.0,10,3,1,post seizure,3,0,,111,63,76,20,36,,2,Confusion,1,2,0,430.0,3.233333,0
+1,1,68.0,5,2,1,Motor weakness,1,0,,163,90,100,18,36.6,,3,Transient ischemia attack,2,3,0,347.0,3.833333,0
+1,2,68.0,7,3,1,hematochezia,1,0,,101,77,97,20,36.7,,3,Complete blood count abnormality,2,3,0,234.0,11.2,0
+1,2,68.0,7,2,1,altered mental change,4,0,,측불,측불,측불,측불,37.3,,1,Intracerebral hemorrhage,3,1,0,135.0,5.616667,0
+1,2,68.0,9,2,1,hypoglycemic,2,0,,80,31,59,20,36.2,,2,Hypoglycemia,5,2,0,50.0,3.883333,0
+2,1,68.0,10,3,1,"Whole body, skin rash",1,0,,160,80,96,20,36.6,98,5,drug eruption,1,5,0,398.0,3.0,0
+2,1,68.5,9,4,1,fever,1,0,,140,80,98,20,36.6,98,4,"Fever, unspecified",2,4,0,10535.0,5.0,0
+2,2,68.9,5,4,1,dyspnea,1,0,,160,100,76,20,36.3,88,2,Dyspnoea,2,2,0,363.0,2.0,0
+2,2,68.9,9,4,1,dyspnea,1,0,,130,80,94,20,36.4,92,3,"Cirrhosis (of liver) NOS, unspecified",6,3,0,9226.0,2.0,0
+1,2,69.0,13,1,1,dyspnea,1,0,,137,88,115,20,36.2,,3,Pleural effusion,1,3,0,336.0,14.45,0
+1,2,69.0,10,1,1,Catheter removal,1,0,,99,78,89,16,37.1,,5,Percutaneous catheter problem,1,5,0,298.0,16.5,0
+1,1,69.0,12,2,1,hematochezia,1,0,,153,84,98,18,36.5,,3,Hematochezia,2,3,0,358.0,16.01667,0
+1,1,69.0,10,2,1,dizziness,1,0,,156,85,72,20,36.6,,3,Dizziness,2,3,0,257.0,3.05,0
+2,2,69.1,3,4,1,general weakness,1,0,,110,70,120,20,36.4,99,2,Dentoalveolar abscess NOS,2,2,0,840.0,2.0,0
+2,2,69.2,5,3,1,Facial Palsy,1,0,,110,70,66,20,36.2,98,3,Facial palsy,1,3,0,312.0,3.0,0
+2,2,69.3,7,3,1,dyspnea,1,0,,100,70,88,20,36.7,99,3,"Pleural effusion, NEC",2,3,0,415.0,4.0,0
+2,1,69.3,3,3,1,Urinary frequency,1,0,,150,90,78,20,36.8,98,4,Dysuria,1,4,0,268.0,4.0,0
+2,1,69.5,15,4,1,melena,1,0,,130,90,94,20,36.6,99,3,"Gastrointestinal haemorrhage, unspecified",1,3,0,829.0,4.0,0
+2,2,69.6,11,3,1,C - Coughing,1,0,,130,80,100,22,36.4,90,3,"Pneumonia, unspecified",2,3,0,9027.0,5.0,0
+2,2,69.7,6,2,1,dizziness,1,0,,150,90,100,20,36.0,97,3,Posterior canal benign positional vertigo,1,3,0,7917.0,1.0,0
+2,1,69.8,2,3,1,DZ - Dizziness,1,0,,180,100,80,20,36.0,98,2,Vestibular neuronitis,1,2,0,456.0,4.0,0
+1,1,70.0,9,1,1,rotatory vertigo,1,0,,161,96,79,20,36.9,,3,Vestibular neuronitis,1,3,0,454.0,5.383333,0
+2,2,70.0,8,1,1,chest palpitation,1,0,,120,80,84,20,36.4,94,3,Palpitations,1,3,0,229.0,2.0,0
+2,2,70.1,5,2,1,mental change,1,0,,170,100,88,20,36.5,99,2,"Other specified diabetes mellitus, with hypoglycemia",2,2,0,508.0,3.0,0
+1,2,71.0,5,3,1,hematuria,1,0,,181,85,117,16,36.7,,3,Hematuria,1,3,0,386.0,6.133333,0
+1,1,71.0,10,3,1,dyspnea,1,0,,102,58,108,28,36.6,,2,Acute respiratory failure,1,2,0,168.0,16.96667,0
+1,1,71.0,11,3,1,L side weakness,1,0,,220,123,102,20,36,,2,Stroke,2,2,0,168.0,8.566667,0
+1,2,71.0,6,2,1,palpitation,1,0,,165,97,86,16,36.9,,3,Variant angina,1,3,0,256.0,6.8,0
+1,2,71.0,12,1,1,voiding difficulty,1,0,,152,105,101,18,36.6,,4,Benign prostatic hyperplasia with obstruction,1,4,0,47.0,8.116667,0
+2,1,71.3,6,3,1,dizziness,1,0,,180,90,81,20,36.6,98,3,Dizziness and giddiness,1,3,0,226.0,2.0,0
+2,2,71.7,3,3,1,fever,1,0,,120,80,94,20,38.4,98,3,"Fever, unspecified",2,3,0,278.0,2.0,0
+2,2,71.8,6,4,1,LOC,1,0,,140,100,60,22,36.0,94,2,Syncope,1,2,0,9774.0,3.0,0
+2,1,71.8,6,4,1,Lt. hemiparesis,1,0,,140,90,76,20,36.5,96,2,Cerebrovascular accident NOS,2,2,0,419.0,3.0,0
+1,2,72.0,14,2,1,rigth side weakness,1,0,,204,98,137,18,38,,3,Metastatic cancer to the brain,2,3,0,1437.0,11.01667,0
+1,2,72.0,7,3,1,PTBD leaukage,1,0,,159,85,80,16,37.5,,4,Klatskin tumor,2,4,0,555.0,7.683333,0
+1,2,72.0,4,3,1,dyspnea,1,0,,140,87,83,22,36.7,,3,Observation for suspected malignant neoplasm,2,3,0,349.0,8.65,0
+1,2,72.0,13,3,1,BST high,1,0,,123,87,64,20,36.8,,2,Hyperosmolar hyperglycemic syndrome,2,2,0,566.0,6.016667,0
+2,1,72.2,7,4,1,melena,1,0,,120,70,60,20,36.3,99,3,"Gastrointestinal haemorrhage, unspecified",2,3,0,10007.0,1.0,0
+2,1,72.6,6,3,1,DZ - Dizziness,1,0,,120,70,90,20,36.4,97,3,Dizziness and giddiness,1,3,0,409.0,2.0,0
+1,1,73.0,11,2,1,epistaxis,1,0,,200,100,96,20,36,,3,Epistaxis,1,3,0,87.0,4.983334,0
+1,1,73.0,4,3,1,numbness,1,0,,171,80,76,16,36.7,,3,Numbness,1,3,0,132.0,10.4,0
+1,1,73.0,8,6,1,dizziness,1,0,,136,69,61,24,36.5,,3,Psychogenic headache,1,3,0,183.0,11.55,0
+1,2,73.0,11,3,1,dyspnea,1,0,,95,70,122,23,36.6,,3,"Colon cancer, descending",2,3,0,617.0,5.35,0
+2,2,73.0,6,4,1,right motor weakness,1,0,,130,90,96,20,36.7,96,5,"Transient cerebral ischaemic attack, unspecified",1,5,0,770.0,2.0,0
+2,1,73.0,8,4,1,fever,1,0,,100,60,70,20,37.4,98,4,"Fever, unspecified",1,4,0,9785.0,2.0,0
+2,2,73.7,12,3,1,itching sensation,1,0,,120,80,80,20,36.4,98,5,Eczema NOS,1,5,0,234.0,3.0,0
+2,1,73.7,10,2,1,"Aphasia, Motor",1,0,,160,90,80,20,36.2,98,2,Cerebrovascular accident NOS,1,2,0,7731.0,4.0,0
+2,2,73.9,3,2,1,nasal bleeding,1,0,,190,100,100,22,36.6,99,3,Epistaxis,1,3,0,986.0,5.0,0
+1,1,74.0,8,2,1,Seizure Like Activity,1,0,,161,97,63,14,36.3,,3,Vasovagal syncope,1,3,0,173.0,4.283333,0
+1,2,74.0,10,3,1,dizziness,1,0,,147,74,63,18,36.3,,4,Anemia,1,4,0,545.0,3.4,0
+1,2,74.0,7,3,1,fever,1,0,,147,84,109,16,37.1,,4,Alcoholic liver cirrhosis without ascites,2,4,0,385.0,8.566667,0
+1,1,74.0,15,2,1,dizziness,1,0,,86,64,80,20,37.4,,2,Hypoglycemia,2,2,0,1070.0,13.28333,0
+2,1,74.2,10,2,1,confused mental status,2,0,,170,100,74,20,36.5,97,2,"Cirrhosis (of liver) NOS, Child-Pugh C",2,2,0,10355.0,4.0,0
+2,2,74.2,6,4,1,mental change,3,0,,100,60,80,20,36.0,98,2,"Shock, unspecified",1,2,0,613.0,5.0,0
+2,1,74.4,4,3,1,dyspnea,1,0,,130,80,84,24,36.3,100,3,Ischaemic cardiomyopathy,2,3,0,10086.0,2.0,0
+2,1,74.8,2,3,1,dysarthria,1,0,,120,80,68,20,36.4,99,3,Cerebrovascular accident NOS,2,3,0,278.0,2.0,0
+1,1,75.0,5,2,1,mental change,2,0,,70,40,68,20,36.6,,2,Dyspnea,2,2,0,603.0,7.766666,0
+1,2,75.0,5,2,2,mental change,4,0,,99,75,100,24,36,,1,Multiple trauma,6,1,0,311.0,6.616667,0
+1,1,75.0,5,3,1,acute dyspnea,1,0,,203,105,124,20,37.5,,3,Pulmonary thromboembolism,2,3,0,323.0,7.45,0
+1,1,75.0,5,2,2,altered mentality,3,0,,측불,측불,측불,측불,측불,,2,"Subarachnoid hemorrhage, traumatic without open wound",2,2,0,504.0,6.316667,0
+2,1,75.0,10,3,1,dizziness,1,0,,180,100,72,20,36.4,99,3,Dizziness and giddiness,1,3,0,208.0,3.0,0
+2,2,75.0,3,3,1,diffuse abdominal discomfort,1,0,,110,60,74,20,36.0,98,5,Liver cell carcinoma,1,5,0,330.0,4.0,0
+2,2,75.3,6,4,1,syncope,1,0,,160,100,60,20,36.6,96,3,Ischaemic chest pain,2,3,0,303.0,4.0,0
+2,2,75.5,4,2,1,Rt. side motor weakness,1,0,,120,70,60,20,36.3,98,2,Cerebral infarction due to embolism of middle cerebral artery,2,2,0,559.0,4.0,0
+2,1,75.6,5,3,1,Rt. side motor weakness,1,0,,120,80,78,20,36.3,100,3,Cerebrovascular accident NOS,5,3,0,8697.0,2.0,0
+2,2,75.6,3,3,1,dysuria,1,0,,220,110,66,20,36.5,99,4,Dysuria,1,4,0,20.0,2.0,0
+2,2,75.6,9,3,1,blurred vision,1,0,,120,80,88,20,36.0,97,4,Optic neuritis,2,4,0,699861.0,4.0,0
+2,1,75.9,7,4,1,fever,1,0,,100,60,65,20,36.5,99,3,Unspecified abdominal pain,7,3,0,1008.0,2.0,0
+2,1,75.9,9,4,1,post-CPR state,4,0,,측불,측불,측불,측불,측불,측불,1,"Cardiac arrest, unspecified",6,1,0,35.0,4.0,0
+1,2,76.0,5,2,1,hematemesis,1,0,,186,102,100,18,36.5,,3,Hemoptysis,1,3,0,318.0,15.01667,0
+2,2,76.0,10,3,1,dizziness,1,0,,100,70,110,20,36.5,97,3,Dizziness and giddiness,1,3,0,340.0,1.0,0
+2,1,76.3,7,3,1,dizziness,1,0,,140,90,70,20,36.1,98,3,Cerebral infarction due to thrombosis of posterior cerebral artery,1,3,0,9267.0,5.0,0
+2,2,76.6,8,2,1,dyspnea,1,0,,120,80,106,20,36.5,93,3,"Bacterial pneumonia, unspecified",2,3,0,423.0,2.0,0
+2,2,76.6,7,2,1,dizziness,1,0,,130,80,56,20,36.2,20,3,Horizontal canal benign positional vertigo,1,3,0,8258.0,1.0,0
+2,1,76.7,7,4,1,Lt. motor weakness,1,0,,130,70,80,18,36.4,99,2,Cerebral infarction due to thrombosis of middle cerebral artery,2,2,0,7859.0,1.0,0
+2,1,76.8,6,2,1,dizziness,1,0,,190,100,88,20,36.4,98,3,"Hypertension(arterial, essential, primary, systemic)",2,3,0,20087.0,1.0,0
+1,2,77.0,9,2,1,dizziness,1,0,,123,77,75,20,36.3,,3,Sudden sensory neural hearing loss unilateral,1,3,0,83.0,3.4,0
+2,1,77.0,6,3,1,dyspnea,1,0,,100,60,108,22,36.8,98,3,Persistent atrial fibrillation,2,3,0,10118.0,3.0,0
+2,2,77.2,12,3,1,mental confusion,1,0,,180,100,75,20,36.4,97,3,Cerebral infarction due to thrombosis of middle cerebral artery,2,3,0,627.0,5.0,0
+2,1,77.6,11,2,1,dyspnea,1,0,,130,90,88,20,36.2,99,3,"Heart failure, unspecified",2,3,0,9516.0,3.0,0
+1,2,78.0,8,3,1,dizziness,1,0,,132,63,101,16,36.8,,3,Dizziness,1,3,0,129.0,5.383333,0
+1,2,78.0,8,3,1,dizziness,1,0,,132,63,101,16,36.8,,3,Gallbladder cancer,1,3,0,129.0,5.383333,0
+1,2,78.0,5,3,1,general weakness,1,0,,144,75,81,16,36.8,,4,End stage renal disease,2,4,0,794.0,9.716666,0
+1,2,78.0,11,3,1,cold,1,0,,197,102,95,20,37.3,,5,Cough,1,5,0,191.0,5.716667,0
+2,1,78.1,12,4,1,confusion mentality,2,0,,140,100,74,20,36.5,95,2,Cerebrovascular accident NOS,2,2,0,9035.0,2.0,0
+2,1,78.5,6,4,1,dyspnea,1,0,,100,70,62,20,36.0,97,3,Ischaemic chest pain,2,3,0,10607.0,4.0,0
+2,1,78.7,5,3,1,Lt hemiparesis,1,0,,110,70,72,20,36.,99,3,Cerebral infarction due to thrombosis of middle cerebral artery,2,3,0,316.0,4.0,0
+2,2,78.7,7,3,1,Difficulty in voiding,1,0,,120,70,86,20,36.4,99,4,Anuria and oliguria,1,4,0,238.0,3.0,0
+1,2,79.0,9,3,1,abnormal lab.,1,0,,166,69,59,16,36.9,,5,Leukocytosis,1,5,0,157.0,10.35,0
+1,2,79.0,5,3,1,fever,1,0,,140,64,87,20,37.5,,4,Fever,2,4,0,606.0,3.8,0
+1,1,79.0,3,4,1,tachycardia,1,0,,111,58,90,22,37.5,,3,Paroxysmal supraventricular tachycardia,1,3,0,414.0,7.35,0
+2,1,79.1,8,3,1,loss of consciousness,1,0,,90,60,60,20,36.2,96,3,Syncope,1,3,0,9961.0,4.0,0
+2,1,79.3,8,4,1,blood tinged sputum,1,0,,130,80,60,24,36.4,74,2,Haemoptysis,6,2,0,9378.0,5.0,0
+2,2,79.4,8,2,1,dysarthria,1,0,,140,80,82,20,36.7,90,2,"Intracerebral haemorrhage, intraventricular",5,2,0,129.0,4.0,0
+2,1,79.5,8,3,1,dyspnea,1,0,,110,70,110,26,37.8,93,3,Gastroenteritis and colitis of unspecified origin,2,3,0,9577.0,4.0,0
+2,1,79.5,13,3,1,fever,1,0,,120,70,102,20,37.5,97,4,"Urinary tract infection, site not specified",2,4,0,9063.0,4.0,0
+1,2,80.0,9,2,1,acute dyspnea,3,0,,측불,측불,측불,측불,측불,,1,Acute exacerbation of idiopathic pulmonary fibrosis,2,1,0,257.0,3.916667,0
+1,2,80.0,6,2,1,general weakness,2,0,,116,77,64,20,36,,3,Muscle weakness other,1,3,0,327.0,17.36667,0
+2,2,80.2,10,4,1,mental change,1,0,,150,90,64,20,36.4,92,2,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,2,2,0,401.0,3.0,0
+2,2,80.2,3,2,2,mental change,3,0,,140,100,110,24,36.6,95,2,Traumatic subdural hemorrhage without open intracranial wound,2,2,0,228.0,2.0,0
+2,1,80.2,8,2,1,general weakness,1,0,,130,80,79,20,36.0,98,3,"Type 2 diabetes mellitus, with hypoglycemia",2,3,0,200.0,4.0,0
+2,1,80.3,4,4,1,Convulsion,1,0,,130,100,63,20,36.0,98,3,Cerebrovascular accident NOS,2,3,0,8746.0,4.0,0
+2,1,80.9,5,4,1,left motor weakness,1,0,,180,100,90,20,36.0,99,2,Other intracerebral haemorrhage,5,2,0,176.0,2.0,0
+1,2,81.0,1,3,1,"Numbness, Arm",1,0,,121,68,95,20,38.4,,3,Fever,1,3,0,319.0,6.583333,0
+1,2,81.0,7,2,1,syncope,1,0,,156,76,75,16,36.3,,2,Syncope,1,2,0,269.0,4.266667,0
+1,1,81.0,6,2,1,hypoglycemic symptom,1,0,,205,100,76,20,36,,2,Hypoglycemia,1,2,0,253.0,5.85,0
+1,2,81.0,4,2,1,epistaxis,1,0,,130,76,60,20,36.5,,3,Epistaxis,1,3,0,110.0,8.383333,0
+2,1,81.1,2,4,1,dyspnea,3,0,,100,60,100,24,36.4,94,3,Dyspnoea,2,3,0,9541.0,4.0,0
+2,2,81.3,6,3,1,Low abd. pain,1,0,,130,80,96,20,36.6,97,4,Hyperplasia of prostate with obstruction,1,4,0,7955.0,4.0,0
+2,1,81.7,5,2,1,nasal bleeding,1,0,,120,80,72,20,36.0,97,4,Epistaxis,1,4,0,398.0,1.0,0
+1,1,82.0,8,3,1,다리 차가움,1,0,,127,62,79,16,36,,2,"Atherosclerosis obliterans, limb",2,2,0,242.0,9.266666,0
+1,1,82.0,6,6,1,perm cath. malfunction,1,0,,130,60,67,18,36.2,,4,Percutaneous catheter problem,1,4,0,0.4988657407448045,5.0,0
+2,2,82.0,12,2,2,syncope,1,0,,100,60,64,20,36.4,99,3,Communicationg hydrocephalus,1,3,0,394.0,3.0,0
+2,1,82.6,7,4,1,fever,1,0,,140,90,92,20,37.6,96,4,"Fever, unspecified",2,4,0,9963.0,2.0,0
+2,2,82.7,6,4,1,dyspnea,1,0,,120,70,72,20,36.4,96,3,"Pneumonia, unspecified",1,3,0,9488.0,1.0,0
+1,2,83.0,11,2,1,dyspnea,1,0,,124,75,100,24,36,,3,Small cell lung cancer unspecified side,1,3,0,504.0,5.966667,0
+1,1,83.0,10,3,1,acute dyspnea,1,0,,146,66,64,22,37,,3,Influenza,1,3,0,337.0,11.73333,0
+2,1,83.2,5,2,1,mental change,1,0,,150,100,84,20,36.8,97,1,Hypo-osmolality and hyponatraemia,2,1,0,10728.0,2.0,0
+2,2,83.5,7,2,1,dyspnea,1,0,,180,80,72,20,36.0,99,3,Cough with dyspnea,1,3,0,698919.0,2.0,0
+2,1,84.1,10,2,1,hematemesis,1,0,,150,100,100,20,36.6,96,3,"Gastrointestinal haemorrhage, unspecified",2,3,0,488.0,2.0,0
+2,1,85.7,8,3,1,fever,1,0,,140,80,50,20,36.3,95,4,fever of unknown origin,2,4,0,73.0,4.0,0
+2,1,85.9,9,3,1,dysarthria,2,0,,90,60,78,20,36.4,90,3,Hypokalaemia,2,3,0,491.0,4.0,0
+1,1,86.0,13,6,1,dyspnea,1,0,,124,60,77,24,36.4,,3,Pneumonia,2,3,0,382.0,6.883333,0
+1,1,86.0,7,3,1,dizziness,1,0,,213,91,78,16,37.1,,3,Dizziness,1,3,0,436.0,8.383333,0
+1,2,86.0,6,2,1,dizziness,1,0,,149,64,50,16,37.2,,3,Dizziness,1,3,0,141.0,4.4,0
+2,1,86.1,11,3,1,watery diarrhea,1,0,,110,70,80,20,36.2,99,3,Infectious diarrhoea NOS,2,3,0,528.0,4.0,0
+1,2,87.0,7,3,2,hand laceration,1,0,,146,86,71,16,36.5,,4,Laceration of hand,1,4,0,50.0,5.75,0
+2,2,87.8,8,4,1,dyspnea,1,0,,130,80,88,24,36.5,95,3,Other acute renal failure,2,3,0,989.0,3.0,0
+2,2,87.9,6,4,1,Convulsion,2,0,,150,90,95,20,36.2,98,3,(Seizure) Convulsive NOS,2,3,0,889.0,1.0,0
+1,1,88.0,8,2,1,dysarthria,1,0,,150,66,68,16,36.7,,3,Dysarthria,7,3,0,418.0,10.51667,0
+2,1,88.5,10,4,1,melena,1,0,,70,40,82,20,36.3,97,2,"Gastrointestinal haemorrhage, unspecified",2,2,0,9485.0,2.0,0
+1,2,91.0,11,6,1,medication,1,0,,131,76,62,18,36.5,,5,Benign prostatic hyperplasia with obstruction,1,5,0,80.0,6.3,0
+1,2,93.0,12,1,1,dizziness,1,0,,121,70,76,18,36.6,,3,Dizziness,1,3,0,0.34665509258775273,15.0,0
+1,1,95.0,9,7,1,Hyperkalemia (disorder),1,0,,137,71,58,18,36.8,,3,Ascites,1,3,0,0.29391203703562496,16.0,0
+2,2,95.8,7,4,1,general weakness,1,0,,90,60,68,20,36.2,91,2,Pericardial effusion (noninflammatory),2,2,0,20076.0,4.0,0
+2,1,16.2,6,3,1,nausea,1,1,3.0,110,60,102,22,36.8,97,4,Unspecified abdominal pain,2,4,0,8961.0,2.0,0
+2,1,41.0,5,3,2,Open Wound,1,1,3.0,120,80,74,20,36.3,98,3,"Superficial injury of face NOS, contusion",1,3,0,117.0,4.0,0
+2,2,49.7,3,3,1,upper abdominal pain,1,1,3.0,120,80,84,20,36.4,97,4,Unspecified abdominal pain,1,4,0,410.0,3.0,0
+2,1,66.5,10,4,1,ant. chest pain,1,1,3.0,100,60,80,20,36.0,94,2,Unstable angina,1,2,0,802.0,3.0,0
+2,1,80.4,6,3,1,ant. chest pain,1,1,3.0,150,90,108,24,36.2,98,2,Unstable angina,1,2,0,578.0,1.0,0
+1,1,47.0,15,3,1,Drug Allergy,1,0,,122,70,90,20,37.6,,5,Angioedema,1,5,0,120.0,11.41667,0
+2,1,64.2,8,3,1,dyspnea,1,0,,110,80,75,20,36.3,98,3,"Asthma, unspecified",2,3,0,9959.0,4.0,0
+2,2,35.2,12,3,2,Open Wound,1,1,2.0,120,80,80,20,36.2,98,4,"Open wound of finger(s), NOS",5,4,0,223.0,3.0,0
+2,2,40.1,8,3,1,For  IV injection,1,1,2.0,110,70,99,20,36.0,98,5,Polyneuropathy in neoplastic disease (C00-D48+),1,5,0,54.0,2.0,0
+2,2,48.6,6,2,1,ant. chest pain,1,1,2.0,150,90,92,20,36.2,98,2,Ischaemic chest pain,2,2,0,1591.0,2.0,0
+2,2,69.5,3,1,2,Open Wound,1,1,2.0,110,70,80,18,36.6,98,4,"Open wound of other parts of head, face",1,4,0,274.0,3.0,0
+2,2,24.1,12,3,1,ant. chest pain,1,1,3.0,140,90,102,20,36.3,96,4,Ischaemic chest pain,1,4,0,526.0,2.0,0
+2,2,24.6,10,3,2,lip laceration,1,1,3.0,110,70,84,20,36.0,97,5,Open wound of lip,1,5,0,98.0,2.0,0
+2,1,26.8,11,3,2,"ocular pain, Rt.",1,1,3.0,120,70,78,20,36.2,96,4,Corneal abrasion,1,4,0,72.0,2.0,0
+2,1,29.3,12,3,1,right lower abdominal pain,1,1,3.0,110,70,80,20,36.1,98,4,Unspecified abdominal pain,1,4,0,755.0,5.0,0
+2,1,31.7,12,3,1,abd pain,1,1,3.0,110,36.,100,24,36.5,100,4,"Maternal care for cervical incompetence, less than 22 weeks pregnant",1,4,0,182.0,3.0,0
+2,1,36.4,8,3,1,Vaginal Bleeding,1,1,3.0,120,80,80,20,36.4,98,4,"Ectopic pregnancy, unspecified",1,4,0,477.0,4.0,0
+2,2,48.1,5,3,2,eye pain left eye,1,1,3.0,110,70,66,20,36.1,100,4,"Open wound of other parts of head, face",1,4,0,8100.0,2.0,0
+2,2,50.4,6,2,1,Rt. flank pain,1,1,3.0,150,100,72,20,36.3,98,4,Ureteric stone,1,4,0,766.0,3.0,0
+2,2,50.7,17,3,1,ant. chest pain,1,1,3.0,140,100,80,20,36.4,98,2,Unstable angina,2,2,0,362.0,3.0,0
+2,1,52.3,12,3,1,headache,1,1,3.0,120,80,80,20,36.1,98,4,"Cerebral infarction, unspecified",2,4,0,789.0,4.0,0
+2,1,68.8,11,3,1,dyspnea,1,1,3.0,140,80,98,20,36.7,96,3,Adrenocortical insufficiency NOS,1,3,0,20821.0,5.0,0
+2,2,73.5,12,3,1,ant. chest pain,1,1,3.0,140,90,80,20,36.0,98,2,Unstable angina,2,2,0,301.0,2.0,0
+2,2,77.1,12,3,1,dyspnea,1,1,3.0,110,70,65,20,36.5,95,4,"Heart failure, unspecified",2,4,0,10254.0,4.0,0
+2,1,81.7,7,3,1,epigastric pain,1,1,3.0,150,90,94,20,36.5,99,4,Unspecified abdominal pain,1,4,0,8109.0,3.0,0
+2,1,85.5,11,3,1,"Pain, Abdomen",1,1,3.0,100,60,76,20,36.4,100,4,"Upper abdominal pain, unspecified",2,4,0,10010.0,2.0,0
+2,1,30.0,10,4,1,Vaginal Bleeding,1,1,4.0,120,80,80,20,36.0,98,3,"Spontaneous preterm labour, 22 weeks or more and less than 34weeks pregnagnt",2,3,0,59.0,4.0,0
+2,1,31.1,7,4,1,Abdominal pain (finding),1,1,4.0,100,60,100,20,36.3,98,3,"Preterm labour without delivery, 22 weeks or more and less than 34weeks pregnant",2,3,0,123.0,4.0,0
+2,2,48.5,4,3,2,oral bleeding,1,1,4.0,120,70,78,20,36.6,98,4,Traumatic secondary and recurrent haemorrhage,1,4,0,188.0,3.0,0
+2,1,54.9,6,4,2,post neck pain,1,1,4.0,130,80,86,20,36.2,96,2,Closed fracture of second cervical vertebra,2,2,0,399.0,3.0,0
+2,1,69.1,8,3,1,Lt flank pain,1,1,4.0,120,80,80,20,36.0,98,3,Unspecified abdominal pain,1,3,0,343.0,4.0,0
+2,1,77.5,6,3,1,"ocular pain, both",1,1,4.0,130,80,96,20,36.4,98,4,Ocular pain,1,4,0,107.0,2.0,0
+2,2,81.7,13,3,2,"ocular pain, Lt.",1,1,4.0,130,80,82,20,36.3,96,4,Burn of cornea and conjunctival sac,1,4,0,180.0,3.0,0
+2,2,20.9,4,3,2,lip laceration,1,1,5.0,110,70,76,20,36.6,98,4,"Open wound of lip and oral cavity, part unspecified",1,4,0,747.0,2.0,0
+2,2,35.6,8,3,2,decerased visual acuity,1,1,6.0,130,80,64,20,36.3,99,4,Traumatic hyphaema,1,4,0,182.0,3.0,0
+2,2,65.6,17,4,2,ant. chest pain,1,1,6.0,측불,측불,114,24,36.2,96,2,Contusion of abdomen wall,7,2,0,36.0,3.0,0
+2,1,19.3,6,3,2,Foreign body in throat,1,0,,120,80,68,20,36.4,98,5,Swallowed foreign body NOS,1,5,0,187.0,2.0,0
+2,1,22.0,9,3,1,swelling,1,0,,110,80,90,20,36.1,99,4,Submandibular abscess,2,4,0,709510.0,3.0,0
+2,1,27.5,11,3,1,Vaginal Bleeding,1,0,,100,60,110,20,36.1,100,3,Threatened abortion,1,3,0,375.0,5.0,0
+2,2,34.8,4,4,1,fever,1,0,,110,60,76,20,37.3,98,4,"Viral infection, unspecified",2,4,0,9520.0,2.0,0
+2,1,35.6,1,3,1,vaginal discharge,1,0,,100,70,69,20,36.3,99,3,"Premature rupture of membranes, onset of labor within 24 hours, Unspecified",2,3,0,23.0,2.0,0
+2,1,47.8,6,1,1,dizziness,1,0,,120,80,76,20,36.5,98,3,Dizziness and giddiness,1,3,0,461.0,1.0,0
+2,2,49.4,5,3,1,abdomen distension,1,0,,100,60,102,20,36.4,97,5,"Cirrhosis (of liver) NOS, unspecified",1,5,0,8056.0,2.0,0
+2,1,53.5,10,2,1,dizziness,1,0,,120,80,80,20,36.0,98,3,Dizziness and giddiness,1,3,0,10302.0,2.0,0
+2,2,54.0,5,3,1,behavior change,2,0,,110,70,77,20,36.1,96,2,Alcoholic encephalopathy,1,2,0,996.0,3.0,0
+2,2,57.9,7,3,1,LOC - Loss of consciousness,1,0,,130,100,63,20,36.4,98,3,Other syncope and collapse,2,3,0,700875.0,2.0,0
+2,1,66.9,7,2,1,general weakness,1,0,,110,70,80,20,36.0,98,3,"Spondylopathy in other infectious and parasitic diseases classified elsewhere, lumbar region",2,3,0,10575.0,2.0,0
+2,1,67.7,12,3,1,Amnesia,1,0,,130,90,64,20,36.0,96,3,Transient global amnesia,1,3,0,9169.0,3.0,0
+2,2,68.9,12,2,1,epistaxis,1,0,,140,100,96,20,36.1,96,3,Epistaxis,1,3,0,196.0,5.0,0
+2,2,69.2,5,2,1,dizziness,1,0,,150,90,68,20,36.8,98,3,Cerebrovascular accident NOS,2,3,0,596.0,3.0,0
+2,1,76.0,8,2,1,syncope,1,0,,130,80,71,20,36.3,100,2,"Cerebral infarction, unspecified",2,2,0,481.0,2.0,0
+2,2,77.8,8,4,1,G/W-General weakness,1,0,,80,50,74,20,36.5,95,2,Ventricular tachycardia,2,2,0,589.0,3.0,0
+2,2,78.9,5,2,1,mental change,1,0,,120,80,86,22,36.4,95,2,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,2,2,0,1995.0,3.0,0
+2,2,80.8,2,3,1,dysuria,1,0,,120,80,94,20,36.4,97,4,Dysuria,1,4,0,1000.0,2.0,0
+2,2,80.9,17,2,1,dizziness,1,0,,130,90,80,20,36.2,99,3,Dizziness and giddiness,1,3,0,310.0,4.0,0
+2,1,81.0,2,2,2,"Sensory, Decreased",1,0,,170,100,78,20,36.6,98,3,"Cord compression, unspecified",7,3,0,475.0,5.0,0
+2,2,86.9,8,4,1,orthopnea,1,0,,150,80,62,20,36.2,98,3,Dyspnoea,2,3,0,887.0,2.0,0

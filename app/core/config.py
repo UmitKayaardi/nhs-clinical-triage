@@ -40,6 +40,10 @@ class Settings(BaseSettings):
     GROQ_MODEL_NAME: str = Field(default="openai/gpt-oss-20b")
     LLM_TEMPERATURE: float = Field(default=0.0)  # deterministic output, no creative guessing
     LLM_MAX_TOKENS: int = Field(default=1024)
+    # gpt-oss reasoning effort (low | medium | high); "low" saves tokens on the free tier.
+    LLM_REASONING_EFFORT: Optional[str] = Field(default="low")
+    # Agent 4 -> Agent 3 repair loop: re-prompts after a rejected output.
+    LLM_MAX_REPAIR_ATTEMPTS: int = Field(default=2)
 
     # --- Whisper / Audio ---
     WHISPER_MODEL_NAME: str = Field(default="base.en")
@@ -55,6 +59,13 @@ class Settings(BaseSettings):
     RETRIEVAL_WEIGHT_VITALS: float = Field(default=0.5)
     RETRIEVAL_WEIGHT_MEDICATION: float = Field(default=0.3)
 
+    # --- WP2: weak-evidence warning (threshold tuned on the MIMIC validation split) ---
+    LOW_EVIDENCE_THRESHOLD: float = Field(default=0.50)
+    EVIDENCE_MIN_AGREEMENT: float = Field(default=0.6)
+
+    # --- WP3: NEWS2 clinical safety net in Agent 4 ---
+    NEWS2_SAFETY_NET_ENABLED: bool = Field(default=True)
+
     # --- Agent 5: Twilio WhatsApp alerting ---
     # All four must be set for real messages to be sent. If any is
     # missing, or TWILIO_TEST_MODE is true, alerts are logged as "mocked"
@@ -68,6 +79,12 @@ class Settings(BaseSettings):
     TWILIO_RETRY_BACKOFF_SECONDS: float = Field(default=1.0)
     # Severities that trigger a WhatsApp alert (the workflow spec: High only).
     ALERT_ON_SEVERITIES: List[str] = Field(default=["High"])
+
+    # --- Agent 5: n8n orchestration (optional; falls back to direct Twilio) ---
+    N8N_WEBHOOK_URL: Optional[str] = Field(default=None)   # e.g. http://localhost:5678/webhook/triage-alert
+    N8N_WEBHOOK_SECRET: Optional[str] = Field(default=None)
+    N8N_TIMEOUT_SECONDS: float = Field(default=5.0)
+    N8N_MAX_RETRIES: int = Field(default=2)
 
     # --- Agents 6 & 7: monitoring, drift and bias ---
     MONITORING_WINDOW_DAYS: int = Field(default=30)
