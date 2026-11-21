@@ -256,7 +256,7 @@ def generate_triage_report(
     Raises:
         LLMGenerationError: API failure, or every attempt rejected by the guardrail.
     """
-    completion_fn = completion_fn or groq_completion
+    completion_fn = groq_completion if completion_fn is None else completion_fn
     max_repairs = settings.LLM_MAX_REPAIR_ATTEMPTS if max_repairs is None else max_repairs
     messages = build_messages(transcript, db_context, evidence, structured_context)
     params = llm_params()

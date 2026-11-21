@@ -5,7 +5,8 @@ Rule: a new session reads this file and continues from the **first unticked box*
 Python: global `Python 3.12.10` (no project venv; all requirements already installed there).
 
 ## Status
-- **Current step:** Phase 0 done — waiting for the student's answers to the pre-flight questions (sent 21 Nov 2026).
+- **Current step:** WP1 report stage (`evaluation/report.py`: metrics.json, summary.md, figures, CV, subgroups) while LLM day-1 run fills the cache.
+- **Bug fixed:** empty `CachedCompletion` was falsy -> first 10 calls bypassed the cache (fixed with `is None`).
 - **LLM runs (WP1):** not started.
 
 ## Phase 0 — pre-flight
@@ -35,35 +36,35 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 10. At the end give the full list of Space secrets/variables.
 
 ## WP1 — Offline evaluation
-- [ ] KTAS download script + `data/external/ktas/` + SOURCE.md
-- [ ] KTAS cleaning module + preprocessing log
-- [ ] MIMIC loader (labels via existing `map_acuity_to_severity`)
-- [ ] Splits (MIMIC grouped 70/15/15, KTAS stratified 70/15/15) saved to JSON
-- [ ] Retrieval leakage control (`allowed_stay_ids` / index from records) + test
-- [ ] Metrics module (acc, bal-acc, P/R/F1, CM, kappa, under/over-triage, AUC, bootstrap CI, McNemar)
-- [ ] Baselines S0, S1 (tuned k/weights), S2a LR, S2b RF + 5-fold CV
-- [ ] LLM cache + budget/resume (`--max-llm-calls`)
-- [ ] S3 / S4 / S4-noNEWS2 runners (MIMIC test, KTAS 120 sample, KB=MIMIC and KB=KTAS-train)
-- [ ] LLM runs complete (cache full)
+- [x] KTAS download script + `data/external/ktas/` + SOURCE.md (official PLoS S1, CC BY 4.0, committed)
+- [x] KTAS cleaning (`evaluation/data.py::load_ktas`): 1,267 rows kept; 19 Korean complaints translated; F/C, C/S expanded; '측불' -> NaN; BT C->F
+- [x] MIMIC loader: 207 labelled stays / 56 patients; 1 Celsius temp converted; pain non-numeric -> NaN
+- [x] Splits saved: MIMIC 145/31/31 (30/15/11 patients); KTAS 886/190/191. KTAS LLM sample = 117 (High test has only 37)
+- [~] Retrieval leakage control implemented (`allowed_stay_ids`, `index=`, `build_index`); unit test still TODO
+- [x] Metrics module `evaluation/metrics.py`
+- [~] Baselines S0/S1/S2 + tuning in `evaluation/baselines.py` (CV + runner in scripts/evaluate.py TODO)
+- [x] LLM cache + budget/resume (`evaluation/llm_cache.py`, throttle 8K TPM, daily-limit stop)
+- [x] S3 / S4 / S4-noNEWS2 runners (`evaluation/llm_runner.py`, `evaluation/runner.py::LLM_JOBS`)
+- [ ] LLM runs complete (cache full) -- day 1 started 21 Nov 00:30 with `python scripts/evaluate.py --llm-only --max-llm-calls 110` (log: evaluation/cache/run_day1.log). Total needed ~ 31x2 + 117x3 = 413 cases (+repairs). Resume daily with `python scripts/evaluate.py --llm-only --max-llm-calls 120`, then `--all`
 - [ ] Subgroup fairness, low-evidence analysis, latency, retrieval quality
 - [ ] metrics.json, summary.md, errors_*.csv, figures; copy to report_assets/figures
 - [ ] WP1 unit tests
 
 ## WP2 — Weak-evidence warning
-- [ ] evidence strength + threshold tuned on MIMIC validation (`LOW_EVIDENCE_THRESHOLD`)
-- [ ] fields in response + prompt flag + yellow banner
+- [x] `assess_evidence()` + `evaluation/evidence.py`; T=0.50 chosen on MIMIC development OOF (validation-only too noisy, both tables kept); config default 0.50
+- [~] fields in response + prompt flag done; yellow banner (UI) TODO
 
 ## WP3 — Guardrail repair loop + NEWS2
-- [ ] Repair loop (`LLM_MAX_REPAIR_ATTEMPTS=2`)
-- [ ] NEWS2 scoring + override rules + tests against official chart
+- [x] Repair loop (`LLM_MAX_REPAIR_ATTEMPTS=2`) in `llm_service.generate_triage_report` (tests TODO)
+- [~] NEWS2 scoring + override rules (`app/services/news2.py`, wired into pipeline); tests TODO
 
 ## WP4 — Agent trace
-- [ ] Trace helper + console log format
-- [ ] `agent_trace` column (schema.py + Alembic) + `GET /api/v1/sessions/{id}/trace`
+- [x] Trace helper + console log format (`app/services/trace.py`)
+- [~] `agent_trace` column + schema.py auto-add + endpoint done; Alembic revision TODO
 - [ ] Agent Trace UI view
 
 ## WP5 — n8n
-- [ ] Backend n8n client with fallback + tests
+- [~] Backend n8n client with fallback (`app/services/n8n_service.py`, `triage_routes.dispatch_alert`); tests TODO
 - [ ] `n8n/triage_alert_workflow.json` + `n8n/README.md`
 - [ ] Live n8n run (student steps)
 

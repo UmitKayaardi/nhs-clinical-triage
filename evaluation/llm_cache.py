@@ -26,7 +26,7 @@ from evaluation.common import CACHE_DIR
 
 CACHE_PATH = CACHE_DIR / "llm_cache.jsonl"
 TPM_LIMIT = 8000
-EST_TOKENS_PER_CALL = 1700
+EST_TOKENS_PER_CALL = 2400  # prompt (~1.3K) + reserved max_tokens headroom
 
 
 class BudgetExhausted(Exception):
