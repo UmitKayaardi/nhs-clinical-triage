@@ -1,0 +1,17 @@
+{
+  "agent": "3 Clinical Reasoning",
+  "input": {
+    "attempt": 1,
+    "repair": false,
+    "user_message": "Patient statement: \"Crushing central chest pain spreading to my left arm, sweating and feeling sick for 40 minutes\"\nStructured intake data:\n- Age: 62\n- Sex: male\n- Vital signs: Temp 98.2 F, HR 112, RR 22, SpO2 94%, BP 104/68\n- Pain score (0-10): 9\n- Consciousness (AVPU): alert\n- Arrival mode: ambulance\n- Injury-related presentation: no",
+    "evidence_strength": "strong"
+  },
+  "output": {
+    "raw_output": "{\"Symptoms\":[\"crushing central chest pain\",\"pain spreading to left arm\",\"sweating\",\"feeling sick\"],\"Duration\":\"40 minutes\",\"Possible_Conditions\":[\"Acute coronary syndrome\",\"Myocardial infarction\",\"Unstable angina\"],\"Severity\":\"High\",\"Confidence\":\"High\",\"Reasoning\":\"Chest pain radiating to left arm with diaphoresis, high pain score 9, tachycardia 112, RR 22, SpO2 94% and BP 104/68 meets high-risk criteria for possible ACS; historical cases with similar presentation were triaged High.\",\"Required_Actions\":[\"ECG within 10 minutes\",\"Administer aspirin 325mg chewable\",\"Notify cardiology\",\"Prepare..."
+  },
+  "status": "ok",
+  "duration_ms": 1223.7,
+  "messages_to": [
+    "Agent 4"
+  ]
+}

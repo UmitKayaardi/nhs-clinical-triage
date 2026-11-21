@@ -1,0 +1,32 @@
+{
+  "agent": "1 Intake (structured, no transcription needed)",
+  "input": {
+    "intake_mode": "structured",
+    "fields": [
+      "age",
+      "arrival_mode",
+      "chief_complaint",
+      "gender",
+      "injury",
+      "vitals"
+    ]
+  },
+  "output": {
+    "chief_complaint": "Crushing central chest pain spreading to my left arm, sweating and feeling sick for 40 minutes",
+    "vitals": {
+      "temperature": 98.2,
+      "heart_rate": 112.0,
+      "resp_rate": 22.0,
+      "o2sat": 94.0,
+      "sbp": 104.0,
+      "dbp": 68.0,
+      "pain": 9.0,
+      "consciousness": "alert"
+    }
+  },
+  "status": "ok",
+  "duration_ms": 0.0,
+  "messages_to": [
+    "Agent 2"
+  ]
+}

@@ -1,5 +1,26 @@
 # NHS Triage Assistant — Setup Instructions
 
+## Quick commands (CN7050 additions)
+
+```bash
+pip install -r requirements.txt
+python -m pytest                                   # 121 tests, no network needed
+python scripts/run_local_demo.py                   # app on a copy of the DB: Gradio :7860, FastAPI :8000
+python scripts/evaluate.py --all --offline         # rebuild all evaluation numbers/figures from the cache
+python scripts/evaluate.py --all --max-llm-calls 120   # continue LLM runs (Groq free tier), then rebuild
+python -m scripts.download_ktas                    # re-download the KTAS validation data (PLoS ONE S1)
+python scripts/build_report_assets.py              # regenerate report_assets/ (environment, JSON examples, facts)
+python scripts/take_screenshots.py                 # Playwright screenshots into report_assets/screenshots/
+```
+
+n8n (Agent 5 orchestration): see [`n8n/README.md`](n8n/README.md) — `npx n8n`, import
+`n8n/triage_alert_workflow.json`, add the Twilio credential, Publish, then set `N8N_WEBHOOK_URL` and
+`N8N_WEBHOOK_SECRET` in `.env` (or run `python scripts/run_local_demo.py --n8n-url http://localhost:5678/webhook/triage-alert`
+with `TRIAGE_WEBHOOK_SECRET` set in the shell).
+
+Whisper needs `ffmpeg` on PATH. Without an admin install: `pip install imageio-ffmpeg`, copy its binary to
+`.local/bin/ffmpeg.exe`; `run_local_demo.py` adds `.local/bin` to PATH automatically.
+
 > **Note:** this guide covers the original PostgreSQL/Docker setup. The Alembic
 > folder already exists, so skip `alembic init` and run `alembic upgrade head`.
 > See README.md for the 7-agent architecture, the Hugging Face deployment and

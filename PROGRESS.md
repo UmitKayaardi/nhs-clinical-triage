@@ -5,7 +5,9 @@ Rule: a new session reads this file and continues from the **first unticked box*
 Python: global `Python 3.12.10` (no project venv; all requirements already installed there).
 
 ## Status
-- **Current step:** WP1 report stage (`evaluation/report.py`: metrics.json, summary.md, figures, CV, subgroups) while LLM day-1 run fills the cache.
+- **Current step:** WP9 Playwright screenshots (`scripts/take_screenshots.py`), then PR/deploy. LLM runs continue daily.
+- **LLM cache status (21 Nov 01:15):** 102 entries. Done: mimic:S4-promptv1 31/31, mimic-val:S4 31/31, mimic:S4 31/31, mimic:S3 10/31. Remaining: mimic:S3 21, ktas:S4 kb=mimic-all 117, ktas:S4 kb=ktas-train 117, ktas:S3 117 (~372 calls, ~3 days). Next day: `python scripts/evaluate.py --llm-only --max-llm-calls 120` then finally `python scripts/evaluate.py --all --offline` and `python scripts/build_report_assets.py`.
+- **Local helpers:** ffmpeg at `.local/bin/ffmpeg.exe` (imageio-ffmpeg); demo DB copy `.local/demo.db`; demo audio `demo/demo_patient_chest_pain.wav`.
 - **Prompt change (fact for report):** prompt v1 (previous release: 'assign Low if no red flags; NEVER default to Medium/High') under-triaged MIMIC test: acc 0.290, under-triage 0.645, High recall 0.176 (31 stays). Prompt v2 (ESI/KTAS definitions, high-risk complaints stay High, uncertain -> more urgent) written from triage definitions and checked on MIMIC **validation** first: acc 0.581, macro-F1 0.551, under-triage 0.161, High recall 0.882 (31 stays). v2 is default (`LLM_PROMPT_VERSION=v2`); v1 kept as ablation job `mimic:S4-promptv1`. Note: v2 was written after seeing v1 test errors -> state this in the report as a limitation.
 - **Tests:** 119 passing (44 original + 75 new).
 - **Bug fixed:** empty `CachedCompletion` was falsy -> first 10 calls bypassed the cache (fixed with `is None`).
@@ -44,17 +46,17 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 - [x] Splits saved: MIMIC 145/31/31 (30/15/11 patients); KTAS 886/190/191. KTAS LLM sample = 117 (High test has only 37)
 - [x] Retrieval leakage control (`allowed_stay_ids`, `index=`, `build_index`) + tests (`tests/test_evaluation.py`)
 - [x] Metrics module `evaluation/metrics.py`
-- [~] Baselines S0/S1/S2 + tuning in `evaluation/baselines.py` (CV + runner in scripts/evaluate.py TODO)
+- [x] Baselines S0/S1/S2 + tuning + 5-fold CV (`evaluation/baselines.py`, `evaluation/report.py`)
 - [x] LLM cache + budget/resume (`evaluation/llm_cache.py`, throttle 8K TPM, daily-limit stop)
 - [x] S3 / S4 / S4-noNEWS2 runners (`evaluation/llm_runner.py`, `evaluation/runner.py::LLM_JOBS`)
 - [ ] LLM runs complete (cache full) -- day 1 started 21 Nov 00:30 with `python scripts/evaluate.py --llm-only --max-llm-calls 110` (log: evaluation/cache/run_day1.log). Total needed ~ 31x2 + 117x3 = 413 cases (+repairs). Resume daily with `python scripts/evaluate.py --llm-only --max-llm-calls 120`, then `--all`
-- [ ] Subgroup fairness, low-evidence analysis, latency, retrieval quality
-- [ ] metrics.json, summary.md, errors_*.csv, figures; copy to report_assets/figures
+- [x] Subgroup fairness, low-evidence analysis, latency, retrieval quality (code in `evaluation/report.py`; numbers final once LLM runs complete)
+- [~] metrics.json, summary.md, errors_*.csv, figures generated (`--all --offline`); regenerate after LLM runs complete
 - [x] WP1 unit tests (`tests/test_evaluation.py`, 10 tests)
 
 ## WP2 — Weak-evidence warning
 - [x] `assess_evidence()` + `evaluation/evidence.py`; T=0.50 chosen on MIMIC development OOF (validation-only too noisy, both tables kept); config default 0.50
-- [~] fields in response + prompt flag done; yellow banner (UI) TODO
+- [x] fields in response + prompt flag + yellow banner on cards
 
 ## WP3 — Guardrail repair loop + NEWS2
 - [x] Repair loop (`LLM_MAX_REPAIR_ATTEMPTS=2`) + tests (`tests/test_guardrail_repair.py`)
@@ -63,27 +65,27 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 ## WP4 — Agent trace
 - [x] Trace helper + console log format (`app/services/trace.py`)
 - [x] `agent_trace` column + schema.py auto-add + Alembic `d8e9f0a1b2c3` + endpoint + tests
-- [ ] Agent Trace UI view
+- [x] Agent Trace UI view (Doctor Portal accordion + Clinician Intake accordion)
 
 ## WP5 — n8n
 - [x] Backend n8n client with fallback + tests (`tests/test_n8n_and_trace.py`)
-- [ ] `n8n/triage_alert_workflow.json` + `n8n/README.md`
-- [ ] Live n8n run (student steps)
+- [x] `n8n/triage_alert_workflow.json` + `n8n/README.md`; verified with real n8n 2.48.7 (mocked/skipped/401) in isolated folder `.local/n8n-test`
+- [ ] Live n8n run in student's own n8n + canvas screenshot (student steps in n8n/README.md)
 
 ## WP6 — UI
-- [ ] Clinician Intake tab + demo buttons
-- [ ] Doctor card additions
-- [ ] Evaluation tab
-- [ ] Admin / Supervisor tab
+- [x] Clinician Intake tab + 5 demo buttons (High, Medium, Low, Weak evidence, NEWS2 safety net); verified end to end in browser
+- [x] Doctor card additions (evidence badge, weak banner, NEWS2, override note, similarity table, trace hint)
+- [x] Evaluation tab (reads metrics.json + figures)
+- [x] Admin / Supervisor tab (PIN; health, alert log with channel, accuracy/drift/bias, PMS) + `GET /api/v1/admin/system-health`
 
 ## WP7 — Tests, README, SETUP
-- [ ] All tests green, new tests added
-- [ ] README + SETUP sections
+- [x] All tests green: 121 passed
+- [x] README + SETUP sections (Evaluation, Datasets, n8n, Agent trace, NEWS2, weak evidence; demo PIN labelled)
 
 ## WP8 — Report assets (facts only)
-- [ ] environment.md, agents_table.md, tools_table.md, preprocessing.md, api_interactions.md
-- [ ] json_examples/
-- [ ] REPORT_FACTS.md, SCREENSHOTS.md
+- [x] environment.md, agents_table.md, tools_table.md, preprocessing.md, api_interactions.md (`scripts/build_report_assets.py` regenerates environment + facts)
+- [x] json_examples/ (14 files from a real demo session + LLM cache)
+- [~] REPORT_FACTS.md generated (rerun build_report_assets.py after LLM runs); SCREENSHOTS.md TODO
 
 ## WP9 — Screenshots, deploy, final checks
 - [ ] Playwright screenshots

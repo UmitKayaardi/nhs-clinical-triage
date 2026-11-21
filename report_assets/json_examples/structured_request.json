@@ -1,0 +1,17 @@
+{
+  "chief_complaint": "Crushing central chest pain spreading to my left arm, sweating and feeling sick for 40 minutes",
+  "vitals": {
+    "temperature": 98.2,
+    "heart_rate": 112,
+    "resp_rate": 22,
+    "o2sat": 94,
+    "sbp": 104,
+    "dbp": 68,
+    "pain": 9,
+    "consciousness": "alert"
+  },
+  "age": 62,
+  "gender": "M",
+  "arrival_mode": "ambulance",
+  "injury": false
+}

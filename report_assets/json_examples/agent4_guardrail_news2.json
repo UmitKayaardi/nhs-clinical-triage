@@ -1,0 +1,51 @@
+{
+  "agent": "4 Medical Guardrail (NEWS2 safety net)",
+  "input": {
+    "llm_severity": "High",
+    "vitals": {
+      "temperature": 98.2,
+      "heart_rate": 112.0,
+      "resp_rate": 22.0,
+      "o2sat": 94.0,
+      "sbp": 104.0,
+      "dbp": 68.0
+    },
+    "consciousness": "alert"
+  },
+  "output": {
+    "news2": {
+      "score": 6,
+      "components": {
+        "resp_rate": 2,
+        "o2sat": 1,
+        "sbp": 1,
+        "heart_rate": 2,
+        "temperature": 0,
+        "consciousness": 0
+      },
+      "parameters_used": [
+        "consciousness",
+        "heart_rate",
+        "o2sat",
+        "resp_rate",
+        "sbp",
+        "temperature"
+      ],
+      "any_single_three": false,
+      "assumptions": [
+        "room air assumed (supplemental O2 not recorded): 0 points",
+        "SpO2 scale 1"
+      ]
+    },
+    "final_severity": "High",
+    "safety_override": false,
+    "override_reason": null,
+    "enabled": true
+  },
+  "status": "ok",
+  "duration_ms": 0.1,
+  "messages_to": [
+    "Persistence",
+    "Agent 5"
+  ]
+}

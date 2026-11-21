@@ -1,0 +1,59 @@
+{
+  "agent": "2 Evidence Retrieval",
+  "input": {
+    "query_text": "Crushing central chest pain spreading to my left arm, sweating and feeling sick for 40 minutes",
+    "vitals": {
+      "temperature": 98.2,
+      "heart_rate": 112.0,
+      "resp_rate": 22.0,
+      "o2sat": 94.0,
+      "sbp": 104.0,
+      "dbp": 68.0
+    }
+  },
+  "output": {
+    "cases": [
+      {
+        "stay_id": 35716124,
+        "chief_complaint": "Chest pain",
+        "severity": "High",
+        "similarity": 0.769
+      },
+      {
+        "stay_id": 32287800,
+        "chief_complaint": "Chest pain",
+        "severity": "High",
+        "similarity": 0.723
+      },
+      {
+        "stay_id": 39394858,
+        "chief_complaint": "Chest pain",
+        "severity": "High",
+        "similarity": 0.698
+      },
+      {
+        "stay_id": 39057874,
+        "chief_complaint": "Chest pain",
+        "severity": "High",
+        "similarity": 0.685
+      },
+      {
+        "stay_id": 30324772,
+        "chief_complaint": "Chest pain, Jaw pain, L Arm pain",
+        "severity": "High",
+        "similarity": 0.557
+      }
+    ],
+    "evidence_strength": "strong",
+    "low_evidence": false,
+    "top_similarity": 0.769,
+    "mean_similarity": 0.686,
+    "label_agreement": 1.0,
+    "threshold": 0.5
+  },
+  "status": "ok",
+  "duration_ms": 631.8,
+  "messages_to": [
+    "Agent 3"
+  ]
+}

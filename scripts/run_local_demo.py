@@ -20,6 +20,9 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--keep", action="store_true", help="reuse .local/demo.db if it exists")
     p.add_argument("--port", type=int, default=7860)
+    p.add_argument("--n8n-url", default=None, help="e.g. http://localhost:5678/webhook/triage-alert")
+    p.add_argument("--n8n-secret-env", default="TRIAGE_WEBHOOK_SECRET",
+                   help="name of the environment variable that holds the n8n webhook secret")
     args = p.parse_args()
     local = ROOT / ".local"
     local.mkdir(exist_ok=True)
@@ -28,6 +31,10 @@ def main() -> None:
         shutil.copy2(ROOT / "triage_data.db", demo_db)
     os.environ["DATABASE_URL"] = f"sqlite:///{demo_db.as_posix()}"
     os.environ.setdefault("TWILIO_TEST_MODE", "true")
+    if args.n8n_url:
+        os.environ["N8N_WEBHOOK_URL"] = args.n8n_url
+        if os.environ.get(args.n8n_secret_env):
+            os.environ["N8N_WEBHOOK_SECRET"] = os.environ[args.n8n_secret_env]
     os.environ["GRADIO_SERVER_PORT"] = str(args.port)
     os.environ.setdefault("AUDIO_TEMP_DIR", str(local / "audio"))
     ffmpeg_dir = local / "bin"
