@@ -20,10 +20,19 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 - [x] All 4 PDFs present; `docs/coursework/` added to `.gitignore`.
 - [x] KTAS source reachable: PLoS ONE Supporting Information S1 (`journal.pone.0216972.s001`, XLSX, sheet `N=1267 data`, 1,267 × 24, SHA-256 `f631c951…beb0`), coding sheet S2. Licence on page: CC BY 4.0. KTAS_expert counts match plan (High 246 / Medium 487 / Low 534). S2 coding: Sex 1=Female, 2=Male; mistriage 1=over, 2=under.
 - [x] Other facts: ffmpeg not on PATH (Whisper audio cannot run locally yet); Playwright not installed; MIMIC labelled stays come from 56 of 64 patients; committed DB has 0 triage_sessions.
-- [ ] Student answers received → record decisions below.
+- [x] Student answers received (21 Nov 2026) → decisions below.
 
-## Decisions (from student answers)
-- (pending)
+## Decisions (from student answers, 21 Nov 2026)
+1. Token removed from `origin` URL (done); student revokes the PAT himself.
+2. Full LLM plan (MIMIC test all + KTAS 120 stratified), spread over several days. Order: MIMIC first, then KTAS. Start LLM runs early, keep working on other WPs.
+3. n8n via `npx n8n`; give student exact clicks when needed.
+4. `TWILIO_TEST_MODE=true` (mocked) for now. After main WPs: help student try Twilio WhatsApp Sandbox (free trial); if it fails stay mocked.
+5. Install `imageio-ffmpeg`; create demo audio clip from invented text (Windows TTS).
+6. Install Playwright + Chromium.
+7. Keep PIN 1234; label in README as demo-only PIN (no real patient data).
+8. `CN7050_PLAN.md` git-ignored.
+9. Merge PR to `main` and push to Space at end (student types HF token).
+10. At the end give the full list of Space secrets/variables.
 
 ## WP1 — Offline evaluation
 - [ ] KTAS download script + `data/external/ktas/` + SOURCE.md
