@@ -6,3 +6,6 @@ __pycache__/
 .pytest_cache/
 .scratch/
 .claude/
+
+# University coursework material (must not be published)
+docs/coursework/
