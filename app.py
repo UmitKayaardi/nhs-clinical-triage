@@ -768,8 +768,10 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
         gr.Markdown("### Offline evaluation (WP1) — reproducible with `python scripts/evaluate.py --all`")
         gr.Markdown("Systems: S0 majority · S1 retrieval-only (Agent 2) · S2a logistic regression · S2b random "
                     "forest · S3 LLM without evidence · S4 full system (Agents 2+3+4) · S4-noNEWS2 ablation · "
-                    "S4-promptv1 prompt ablation · H triage nurse (KTAS only). Patient-grouped 70/15/15 split for "
-                    "MIMIC, stratified 70/15/15 for KTAS; the evidence index uses training cases only.")
+                    "S4-promptv1 prompt ablation · H triage nurse (KTAS only). MIMIC: prompt developed on a "
+                    "development set (62 stays), configuration frozen, then evaluated once on a held-out test split "
+                    "(31 stays, 9 patients); KTAS: stratified 70/15/15, external evaluation with the frozen prompt. "
+                    "The evidence index uses training cases only; no patient is in two sets.")
         eval_md = gr.Markdown(evaluation_markdown())
         eval_gallery = gr.Gallery(value=evaluation_figures(), label="Figures", columns=2, height="auto",
                                   object_fit="contain")
