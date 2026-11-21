@@ -1,0 +1,18 @@
+{
+  "agent": "4 Medical Guardrail",
+  "input": {
+    "attempt": 1
+  },
+  "output": {
+    "valid": true,
+    "schema": "TriageResult",
+    "severity": "Medium",
+    "confidence": "Medium",
+    "confidence_capped": false
+  },
+  "status": "ok",
+  "duration_ms": 0.2,
+  "messages_to": [
+    "NEWS2 safety net"
+  ]
+}

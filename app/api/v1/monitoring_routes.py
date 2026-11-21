@@ -9,11 +9,18 @@ Monitoring, alerting and drift API routes (Agents 6 and 7).
   POST /api/v1/alerts                  log an alert (critical ones are emailed)
   GET  /api/v1/alerts                  list alerts
   POST /api/v1/alerts/{id}/acknowledge mark an alert as handled
+  GET  /api/v1/admin/system-health     Groq / n8n reachability, DB row counts, models and versions
+
+Feedback (Agent 6) appends a step to the session's agent trace; a drift
+run (Agent 7) returns its own trace step and logs it in the same format.
 
 All routes are protected by X-Admin-Key when ADMIN_API_KEY is set.
 """
 
+import json
+import platform
 import re
+import time
 import uuid
 from datetime import datetime
 from typing import Optional
@@ -21,9 +28,13 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from sqlalchemy.orm import Session
 
+from app.core.config import get_settings
 from app.core.security import require_admin_key
 from app.db.session import get_db
-from app.models.monitoring_models import AlertLog
+from app.models.mimic_models import EDStay, TriageSession
+from app.models.monitoring_models import AlertLog, DriftMetrics, TriageSessionFeedback
+from app.services.n8n_service import N8nOrchestrator
+from app.services.trace import AgentTrace
 from app.schemas.monitoring_schema import AlertRequest, AlertResponse, FeedbackRequest, FeedbackResponse
 from app.services import drift_service, monitoring_service
 from app.services.alert_service import raise_alert
@@ -42,6 +53,7 @@ def _alert_out(alert: AlertLog) -> AlertResponse:
         session_id=str(alert.session_id) if alert.session_id else None,
         timestamp=alert.timestamp,
         acknowledged=alert.acknowledged,
+        channel=alert.channel,
     )
 
 
@@ -52,6 +64,20 @@ def submit_feedback(body: FeedbackRequest, db: Session = Depends(get_db)) -> Fee
         row = monitoring_service.record_feedback(db, body.session_id, body.feedback, body.notes, body.reviewed_by)
     except SessionNotFoundError as exc:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+
+    # Agent 6 step appended to the session's agent trace (WP4).
+    session = db.get(TriageSession, row.session_id)
+    if session is not None:
+        trace = AgentTrace()
+        trace.add(6, input={"feedback": row.feedback.value, "reviewed_by": body.reviewed_by},
+                  output={"ai_severity": session.severity.value if session.severity else None,
+                          "verdict": row.feedback.value, "flagged_for_review": row.flagged_for_review,
+                          "counts_towards": "30-day accuracy, hallucination rate, monthly PMS report"},
+                  status="ok", summary=f"clinician verdict '{row.feedback.value}' recorded",
+                  messages_to=["Agent 7"])
+        steps = json.loads(session.agent_trace) if session.agent_trace else []
+        session.agent_trace = json.dumps(steps + trace.as_list())
+        db.commit()
     return FeedbackResponse(
         id=row.id,
         session_id=str(row.session_id),
@@ -95,7 +121,64 @@ def get_drift(
     persist: bool = Query(True, description="Store a DriftMetrics snapshot and raise alerts"),
     db: Session = Depends(get_db),
 ) -> dict:
-    return drift_service.run_drift_check(db, persist=persist, raise_alerts=persist)
+    start = time.perf_counter()
+    result = drift_service.run_drift_check(db, persist=persist, raise_alerts=persist)
+    trace = AgentTrace()
+    trace.add(7, input={"window_days": result["window_days"], "sessions_in_window": result["sessions_in_window"]},
+              output={"drift_score": result["drift_score"], "data_drift_detected": result["data_drift_detected"],
+                      "bias_detected": result["bias_detected"], "retraining_needed": result["retraining_needed"],
+                      "alerts": [a["alert_type"] for a in result["alerts"]]},
+              status="ok", summary=f"{result['sessions_in_window']} sessions checked, drift score "
+                                   f"{result['drift_score'] if result['drift_score'] is not None else 'n/a'}",
+              messages_to=["Admin dashboard", "Alert log"], duration_ms=(time.perf_counter() - start) * 1000)
+    result["trace"] = trace.as_list()
+    return result
+
+
+@router.get("/admin/system-health", summary="Groq and n8n reachability, DB row counts, models and versions")
+def system_health(db: Session = Depends(get_db)) -> dict:
+    import fastapi
+    import sqlalchemy
+
+    settings = get_settings()
+    groq = {"model": settings.GROQ_MODEL_NAME, "reachable": False}
+    try:  # listing models costs no tokens
+        from app.services.llm_service import _get_client
+
+        start = time.perf_counter()
+        ids = [m.id for m in _get_client().models.list().data]
+        groq.update(reachable=True, model_available=settings.GROQ_MODEL_NAME in ids,
+                    latency_ms=round((time.perf_counter() - start) * 1000, 1))
+    except Exception as exc:  # never leak the key or the raw error
+        groq["error"] = type(exc).__name__
+    return {
+        "timestamp": datetime.utcnow().isoformat(),
+        "groq": groq,
+        "n8n": N8nOrchestrator().health(),
+        "twilio": {"mode": "live" if not settings.TWILIO_TEST_MODE and settings.TWILIO_ACCOUNT_SID else "mocked"},
+        "database": {
+            "backend": settings.DATABASE_URL.split(":", 1)[0],
+            "rows": {
+                "ed_stays (MIMIC KB)": db.query(EDStay).count(),
+                "triage_sessions": db.query(TriageSession).count(),
+                "triage_session_feedback": db.query(TriageSessionFeedback).count(),
+                "alert_log": db.query(AlertLog).count(),
+                "drift_metrics": db.query(DriftMetrics).count(),
+            },
+        },
+        "models": {
+            "agent1_whisper": settings.WHISPER_MODEL_NAME,
+            "agent3_llm": settings.GROQ_MODEL_NAME,
+            "llm_temperature": settings.LLM_TEMPERATURE,
+            "llm_reasoning_effort": settings.LLM_REASONING_EFFORT,
+            "llm_prompt_version": settings.LLM_PROMPT_VERSION,
+            "llm_max_repair_attempts": settings.LLM_MAX_REPAIR_ATTEMPTS,
+            "low_evidence_threshold": settings.LOW_EVIDENCE_THRESHOLD,
+            "news2_safety_net": settings.NEWS2_SAFETY_NET_ENABLED,
+        },
+        "versions": {"python": platform.python_version(), "fastapi": fastapi.__version__,
+                     "sqlalchemy": sqlalchemy.__version__},
+    }
 
 
 @router.post("/alerts", response_model=AlertResponse, status_code=status.HTTP_201_CREATED,

@@ -176,6 +176,7 @@ class _StayRecord:
     vitals: Dict[str, Optional[float]]
     treatments: List[str]
     disposition: Optional[str]
+    medication_text: str = ""
 
 
 class _EvidenceIndex:
@@ -187,14 +188,16 @@ class _EvidenceIndex:
 
 
 _index: Optional[_EvidenceIndex] = None
+_restricted_indexes: Dict[frozenset, _EvidenceIndex] = {}
 _index_lock = threading.Lock()
 
 
 def invalidate_index() -> None:
-    """Drops the cached index (call after re-importing MIMIC data, and in tests)."""
+    """Drops the cached indexes (call after re-importing MIMIC data, and in tests)."""
     global _index
     with _index_lock:
         _index = None
+        _restricted_indexes.clear()
 
 
 def _mean(values: List[Optional[float]]) -> Optional[float]:
@@ -202,22 +205,20 @@ def _mean(values: List[Optional[float]]) -> Optional[float]:
     return round(sum(clean) / len(clean), 1) if clean else None
 
 
-def _build_index(db: Session) -> _EvidenceIndex:
-    stays = (
-        db.query(EDStay)
-        .options(
-            selectinload(EDStay.triage),
-            selectinload(EDStay.diagnoses),
-            selectinload(EDStay.med_reconciliations),
-            selectinload(EDStay.pyxis_medications),
-            selectinload(EDStay.vital_signs),
-        )
-        .all()
+def records_from_db(db: Session, allowed_stay_ids: Optional[Iterable[int]] = None) -> List[_StayRecord]:
+    """Loads one _StayRecord per stay with a chief complaint (optionally only the given stay IDs)."""
+    query = db.query(EDStay).options(
+        selectinload(EDStay.triage),
+        selectinload(EDStay.diagnoses),
+        selectinload(EDStay.med_reconciliations),
+        selectinload(EDStay.pyxis_medications),
+        selectinload(EDStay.vital_signs),
     )
+    if allowed_stay_ids is not None:
+        query = query.filter(EDStay.stay_id.in_(list(allowed_stay_ids)))
 
     records: List[_StayRecord] = []
-    complaint_docs, diagnosis_docs, medication_docs = {}, {}, {}
-    for stay in stays:
+    for stay in query.all():
         triage = stay.triage
         if triage is None or not triage.chief_complaint:
             continue
@@ -235,24 +236,37 @@ def _build_index(db: Session) -> _EvidenceIndex:
                 value = _mean([getattr(v, name, None) for v in stay.vital_signs])
             vitals[name] = value
 
-        sid = stay.stay_id
-        complaint_tokens = _normalise(triage.chief_complaint)
-        complaint_docs[sid] = complaint_tokens
-        diagnosis_docs[sid] = _normalise(" ".join(diagnoses))
-        medication_docs[sid] = _normalise(" ".join(treatments + home_meds))
         records.append(
             _StayRecord(
-                stay_id=sid,
+                stay_id=stay.stay_id,
                 chief_complaint=triage.chief_complaint,
-                complaint_tokens=complaint_tokens,
+                complaint_tokens=_normalise(triage.chief_complaint),
                 severity=triage.severity.value if triage.severity else "Unknown",
                 diagnoses=diagnoses,
                 vitals=vitals,
                 treatments=treatments,
                 disposition=stay.disposition,
+                medication_text=" ".join(treatments + home_meds),
             )
         )
+    return records
 
+
+def build_index(records: List[_StayRecord]) -> _EvidenceIndex:
+    """
+    Builds the TF-IDF evidence index from an explicit list of records.
+
+    Used by the offline evaluation to build a knowledge base from the
+    training split only (so a test case can never retrieve itself), and by
+    the KTAS in-domain setting where records come from KTAS-train.
+    """
+    complaint_docs, diagnosis_docs, medication_docs = {}, {}, {}
+    for rec in records:
+        if not rec.complaint_tokens:
+            rec.complaint_tokens = _normalise(rec.chief_complaint)
+        complaint_docs[rec.stay_id] = rec.complaint_tokens
+        diagnosis_docs[rec.stay_id] = _normalise(" ".join(rec.diagnoses))
+        medication_docs[rec.stay_id] = _normalise(rec.medication_text or " ".join(rec.treatments))
     logger.info("Built evidence index over %d historical stays.", len(records))
     return _EvidenceIndex(
         records,
@@ -260,6 +274,21 @@ def _build_index(db: Session) -> _EvidenceIndex:
         _TfidfField(diagnosis_docs),
         _TfidfField(medication_docs),
     )
+
+
+def _build_index(db: Session) -> _EvidenceIndex:
+    return build_index(records_from_db(db))
+
+
+def _get_restricted_index(db: Session, allowed_stay_ids: Iterable[int]) -> _EvidenceIndex:
+    key = frozenset(int(s) for s in allowed_stay_ids)
+    with _index_lock:
+        index = _restricted_indexes.get(key)
+    if index is None:
+        index = build_index(records_from_db(db, key))
+        with _index_lock:
+            _restricted_indexes[key] = index
+    return index
 
 
 def _get_index(db: Session) -> _EvidenceIndex:
@@ -286,6 +315,9 @@ def find_similar_cases(
     transcribed_text: str,
     vitals: Optional[Dict[str, Optional[float]]] = None,
     limit: Optional[int] = None,
+    allowed_stay_ids: Optional[Iterable[int]] = None,
+    index: Optional[_EvidenceIndex] = None,
+    weights: Optional[Dict[str, float]] = None,
 ) -> List[SimilarCase]:
     """
     Scores every indexed historical stay against the patient and returns
@@ -296,6 +328,12 @@ def find_similar_cases(
         transcribed_text: The patient's transcribed speech or typed complaint.
         vitals: Optional current vitals (keys as in VitalsInput).
         limit: Max cases to return (default settings.MAX_SIMILAR_CASES).
+        allowed_stay_ids: Optional leakage control -- search only these
+            historical stays (the evaluation passes the training split).
+            When omitted, the full production index is used (unchanged).
+        index: Optional prebuilt index (see build_index); overrides the above.
+        weights: Optional override of the RETRIEVAL_WEIGHT_* settings, keys
+            complaint/diagnosis/vitals/medication (used for tuning).
 
     Returns:
         Up to `limit` SimilarCase records with a similarity_score in [0, 1].
@@ -309,12 +347,14 @@ def find_similar_cases(
         logger.warning("No usable keywords or vitals in patient input: %r", transcribed_text)
         return []
 
-    index = _get_index(db)
+    if index is None:
+        index = _get_restricted_index(db, allowed_stay_ids) if allowed_stay_ids is not None else _get_index(db)
     query_token_set = set(query_tokens)
-    w_complaint = settings.RETRIEVAL_WEIGHT_COMPLAINT
-    w_diagnosis = settings.RETRIEVAL_WEIGHT_DIAGNOSIS
-    w_vitals = settings.RETRIEVAL_WEIGHT_VITALS
-    w_medication = settings.RETRIEVAL_WEIGHT_MEDICATION
+    w = weights or {}
+    w_complaint = w.get("complaint", settings.RETRIEVAL_WEIGHT_COMPLAINT)
+    w_diagnosis = w.get("diagnosis", settings.RETRIEVAL_WEIGHT_DIAGNOSIS)
+    w_vitals = w.get("vitals", settings.RETRIEVAL_WEIGHT_VITALS)
+    w_medication = w.get("medication", settings.RETRIEVAL_WEIGHT_MEDICATION)
 
     scored = []
     for rec in index.records:
@@ -327,7 +367,8 @@ def find_similar_cases(
 
         total = w_complaint * complaint_sim + w_diagnosis * diagnosis_sim + w_medication * medication_sim
         weight_sum = w_complaint + w_diagnosis + w_medication
-        text_signal = complaint_sim + diagnosis_sim + medication_sim
+        # Only text fields that carry weight count as evidence of a match.
+        text_signal = (complaint_sim if w_complaint else 0.0) + (diagnosis_sim if w_diagnosis else 0.0)             + (medication_sim if w_medication else 0.0)
 
         vitals_sim = _vitals_similarity(query_vitals, rec.vitals) if query_vitals else None
         if vitals_sim is not None:
@@ -398,3 +439,47 @@ def get_similar_cases_context(db: Session, transcribed_text: str) -> str:
     """
     cases = find_similar_cases(db, transcribed_text)
     return format_cases_as_context(cases)
+
+
+def assess_evidence(
+    cases: List[SimilarCase],
+    threshold: Optional[float] = None,
+    min_agreement: Optional[float] = None,
+) -> Dict:
+    """
+    WP2 -- evidence strength of a retrieval result.
+
+    - top_similarity: similarity of the best case (0 when nothing was found)
+    - mean_similarity: mean similarity of the returned top-k cases
+    - label_agreement: share of the top-k cases whose recorded severity is
+      the most common one among them
+    Rule (threshold T = LOW_EVIDENCE_THRESHOLD, tuned on the MIMIC
+    validation split, see evaluation/results/metrics.json):
+      weak      top_similarity < T (or no cases)
+      strong    top_similarity >= T and mean_similarity >= T and label_agreement >= min_agreement
+      moderate  otherwise
+    low_evidence is True exactly when the strength is "weak".
+    """
+    threshold = settings.LOW_EVIDENCE_THRESHOLD if threshold is None else threshold
+    min_agreement = settings.EVIDENCE_MIN_AGREEMENT if min_agreement is None else min_agreement
+    if not cases:
+        return {"evidence_strength": "weak", "low_evidence": True, "top_similarity": 0.0,
+                "mean_similarity": 0.0, "label_agreement": 0.0, "threshold": threshold}
+    scores = [c.similarity_score for c in cases]
+    top, mean = max(scores), sum(scores) / len(scores)
+    labels = Counter(c.severity for c in cases)
+    agreement = labels.most_common(1)[0][1] / len(cases)
+    if top < threshold:
+        strength = "weak"
+    elif mean >= threshold and agreement >= min_agreement:
+        strength = "strong"
+    else:
+        strength = "moderate"
+    return {
+        "evidence_strength": strength,
+        "low_evidence": strength == "weak",
+        "top_similarity": round(top, 3),
+        "mean_similarity": round(mean, 3),
+        "label_agreement": round(agreement, 3),
+        "threshold": threshold,
+    }

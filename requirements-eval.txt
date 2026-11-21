@@ -1,0 +1,8 @@
+# Extra packages for the offline evaluation and report assets (not needed by the Space).
+-r requirements.txt
+scikit-learn>=1.5,<2
+matplotlib>=3.8,<4
+openpyxl>=3.1,<4
+imageio-ffmpeg>=0.5     # ffmpeg binary for Whisper on machines without ffmpeg
+playwright>=1.45        # scripts/take_screenshots.py (then: python -m playwright install chromium)
+gradio==5.9.1           # UI (installed automatically on the Space by the Gradio SDK)

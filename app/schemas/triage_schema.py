@@ -9,7 +9,7 @@ remapping. This model *is* Agent 4 (Medical Guardrail): anything that
 does not validate against it is rejected before it reaches a clinician.
 """
 
-from typing import Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -25,6 +25,10 @@ class VitalsInput(BaseModel):
     o2sat: Optional[float] = None
     sbp: Optional[float] = None
     dbp: Optional[float] = None
+    # Optional extras used by Agent 3's prompt and the NEWS2 safety net.
+    pain: Optional[float] = Field(default=None, ge=0, le=10, description="Numeric pain score 0-10")
+    consciousness: Optional[Literal["alert", "confusion", "verbal", "pain", "unresponsive"]] = Field(
+        default=None, description="ACVPU level")
 
 
 class PatientContext(BaseModel):
@@ -41,6 +45,8 @@ class StructuredIntakeRequest(PatientContext):
 
     chief_complaint: str = Field(..., min_length=3, max_length=2000)
     vitals: Optional[VitalsInput] = None
+    arrival_mode: Optional[str] = Field(default=None, max_length=50)
+    injury: Optional[bool] = None
 
 
 class SimilarCaseSchema(BaseModel):
@@ -70,6 +76,8 @@ class TriageResult(BaseModel):
     Severity: SeverityLevel
     Reasoning: str = ""
     Required_Actions: List[str] = Field(default_factory=list)
+    # Optional (WP2): the model's stated confidence; capped below High when evidence is weak.
+    Confidence: Optional[Literal["High", "Medium", "Low"]] = None
 
 
 class AlertDispatchSchema(BaseModel):
@@ -78,13 +86,27 @@ class AlertDispatchSchema(BaseModel):
     message_sid: Optional[str] = None
     status: str
     timestamp: str
+    channel: Optional[str] = None  # n8n | twilio_direct | mocked
 
 
 class TriageReportResponse(BaseModel):
-    """Full API response returned by the /process-triage endpoints."""
+    """Full API response returned by the /process-triage endpoints. Fields after `alert` are optional additions."""
 
     transcript: str
     triage_result: TriageResult
     evidence_cases: List[SimilarCaseSchema]
     session_id: Optional[str] = None
     alert: Optional[AlertDispatchSchema] = None
+    # WP2 -- evidence strength from Agent 2
+    evidence_strength: Optional[Literal["strong", "moderate", "weak"]] = None
+    low_evidence: Optional[bool] = None
+    top_similarity: Optional[float] = None
+    # WP3 -- Agent 4 safety net and repair loop
+    llm_severity: Optional[str] = None
+    news2_score: Optional[int] = None
+    news2_components: Optional[Dict[str, int]] = None
+    safety_override: Optional[bool] = None
+    override_reason: Optional[str] = None
+    guardrail_attempts: Optional[int] = None
+    # WP4 -- step-by-step agent trace
+    trace: Optional[List[Dict[str, Any]]] = None

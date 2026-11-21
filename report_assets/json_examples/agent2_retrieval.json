@@ -1,0 +1,59 @@
+{
+  "agent": "2 Evidence Retrieval",
+  "input": {
+    "query_text": "Cold and shivery after waiting outside for a long time, otherwise I feel fine",
+    "vitals": {
+      "temperature": 94.6,
+      "heart_rate": 72.0,
+      "resp_rate": 14.0,
+      "o2sat": 97.0,
+      "sbp": 132.0,
+      "dbp": 78.0
+    }
+  },
+  "output": {
+    "cases": [
+      {
+        "stay_id": 32095131,
+        "chief_complaint": "L Foot pain",
+        "severity": "Medium",
+        "similarity": 0.211
+      },
+      {
+        "stay_id": 37036523,
+        "chief_complaint": "HYPOTHERMIA",
+        "severity": "High",
+        "similarity": 0.206
+      },
+      {
+        "stay_id": 34820898,
+        "chief_complaint": "Dizziness, Diplopia",
+        "severity": "High",
+        "similarity": 0.204
+      },
+      {
+        "stay_id": 36132883,
+        "chief_complaint": "L Foot swelling, L Foot pain",
+        "severity": "Medium",
+        "similarity": 0.2
+      },
+      {
+        "stay_id": 31226423,
+        "chief_complaint": "N/V",
+        "severity": "Medium",
+        "similarity": 0.188
+      }
+    ],
+    "evidence_strength": "weak",
+    "low_evidence": true,
+    "top_similarity": 0.211,
+    "mean_similarity": 0.202,
+    "label_agreement": 0.6,
+    "threshold": 0.5
+  },
+  "status": "ok",
+  "duration_ms": 4.8,
+  "messages_to": [
+    "Agent 3"
+  ]
+}

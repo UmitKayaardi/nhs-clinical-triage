@@ -38,3 +38,4 @@ class AlertResponse(BaseModel):
     session_id: Optional[str]
     timestamp: datetime
     acknowledged: bool
+    channel: Optional[str] = None

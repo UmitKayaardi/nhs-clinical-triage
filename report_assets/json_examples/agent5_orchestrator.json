@@ -1,0 +1,21 @@
+{
+  "agent": "5 Orchestrator & Action",
+  "input": {
+    "severity": "High",
+    "alert_on": [
+      "High"
+    ],
+    "n8n_configured": false
+  },
+  "output": {
+    "channel": "mocked",
+    "status": "mocked",
+    "message_sid": null,
+    "fallback_from_n8n": false
+  },
+  "status": "mocked",
+  "duration_ms": 8.1,
+  "messages_to": [
+    "On-call clinician (WhatsApp)"
+  ]
+}

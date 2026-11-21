@@ -1,0 +1,13 @@
+case_id,complaint,vitals,pain,gender,age,consciousness,true,predicted,llm_severity_before_news2,error_type,top1_similarity,evidence_strength,low_evidence_flag,news2_score,news2_override,kb
+32039794,"DVT, Transfer","temperature=97.6, heart_rate=72, resp_rate=16, o2sat=97, sbp=173, dbp=60",0.0,F,,,High,Medium,Medium,under-triage,0.445,weak,True,0,False,mimic-train
+32007337,"DIARRHEA,FEVER","temperature=98.5, heart_rate=125, resp_rate=22, o2sat=100, sbp=111, dbp=63",4.0,F,,,High,Medium,Medium,under-triage,0.498,weak,True,4,False,mimic-train
+31588683,SHORTNESS OF BREATH,"temperature=97.7, heart_rate=126, resp_rate=20, o2sat=100, sbp=129, dbp=95",0.0,M,,,High,Medium,Medium,under-triage,0.796,strong,False,2,False,mimic-train
+38074673,Clogged foley,"temperature=97.8, heart_rate=66, resp_rate=14, o2sat=99, sbp=165, dbp=51",8.0,F,,,Low,Medium,Medium,over-triage,0.0,weak,True,0,False,mimic-train
+39346340,LOWER EXTREMITY PAIN,"temperature=97.8, heart_rate=64, resp_rate=16, o2sat=99, sbp=177, dbp=76",8.0,M,,,Medium,High,High,over-triage,0.422,weak,True,0,False,mimic-train
+34236274,"R Leg pain, Weakness","temperature=99.9, heart_rate=95, resp_rate=28, o2sat=98, sbp=150, dbp=101",8.0,M,,,Medium,High,High,over-triage,0.644,moderate,False,4,False,mimic-train
+35547415,"Urinary retention, Lower abdominal pain","temperature=98.2, heart_rate=96, resp_rate=16, o2sat=97, sbp=189, dbp=78",0.0,F,,,Medium,High,High,over-triage,0.701,strong,False,1,False,mimic-train
+33256413,Hematuria,"temperature=97.4, heart_rate=77, resp_rate=16, o2sat=97, sbp=137, dbp=48",8.0,F,,,Medium,High,High,over-triage,0.419,weak,True,0,False,mimic-train
+32259573,"Neck pain, Med refill","temperature=98.1, heart_rate=89, resp_rate=18, o2sat=96, sbp=131, dbp=90",10.0,F,,,Medium,High,High,over-triage,0.402,weak,True,0,False,mimic-train
+38687872,Hypertension,"temperature=97.5, heart_rate=65, resp_rate=18, o2sat=96, sbp=218, dbp=72",0.0,F,,,Medium,High,High,over-triage,0.81,moderate,False,0,False,mimic-train
+31283645,SHORTNESS OF BREATH,"temperature=98, heart_rate=109, resp_rate=22, o2sat=100, sbp=148, dbp=77",0.0,M,,,Medium,High,High,over-triage,0.803,strong,False,3,False,mimic-train
+35933027,Abd pain,"temperature=96.8, heart_rate=78, resp_rate=16, o2sat=95, sbp=186, dbp=66",8.0,F,,,Medium,High,High,over-triage,0.802,strong,False,2,False,mimic-train

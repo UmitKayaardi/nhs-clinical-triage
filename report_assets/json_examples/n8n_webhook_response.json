@@ -1,0 +1,23 @@
+{
+  "test_mode_true": {
+    "status": "mocked",
+    "channel": "n8n",
+    "message_sid": null,
+    "session_id": "<session_id>"
+  },
+  "test_mode_false": {
+    "status": "sent",
+    "channel": "n8n",
+    "message_sid": "SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "severity_not_high": {
+    "status": "skipped",
+    "channel": "n8n",
+    "message_sid": null,
+    "reason": "severity Medium does not alert"
+  },
+  "wrong_secret_http_401": {
+    "status": "unauthorized",
+    "channel": "n8n"
+  }
+}

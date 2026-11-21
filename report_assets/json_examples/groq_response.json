@@ -1,0 +1,40 @@
+{
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"Symptoms\":[\"DKA\"],\"Duration\":\"acute\",\"Possible_Conditions\":[\"Diabetic ketoacidosis\",\"Hyperglycemia\",\"Metabolic acidosis\",\"Dehydration\"],\"Severity\":\"High\",\"Confidence\":\"High\",\"Reasoning\":\"DKA is a high‑risk metabolic emergency requiring immediate life‑saving intervention; tachycardia and borderline low BP add urgency. Historical cases of acute severe presentations support a high triage level.\",\"Required_Actions\":[\"Check serum glucose, ketones, electrolytes\",\"Start IV fluids and insulin therapy\",\"Obtain ECG\",\"Re‑check vitals every 15 minutes\"]}"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1463,
+    "completion_tokens": 317,
+    "total_tokens": 1780
+  },
+  "model": "openai/gpt-oss-20b",
+  "note": "content parsed by Agent 4 into TriageResult",
+  "parsed_content": {
+    "Symptoms": [
+      "DKA"
+    ],
+    "Duration": "acute",
+    "Possible_Conditions": [
+      "Diabetic ketoacidosis",
+      "Hyperglycemia",
+      "Metabolic acidosis",
+      "Dehydration"
+    ],
+    "Severity": "High",
+    "Confidence": "High",
+    "Reasoning": "DKA is a high‑risk metabolic emergency requiring immediate life‑saving intervention; tachycardia and borderline low BP add urgency. Historical cases of acute severe presentations support a high triage level.",
+    "Required_Actions": [
+      "Check serum glucose, ketones, electrolytes",
+      "Start IV fluids and insulin therapy",
+      "Obtain ECG",
+      "Re‑check vitals every 15 minutes"
+    ]
+  }
+}

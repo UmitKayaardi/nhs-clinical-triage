@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/api/v1/feedback",
+    "headers": {
+      "X-Admin-Key": "<ADMIN_API_KEY>"
+    },
+    "body": {
+      "session_id": "<session_id>",
+      "feedback": "correct",
+      "notes": null,
+      "reviewed_by": "Dr A"
+    }
+  },
+  "response_201": {
+    "id": 1,
+    "session_id": "<session_id>",
+    "feedback": "correct",
+    "flagged_for_review": false,
+    "timestamp": "2026-11-21T01:10:00"
+  }
+}

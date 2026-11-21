@@ -1,0 +1,13 @@
+{
+  "api": "POST https://api.twilio.com/2010-04-01/Accounts/<ACCOUNT_SID>/Messages.json (twilio SDK messages.create)",
+  "auth": "HTTP Basic <ACCOUNT_SID>:<AUTH_TOKEN>",
+  "params": {
+    "from_": "whatsapp:<TWILIO_WHATSAPP_NUMBER>",
+    "to": "whatsapp:<ON_CALL_NUMBER>",
+    "body": "🚨 TRIAGE ALERT — PRIORITY: HIGH\nChief Complaint: Crushing central chest pain spreading to my left arm\nCase ID: <session_id>\nPatient ID: Not provided\nReasoning: Cardiac-sounding chest pain with tachycardia and diaphoresis.\nAI decision support only — clinician review required."
+  },
+  "response_fields_used": {
+    "sid": "SM...",
+    "status": "queued"
+  }
+}

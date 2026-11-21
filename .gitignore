@@ -6,3 +6,11 @@ __pycache__/
 .pytest_cache/
 .scratch/
 .claude/
+
+# University coursework material (must not be published)
+docs/coursework/
+
+# Local build plan (not published)
+CN7050_PLAN.md
+evaluation/cache/*.log
+.local/

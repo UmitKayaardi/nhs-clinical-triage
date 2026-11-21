@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "url": "http://localhost:5678/webhook/triage-alert",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-Webhook-Secret": "<N8N_WEBHOOK_SECRET>"
+  },
+  "body": {
+    "session_id": "<session_id>",
+    "severity": "High",
+    "chief_complaint": "Crushing central chest pain spreading to my left arm",
+    "reasoning": "Cardiac-sounding chest pain with tachycardia and diaphoresis.",
+    "news2_score": 6,
+    "low_evidence": false,
+    "created_at": "2026-11-21T00:57:41",
+    "message": "🚨 TRIAGE ALERT — PRIORITY: HIGH\nChief Complaint: Crushing central chest pain spreading to my left arm\nCase ID: <session_id>\nPatient ID: Not provided\nReasoning: Cardiac-sounding chest pain with tachycardia and diaphoresis.\nAI decision support only — clinician review required.",
+    "test_mode": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "agent": "1 Intake (structured, no transcription needed)",
+  "input": {
+    "intake_mode": "structured",
+    "fields": [
+      "age",
+      "arrival_mode",
+      "chief_complaint",
+      "gender",
+      "injury",
+      "vitals"
+    ]
+  },
+  "output": {
+    "chief_complaint": "Cold and shivery after waiting outside for a long time, otherwise I feel fine",
+    "vitals": {
+      "temperature": 94.6,
+      "heart_rate": 72.0,
+      "resp_rate": 14.0,
+      "o2sat": 97.0,
+      "sbp": 132.0,
+      "dbp": 78.0,
+      "pain": 0.0,
+      "consciousness": "alert"
+    }
+  },
+  "status": "ok",
+  "duration_ms": 0.0,
+  "messages_to": [
+    "Agent 2"
+  ]
+}
