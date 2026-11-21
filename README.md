@@ -100,7 +100,8 @@ python scripts/evaluate.py --all              # everything; LLM calls are cached
 python scripts/evaluate.py --all --offline    # reproduce every number from the committed cache, no API calls
 ```
 
-- Splits: MIMIC patient-grouped stratified 70/15/15 (145/31/31 stays), KTAS stratified 70/15/15 (886/190/191). Saved in `evaluation/splits/`. Seed 42.
+- MIMIC protocol: prompt v1 → v2 was developed on a **development set** (62 stays, 26 patients). The configuration (prompt v2, retrieval weights, k, evidence threshold, repair attempts, NEWS2) was then **frozen** (`evaluation/frozen_config.json`; held-out runs refuse to start if it changes) and evaluated **once** on a new **held-out test split** (31 stays, 9 patients that were never an LLM query; `evaluation/splits/mimic_split_v2.json`). Training / knowledge base: the remaining 114 stays (21 patients). No patient is in two sets.
+- KTAS: stratified 70/15/15 (886/190/191), external evaluation with the frozen prompt v2. Seed 42 everywhere.
 - Leakage control: during MIMIC evaluation the evidence index holds training stays only (`find_similar_cases(..., allowed_stay_ids=...)` / `index=`); a test proves a test stay never retrieves itself.
 - Systems: S0 majority, S1 retrieval-only vote, S2a logistic regression, S2b random forest, S3 LLM without evidence, **S4 full system**, S4-noNEWS2, S4-promptv1 (previous prompt), H triage nurse (KTAS).
 - Metrics: accuracy, balanced accuracy, precision/recall/F1 (macro, weighted, per class), confusion matrices, linear-weighted kappa, under-/over-triage, High recall, ROC-AUC, 95% bootstrap CIs, 5-fold CV, McNemar, retrieval P@k, latency per agent, guardrail repair rate, NEWS2 overrides, weak-evidence analysis, subgroups by sex and age band.

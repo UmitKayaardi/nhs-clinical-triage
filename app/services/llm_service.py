@@ -332,8 +332,9 @@ def generate_triage_report(
         try:
             result = guardrail_validate(raw)
         except GuardrailRejection as exc:
+            guardrail_ms = (time.perf_counter() - g_start) * 1000
             last_error = str(exc)
-            record.update(valid=False, error=last_error)
+            record.update(valid=False, error=last_error, guardrail_ms=round(guardrail_ms, 3))
             if attempts_out is not None:
                 attempts_out.append(record)
             logger.warning("Guardrail rejected attempt %d: %s", attempt, last_error)
@@ -343,7 +344,7 @@ def generate_triage_report(
                                                                  "action": "repair requested" if retry else "fail safely"},
                           status="error", summary=f"rejected attempt {attempt}: {last_error[:80]}",
                           messages_to=["Agent 3"] if retry else [],
-                          duration_ms=(time.perf_counter() - g_start) * 1000)
+                          duration_ms=guardrail_ms)
             messages = messages[:2] + [
                 {"role": "assistant", "content": (raw or "")[:4000]},
                 {"role": "user", "content": _REPAIR_TEMPLATE.format(error=last_error)},
@@ -353,7 +354,8 @@ def generate_triage_report(
         if evidence and evidence.get("low_evidence") and result.Confidence == "High":
             result.Confidence = "Medium"  # weak evidence caps the stated confidence
             record["confidence_capped"] = True
-        record.update(valid=True, error=None)
+        guardrail_ms = (time.perf_counter() - g_start) * 1000
+        record.update(valid=True, error=None, guardrail_ms=round(guardrail_ms, 3))
         if attempts_out is not None:
             attempts_out.append(record)
         if trace is not None:
@@ -362,7 +364,7 @@ def generate_triage_report(
                               "confidence": result.Confidence, "confidence_capped": record.get("confidence_capped", False)},
                       status="repaired" if attempt > 1 else "ok",
                       summary=f"schema valid on attempt {attempt}", messages_to=["NEWS2 safety net"],
-                      duration_ms=(time.perf_counter() - g_start) * 1000)
+                      duration_ms=guardrail_ms)
         return result
 
     raise LLMGenerationError(

@@ -31,8 +31,8 @@ class LLMJob:
     name: str            # e.g. "mimic:S4:kb=mimic-train"
     dataset: str         # mimic | ktas
     system: str          # S3 | S4
-    kb: str              # none | mimic-train | mimic-all | ktas-train
-    split: str = "test"  # test | validation
+    kb: str              # none | mimic-train | mimic-dev-train | mimic-all | ktas-train
+    split: str = "test"  # test | development | dev-old-test
     prompt: str = "v2"   # Agent 3 prompt version (v1 = ablation of the previous release prompt)
 
 
@@ -58,7 +58,7 @@ def make_index(kb: str, train_df: Optional[pd.DataFrame]):
         return rs.build_index([])
     if kb == "mimic-all":
         return rs.build_index(rs.records_from_db(readonly_mimic_session()))
-    if kb == "mimic-train":
+    if kb in ("mimic-train", "mimic-dev-train"):
         return mimic_index(train_df["stay_id"])
     if kb == "ktas-train":
         return build_kb("ktas", train_df)
@@ -106,8 +106,7 @@ def run_job(job: LLMJob, cases: pd.DataFrame, index, completion: CachedCompletio
             tokens=sum(((a.get("usage") or {}).get("total_tokens") or 0) for a in attempts),
             latency_agent2_ms=out.timings_ms.get("agent2_retrieval"),
             latency_agent3_ms=out.timings_ms.get("agent3_llm"),
-            latency_agent4_ms=round(out.timings_ms.get("agent3_4_reasoning_guardrail", 0)
-                                    - out.timings_ms.get("agent3_llm", 0) + out.timings_ms.get("agent4_news2", 0), 2),
+            latency_agent4_ms=round(out.timings_ms.get("agent4_guardrail", 0.0) + out.timings_ms.get("agent4_news2", 0.0), 3),
             api_calls=completion.api_calls - attempts_before,
         )
         records.append(rec)

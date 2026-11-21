@@ -122,3 +122,65 @@ def ktas_llm_sample(test_df: pd.DataFrame, per_class: int = 40, seed: int = SEED
 def class_counts(labels) -> Dict[str, int]:
     c = Counter(labels)
     return {label: int(c.get(label, 0)) for label in LABELS}
+
+
+# ---------------------------------------------------------------- MIMIC protocol v2 (held-out test)
+V2_PATH = SPLITS_DIR / "mimic_split_v2.json"
+V2_MAX_STAYS_PER_TEST_PATIENT = 9   # no single patient may dominate the small test split
+
+
+def make_mimic_v2(df: pd.DataFrame, seed: int = SEED, n_orders: int = 20000, force: bool = False) -> Dict[str, List[str]]:
+    """
+    Protocol v2 (created 21 Nov 2026, after prompt development):
+      development = old validation + old test splits (used for prompt v1 -> v2 development and tuning)
+      test        = NEW held-out split drawn only from patients of the old TRAIN split, i.e. patients that so far
+                    appeared only in the knowledge base (and in LLM-free tuning folds), never as an LLM query;
+                    patient-grouped, stratified, ~15% of labelled stays, seed 42
+      train       = remaining old-train patients (knowledge base + ML training data for the test run)
+    """
+    if V2_PATH.exists() and not force:
+        return read_json(V2_PATH)["splits"]
+    old = read_json(SPLITS_DIR / "mimic_split.json")["splits"]
+    development = sorted(old["validation"] + old["test"])
+    pool = df[df["case_id"].isin(set(old["train"]))]
+    sizes = pool.groupby("group_id").size()
+    eligible = sizes[sizes <= V2_MAX_STAYS_PER_TEST_PATIENT].index.to_numpy()
+    target = round(0.15 * len(df))
+    overall = df["label"].value_counts(normalize=True)
+    rng = np.random.default_rng(seed)
+    best, best_cost = None, float("inf")
+    for _ in range(n_orders):
+        chosen, n = [], 0
+        for g in rng.permutation(eligible):
+            if n + sizes[g] > target + 1:
+                continue
+            chosen.append(g)
+            n += sizes[g]
+            if n >= target:
+                break
+        part = pool[pool["group_id"].isin(chosen)]
+        props = part["label"].value_counts(normalize=True)
+        cost = abs(n - target) * 0.2 + sum(abs(props.get(c, 0.0) - overall.get(c, 0.0)) for c in ("High", "Medium"))
+        if cost < best_cost:
+            best, best_cost = sorted(chosen), cost
+    test = sorted(pool.loc[pool["group_id"].isin(best), "case_id"])
+    train = sorted(pool.loc[~pool["group_id"].isin(best), "case_id"])
+    split = {"train": train, "development": development, "test": test}
+    groups = {k: set(df[df["case_id"].isin(v)]["group_id"]) for k, v in split.items()}
+    assert not (groups["test"] & groups["development"]) and not (groups["test"] & groups["train"])
+    assert not (groups["train"] & groups["development"])
+    assert sum(len(v) for v in split.values()) == len(df)
+    write_json(V2_PATH, {
+        "dataset": "mimic",
+        "protocol": "v2: development set (prompt development) + new held-out test split",
+        "created": "2026-11-21",
+        "seed": seed,
+        "method": (f"test drawn from old-train patients only; patient-grouped; stratified on High/Medium share; "
+                   f"target {target} stays (15% of {len(df)}); max {V2_MAX_STAYS_PER_TEST_PATIENT} stays per test "
+                   f"patient; best of {n_orders} seeded random patient orders"),
+        "development_source": "mimic_split.json validation + test (used for prompt v1 -> v2 and all tuning)",
+        "id_column": "stay_id",
+        "summary": describe(df, split),
+        "splits": split,
+    })
+    return split

@@ -33,7 +33,8 @@ from evaluation.metrics import (
     mcnemar,
     summarise_cv,
 )
-from evaluation.runner import LLM_JOBS, llm_cases
+from evaluation.frozen import config_hash, current_config, frozen_record
+from evaluation.runner import DEV_SPLITS, LLM_JOBS, llm_cases
 
 SYSTEM_NAMES = {
     "S0": "Majority class",
@@ -77,7 +78,8 @@ def llm_free(dataset: str, parts: Dict[str, pd.DataFrame]) -> Dict:
         "S1": {"best": s1_tune["best"], "grid_size": len(s1_tune["grid"]), "top5": s1_tune["grid"][:5]},
         "S2a": {"best": lr_tune["best"], "grid": lr_tune["grid"]},
         "S2b": {"best": rf_tune["best"], "grid": rf_tune["grid"]},
-        "selection": "macro-F1 on the validation split (ties: accuracy, then smaller k)",
+        "selection": ("macro-F1 on the development set" if dataset == "mimic" else "macro-F1 on the validation split")
+                     + " (ties: accuracy, then smaller k)",
     }
     k, weights = s1_tune["best"]["k"], s1_tune["best"]["weights"]
 
@@ -126,7 +128,7 @@ def cross_validation(dataset: str, parts: Dict[str, pd.DataFrame], s1_cfg: Dict,
     if dataset == "mimic":
         splitter = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=SEED)
         folds = list(splitter.split(dev, dev["label"], dev["group_id"]))
-        method = "5-fold StratifiedGroupKFold on subject_id (train+validation, test untouched)"
+        method = "5-fold StratifiedGroupKFold on subject_id (train + development set, held-out test untouched)"
     else:
         splitter = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)
         folds = list(splitter.split(dev, dev["label"]))
@@ -289,6 +291,16 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
                 "max_repair_attempts": settings.LLM_MAX_REPAIR_ATTEMPTS, "run_stats": llm_stats,
                 "all_llm_runs_complete": llm_complete},
         "datasets": {},
+        "protocol": {
+            "mimic": ("protocol v2: development set = old validation + old test splits (62 stays, 26 patients; prompt "
+                      "v1 -> v2 developed here, LLM-free tuning uses it); held-out test = 31 stays from 9 patients drawn "
+                      "from the old training patients only (never an LLM query before), evaluated once with the frozen "
+                      "configuration; knowledge base and ML training data for the test run = remaining 114 stays / 21 "
+                      "patients"),
+            "ktas": "external evaluation with the frozen configuration (prompt v2), never used for development",
+            "frozen_config": frozen_record(),
+            "live_config_matches_frozen": config_hash(current_config()) == frozen_record()["sha256"],
+        },
     }
 
     # Preprocessing log -> metrics + report_assets/preprocessing.md
@@ -304,7 +316,11 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
               "tuning": free["tuning"], "s1_config": free["s1_config"], "test": free["test"],
               "cross_validation": cv, "retrieval_quality": free["retrieval_quality"]}
         if dataset == "mimic":
-            ds["low_evidence_threshold"] = tune_threshold(parts["train"], parts["validation"])
+            # Frozen value: reproduced with the development-phase split it was chosen on.
+            dev = bundle["dev_parts"]["mimic"]
+            ds["low_evidence_threshold"] = tune_threshold(dev["train"], dev["validation"])
+            ds["low_evidence_threshold"]["chosen_on"] = ("development phase: OOF over old train + old validation "
+                                                          "(176 stays); value then frozen")
             ds["low_evidence_threshold"]["config_value"] = settings.LOW_EVIDENCE_THRESHOLD
         metrics["datasets"][dataset] = ds
         free_preds = free["predictions"]
@@ -313,7 +329,7 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
         jobs = [j for j in LLM_JOBS if j.dataset == dataset]
         llm = llm_section({j.name: job_results.get(j.name) for j in jobs if job_results.get(j.name)}, bundle, ktas_pc)
         ds["llm_systems"] = {j.name: llm[j.name] for j in jobs if j.split == "test" and j.name in llm}
-        ds["llm_validation"] = {j.name: llm[j.name] for j in jobs if j.split == "validation" and j.name in llm}
+        ds["llm_development"] = {j.name: llm[j.name] for j in jobs if j.split in DEV_SPLITS and j.name in llm}
         cases = llm_cases(bundle, dataset, ktas_pc)
         y_sub = cases["label"].tolist()
         if dataset == "ktas":
@@ -345,6 +361,18 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
             comparisons[f"{job.name} vs S4-noNEWS2"] = mcnemar(y, s4, [r["llm_severity"] for r in recs])
             if dataset == "ktas":
                 comparisons[f"{job.name} vs H"] = mcnemar(y, s4, [free_preds["H"][i] for i in ids])
+            for other in [j for j in jobs if j.split == "test" and j.name != job.name and j.kb in (job.kb, "none")
+                          and (j.system == "S3" or j.prompt == "v1")]:
+                ores = job_results.get(other.name)
+                if not ores or not ores["records"]:
+                    continue
+                omap = {r["case_id"]: r for r in ores["records"] if not r.get("failed")}
+                common = [r for r in recs if r["case_id"] in omap]
+                if common:
+                    key = "llm_severity" if other.system == "S3" else "pred"
+                    comparisons[f"{job.name} vs {other.name}"] = mcnemar(
+                        [r["true"] for r in common], [r["pred"] for r in common],
+                        [omap[r["case_id"]][key] for r in common])
             low_ev[job.name] = low_evidence_analysis(recs)
             subgroup_preds[f"S4 ({job.kb})"] = {r["case_id"]: r["pred"] for r in recs}
             if job.kb in ("mimic-train", "mimic-all"):
@@ -398,6 +426,9 @@ HEADER = ("| System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] 
 
 def summary_markdown(metrics: Dict) -> str:
     lines = ["# Evaluation summary (tables only)", "",
+             f"Protocol: MIMIC {metrics['protocol']['mimic']}. KTAS: {metrics['protocol']['ktas']}. "
+             f"Frozen configuration sha256 {metrics['protocol']['frozen_config']['sha256'][:16]}... "
+             f"(live config matches: {metrics['protocol']['live_config_matches_frozen']}).", "",
              f"Generated {metrics['generated_at']} by `python scripts/evaluate.py --all`; seed {metrics['seed']}. "
              f"LLM: {metrics['llm']['model']}, temperature {metrics['llm']['temperature']}, reasoning_effort "
              f"{metrics['llm']['reasoning_effort']}. All LLM runs complete: {metrics['llm']['all_llm_runs_complete']}.", ""]
@@ -407,25 +438,33 @@ def summary_markdown(metrics: Dict) -> str:
         for name, s in ds["split_summary"].items():
             c = s["class_counts"]
             lines.append(f"| {name} | {s['n_cases']} | {s['n_groups']} | {c['Low']} | {c['Medium']} | {c['High']} |")
-        lines += ["", "### Test split -- LLM-free systems", "", HEADER]
+        lines += ["", "### {} -- LLM-free systems".format("Held-out test split" if dataset == "mimic" else "Test split"),
+                  "", HEADER]
         for name, m in ds["test"].items():
             lines.append(_row(f"{name} {SYSTEM_NAMES[name]}", m))
-        lines += ["", "### LLM systems (test split{})".format(" sample" if dataset == "ktas" else ""), "", HEADER]
+        lines += ["", "### LLM systems ({})".format("KTAS test sample, external evaluation, frozen configuration"
+                                                    if dataset == "ktas" else
+                                                    "MIMIC held-out test split, frozen configuration, run once"),
+                  "", HEADER]
         for job, entry in ds["llm_systems"].items():
             for sysname in ("S3", "S4", "S4-noNEWS2", "S4-promptv1"):
                 if sysname in entry:
                     tag = "" if entry["complete"] else f" (INCOMPLETE {entry['n_done']}/{entry['n_target']})"
                     lines.append(_row(f"{sysname} [{job.split(':')[-1]}]{tag}", entry[sysname]))
-        if ds.get("llm_validation"):
-            lines += ["", "### LLM systems on the validation split (prompt check before the test run)", "", HEADER]
-            for job, entry in ds["llm_validation"].items():
-                if "S4" in entry:
-                    lines.append(_row(f"S4 validation [{job.split(':')[-1]}]", entry["S4"]))
+        if ds.get("llm_development"):
+            lines += ["", "### Development set results (prompt development v1 -> v2; NOT held-out)", "",
+                      "Development set = old validation + old test splits; knowledge base = old training split.", "",
+                      HEADER]
+            for job, entry in ds["llm_development"].items():
+                for sysname in ("S4", "S4-noNEWS2", "S4-promptv1"):
+                    if sysname in entry:
+                        lines.append(_row(f"{sysname} development [{job.split(':')[-1]}]", entry[sysname]))
         if dataset == "ktas" and "llm_subset" in ds:
             lines += ["", f"### Same {ds['llm_subset']['n']}-case KTAS subset -- LLM-free systems and nurse", "", HEADER]
             for name, m in ds["llm_subset"]["systems"].items():
                 lines.append(_row(f"{name} {SYSTEM_NAMES[name]}", m))
-        lines += ["", "### 5-fold cross-validation (development = train + validation)", "",
+        tune_name = "development set" if dataset == "mimic" else "validation split"
+        lines += ["", "### 5-fold cross-validation (train + {}; held-out test untouched)".format(tune_name), "",
                   f"Method: {ds['cross_validation']['method']}", "",
                   "| System | Accuracy mean ± sd | Macro-F1 mean ± sd | Balanced acc. mean ± sd | Under-triage mean ± sd |",
                   "|---|---|---|---|---|"]
@@ -434,12 +473,12 @@ def summary_markdown(metrics: Dict) -> str:
                          f"{_f(cvm['f1_macro']['mean'])} ± {_f(cvm['f1_macro']['std'])} | "
                          f"{_f(cvm['balanced_accuracy']['mean'])} ± {_f(cvm['balanced_accuracy']['std'])} | "
                          f"{_f(cvm['under_triage_rate']['mean'])} ± {_f(cvm['under_triage_rate']['std'])} |")
-        lines += ["", "### Tuned hyperparameters (validation macro-F1)", "",
+        lines += ["", f"### Tuned hyperparameters (macro-F1 on the {tune_name})", "",
                   f"- S1: k={ds['s1_config']['k']}, weights={ds['s1_config']['weights']} "
                   f"(val macro-F1 {_f(ds['tuning']['S1']['best']['f1_macro'])})",
                   f"- S2a: {ds['tuning']['S2a']['best']['params']} (val macro-F1 {_f(ds['tuning']['S2a']['best']['f1_macro'])})",
                   f"- S2b: {ds['tuning']['S2b']['best']['params']} (val macro-F1 {_f(ds['tuning']['S2b']['best']['f1_macro'])})",
-                  f"- Best non-LLM system by validation macro-F1: {ds['best_non_llm_by_validation']}"]
+                  f"- Best non-LLM system by {tune_name} macro-F1: {ds['best_non_llm_by_validation']}"]
         lines += ["", "### Retrieval quality (production weights, test queries)", "",
                   "| KB | Queries | No-evidence rate | Mean top-1 similarity | P@1 | P@3 | P@5 |", "|---|---|---|---|---|---|---|"]
         for kb, r in ds["retrieval_quality"].items():
@@ -450,7 +489,9 @@ def summary_markdown(metrics: Dict) -> str:
                       "|---|---|---|---|"]
             for k, v in ds["mcnemar"].items():
                 lines.append(f"| {k} | {v['a_correct_b_wrong']} | {v['a_wrong_b_correct']} | {v['p_value_exact']:.4f} |")
-        perf = [(k, v["agent_performance"]) for k, v in ds["llm_systems"].items() if "agent_performance" in v]
+        perf = ([(f"DEVELOPMENT {k}", v["agent_performance"]) for k, v in ds.get("llm_development", {}).items()
+                 if "agent_performance" in v]
+                + [(k, v["agent_performance"]) for k, v in ds["llm_systems"].items() if "agent_performance" in v])
         if perf:
             lines += ["", "### Agent performance", "",
                       "| Job | Cases | First-pass valid | Repair rate | Failed | NEWS2 overrides | Weak-evidence flags | "

@@ -5,14 +5,18 @@ Rule: a new session reads this file and continues from the **first unticked box*
 Python: global `Python 3.12.10` (no project venv; all requirements already installed there).
 
 ## Status
-- **Current step (21 Nov 01:40):** deployed. NEXT SESSION: (1) `git checkout feature/cn7050-final && git merge main`; (2) `python scripts/evaluate.py --llm-only --max-llm-calls 120` once per day until all jobs complete (MIMIC S3 21 left, KTAS 351 left); (3) `python scripts/evaluate.py --all --offline` + `python scripts/build_report_assets.py`; (4) commit, PR #2-followup, merge, redeploy Space (same space-deploy snapshot procedure: `git checkout space-deploy && git checkout main -- . && git add -A && git add --renormalize . && commit && git push space space-deploy:main`); (5) Twilio sandbox with student.
-- **MIMIC headline (final, 31 test stays):** S4 acc 61.3%, macro-F1 0.391, High recall 82.4%, under-triage 9.7%; S2b acc 71.0%, under-triage 12.9%; S4-promptv1 acc 29.0%, under-triage 64.5%; McNemar S4 vs S2b p=0.63. Weak flag: flagged 12 acc 50.0% vs not flagged 19 acc 68.4%. NEWS2 overrides on MIMIC test: 0.
-- **LLM cache status (21 Nov 01:15):** 102 entries. Done: mimic:S4-promptv1 31/31, mimic-val:S4 31/31, mimic:S4 31/31, mimic:S3 10/31. Remaining: mimic:S3 21, ktas:S4 kb=mimic-all 117, ktas:S4 kb=ktas-train 117, ktas:S3 117 (~372 calls, ~3 days). Next day: `python scripts/evaluate.py --llm-only --max-llm-calls 120` then finally `python scripts/evaluate.py --all --offline` and `python scripts/build_report_assets.py`.
+- **Current step (21 Nov 2026, after protocol fix):** waiting for the daily LLM runs. Do NOT redeploy the Space until every LLM job is complete (student instruction).
+- **Daily routine (student asks each day):** `git checkout feature/cn7050-final` -> `python scripts/evaluate.py --llm-only --max-llm-calls 120` -> `python scripts/evaluate.py --all --offline` -> `python scripts/build_report_assets.py` -> `python -m pytest -q` -> commit + push to GitHub (no Space deploy). Report remaining cases.
+- **After the last LLM job:** same rebuild, PR feature -> main, merge, redeploy Space once (space-deploy snapshot: `git checkout space-deploy && git checkout main -- . && git add -A && git add --renormalize . && git commit && git push space space-deploy:main`), smoke test; then Twilio sandbox help.
+- **LLM work remaining:** 444 cases (MIMIC held-out: S4 31, S3 31, S4-promptv1 31; KTAS: S4 kb=mimic-all 117, S4 kb=ktas-train 117, S3 117) -> >= 444 API calls, ~1,650 tokens each (~733K tokens) -> 4 days at ~120 calls/day (120/120/120/84). Run order in `evaluation/runner.py::LLM_JOBS` (MIMIC held-out first).
+- **MIMIC protocol v2 (student instruction, 21 Nov):** old validation + old test = DEVELOPMENT set (62 stays / 26 patients; prompt v1 -> v2 developed here; all LLM results so far are development results). New HELD-OUT test = 31 stays / 9 patients from old-train patients only (`evaluation/splits/mimic_split_v2.json`); train/KB = 114 stays / 21 patients. LLM-free S0-S2 re-tuned on the development set, CV on train + development.
+- **Frozen configuration:** `evaluation/frozen_config.json` (sha256 77522c1b1d959477...): prompt v2 + weak rule + repair template hashes, model settings, weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, agreement 0.6, repairs 2, NEWS2 on. `evaluation/frozen.py::assert_frozen` blocks every held-out/KTAS job if anything differs; every KTAS job uses prompt v2 (test enforces it). NO CHANGES to prompt/threshold/weights after this point.
+- **Agent 4 latency fix:** guardrail time is measured per attempt (`guardrail_ms`); Agent 4 latency = guardrail + NEWS2 (was derived by subtracting the cached original API latency -> negative). Test `tests/test_agent_timings.py`. Development-set median now 0.09 ms.
+- **Development results (not held-out):** S4 v2 on 62 development stays: acc 59.7%, macro-F1 0.381, High recall 85.3%, under-triage 12.9%. S4-promptv1 on 31 development stays: acc 29.0%, under-triage 64.5%.
+- **Held-out LLM-free (MIMIC, 31 stays):** S1 71.0% / under 6.5%; S2a 67.7%; S2b 71.0% / under 12.9%; best by development macro-F1 = S2a.
+- **Tests:** 126 passing.
+- **Unused cache entries:** 10 calls of the old (development-phase) S3 job; kept in the cache, not reported.
 - **Local helpers:** ffmpeg at `.local/bin/ffmpeg.exe` (imageio-ffmpeg); demo DB copy `.local/demo.db`; demo audio `demo/demo_patient_chest_pain.wav`.
-- **Prompt change (fact for report):** prompt v1 (previous release: 'assign Low if no red flags; NEVER default to Medium/High') under-triaged MIMIC test: acc 0.290, under-triage 0.645, High recall 0.176 (31 stays). Prompt v2 (ESI/KTAS definitions, high-risk complaints stay High, uncertain -> more urgent) written from triage definitions and checked on MIMIC **validation** first: acc 0.581, macro-F1 0.551, under-triage 0.161, High recall 0.882 (31 stays). v2 is default (`LLM_PROMPT_VERSION=v2`); v1 kept as ablation job `mimic:S4-promptv1`. Note: v2 was written after seeing v1 test errors -> state this in the report as a limitation.
-- **Tests:** 119 passing (44 original + 75 new).
-- **Bug fixed:** empty `CachedCompletion` was falsy -> first 10 calls bypassed the cache (fixed with `is None`).
-- **LLM runs (WP1):** not started.
 
 ## Phase 0 — pre-flight
 - [x] Git: `main` pulled (fast-forward 2 README commits), branch `feature/cn7050-final` created. Remotes: `origin` (GitHub, public), `space` (HF Space).
@@ -50,7 +54,7 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 - [x] Baselines S0/S1/S2 + tuning + 5-fold CV (`evaluation/baselines.py`, `evaluation/report.py`)
 - [x] LLM cache + budget/resume (`evaluation/llm_cache.py`, throttle 8K TPM, daily-limit stop)
 - [x] S3 / S4 / S4-noNEWS2 runners (`evaluation/llm_runner.py`, `evaluation/runner.py::LLM_JOBS`)
-- [ ] LLM runs complete (cache full) -- day 1 started 21 Nov 00:30 with `python scripts/evaluate.py --llm-only --max-llm-calls 110` (log: evaluation/cache/run_day1.log). Total needed ~ 31x2 + 117x3 = 413 cases (+repairs). Resume daily with `python scripts/evaluate.py --llm-only --max-llm-calls 120`, then `--all`
+- [ ] LLM runs complete (cache full) -- see Status: 444 cases left (protocol v2) -- day 1 started 21 Nov 00:30 with `python scripts/evaluate.py --llm-only --max-llm-calls 110` (log: evaluation/cache/run_day1.log). Total needed ~ 31x2 + 117x3 = 413 cases (+repairs). Resume daily with `python scripts/evaluate.py --llm-only --max-llm-calls 120`, then `--all`
 - [x] Subgroup fairness, low-evidence analysis, latency, retrieval quality (code in `evaluation/report.py`; numbers final once LLM runs complete)
 - [~] metrics.json, summary.md, errors_*.csv, figures generated (`--all --offline`); regenerate after LLM runs complete
 - [x] WP1 unit tests (`tests/test_evaluation.py`, 10 tests)

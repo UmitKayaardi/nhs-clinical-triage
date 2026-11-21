@@ -1,0 +1,27 @@
+{
+  "frozen_on": "2026-11-21",
+  "reason": "prompt v2 developed on the MIMIC development set; held-out MIMIC test and KTAS are evaluated once with this configuration",
+  "config": {
+    "prompt_version": "v2",
+    "prompt_v2_template_sha256": "bfa91ab6845331470b88efe9afb0fd34287b5fbf338c443289cee3ed338364c9",
+    "prompt_v1_template_sha256": "de0bf5043e036300c315b039e6a323db04315c1260a3ac73aecabd6459df85e5",
+    "weak_rule_sha256": "4f79876ca5d73f4c039ce9817576f9ee8f56eced275b351b2416e6d65e81911b",
+    "repair_template_sha256": "044a1cd28937cd4c57d591ceca0b9b9a5ed57865f10cc4ac869dc3ad0bd7f96c",
+    "model": "openai/gpt-oss-20b",
+    "temperature": 0.0,
+    "max_tokens": 1024,
+    "reasoning_effort": "low",
+    "max_repair_attempts": 2,
+    "max_similar_cases": 5,
+    "retrieval_weights": [
+      1.0,
+      0.7,
+      0.5,
+      0.3
+    ],
+    "low_evidence_threshold": 0.5,
+    "evidence_min_agreement": 0.6,
+    "news2_safety_net": true
+  },
+  "sha256": "77522c1b1d9594774df9aa1902885fc3c826d9cbf0c0b008205a5d10d3749924"
+}
