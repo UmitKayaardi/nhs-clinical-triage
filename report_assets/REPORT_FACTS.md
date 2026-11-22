@@ -1,6 +1,6 @@
 # REPORT FACTS (bullet facts and numbers only -- not report text)
 
-- Source: `evaluation/results/metrics.json` generated 2026-11-22T11:44:29Z; seed 42
+- Source: `evaluation/results/metrics.json` generated 2026-11-22T12:13:52Z; seed 42
 - All LLM runs complete: False
 
 ## Datasets
@@ -15,7 +15,7 @@
 - KTAS vitals: Korean '측불' (unmeasurable) -> missing (SBP 25, DBP 29, HR 20, RR 22, BT 18, SpO2 9); SpO2 not recorded at the local ED (688 rows); BT deg C -> deg F
 
 ## Knowledge base (Agent 2, multi-source; change decided 2026-11-22 before any result of the affected KTAS jobs)
-- Sources: MIMIC-IV-ED Demo (1 US hospital, Boston; ESI) and KTAS (2 Korean EDs; KTAS_expert) -- two datasets, three hospitals' EDs
+- Sources: two datasets -- MIMIC-IV-ED Demo (Beth Israel Deaconess Medical Center ED, Boston, USA; ESI) and KTAS (two Korean EDs, local + regional; KTAS_expert)
 - Live system (Space) knowledge base: all 222 MIMIC-IV-ED stays + all 1,267 KTAS records = 1,489 cases (about 1,500)
 - Evaluation knowledge base for the KTAS main run: all 222 MIMIC-IV-ED stays + KTAS training split only (886) = 1,108 cases; KTAS validation (190) and test (191) records are never in it (runner.kb_frame raises KnowledgeBaseLeak; unit test)
 - MIMIC held-out evaluation unchanged: knowledge base = 114 protocol-v2 training stays; not re-run
@@ -71,7 +71,7 @@
 - McNemar mimic:S4:kb=mimic-train vs S4-noNEWS2: 0 vs 0 discordant, exact p = 1.0000
 - McNemar mimic:S4:kb=mimic-train vs mimic:S3:kb=none: 1 vs 5 discordant, exact p = 0.2188
 - McNemar mimic:S4:kb=mimic-train vs mimic:S4-promptv1:kb=mimic-train: 10 vs 2 discordant, exact p = 0.0386
-- Agent performance mimic:S4:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 22.6%, median latency Agent 2 2.1 ms / Agent 3 528 ms (p95 980) / Agent 4 0.10 ms, tokens per case 1643
+- Agent performance mimic:S4:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 22.6%, median latency Agent 2 2.0 ms / Agent 3 528 ms (p95 980) / Agent 4 0.08 ms, tokens per case 1643
 - Evidence sources mimic:S4:kb=mimic-train (all retrieved cases): MIMIC-IV-ED 100.0%
 - Agent performance mimic:S3:kb=none: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 100.0%, median latency Agent 2 0.0 ms / Agent 3 502 ms (p95 641) / Agent 4 0.07 ms, tokens per case 1176
 - Agent performance mimic:S4-promptv1:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 1, weak-evidence flags 22.6%, median latency Agent 2 2.0 ms / Agent 3 440 ms (p95 810) / Agent 4 0.07 ms, tokens per case 1435
@@ -89,6 +89,8 @@
 - S1-mk (Retrieval-only vote, multi-source KB (MIMIC-IV-ED + KTAS train)): n=191; accuracy 64.4% (95% CI 57.6%-71.2%); balanced accuracy 62.7%; macro-F1 0.635 (95% CI 0.560-0.702); weighted F1 0.642; linear kappa 0.508; High recall 56.8%; under-triage 21.5% (95% CI 15.7%-27.2%); over-triage 14.1%; ROC-AUC 0.783
 - Multi-source KB, top-5 neighbours of the 191 KTAS test queries by source: KTAS 90.0%, MIMIC-IV-ED 10.0%
 - H triage nurse (KTAS_RN) on ALL KTAS records: n=1267; accuracy 88.6% (95% CI 86.9%-90.4%); balanced accuracy 87.9%; macro-F1 0.884 (95% CI 0.865-0.904); weighted F1 0.885; linear kappa 0.846; High recall 86.2%; under-triage 8.3% (95% CI 6.8%-9.8%); over-triage 3.2%
+- S4 KB=mimic+ktas-train [INCOMPLETE 62/191]: n=62; accuracy 66.1% (95% CI 54.8%-77.4%); balanced accuracy 65.3%; macro-F1 0.636 (95% CI 0.509-0.762); weighted F1 0.660; linear kappa 0.518; High recall 76.9%; under-triage 12.9% (95% CI 4.8%-21.0%); over-triage 21.0%
+- S4-noNEWS2 KB=mimic+ktas-train [INCOMPLETE 62/191]: n=62; accuracy 67.7% (95% CI 56.5%-79.0%); balanced accuracy 66.3%; macro-F1 0.651 (95% CI 0.529-0.770); weighted F1 0.675; linear kappa 0.550; High recall 76.9%; under-triage 12.9% (95% CI 4.8%-21.0%); over-triage 19.4%
 - S4 KB=mimic-all [INCOMPLETE 28/117]: n=28; accuracy 64.3% (95% CI 46.4%-82.1%); balanced accuracy 62.5%; macro-F1 0.622 (95% CI 0.415-0.787); weighted F1 0.633; linear kappa 0.511; High recall 80.0%; under-triage 10.7% (95% CI 0.0%-21.4%); over-triage 25.0%
 - S4-noNEWS2 KB=mimic-all [INCOMPLETE 28/117]: n=28; accuracy 64.3% (95% CI 46.4%-82.1%); balanced accuracy 62.5%; macro-F1 0.622 (95% CI 0.415-0.787); weighted F1 0.633; linear kappa 0.511; High recall 80.0%; under-triage 10.7% (95% CI 0.0%-21.4%); over-triage 25.0%
 - Same 117-case KTAS sample (used by the secondary S4 job, KB = MIMIC-IV-ED only):
@@ -101,16 +103,24 @@
 - Retrieval quality KB=mimic-all+ktas-train: P@1 0.548, P@3 0.593, P@5 0.583, mean top-1 similarity 0.710, no-evidence rate 2.6%
 - Retrieval quality KB=ktas-train: P@1 0.591, P@3 0.618, P@5 0.611, mean top-1 similarity 0.700, no-evidence rate 2.6%
 - Retrieval quality KB=mimic-all: P@1 0.318, P@3 0.319, P@5 0.321, mean top-1 similarity 0.565, no-evidence rate 9.4%
+- McNemar ktas:S4:kb=mimic+ktas-train vs S2b: 8 vs 10 discordant, exact p = 0.8145
+- McNemar ktas:S4:kb=mimic+ktas-train vs S4-noNEWS2: 0 vs 1 discordant, exact p = 1.0000
+- McNemar ktas:S4:kb=mimic+ktas-train vs H: 15 vs 13 discordant, exact p = 0.8506
 - McNemar ktas:S4:kb=mimic-all vs S2b: 6 vs 4 discordant, exact p = 0.7539
 - McNemar ktas:S4:kb=mimic-all vs S4-noNEWS2: 0 vs 0 discordant, exact p = 1.0000
 - McNemar ktas:S4:kb=mimic-all vs H: 9 vs 4 discordant, exact p = 0.2668
-- Agent performance ktas:S4:kb=mimic-all: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 17.9%, median latency Agent 2 3.8 ms / Agent 3 487 ms (p95 798) / Agent 4 0.09 ms, tokens per case 1654
+- Agent performance ktas:S4:kb=mimic+ktas-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 1, weak-evidence flags 6.5%, median latency Agent 2 18.1 ms / Agent 3 582 ms (p95 867) / Agent 4 0.10 ms, tokens per case 1534
+- Evidence sources ktas:S4:kb=mimic+ktas-train (all retrieved cases): KTAS 88.7%, MIMIC-IV-ED 11.3%
+- Agent performance ktas:S4:kb=mimic-all: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 17.9%, median latency Agent 2 3.8 ms / Agent 3 487 ms (p95 798) / Agent 4 0.08 ms, tokens per case 1654
 - Evidence sources ktas:S4:kb=mimic-all (all retrieved cases): MIMIC-IV-ED 100.0%
+- Weak-evidence flag ktas:S4:kb=mimic+ktas-train: flagged n=4 accuracy 50.0% under-triage 0.0%; not flagged n=58 accuracy 67.2% under-triage 13.8%
 - Weak-evidence flag ktas:S4:kb=mimic-all: flagged n=5 accuracy 100.0% under-triage 0.0%; not flagged n=23 accuracy 56.5% under-triage 13.0%
 - Subgroup S2b by sex: F n=93 acc 72.0% under 12.9%; M n=98 acc 69.4% under 15.3%
 - Subgroup S2b by age_band: 40-64 n=67 acc 65.7% under 11.9%; 65+ n=72 acc 76.4% under 15.3%; <40 n=52 acc 69.2% under 15.4%
 - Subgroup H by sex: F n=93 acc 89.2% under 5.4%; M n=98 acc 86.7% under 7.1%
 - Subgroup H by age_band: 40-64 n=67 acc 86.6% under 6.0%; 65+ n=72 acc 90.3% under 6.9%; <40 n=52 acc 86.5% under 5.8%
+- Subgroup S4 (mimic-all+ktas-train) by sex: F n=30 acc 73.3% under 13.3%; M n=32 acc 59.4% under 12.5%
+- Subgroup S4 (mimic-all+ktas-train) by age_band: 40-64 n=26 acc 57.7% under 23.1%; 65+ n=15 acc 80.0% under 0.0%; <40 n=21 acc 66.7% under 9.5%
 - Subgroup S4 (mimic-all) by sex: F n=12 acc 58.3% under 25.0%; M n=16 acc 68.8% under 0.0%
 - Subgroup S4 (mimic-all) by age_band: 40-64 n=9 acc 55.6% under 22.2%; 65+ n=9 acc 77.8% under 0.0%; <40 n=10 acc 60.0% under 10.0%
 

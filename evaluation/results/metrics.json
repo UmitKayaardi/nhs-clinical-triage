@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T11:44:29Z",
+  "generated_at": "2026-11-22T12:13:52Z",
   "seed": 42,
   "labels": [
     "Low",
@@ -29,8 +29,8 @@
     "reasoning_effort": "low",
     "max_repair_attempts": 2,
     "run_stats": {
-      "cache_entries": 222,
-      "cache_hits": 214,
+      "cache_entries": 284,
+      "cache_hits": 276,
       "api_calls": 0,
       "tokens_used_this_run": 0,
       "budget": 150,
@@ -1463,9 +1463,9 @@
             "mean_tokens_per_case": 1642.5483870967741,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.1136129032258064,
-                "median": 2.127,
-                "p95": 2.4785000000000004,
+                "mean": 1.9979677419354835,
+                "median": 2.013,
+                "p95": 2.2855,
                 "n": 31
               },
               "agent3_llm": {
@@ -1475,9 +1475,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.09806451612903226,
-                "median": 0.098,
-                "p95": 0.1265,
+                "mean": 0.07683870967741935,
+                "median": 0.076,
+                "p95": 0.099,
                 "n": 31
               }
             },
@@ -1614,9 +1614,9 @@
             "mean_tokens_per_case": 1175.774193548387,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 0.028935483870967747,
+                "mean": 0.03016129032258065,
                 "median": 0.028,
-                "p95": 0.035500000000000004,
+                "p95": 0.045,
                 "n": 31
               },
               "agent3_llm": {
@@ -1626,9 +1626,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.06941935483870969,
-                "median": 0.067,
-                "p95": 0.099,
+                "mean": 0.0726451612903226,
+                "median": 0.071,
+                "p95": 0.095,
                 "n": 31
               }
             },
@@ -1771,9 +1771,9 @@
             "mean_tokens_per_case": 1435.032258064516,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.012967741935484,
-                "median": 2.048,
-                "p95": 2.3715,
+                "mean": 1.9792258064516128,
+                "median": 1.984,
+                "p95": 2.299,
                 "n": 31
               },
               "agent3_llm": {
@@ -1783,9 +1783,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.07874193548387097,
-                "median": 0.075,
-                "p95": 0.1045,
+                "mean": 0.07603225806451613,
+                "median": 0.074,
+                "p95": 0.0995,
                 "n": 31
               }
             },
@@ -2026,9 +2026,9 @@
             "mean_tokens_per_case": 1670.774193548387,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.4918870967741933,
-                "median": 2.516,
-                "p95": 2.9033499999999997,
+                "mean": 2.400096774193548,
+                "median": 2.4405,
+                "p95": 2.8088,
                 "n": 62
               },
               "agent3_llm": {
@@ -2038,9 +2038,9 @@
                 "n": 62
               },
               "agent4_guardrail_news2": {
-                "mean": 0.09796774193548388,
-                "median": 0.096,
-                "p95": 0.12374999999999997,
+                "mean": 0.0827741935483871,
+                "median": 0.08,
+                "p95": 0.10894999999999999,
                 "n": 62
               }
             },
@@ -2183,9 +2183,9 @@
             "mean_tokens_per_case": 1452.1612903225807,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.5202258064516125,
-                "median": 2.563,
-                "p95": 2.8945,
+                "mean": 2.4093870967741933,
+                "median": 2.353,
+                "p95": 3.0515,
                 "n": 31
               },
               "agent3_llm": {
@@ -2195,9 +2195,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.099741935483871,
-                "median": 0.095,
-                "p95": 0.132,
+                "mean": 0.0790967741935484,
+                "median": 0.076,
+                "p95": 0.104,
                 "n": 31
               }
             },
@@ -3517,11 +3517,247 @@
             "prompt": "v2"
           },
           "complete": false,
-          "n_done": 0,
+          "n_done": 62,
           "n_target": 191,
           "n_failed": 0,
           "stopped_reason": "cache miss in offline mode",
-          "extended_to_full_test": false
+          "extended_to_full_test": false,
+          "evidence_source_share": {
+            "KTAS": 0.8870431893687708,
+            "MIMIC-IV-ED": 0.11295681063122924
+          },
+          "S4": {
+            "n": 62,
+            "accuracy": 0.6612903225806451,
+            "balanced_accuracy": 0.652856334841629,
+            "precision_macro": 0.6294117647058823,
+            "recall_macro": 0.652856334841629,
+            "f1_macro": 0.6362007168458782,
+            "precision_weighted": 0.6652751423149905,
+            "recall_weighted": 0.6612903225806451,
+            "f1_weighted": 0.659816163718349,
+            "per_class": {
+              "Low": {
+                "precision": 0.7666666666666667,
+                "recall": 0.71875,
+                "f1": 0.7419354838709677,
+                "support": 32
+              },
+              "Medium": {
+                "precision": 0.5333333333333333,
+                "recall": 0.47058823529411764,
+                "f1": 0.5,
+                "support": 17
+              },
+              "High": {
+                "precision": 0.5882352941176471,
+                "recall": 0.7692307692307693,
+                "f1": 0.6666666666666666,
+                "support": 13
+              }
+            },
+            "kappa_linear": 0.5176540993417116,
+            "high_recall": 0.7692307692307693,
+            "confusion_matrix": [
+              [
+                23,
+                6,
+                3
+              ],
+              [
+                5,
+                8,
+                4
+              ],
+              [
+                2,
+                1,
+                10
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.7188,
+                0.1875,
+                0.0938
+              ],
+              [
+                0.2941,
+                0.4706,
+                0.2353
+              ],
+              [
+                0.1538,
+                0.0769,
+                0.7692
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 30,
+              "Medium": 15,
+              "High": 17
+            },
+            "under_triage_rate": 0.12903225806451613,
+            "over_triage_rate": 0.20967741935483872,
+            "under_triage_n": 8,
+            "over_triage_n": 13,
+            "ci95": {
+              "accuracy": {
+                "low": 0.5483870967741935,
+                "high": 0.7741935483870968
+              },
+              "f1_macro": {
+                "low": 0.5086291486291487,
+                "high": 0.7622722672064778
+              },
+              "under_triage_rate": {
+                "low": 0.04838709677419355,
+                "high": 0.20967741935483872
+              },
+              "n_boot": 1000
+            }
+          },
+          "S4-noNEWS2": {
+            "n": 62,
+            "accuracy": 0.6774193548387096,
+            "balanced_accuracy": 0.6632730015082956,
+            "precision_macro": 0.6441756272401434,
+            "recall_macro": 0.6632730015082956,
+            "f1_macro": 0.650519978106185,
+            "precision_weighted": 0.6768687131460285,
+            "recall_weighted": 0.6774193548387096,
+            "f1_weighted": 0.6749430584247047,
+            "per_class": {
+              "Low": {
+                "precision": 0.7741935483870968,
+                "recall": 0.75,
+                "f1": 0.7619047619047619,
+                "support": 32
+              },
+              "Medium": {
+                "precision": 0.5333333333333333,
+                "recall": 0.47058823529411764,
+                "f1": 0.5,
+                "support": 17
+              },
+              "High": {
+                "precision": 0.625,
+                "recall": 0.7692307692307693,
+                "f1": 0.6896551724137931,
+                "support": 13
+              }
+            },
+            "kappa_linear": 0.549636803874092,
+            "high_recall": 0.7692307692307693,
+            "confusion_matrix": [
+              [
+                24,
+                6,
+                2
+              ],
+              [
+                5,
+                8,
+                4
+              ],
+              [
+                2,
+                1,
+                10
+              ]
+            ],
+            "confusion_matrix_normalised": [
+              [
+                0.75,
+                0.1875,
+                0.0625
+              ],
+              [
+                0.2941,
+                0.4706,
+                0.2353
+              ],
+              [
+                0.1538,
+                0.0769,
+                0.7692
+              ]
+            ],
+            "labels": [
+              "Low",
+              "Medium",
+              "High"
+            ],
+            "pred_distribution": {
+              "Low": 31,
+              "Medium": 15,
+              "High": 16
+            },
+            "under_triage_rate": 0.12903225806451613,
+            "over_triage_rate": 0.1935483870967742,
+            "under_triage_n": 8,
+            "over_triage_n": 12,
+            "ci95": {
+              "accuracy": {
+                "low": 0.5645161290322581,
+                "high": 0.7903225806451613
+              },
+              "f1_macro": {
+                "low": 0.5289614624585466,
+                "high": 0.7702913247410401
+              },
+              "under_triage_rate": {
+                "low": 0.04838709677419355,
+                "high": 0.20967741935483872
+              },
+              "n_boot": 1000
+            }
+          },
+          "agent_performance": {
+            "n_cases": 62,
+            "guardrail_first_pass_valid_rate": 1.0,
+            "repair_rate": 0.0,
+            "failed_after_repairs": 0,
+            "news2_override_count": 1,
+            "news2_available_rate": 1.0,
+            "low_evidence_flag_rate": 0.06451612903225806,
+            "evidence_strength_counts": {
+              "strong": 48,
+              "moderate": 10,
+              "weak": 4
+            },
+            "confidence_counts": {
+              "High": 35,
+              "Medium": 27
+            },
+            "mean_tokens_per_case": 1534.0,
+            "latency_ms": {
+              "agent2_retrieval": {
+                "mean": 18.070274193548386,
+                "median": 18.136,
+                "p95": 20.235599999999998,
+                "n": 62
+              },
+              "agent3_llm": {
+                "mean": 558.0967741935484,
+                "median": 581.7,
+                "p95": 866.6249999999999,
+                "n": 62
+              },
+              "agent4_guardrail_news2": {
+                "mean": 0.09824193548387099,
+                "median": 0.097,
+                "p95": 0.109,
+                "n": 62
+              }
+            },
+            "latency_note": "Agent 3 latency = original Groq API latency stored in the cache (cached re-runs reuse it)"
+          }
         },
         "ktas:S3:kb=none": {
           "job": {
@@ -3769,9 +4005,9 @@
             "mean_tokens_per_case": 1654.3214285714287,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 3.7468928571428575,
-                "median": 3.8365,
-                "p95": 4.46325,
+                "mean": 3.7232857142857143,
+                "median": 3.7885,
+                "p95": 4.34735,
                 "n": 28
               },
               "agent3_llm": {
@@ -3781,9 +4017,9 @@
                 "n": 28
               },
               "agent4_guardrail_news2": {
-                "mean": 0.0862142857142857,
-                "median": 0.0875,
-                "p95": 0.10164999999999999,
+                "mean": 0.08457142857142856,
+                "median": 0.08,
+                "p95": 0.1036,
                 "n": 28
               }
             },
@@ -4284,12 +4520,38 @@
         }
       },
       "best_non_llm_by_validation": "S2b",
+      "errors_file": {
+        "path": "evaluation/results/errors_ktas.csv",
+        "rows": 21,
+        "system": "ktas:S4:kb=mimic+ktas-train"
+      },
       "errors_file_secondary": {
         "path": "evaluation/results/errors_ktas_kb-mimic.csv",
         "rows": 10,
         "system": "ktas:S4:kb=mimic-all"
       },
       "mcnemar": {
+        "ktas:S4:kb=mimic+ktas-train vs S2b": {
+          "a_correct_b_wrong": 8,
+          "a_wrong_b_correct": 10,
+          "discordant": 18,
+          "p_value_exact": 0.8145294189453125,
+          "n": 62
+        },
+        "ktas:S4:kb=mimic+ktas-train vs S4-noNEWS2": {
+          "a_correct_b_wrong": 0,
+          "a_wrong_b_correct": 1,
+          "discordant": 1,
+          "p_value_exact": 1.0,
+          "n": 62
+        },
+        "ktas:S4:kb=mimic+ktas-train vs H": {
+          "a_correct_b_wrong": 15,
+          "a_wrong_b_correct": 13,
+          "discordant": 28,
+          "p_value_exact": 0.8505540192127228,
+          "n": 62
+        },
         "ktas:S4:kb=mimic-all vs S2b": {
           "a_correct_b_wrong": 6,
           "a_wrong_b_correct": 4,
@@ -4313,6 +4575,18 @@
         }
       },
       "low_evidence_analysis": {
+        "ktas:S4:kb=mimic+ktas-train": {
+          "flagged_weak": {
+            "n": 4,
+            "accuracy": 0.5,
+            "under_triage_rate": 0.0
+          },
+          "not_flagged": {
+            "n": 58,
+            "accuracy": 0.6724137931034483,
+            "under_triage_rate": 0.13793103448275862
+          }
+        },
         "ktas:S4:kb=mimic-all": {
           "flagged_weak": {
             "n": 5,
@@ -4396,6 +4670,42 @@
               "accuracy": 0.8653846153846154,
               "f1_macro": 0.8534562211981567,
               "under_triage_rate": 0.057692307692307696
+            }
+          }
+        },
+        "S4 (mimic-all+ktas-train)": {
+          "sex": {
+            "F": {
+              "n": 30,
+              "accuracy": 0.7333333333333333,
+              "f1_macro": 0.723155929038282,
+              "under_triage_rate": 0.13333333333333333
+            },
+            "M": {
+              "n": 32,
+              "accuracy": 0.59375,
+              "f1_macro": 0.5714285714285714,
+              "under_triage_rate": 0.125
+            }
+          },
+          "age_band": {
+            "40-64": {
+              "n": 26,
+              "accuracy": 0.5769230769230769,
+              "f1_macro": 0.5324491600353669,
+              "under_triage_rate": 0.23076923076923078
+            },
+            "65+": {
+              "n": 15,
+              "accuracy": 0.8,
+              "f1_macro": 0.7746031746031746,
+              "under_triage_rate": 0.0
+            },
+            "<40": {
+              "n": 21,
+              "accuracy": 0.6666666666666666,
+              "f1_macro": 0.5308641975308641,
+              "under_triage_rate": 0.09523809523809523
             }
           }
         },
@@ -4737,6 +5047,7 @@
     "evaluation/results/figures/cv_boxplot_ktas.png",
     "evaluation/results/figures/per_class_f1_ktas.png",
     "evaluation/results/figures/subgroups_ktas.png",
+    "evaluation/results/figures/nurse_vs_system_ktas.png",
     "evaluation/results/figures/latency_per_agent.png",
     "evaluation/results/figures/low_evidence_accuracy.png"
   ]
