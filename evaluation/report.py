@@ -342,8 +342,8 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
             "ktas": ("MAIN evaluation with the frozen configuration (prompt v2), never used for development: full "
                      "test split (191 cases); S4 knowledge base = all MIMIC-IV-ED stays (222) + KTAS training split "
                      "only (886), KTAS validation/test never in the knowledge base; S3 on the same 191 cases; "
-                     "secondary S4 with KB = MIMIC-IV-ED only on a 117-case stratified sample (extended to 191 "
-                     "if the budget allows)"),
+                     "secondary S4 with KB = MIMIC-IV-ED only on the same 191 cases (117-case stratified sample "
+                     "first, then the other 74)"),
             "knowledge_base": frozen_record().get("knowledge_base"),
             "frozen_config": frozen_record(),
             "live_config_matches_frozen": config_hash(current_config()) == frozen_record()["sha256"],

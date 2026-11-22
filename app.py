@@ -650,8 +650,9 @@ def evaluation_markdown() -> str:
             r = k["nurse_all_records"]
             out += ["", f"Triage nurse on all {r['n']} KTAS records: accuracy {_fmt(r['accuracy'], True)}, macro-F1 "
                         f"{_fmt(r['f1_macro'])}, under-triage {_fmt(r['under_triage_rate'], True)}."]
-        if "llm_subset" in k:
-            out += ["", f"Same {k['llm_subset']['n']}-case stratified sample used by the secondary S4 run "
+        secondary = k.get("llm_systems", {}).get("ktas:S4:kb=mimic-all", {})
+        if "llm_subset" in k and not secondary.get("extended_to_full_test"):
+            out += ["", f"Same {k['llm_subset']['n']}-case stratified sample used by the secondary S4 run so far "
                         "(KB: MIMIC-IV-ED only):", "", _EVAL_HEADER]
             for sname, r in k["llm_subset"]["systems"].items():
                 out.append(_eval_row(f"{sname} {names.get(sname, '')}", r))
@@ -820,8 +821,9 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
 
     with gr.Tab("Evaluation"):
         gr.Markdown("### Offline evaluation (WP1) — reproducible with `python scripts/evaluate.py --all`")
-        gr.Markdown("**Knowledge base (Agent 2):** about 1,500 records from two datasets — 222 MIMIC-IV-ED Demo "
-                    "stays (one US hospital ED) and 1,267 KTAS records (two Korean EDs); every retrieved case shows "
+        gr.Markdown("**Knowledge base (Agent 2):** about 1,500 records from two datasets (three emergency "
+                    "departments: one in the USA, two in South Korea) — 222 MIMIC-IV-ED Demo stays and 1,267 KTAS "
+                    "records; every retrieved case shows "
                     "its source. **Main evaluation: KTAS** test split (191 cases), frozen configuration; the "
                     "evaluation knowledge base holds all MIMIC-IV-ED stays + the KTAS training split only. "
                     "**Secondary check:** MIMIC held-out test (31 stays, 9 patients), prompt developed on a separate "

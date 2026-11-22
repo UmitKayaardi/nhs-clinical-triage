@@ -1,8 +1,8 @@
 # Evaluation summary (tables only)
 
-Protocol: MIMIC protocol v2: development set = old validation + old test splits (62 stays, 26 patients; prompt v1 -> v2 developed here, LLM-free tuning uses it); held-out test = 31 stays from 9 patients drawn from the old training patients only (never an LLM query before), evaluated once with the frozen configuration; knowledge base and ML training data for the test run = remaining 114 stays / 21 patients. KTAS: MAIN evaluation with the frozen configuration (prompt v2), never used for development: full test split (191 cases); S4 knowledge base = all MIMIC-IV-ED stays (222) + KTAS training split only (886), KTAS validation/test never in the knowledge base; S3 on the same 191 cases; secondary S4 with KB = MIMIC-IV-ED only on a 117-case stratified sample (extended to 191 if the budget allows). Frozen configuration sha256 77522c1b1d959477... (live config matches: True).
+Protocol: MIMIC protocol v2: development set = old validation + old test splits (62 stays, 26 patients; prompt v1 -> v2 developed here, LLM-free tuning uses it); held-out test = 31 stays from 9 patients drawn from the old training patients only (never an LLM query before), evaluated once with the frozen configuration; knowledge base and ML training data for the test run = remaining 114 stays / 21 patients. KTAS: MAIN evaluation with the frozen configuration (prompt v2), never used for development: full test split (191 cases); S4 knowledge base = all MIMIC-IV-ED stays (222) + KTAS training split only (886), KTAS validation/test never in the knowledge base; S3 on the same 191 cases; secondary S4 with KB = MIMIC-IV-ED only on the same 191 cases (117-case stratified sample first, then the other 74). Frozen configuration sha256 77522c1b1d959477... (live config matches: True).
 
-Generated 2026-11-22T12:13:52Z by `python scripts/evaluate.py --all`; seed 42. LLM: openai/gpt-oss-20b, temperature 0.0, reasoning_effort low. All LLM runs complete: False.
+Generated 2026-11-22T12:21:34Z by `python scripts/evaluate.py --all`; seed 42. LLM: openai/gpt-oss-20b, temperature 0.0, reasoning_effort low. All LLM runs complete: False.
 
 ## MIMIC
 
@@ -81,9 +81,9 @@ Method: 5-fold StratifiedGroupKFold on subject_id (train + development set, held
 |---|---|---|---|---|---|---|---|---|---|---|
 | DEVELOPMENT mimic-dev:S4:kb=mimic-dev-train | 62 | 100.0% | 0.0% | 0 | 0 | 29.0% | 2.4 | 598 / 973 | 0.08 | 1671 |
 | DEVELOPMENT mimic-dev:S4-promptv1:kb=mimic-dev-train | 31 | 100.0% | 0.0% | 0 | 0 | 38.7% | 2.4 | 635 / 5642 | 0.08 | 1452 |
-| mimic:S4:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 0 | 22.6% | 2.0 | 528 / 980 | 0.08 | 1643 |
+| mimic:S4:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 0 | 22.6% | 2.1 | 528 / 980 | 0.08 | 1643 |
 | mimic:S3:kb=none | 31 | 100.0% | 0.0% | 0 | 0 | 100.0% | 0.0 | 502 / 641 | 0.07 | 1176 |
-| mimic:S4-promptv1:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 1 | 22.6% | 2.0 | 440 / 810 | 0.07 | 1435 |
+| mimic:S4-promptv1:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 1 | 22.6% | 2.0 | 440 / 810 | 0.08 | 1435 |
 
 ### Weak-evidence flag (S4)
 
@@ -201,7 +201,7 @@ Method: 5-fold StratifiedKFold (train+validation, test untouched)
 
 | Job | Cases | First-pass valid | Repair rate | Failed | NEWS2 overrides | Weak-evidence flags | Agent 2 ms (median) | Agent 3 ms (median / p95) | Agent 4 ms (median) | Tokens/case |
 |---|---|---|---|---|---|---|---|---|---|---|
-| ktas:S4:kb=mimic+ktas-train | 62 | 100.0% | 0.0% | 0 | 1 | 6.5% | 18.1 | 582 / 867 | 0.10 | 1534 |
+| ktas:S4:kb=mimic+ktas-train | 62 | 100.0% | 0.0% | 0 | 1 | 6.5% | 18.4 | 582 / 867 | 0.10 | 1534 |
 | ktas:S4:kb=mimic-all | 28 | 100.0% | 0.0% | 0 | 0 | 17.9% | 3.8 | 487 / 798 | 0.08 | 1654 |
 
 ### Weak-evidence flag (S4)

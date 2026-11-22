@@ -1,6 +1,6 @@
 # REPORT FACTS (bullet facts and numbers only -- not report text)
 
-- Source: `evaluation/results/metrics.json` generated 2026-11-22T12:13:52Z; seed 42
+- Source: `evaluation/results/metrics.json` generated 2026-11-22T12:21:34Z; seed 42
 - All LLM runs complete: False
 
 ## Datasets
@@ -16,7 +16,7 @@
 
 ## Knowledge base (Agent 2, multi-source; change decided 2026-11-22 before any result of the affected KTAS jobs)
 - Sources: two datasets -- MIMIC-IV-ED Demo (Beth Israel Deaconess Medical Center ED, Boston, USA; ESI) and KTAS (two Korean EDs, local + regional; KTAS_expert)
-- Live system (Space) knowledge base: all 222 MIMIC-IV-ED stays + all 1,267 KTAS records = 1,489 cases (about 1,500)
+- Live system (Space) knowledge base: all 222 MIMIC-IV-ED stays + all 1,267 KTAS records = 1,489 cases: about 1,500 records from two datasets (three emergency departments: one in the USA, two in South Korea)
 - Evaluation knowledge base for the KTAS main run: all 222 MIMIC-IV-ED stays + KTAS training split only (886) = 1,108 cases; KTAS validation (190) and test (191) records are never in it (runner.kb_frame raises KnowledgeBaseLeak; unit test)
 - MIMIC held-out evaluation unchanged: knowledge base = 114 protocol-v2 training stays; not re-run
 - Each retrieved case carries its source label ('MIMIC-IV-ED' or 'KTAS'): API field evidence_cases[].source / case_ref, Agent 2 trace output, Clinician Intake and Doctor Portal evidence tables
@@ -37,7 +37,7 @@
 - Development-phase split (kept for the development results): patient-grouped stratified 70/15/15, 145/31/31 stays, file evaluation/splits/mimic_split.json
 - KTAS split method: stratified 70/15/15 on the 3-class expert label
 - KTAS main LLM evaluation: full test split, 191 cases (Low 81, Medium 73, High 37): S4 with KB = MIMIC-IV-ED + KTAS train, S3 on the same 191 cases
-- KTAS secondary S4 (KB = MIMIC-IV-ED only): stratified sample of 117 test cases (40 Low, 40 Medium, all 37 High), extended to all 191 only if the API budget allows
+- KTAS secondary S4 (KB = MIMIC-IV-ED only): stratified sample of 117 test cases (40 Low, 40 Medium, all 37 High) first, then the other 74 test cases, so all three KTAS LLM jobs (S4 multi-source KB, S3, S4 MIMIC-only KB) cover the same 191 cases
 - MIMIC held-out test knowledge base: the 114 training stays only (leakage control; unit test proves no test stay is retrieved)
 - LLM-free systems S0-S2: trained on the 114 training stays, tuned on the 62-stay development set, 5-fold patient-grouped CV on train + development (176 stays)
 - KTAS knowledge bases: main KB = MIMIC-IV-ED (222) + KTAS train (886); secondary KB = MIMIC-IV-ED only (222); the planned KB=KTAS-train-only LLM job was replaced by the multi-source job (S1 retrieval-only still reported for KB=KTAS-train and the multi-source KB)
@@ -71,10 +71,10 @@
 - McNemar mimic:S4:kb=mimic-train vs S4-noNEWS2: 0 vs 0 discordant, exact p = 1.0000
 - McNemar mimic:S4:kb=mimic-train vs mimic:S3:kb=none: 1 vs 5 discordant, exact p = 0.2188
 - McNemar mimic:S4:kb=mimic-train vs mimic:S4-promptv1:kb=mimic-train: 10 vs 2 discordant, exact p = 0.0386
-- Agent performance mimic:S4:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 22.6%, median latency Agent 2 2.0 ms / Agent 3 528 ms (p95 980) / Agent 4 0.08 ms, tokens per case 1643
+- Agent performance mimic:S4:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 22.6%, median latency Agent 2 2.1 ms / Agent 3 528 ms (p95 980) / Agent 4 0.08 ms, tokens per case 1643
 - Evidence sources mimic:S4:kb=mimic-train (all retrieved cases): MIMIC-IV-ED 100.0%
 - Agent performance mimic:S3:kb=none: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 100.0%, median latency Agent 2 0.0 ms / Agent 3 502 ms (p95 641) / Agent 4 0.07 ms, tokens per case 1176
-- Agent performance mimic:S4-promptv1:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 1, weak-evidence flags 22.6%, median latency Agent 2 2.0 ms / Agent 3 440 ms (p95 810) / Agent 4 0.07 ms, tokens per case 1435
+- Agent performance mimic:S4-promptv1:kb=mimic-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 1, weak-evidence flags 22.6%, median latency Agent 2 2.0 ms / Agent 3 440 ms (p95 810) / Agent 4 0.08 ms, tokens per case 1435
 - Evidence sources mimic:S4-promptv1:kb=mimic-train (all retrieved cases): MIMIC-IV-ED 100.0%
 - Weak-evidence flag mimic:S4:kb=mimic-train: flagged n=7 accuracy 57.1% under-triage 42.9%; not flagged n=24 accuracy 45.8% under-triage 8.3%
 - Subgroup S2b by sex: F n=11 acc 81.8% under 9.1%; M n=20 acc 65.0% under 15.0%
@@ -109,7 +109,7 @@
 - McNemar ktas:S4:kb=mimic-all vs S2b: 6 vs 4 discordant, exact p = 0.7539
 - McNemar ktas:S4:kb=mimic-all vs S4-noNEWS2: 0 vs 0 discordant, exact p = 1.0000
 - McNemar ktas:S4:kb=mimic-all vs H: 9 vs 4 discordant, exact p = 0.2668
-- Agent performance ktas:S4:kb=mimic+ktas-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 1, weak-evidence flags 6.5%, median latency Agent 2 18.1 ms / Agent 3 582 ms (p95 867) / Agent 4 0.10 ms, tokens per case 1534
+- Agent performance ktas:S4:kb=mimic+ktas-train: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 1, weak-evidence flags 6.5%, median latency Agent 2 18.4 ms / Agent 3 582 ms (p95 867) / Agent 4 0.10 ms, tokens per case 1534
 - Evidence sources ktas:S4:kb=mimic+ktas-train (all retrieved cases): KTAS 88.7%, MIMIC-IV-ED 11.3%
 - Agent performance ktas:S4:kb=mimic-all: first-pass guardrail validity 100.0%, repair rate 0.0%, failed 0, NEWS2 overrides 0, weak-evidence flags 17.9%, median latency Agent 2 3.8 ms / Agent 3 487 ms (p95 798) / Agent 4 0.08 ms, tokens per case 1654
 - Evidence sources ktas:S4:kb=mimic-all (all retrieved cases): MIMIC-IV-ED 100.0%
@@ -132,7 +132,8 @@
 - Step 5: frozen system evaluated once on the new held-out MIMIC test split (S4, S3, S4-promptv1, S4-noNEWS2 from the same calls) and on KTAS (external, prompt v2 for every KTAS job)
 - LOW_EVIDENCE_THRESHOLD re-selected on 2026-11-22, before any held-out LLM run, with the same rule (largest accuracy drop unflagged - flagged, 10-40% flagged, candidates 0.300-0.700 step 0.025) on non-test data only: 5-fold patient-grouped out-of-fold retrieval votes (Agent 2) over the 114 training + 62 development stays (176); no held-out test stay involved; result 0.50 (flag rate 33.5%, accuracy flagged 61.0% vs unflagged 62.4%) = same value as the first selection, kept
 - Configuration re-frozen on 2026-11-22 after the threshold re-selection; config hash unchanged
-- Step 6 (2026-11-22, decided before any result of the affected KTAS jobs): multi-source knowledge base (MIMIC-IV-ED + KTAS) as in Feature 2 'Multi-Source Evidence-Grounded Reasoning' of the submitted workflow; KTAS becomes the main evaluation (full 191-case test split; S4 KB = all MIMIC + KTAS train; S3 on the same cases); KB=KTAS-train-only job replaced; KB=MIMIC-only job kept (117, extended to 191 if budget allows); MIMIC held-out (31 stays) kept as a secondary check, not re-run; all other frozen settings unchanged
+- Step 6 (2026-11-22, decided before any result of the affected KTAS jobs): multi-source knowledge base (MIMIC-IV-ED + KTAS) as in Feature 2 'Multi-Source Evidence-Grounded Reasoning' of the submitted workflow; KTAS becomes the main evaluation (full 191-case test split; S4 KB = all MIMIC + KTAS train; S3 on the same cases); KB=KTAS-train-only job replaced; KB=MIMIC-only job kept (117-case sample); MIMIC held-out (31 stays) kept as a secondary check, not re-run; all other frozen settings unchanged
+- Step 7 (2026-11-22, student decision): the KB=MIMIC-only KTAS job is extended from the 117-case sample to all 191 test cases (74 more calls), so S4 multi-source KB, S3 and S4 MIMIC-only KB are compared on the same 191 cases
 
 ## Live system facts
 - Example local run (High demo case): Agent 2 632 ms, Agent 3 1,224 ms (1,637 tokens), Agent 4 0.1 ms, Agent 5 12 ms (mocked)

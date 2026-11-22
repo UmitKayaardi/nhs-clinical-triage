@@ -37,7 +37,8 @@ KNOWLEDGE_BASE = {
     "live_system": "all MIMIC-IV-ED Demo stays (222) + all KTAS records (1,267) = 1,489 cases, two sources",
     "evaluation_ktas_main": "all MIMIC-IV-ED Demo stays (222) + KTAS training split only (886) = 1,108 cases; "
                             "KTAS validation (190) and test (191) never in the knowledge base",
-    "evaluation_ktas_secondary": "MIMIC-IV-ED only (222 stays; 117-case sample, extended to 191 if budget allows)",
+    "evaluation_ktas_secondary": "MIMIC-IV-ED only (222 stays) on the same 191 KTAS test cases (117-case sample "
+                                 "first, then the other 74; extension made required on 2026-11-22)",
     "evaluation_mimic_heldout": "MIMIC protocol-v2 training stays only (114); unchanged, not re-run",
     "source_labels": ["MIMIC-IV-ED", "KTAS"],
     "llm_evidence_text": "each retrieved case is prefixed with 'Source: <label>' when the knowledge base has more "

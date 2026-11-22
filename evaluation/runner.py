@@ -8,8 +8,8 @@ MIMIC protocol v2 (see evaluation/splits.py::make_mimic_v2):
                frozen configuration (evaluation/frozen_config.json). KB = remaining training patients.
 KTAS is the MAIN evaluation (since 2026-11-22) with the same frozen configuration: full test split (191 cases),
 multi-source knowledge base = all MIMIC-IV-ED stays + KTAS training split only (886). The secondary KB = MIMIC-only
-job keeps its 117-case stratified sample (test-sample) and is extended to the other 74 test cases (test-rest) only
-when the daily budget allows.
+job runs its 117-case stratified sample (test-sample) first and is then extended to the other 74 test cases
+(test-rest; student decision 2026-11-22), so all three KTAS LLM jobs cover the same 191 cases.
 """
 
 import logging
@@ -36,7 +36,7 @@ LLM_JOBS = [  # order = run order
     # --- KTAS main evaluation (frozen configuration; full test split, 191 cases) ---
     LLMJob("ktas:S4:kb=mimic+ktas-train", "ktas", "S4", "mimic-all+ktas-train"),
     LLMJob("ktas:S3:kb=none", "ktas", "S3", "none"),
-    # --- KTAS secondary: KB = MIMIC only (117-case sample; the 74-case extension runs last, if budget allows) ---
+    # --- KTAS secondary: KB = MIMIC only (117-case sample, then the 74-case extension -> same 191 cases) ---
     LLMJob("ktas:S4:kb=mimic-all", "ktas", "S4", "mimic-all", split="test-sample"),
     LLMJob("ktas:S4:kb=mimic-all:extension", "ktas", "S4", "mimic-all", split="test-rest"),
 ]
