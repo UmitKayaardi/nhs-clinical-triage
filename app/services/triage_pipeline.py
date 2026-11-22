@@ -92,8 +92,8 @@ def run_clinical_agents(
         db_context = retrieval_service.format_cases_as_context(cases)
         timings["agent2_retrieval"] = (time.perf_counter() - t0) * 1000
         step["output"] = {
-            "cases": [{"stay_id": c.stay_id, "chief_complaint": c.chief_complaint, "severity": c.severity,
-                       "similarity": c.similarity_score} for c in cases],
+            "cases": [{"source": c.source, "case_ref": c.case_ref, "chief_complaint": c.chief_complaint,
+                       "severity": c.severity, "similarity": c.similarity_score} for c in cases],
             **evidence,
         }
         step["summary"] = (f"{len(cases)} cases, top similarity {evidence['top_similarity']:.2f}, "

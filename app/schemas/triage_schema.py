@@ -60,6 +60,8 @@ class SimilarCaseSchema(BaseModel):
     vitals: Dict[str, Optional[float]] = Field(default_factory=dict)
     treatments: List[str] = Field(default_factory=list)
     similarity_score: float = 0.0
+    source: str = "MIMIC-IV-ED"          # knowledge-base source: "MIMIC-IV-ED" or "KTAS"
+    case_ref: Optional[str] = None       # MIMIC stay_id or "KTAS-<record id>"
 
 
 class TriageResult(BaseModel):

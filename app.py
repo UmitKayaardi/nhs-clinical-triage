@@ -143,10 +143,15 @@ def _news2_html(news2_score, safety_override, override_reason, llm_severity=None
 def _similarity_table(ids, scores) -> str:
     if not ids:
         return "<p><span class='label'>Historical evidence:</span> none found</p>"
-    rows = "".join(f"<tr><td>{i}</td><td>{_esc(str(sid))}</td><td>{(scores[i - 1] if i - 1 < len(scores) else 0):.2f}</td></tr>"
+    def source_and_id(ref):
+        ref = str(ref)
+        return ("KTAS", ref.split("-", 1)[1]) if ref.startswith("KTAS-") else ("MIMIC-IV-ED", ref)
+
+    rows = "".join(f"<tr><td>{i}</td><td>{source_and_id(sid)[0]}</td><td>{_esc(source_and_id(sid)[1])}</td>"
+                   f"<td>{(scores[i - 1] if i - 1 < len(scores) else 0):.2f}</td></tr>"
                    for i, sid in enumerate(ids, 1))
     return ("<p><span class='label'>Historical evidence (Agent 2):</span></p><table class='sim-table'>"
-            "<tr><th>#</th><th>MIMIC stay_id</th><th>Similarity</th></tr>" + rows + "</table>")
+            "<tr><th>#</th><th>Source</th><th>Case ID</th><th>Similarity</th></tr>" + rows + "</table>")
 
 
 def dict_to_html_card(data: dict, extra_html: str = "") -> str:
@@ -333,10 +338,12 @@ def render_result(body: dict) -> str:
         "Guardrail attempts": body.get("guardrail_attempts"),
         "Alert (Agent 5)": _alert_text(alert),
     }
-    sim = "".join(f"<tr><td>{i}</td><td>{_esc(c['chief_complaint'])}</td><td>{_esc(c['severity'])}</td>"
+    sim = "".join(f"<tr><td>{i}</td><td>{_esc(c.get('source') or 'MIMIC-IV-ED')}</td>"
+                  f"<td>{_esc(c['chief_complaint'])}</td><td>{_esc(c['severity'])}</td>"
                   f"<td>{c['similarity_score']:.2f}</td></tr>" for i, c in enumerate(cases, 1))
-    sim_html = ("<p><span class='label'>Historical evidence (Agent 2):</span></p><table class='sim-table'>"
-                "<tr><th>#</th><th>Chief complaint</th><th>Recorded severity</th><th>Similarity</th></tr>"
+    sim_html = ("<p><span class='label'>Historical evidence (Agent 2, multi-source knowledge base):</span></p>"
+                "<table class='sim-table'>"
+                "<tr><th>#</th><th>Source</th><th>Chief complaint</th><th>Recorded severity</th><th>Similarity</th></tr>"
                 + sim + "</table>") if cases else "<p><span class='label'>Historical evidence:</span> none found</p>"
     return dict_to_html_card(data, extra) + sim_html
 
@@ -571,6 +578,10 @@ def load_health():
           f"prompt {h['models']['llm_prompt_version']}) · low-evidence threshold {h['models']['low_evidence_threshold']} · "
           f"NEWS2 safety net {'on' if h['models']['news2_safety_net'] else 'off'}\n\n"
           f"**Versions**: " + ", ".join(f"{k} {v}" for k, v in h["versions"].items()) + f", gradio {gr.__version__}")
+    kb = h.get("knowledge_base")
+    if isinstance(kb, dict) and kb.get("sources"):
+        md += (f"\n\n**Knowledge base (Agent 2, multi-source)**: {kb['total']} cases -- "
+               + ", ".join(f"{k} {v}" for k, v in kb["sources"].items()))
     return md, h
 
 
@@ -586,52 +597,95 @@ def _fmt(x, pct=False):
     return f"{100 * x:.1f}%" if pct else f"{x:.3f}"
 
 
+_EVAL_HEADER = ("| System | n | Accuracy | Balanced acc. | Macro-F1 | Kappa | High recall | Under-triage | Over-triage |\n"
+                "|---|---|---|---|---|---|---|---|---|")
+_KB_LABELS = {"mimic+ktas-train": "multi-source KB: MIMIC-IV-ED + KTAS train", "mimic-all": "KB: MIMIC-IV-ED only",
+              "mimic-train": "KB: MIMIC training stays", "none": "no evidence"}
+
+
+def _eval_row(label, r):
+    return (f"| {label} | {r['n']} | {_fmt(r['accuracy'], True)} | {_fmt(r['balanced_accuracy'], True)} | "
+            f"{_fmt(r['f1_macro'])} | {_fmt(r['kappa_linear'])} | {_fmt(r['high_recall'], True)} | "
+            f"{_fmt(r['under_triage_rate'], True)} | {_fmt(r['over_triage_rate'], True)} |")
+
+
+def _llm_rows(ds) -> list:
+    rows = []
+    for job, entry in ds.get("llm_systems", {}).items():
+        kb = _KB_LABELS.get(job.split("kb=")[-1], job.split("kb=")[-1])
+        for sname in ("S4", "S3", "S4-noNEWS2", "S4-promptv1"):
+            if sname in entry:
+                tag = "" if entry["complete"] else f" *(in progress {entry['n_done']}/{entry['n_target']})*"
+                label = f"**{sname}**" if sname == "S4" and "multi-source" in kb else sname
+                rows.append(_eval_row(f"{label} ({kb}){tag}", entry[sname]))
+    return rows
+
+
 def evaluation_markdown() -> str:
     if not METRICS_PATH.exists():
         return "No evaluation results found. Run `python scripts/evaluate.py --all`."
     m = json.loads(METRICS_PATH.read_text(encoding="utf-8"))
+    names = m["systems"]
     out = [f"Generated {m['generated_at']} · seed {m['seed']} · LLM {m['llm']['model']} (temperature "
            f"{m['llm']['temperature']}, reasoning effort {m['llm']['reasoning_effort']}) · all LLM runs complete: "
            f"**{m['llm']['all_llm_runs_complete']}**", ""]
-    names = m["systems"]
-    for ds_name, ds in m["datasets"].items():
-        title = {"mimic": "MIMIC-IV-ED Demo (knowledge base dataset, ESI labels)",
-                 "ktas": "KTAS external validation (Moon et al., 2019; truth = KTAS_expert)"}[ds_name]
-        out += [f"### {title}", "", "| Split | Cases | Patients/groups | Low | Medium | High |", "|---|---|---|---|---|---|"]
-        for split, s in ds["split_summary"].items():
+    datasets = m["datasets"]
+
+    # --- Main evaluation: KTAS ---
+    k = datasets.get("ktas")
+    if k:
+        out += ["## Main evaluation — KTAS test split (Moon et al., 2019; truth = KTAS_expert)", "",
+                "191 test cases never used for development, frozen configuration. S4 retrieves from the multi-source "
+                "knowledge base (all MIMIC-IV-ED stays + the KTAS training split only; KTAS validation/test records "
+                "are never in it).", "", _EVAL_HEADER]
+        out += _llm_rows(k)
+        if "H" in k["test"]:
+            out.append(_eval_row(f"H {names.get('H', '')}", k["test"]["H"]))
+        for sname, r in k["test"].items():
+            if sname != "H":
+                out.append(_eval_row(f"{sname} {names.get(sname, '')}", r))
+        if k.get("s1_multi_source"):
+            out.append(_eval_row(f"S1-mk {names.get('S1-mk', '')}", k["s1_multi_source"]))
+        if k.get("nurse_all_records"):
+            r = k["nurse_all_records"]
+            out += ["", f"Triage nurse on all {r['n']} KTAS records: accuracy {_fmt(r['accuracy'], True)}, macro-F1 "
+                        f"{_fmt(r['f1_macro'])}, under-triage {_fmt(r['under_triage_rate'], True)}."]
+        if "llm_subset" in k:
+            out += ["", f"Same {k['llm_subset']['n']}-case stratified sample used by the secondary S4 run "
+                        "(KB: MIMIC-IV-ED only):", "", _EVAL_HEADER]
+            for sname, r in k["llm_subset"]["systems"].items():
+                out.append(_eval_row(f"{sname} {names.get(sname, '')}", r))
+        out += ["", "| Split | Cases | Low | Medium | High |", "|---|---|---|---|---|"]
+        for split, s in k["split_summary"].items():
+            c = s["class_counts"]
+            out.append(f"| {split} | {s['n_cases']} | {c['Low']} | {c['Medium']} | {c['High']} |")
+        cv = k["cross_validation"]
+        out += ["", f"5-fold cross-validation ({cv['method']}): " + "; ".join(
+            f"{n} macro-F1 {v['f1_macro']['mean']:.3f} ± {v['f1_macro']['std']:.3f}" for n, v in cv["systems"].items()), ""]
+
+    # --- Secondary check: MIMIC held-out ---
+    mi = datasets.get("mimic")
+    if mi:
+        out += ["## Secondary check — MIMIC-IV-ED Demo held-out test (31 stays, 9 patients; ESI labels)", "",
+                "Small held-out split evaluated once with the frozen configuration; knowledge base = the 114 "
+                "training stays.", "", _EVAL_HEADER]
+        out += _llm_rows(mi)
+        for sname, r in mi["test"].items():
+            out.append(_eval_row(f"{sname} {names.get(sname, '')}", r))
+        out += ["", "| Split | Cases | Patients | Low | Medium | High |", "|---|---|---|---|---|---|"]
+        for split, s in mi["split_summary"].items():
             c = s["class_counts"]
             out.append(f"| {split} | {s['n_cases']} | {s['n_groups']} | {c['Low']} | {c['Medium']} | {c['High']} |")
-        out += ["", "| System | n | Accuracy | Balanced acc. | Macro-F1 | Kappa | High recall | Under-triage | Over-triage |",
-                "|---|---|---|---|---|---|---|---|---|"]
-
-        def row(label, r):
-            return (f"| {label} | {r['n']} | {_fmt(r['accuracy'], True)} | {_fmt(r['balanced_accuracy'], True)} | "
-                    f"{_fmt(r['f1_macro'])} | {_fmt(r['kappa_linear'])} | {_fmt(r['high_recall'], True)} | "
-                    f"{_fmt(r['under_triage_rate'], True)} | {_fmt(r['over_triage_rate'], True)} |")
-
-        for sname, r in ds["test"].items():
-            out.append(row(f"{sname} {names.get(sname, '')}", r))
-        for job, entry in ds.get("llm_systems", {}).items():
-            for sname in ("S3", "S4", "S4-noNEWS2", "S4-promptv1"):
-                if sname in entry:
-                    tag = "" if entry["complete"] else f" *(partial {entry['n_done']}/{entry['n_target']})*"
-                    out.append(row(f"{sname} [{job.split('kb=')[-1]}]{tag}", entry[sname]))
-        if "llm_subset" in ds:
-            out += ["", f"Same {ds['llm_subset']['n']}-case KTAS LLM sample:", "",
-                    "| System | n | Accuracy | Balanced acc. | Macro-F1 | Kappa | High recall | Under-triage | Over-triage |",
-                    "|---|---|---|---|---|---|---|---|---|"]
-            for sname, r in ds["llm_subset"]["systems"].items():
-                out.append(row(f"{sname} {names.get(sname, '')}", r))
-        cv = ds["cross_validation"]
+        cv = mi["cross_validation"]
         out += ["", f"5-fold cross-validation ({cv['method']}): " + "; ".join(
-            f"{k} macro-F1 {v['f1_macro']['mean']:.3f} ± {v['f1_macro']['std']:.3f}" for k, v in cv["systems"].items()), ""]
+            f"{n} macro-F1 {v['f1_macro']['mean']:.3f} ± {v['f1_macro']['std']:.3f}" for n, v in cv["systems"].items()), ""]
     return "\n".join(out)
 
 
 def evaluation_figures():
-    order = ["confusion_matrices_mimic.png", "confusion_matrices_ktas.png", "nurse_vs_system_ktas.png",
-             "model_comparison_f1_mimic.png", "model_comparison_f1_ktas.png", "under_triage_mimic.png",
-             "under_triage_ktas.png", "cv_boxplot_mimic.png", "cv_boxplot_ktas.png", "latency_per_agent.png",
+    order = ["nurse_vs_system_ktas.png", "confusion_matrices_ktas.png", "model_comparison_f1_ktas.png",
+             "under_triage_ktas.png", "confusion_matrices_mimic.png", "model_comparison_f1_mimic.png",
+             "under_triage_mimic.png", "cv_boxplot_mimic.png", "cv_boxplot_ktas.png", "latency_per_agent.png",
              "low_evidence_accuracy.png", "subgroups_ktas.png", "per_class_f1_ktas.png"]
     return [(str(FIGURES_DIR / f), f.replace(".png", "").replace("_", " ")) for f in order if (FIGURES_DIR / f).exists()]
 
@@ -766,12 +820,15 @@ with gr.Blocks(title="NHS Triage Assistant", theme=gr.themes.Soft(primary_hue="s
 
     with gr.Tab("Evaluation"):
         gr.Markdown("### Offline evaluation (WP1) — reproducible with `python scripts/evaluate.py --all`")
-        gr.Markdown("Systems: S0 majority · S1 retrieval-only (Agent 2) · S2a logistic regression · S2b random "
-                    "forest · S3 LLM without evidence · S4 full system (Agents 2+3+4) · S4-noNEWS2 ablation · "
-                    "S4-promptv1 prompt ablation · H triage nurse (KTAS only). MIMIC: prompt developed on a "
-                    "development set (62 stays), configuration frozen, then evaluated once on a held-out test split "
-                    "(31 stays, 9 patients); KTAS: stratified 70/15/15, external evaluation with the frozen prompt. "
-                    "The evidence index uses training cases only; no patient is in two sets.")
+        gr.Markdown("**Knowledge base (Agent 2):** about 1,500 records from two datasets — 222 MIMIC-IV-ED Demo "
+                    "stays (one US hospital ED) and 1,267 KTAS records (two Korean EDs); every retrieved case shows "
+                    "its source. **Main evaluation: KTAS** test split (191 cases), frozen configuration; the "
+                    "evaluation knowledge base holds all MIMIC-IV-ED stays + the KTAS training split only. "
+                    "**Secondary check:** MIMIC held-out test (31 stays, 9 patients), prompt developed on a separate "
+                    "development set (62 stays).  \n"
+                    "Systems: S0 majority · S1 retrieval-only (Agent 2) · S1-mk retrieval-only with the multi-source "
+                    "KB · S2a logistic regression · S2b random forest · S3 LLM without evidence · **S4 full system** "
+                    "(Agents 2+3+4) · S4-noNEWS2 ablation · S4-promptv1 prompt ablation · H triage nurse (KTAS_RN).")
         eval_md = gr.Markdown(evaluation_markdown())
         eval_gallery = gr.Gallery(value=evaluation_figures(), label="Figures", columns=2, height="auto",
                                   object_fit="contain")

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T08:12:15Z",
+  "generated_at": "2026-11-22T11:44:29Z",
   "seed": 42,
   "labels": [
     "Low",
@@ -19,7 +19,8 @@
     "S4": "Full system (Agents 2+3+4)",
     "S4-noNEWS2": "Full system without NEWS2 safety net",
     "S4-promptv1": "Full system with the previous release prompt (v1)",
-    "H": "Triage nurse (KTAS_RN)"
+    "H": "Triage nurse (KTAS_RN)",
+    "S1-mk": "Retrieval-only vote, multi-source KB (MIMIC-IV-ED + KTAS train)"
   },
   "llm": {
     "model": "openai/gpt-oss-20b",
@@ -1244,6 +1245,10 @@
           "n_target": 31,
           "n_failed": 0,
           "stopped_reason": null,
+          "extended_to_full_test": false,
+          "evidence_source_share": {
+            "MIMIC-IV-ED": 1.0
+          },
           "S4": {
             "n": 31,
             "accuracy": 0.4838709677419355,
@@ -1458,9 +1463,9 @@
             "mean_tokens_per_case": 1642.5483870967741,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 1.9849354838709679,
-                "median": 1.982,
-                "p95": 2.3369999999999997,
+                "mean": 2.1136129032258064,
+                "median": 2.127,
+                "p95": 2.4785000000000004,
                 "n": 31
               },
               "agent3_llm": {
@@ -1470,9 +1475,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.07919354838709676,
-                "median": 0.077,
-                "p95": 0.0945,
+                "mean": 0.09806451612903226,
+                "median": 0.098,
+                "p95": 0.1265,
                 "n": 31
               }
             },
@@ -1493,6 +1498,8 @@
           "n_target": 31,
           "n_failed": 0,
           "stopped_reason": null,
+          "extended_to_full_test": false,
+          "evidence_source_share": {},
           "S3": {
             "n": 31,
             "accuracy": 0.6129032258064516,
@@ -1607,9 +1614,9 @@
             "mean_tokens_per_case": 1175.774193548387,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 0.030064516129032264,
-                "median": 0.029,
-                "p95": 0.045,
+                "mean": 0.028935483870967747,
+                "median": 0.028,
+                "p95": 0.035500000000000004,
                 "n": 31
               },
               "agent3_llm": {
@@ -1619,9 +1626,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.06661290322580644,
-                "median": 0.068,
-                "p95": 0.077,
+                "mean": 0.06941935483870969,
+                "median": 0.067,
+                "p95": 0.099,
                 "n": 31
               }
             },
@@ -1642,6 +1649,10 @@
           "n_target": 31,
           "n_failed": 0,
           "stopped_reason": null,
+          "extended_to_full_test": false,
+          "evidence_source_share": {
+            "MIMIC-IV-ED": 1.0
+          },
           "S4-promptv1": {
             "n": 31,
             "accuracy": 0.22580645161290322,
@@ -1760,9 +1771,9 @@
             "mean_tokens_per_case": 1435.032258064516,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.017645161290323,
-                "median": 2.035,
-                "p95": 2.312,
+                "mean": 2.012967741935484,
+                "median": 2.048,
+                "p95": 2.3715,
                 "n": 31
               },
               "agent3_llm": {
@@ -1772,9 +1783,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.078,
-                "median": 0.079,
-                "p95": 0.0975,
+                "mean": 0.07874193548387097,
+                "median": 0.075,
+                "p95": 0.1045,
                 "n": 31
               }
             },
@@ -1797,6 +1808,10 @@
           "n_target": 62,
           "n_failed": 0,
           "stopped_reason": null,
+          "extended_to_full_test": false,
+          "evidence_source_share": {
+            "MIMIC-IV-ED": 1.0
+          },
           "S4": {
             "n": 62,
             "accuracy": 0.5967741935483871,
@@ -2011,9 +2026,9 @@
             "mean_tokens_per_case": 1670.774193548387,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.4029838709677422,
-                "median": 2.441,
-                "p95": 2.8753499999999996,
+                "mean": 2.4918870967741933,
+                "median": 2.516,
+                "p95": 2.9033499999999997,
                 "n": 62
               },
               "agent3_llm": {
@@ -2023,9 +2038,9 @@
                 "n": 62
               },
               "agent4_guardrail_news2": {
-                "mean": 0.0795967741935484,
-                "median": 0.077,
-                "p95": 0.10669999999999998,
+                "mean": 0.09796774193548388,
+                "median": 0.096,
+                "p95": 0.12374999999999997,
                 "n": 62
               }
             },
@@ -2046,6 +2061,10 @@
           "n_target": 31,
           "n_failed": 0,
           "stopped_reason": null,
+          "extended_to_full_test": false,
+          "evidence_source_share": {
+            "MIMIC-IV-ED": 1.0
+          },
           "S4-promptv1": {
             "n": 31,
             "accuracy": 0.2903225806451613,
@@ -2164,9 +2183,9 @@
             "mean_tokens_per_case": 1452.1612903225807,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 2.4179354838709672,
-                "median": 2.419,
-                "p95": 2.9720000000000004,
+                "mean": 2.5202258064516125,
+                "median": 2.563,
+                "p95": 2.8945,
                 "n": 31
               },
               "agent3_llm": {
@@ -2176,9 +2195,9 @@
                 "n": 31
               },
               "agent4_guardrail_news2": {
-                "mean": 0.07648387096774195,
-                "median": 0.076,
-                "p95": 0.096,
+                "mean": 0.099741935483871,
+                "median": 0.095,
+                "p95": 0.132,
                 "n": 31
               }
             },
@@ -3260,6 +3279,15 @@
         }
       },
       "retrieval_quality": {
+        "mimic-all+ktas-train": {
+          "kb": "mimic-all+ktas-train",
+          "n_queries": 191,
+          "no_evidence_rate": 0.02617801047120419,
+          "mean_top1_similarity": 0.710020942408377,
+          "precision_at_1": 0.5483870967741935,
+          "precision_at_3": 0.5931899641577062,
+          "precision_at_5": 0.5827060931899641
+        },
         "ktas-train": {
           "kb": "ktas-train",
           "n_queries": 191,
@@ -3279,14 +3307,245 @@
           "precision_at_5": 0.320616570327553
         }
       },
+      "s1_multi_source": {
+        "n": 191,
+        "accuracy": 0.643979057591623,
+        "balanced_accuracy": 0.6274326076456974,
+        "precision_macro": 0.6467591339993568,
+        "recall_macro": 0.6274326076456974,
+        "f1_macro": 0.634912854030501,
+        "precision_weighted": 0.6425984274297452,
+        "recall_weighted": 0.643979057591623,
+        "f1_weighted": 0.6416324470451358,
+        "per_class": {
+          "Low": {
+            "precision": 0.6853932584269663,
+            "recall": 0.7530864197530864,
+            "f1": 0.7176470588235294,
+            "support": 81
+          },
+          "Medium": {
+            "precision": 0.5774647887323944,
+            "recall": 0.5616438356164384,
+            "f1": 0.5694444444444444,
+            "support": 73
+          },
+          "High": {
+            "precision": 0.6774193548387096,
+            "recall": 0.5675675675675675,
+            "f1": 0.6176470588235294,
+            "support": 37
+          }
+        },
+        "kappa_linear": 0.5083142002365546,
+        "high_recall": 0.5675675675675675,
+        "confusion_matrix": [
+          [
+            61,
+            17,
+            3
+          ],
+          [
+            25,
+            41,
+            7
+          ],
+          [
+            3,
+            13,
+            21
+          ]
+        ],
+        "confusion_matrix_normalised": [
+          [
+            0.7531,
+            0.2099,
+            0.037
+          ],
+          [
+            0.3425,
+            0.5616,
+            0.0959
+          ],
+          [
+            0.0811,
+            0.3514,
+            0.5676
+          ]
+        ],
+        "labels": [
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "pred_distribution": {
+          "Low": 89,
+          "Medium": 71,
+          "High": 31
+        },
+        "under_triage_rate": 0.21465968586387435,
+        "over_triage_rate": 0.14136125654450263,
+        "under_triage_n": 41,
+        "over_triage_n": 27,
+        "roc_auc_macro_ovr": 0.7825639331830804,
+        "ci95": {
+          "accuracy": {
+            "low": 0.5759162303664922,
+            "high": 0.7120418848167539
+          },
+          "f1_macro": {
+            "low": 0.5598440301114103,
+            "high": 0.7015011090761488
+          },
+          "under_triage_rate": {
+            "low": 0.15693717277486913,
+            "high": 0.27225130890052357
+          },
+          "n_boot": 1000
+        },
+        "note": "S1 vote with the S4 multi-source knowledge base (all MIMIC-IV-ED stays + KTAS train), same k and weights as S1",
+        "neighbour_source_share_top5": {
+          "KTAS": 0.9001109877913429,
+          "MIMIC-IV-ED": 0.09988901220865705
+        }
+      },
+      "nurse_all_records": {
+        "n": 1267,
+        "accuracy": 0.8855564325177585,
+        "balanced_accuracy": 0.87940001126703,
+        "precision_macro": 0.89199820945118,
+        "recall_macro": 0.87940001126703,
+        "f1_macro": 0.8842170823481244,
+        "precision_weighted": 0.8869380838197225,
+        "recall_weighted": 0.8855564325177585,
+        "f1_weighted": 0.8846048709238175,
+        "per_class": {
+          "Low": {
+            "precision": 0.8673469387755102,
+            "recall": 0.9550561797752809,
+            "f1": 0.9090909090909091,
+            "support": 534
+          },
+          "Medium": {
+            "precision": 0.8948545861297539,
+            "recall": 0.8213552361396304,
+            "f1": 0.8565310492505354,
+            "support": 487
+          },
+          "High": {
+            "precision": 0.9137931034482759,
+            "recall": 0.8617886178861789,
+            "f1": 0.8870292887029289,
+            "support": 246
+          }
+        },
+        "kappa_linear": 0.8461938319409341,
+        "high_recall": 0.8617886178861789,
+        "confusion_matrix": [
+          [
+            510,
+            20,
+            4
+          ],
+          [
+            71,
+            400,
+            16
+          ],
+          [
+            7,
+            27,
+            212
+          ]
+        ],
+        "confusion_matrix_normalised": [
+          [
+            0.9551,
+            0.0375,
+            0.0075
+          ],
+          [
+            0.1458,
+            0.8214,
+            0.0329
+          ],
+          [
+            0.0285,
+            0.1098,
+            0.8618
+          ]
+        ],
+        "labels": [
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "pred_distribution": {
+          "Low": 588,
+          "Medium": 447,
+          "High": 232
+        },
+        "under_triage_rate": 0.08287292817679558,
+        "over_triage_rate": 0.03157063930544594,
+        "under_triage_n": 105,
+        "over_triage_n": 40,
+        "ci95": {
+          "accuracy": {
+            "low": 0.8689818468823993,
+            "high": 0.9037095501183899
+          },
+          "f1_macro": {
+            "low": 0.8651409128694652,
+            "high": 0.9035867489978007
+          },
+          "under_triage_rate": {
+            "low": 0.06787687450670876,
+            "high": 0.0978689818468824
+          },
+          "n_boot": 1000
+        },
+        "note": "KTAS_RN vs KTAS_expert on every KTAS record (no split)"
+      },
       "llm_systems": {
+        "ktas:S4:kb=mimic+ktas-train": {
+          "job": {
+            "name": "ktas:S4:kb=mimic+ktas-train",
+            "dataset": "ktas",
+            "system": "S4",
+            "kb": "mimic-all+ktas-train",
+            "split": "test",
+            "prompt": "v2"
+          },
+          "complete": false,
+          "n_done": 0,
+          "n_target": 191,
+          "n_failed": 0,
+          "stopped_reason": "cache miss in offline mode",
+          "extended_to_full_test": false
+        },
+        "ktas:S3:kb=none": {
+          "job": {
+            "name": "ktas:S3:kb=none",
+            "dataset": "ktas",
+            "system": "S3",
+            "kb": "none",
+            "split": "test",
+            "prompt": "v2"
+          },
+          "complete": false,
+          "n_done": 0,
+          "n_target": 191,
+          "n_failed": 0,
+          "stopped_reason": "cache miss in offline mode",
+          "extended_to_full_test": false
+        },
         "ktas:S4:kb=mimic-all": {
           "job": {
             "name": "ktas:S4:kb=mimic-all",
             "dataset": "ktas",
             "system": "S4",
             "kb": "mimic-all",
-            "split": "test",
+            "split": "test-sample",
             "prompt": "v2"
           },
           "complete": false,
@@ -3294,6 +3553,10 @@
           "n_target": 117,
           "n_failed": 0,
           "stopped_reason": "cache miss in offline mode",
+          "extended_to_full_test": false,
+          "evidence_source_share": {
+            "MIMIC-IV-ED": 1.0
+          },
           "S4": {
             "n": 28,
             "accuracy": 0.6428571428571429,
@@ -3506,9 +3769,9 @@
             "mean_tokens_per_case": 1654.3214285714287,
             "latency_ms": {
               "agent2_retrieval": {
-                "mean": 3.7338214285714293,
-                "median": 3.7889999999999997,
-                "p95": 4.3703,
+                "mean": 3.7468928571428575,
+                "median": 3.8365,
+                "p95": 4.46325,
                 "n": 28
               },
               "agent3_llm": {
@@ -3518,44 +3781,14 @@
                 "n": 28
               },
               "agent4_guardrail_news2": {
-                "mean": 0.08660714285714287,
-                "median": 0.086,
-                "p95": 0.10624999999999998,
+                "mean": 0.0862142857142857,
+                "median": 0.0875,
+                "p95": 0.10164999999999999,
                 "n": 28
               }
             },
             "latency_note": "Agent 3 latency = original Groq API latency stored in the cache (cached re-runs reuse it)"
           }
-        },
-        "ktas:S4:kb=ktas-train": {
-          "job": {
-            "name": "ktas:S4:kb=ktas-train",
-            "dataset": "ktas",
-            "system": "S4",
-            "kb": "ktas-train",
-            "split": "test",
-            "prompt": "v2"
-          },
-          "complete": false,
-          "n_done": 0,
-          "n_target": 117,
-          "n_failed": 0,
-          "stopped_reason": "budget exhausted earlier in this run"
-        },
-        "ktas:S3:kb=none": {
-          "job": {
-            "name": "ktas:S3:kb=none",
-            "dataset": "ktas",
-            "system": "S3",
-            "kb": "none",
-            "split": "test",
-            "prompt": "v2"
-          },
-          "complete": false,
-          "n_done": 0,
-          "n_target": 117,
-          "n_failed": 0,
-          "stopped_reason": "budget exhausted earlier in this run"
         }
       },
       "llm_development": {},
@@ -3566,7 +3799,7 @@
           "Low": 40,
           "High": 37
         },
-        "note": "stratified sample of the KTAS test split, up to 40 per class (High has only 37 test cases)",
+        "note": "stratified sample of the KTAS test split used by the secondary S4 job (KB = MIMIC-IV-ED only), up to 40 per class (High has only 37 test cases)",
         "systems": {
           "S0": {
             "n": 117,
@@ -4051,8 +4284,8 @@
         }
       },
       "best_non_llm_by_validation": "S2b",
-      "errors_file": {
-        "path": "evaluation/results/errors_ktas.csv",
+      "errors_file_secondary": {
+        "path": "evaluation/results/errors_ktas_kb-mimic.csv",
         "rows": 10,
         "system": "ktas:S4:kb=mimic-all"
       },
@@ -4097,72 +4330,72 @@
         "S2b": {
           "sex": {
             "F": {
-              "n": 55,
-              "accuracy": 0.6363636363636364,
-              "f1_macro": 0.6425070028011205,
-              "under_triage_rate": 0.2
+              "n": 93,
+              "accuracy": 0.7204301075268817,
+              "f1_macro": 0.709490932523244,
+              "under_triage_rate": 0.12903225806451613
             },
             "M": {
-              "n": 62,
-              "accuracy": 0.7258064516129032,
-              "f1_macro": 0.7183447749809306,
-              "under_triage_rate": 0.16129032258064516
+              "n": 98,
+              "accuracy": 0.6938775510204082,
+              "f1_macro": 0.6899876229561593,
+              "under_triage_rate": 0.15306122448979592
             }
           },
           "age_band": {
             "40-64": {
-              "n": 39,
-              "accuracy": 0.6153846153846154,
-              "f1_macro": 0.6223015873015872,
-              "under_triage_rate": 0.1282051282051282
+              "n": 67,
+              "accuracy": 0.6567164179104478,
+              "f1_macro": 0.6639828234031132,
+              "under_triage_rate": 0.11940298507462686
             },
             "65+": {
-              "n": 50,
-              "accuracy": 0.76,
-              "f1_macro": 0.774604193410355,
-              "under_triage_rate": 0.18
+              "n": 72,
+              "accuracy": 0.7638888888888888,
+              "f1_macro": 0.7656831472620946,
+              "under_triage_rate": 0.1527777777777778
             },
             "<40": {
-              "n": 28,
-              "accuracy": 0.6428571428571429,
-              "f1_macro": 0.6100164203612479,
-              "under_triage_rate": 0.25
+              "n": 52,
+              "accuracy": 0.6923076923076923,
+              "f1_macro": 0.5806267806267806,
+              "under_triage_rate": 0.15384615384615385
             }
           }
         },
         "H": {
           "sex": {
             "F": {
-              "n": 55,
-              "accuracy": 0.8909090909090909,
-              "f1_macro": 0.8963340299547197,
-              "under_triage_rate": 0.05454545454545454
+              "n": 93,
+              "accuracy": 0.8924731182795699,
+              "f1_macro": 0.8949641577060933,
+              "under_triage_rate": 0.053763440860215055
             },
             "M": {
-              "n": 62,
-              "accuracy": 0.8548387096774194,
-              "f1_macro": 0.8433268858800774,
-              "under_triage_rate": 0.08064516129032258
+              "n": 98,
+              "accuracy": 0.8673469387755102,
+              "f1_macro": 0.862295081967213,
+              "under_triage_rate": 0.07142857142857142
             }
           },
           "age_band": {
             "40-64": {
-              "n": 39,
-              "accuracy": 0.8717948717948718,
-              "f1_macro": 0.8549506444243287,
-              "under_triage_rate": 0.05128205128205128
+              "n": 67,
+              "accuracy": 0.8656716417910447,
+              "f1_macro": 0.8541596307553755,
+              "under_triage_rate": 0.05970149253731343
             },
             "65+": {
-              "n": 50,
-              "accuracy": 0.9,
-              "f1_macro": 0.8956956956956956,
-              "under_triage_rate": 0.06
+              "n": 72,
+              "accuracy": 0.9027777777777778,
+              "f1_macro": 0.9048964218455744,
+              "under_triage_rate": 0.06944444444444445
             },
             "<40": {
-              "n": 28,
-              "accuracy": 0.8214285714285714,
-              "f1_macro": 0.8666666666666667,
-              "under_triage_rate": 0.10714285714285714
+              "n": 52,
+              "accuracy": 0.8653846153846154,
+              "f1_macro": 0.8534562211981567,
+              "under_triage_rate": 0.057692307692307696
             }
           }
         },
@@ -4281,7 +4514,21 @@
   },
   "protocol": {
     "mimic": "protocol v2: development set = old validation + old test splits (62 stays, 26 patients; prompt v1 -> v2 developed here, LLM-free tuning uses it); held-out test = 31 stays from 9 patients drawn from the old training patients only (never an LLM query before), evaluated once with the frozen configuration; knowledge base and ML training data for the test run = remaining 114 stays / 21 patients",
-    "ktas": "external evaluation with the frozen configuration (prompt v2), never used for development",
+    "ktas": "MAIN evaluation with the frozen configuration (prompt v2), never used for development: full test split (191 cases); S4 knowledge base = all MIMIC-IV-ED stays (222) + KTAS training split only (886), KTAS validation/test never in the knowledge base; S3 on the same 191 cases; secondary S4 with KB = MIMIC-IV-ED only on a 117-case stratified sample (extended to 191 if the budget allows)",
+    "knowledge_base": {
+      "decided_on": "2026-11-22",
+      "decided_before_results": "decided before any result of the affected KTAS jobs was seen (KTAS S4 KB=MIMIC+KTAS-train and S3 on 191 cases had not run)",
+      "live_system": "all MIMIC-IV-ED Demo stays (222) + all KTAS records (1,267) = 1,489 cases, two sources",
+      "evaluation_ktas_main": "all MIMIC-IV-ED Demo stays (222) + KTAS training split only (886) = 1,108 cases; KTAS validation (190) and test (191) never in the knowledge base",
+      "evaluation_ktas_secondary": "MIMIC-IV-ED only (222 stays; 117-case sample, extended to 191 if budget allows)",
+      "evaluation_mimic_heldout": "MIMIC protocol-v2 training stays only (114); unchanged, not re-run",
+      "source_labels": [
+        "MIMIC-IV-ED",
+        "KTAS"
+      ],
+      "llm_evidence_text": "each retrieved case is prefixed with 'Source: <label>' when the knowledge base has more than one source; single-source evidence text is byte-identical to before",
+      "unchanged": "prompt v2, weak-evidence rule, repair template, model settings, retrieval weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, agreement 0.6, repairs 2, NEWS2 on (config hash unchanged)"
+    },
     "frozen_config": {
       "frozen_on": "2026-11-22",
       "reason": "prompt v2 developed on the MIMIC development set; held-out MIMIC test and KTAS are evaluated once with this configuration",
@@ -4317,6 +4564,10 @@
         {
           "frozen_on": "2026-11-22",
           "note": "LOW_EVIDENCE_THRESHOLD re-selected on non-test data only (train 114 + development 62, OOF); same rule; result 0.50 unchanged; re-frozen before any held-out LLM run"
+        },
+        {
+          "frozen_on": "2026-11-22",
+          "note": "knowledge-base change: Agent 2 multi-source KB (MIMIC-IV-ED + KTAS). Live = all MIMIC + all KTAS; KTAS evaluation = all MIMIC + KTAS train (886) only. Decided before any result of the affected KTAS jobs. Hashed configuration unchanged."
         }
       ],
       "low_evidence_threshold_selection": {
@@ -4335,6 +4586,20 @@
         },
         "previous_value": 0.5,
         "changed": false
+      },
+      "knowledge_base": {
+        "decided_on": "2026-11-22",
+        "decided_before_results": "decided before any result of the affected KTAS jobs was seen (KTAS S4 KB=MIMIC+KTAS-train and S3 on 191 cases had not run)",
+        "live_system": "all MIMIC-IV-ED Demo stays (222) + all KTAS records (1,267) = 1,489 cases, two sources",
+        "evaluation_ktas_main": "all MIMIC-IV-ED Demo stays (222) + KTAS training split only (886) = 1,108 cases; KTAS validation (190) and test (191) never in the knowledge base",
+        "evaluation_ktas_secondary": "MIMIC-IV-ED only (222 stays; 117-case sample, extended to 191 if budget allows)",
+        "evaluation_mimic_heldout": "MIMIC protocol-v2 training stays only (114); unchanged, not re-run",
+        "source_labels": [
+          "MIMIC-IV-ED",
+          "KTAS"
+        ],
+        "llm_evidence_text": "each retrieved case is prefixed with 'Source: <label>' when the knowledge base has more than one source; single-source evidence text is byte-identical to before",
+        "unchanged": "prompt v2, weak-evidence rule, repair template, model settings, retrieval weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, agreement 0.6, repairs 2, NEWS2 on (config hash unchanged)"
       }
     },
     "live_config_matches_frozen": true
@@ -4472,7 +4737,6 @@
     "evaluation/results/figures/cv_boxplot_ktas.png",
     "evaluation/results/figures/per_class_f1_ktas.png",
     "evaluation/results/figures/subgroups_ktas.png",
-    "evaluation/results/figures/nurse_vs_system_ktas.png",
     "evaluation/results/figures/latency_per_agent.png",
     "evaluation/results/figures/low_evidence_accuracy.png"
   ]

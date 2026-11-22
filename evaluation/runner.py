@@ -6,7 +6,10 @@ MIMIC protocol v2 (see evaluation/splits.py::make_mimic_v2):
                LLM-free tuning uses it. Development LLM jobs reuse the cached calls (KB = old train split).
   test         NEW held-out split (31 stays, 9 patients never used as an LLM query). Evaluated ONCE with the
                frozen configuration (evaluation/frozen_config.json). KB = remaining training patients.
-KTAS is an external evaluation with the same frozen configuration.
+KTAS is the MAIN evaluation (since 2026-11-22) with the same frozen configuration: full test split (191 cases),
+multi-source knowledge base = all MIMIC-IV-ED stays + KTAS training split only (886). The secondary KB = MIMIC-only
+job keeps its 117-case stratified sample (test-sample) and is extended to the other 74 test cases (test-rest) only
+when the daily budget allows.
 """
 
 import logging
@@ -30,11 +33,14 @@ LLM_JOBS = [  # order = run order
     LLMJob("mimic:S4:kb=mimic-train", "mimic", "S4", "mimic-train"),
     LLMJob("mimic:S3:kb=none", "mimic", "S3", "none"),
     LLMJob("mimic:S4-promptv1:kb=mimic-train", "mimic", "S4", "mimic-train", prompt="v1"),
-    # --- KTAS external evaluation (frozen configuration) ---
-    LLMJob("ktas:S4:kb=mimic-all", "ktas", "S4", "mimic-all"),
-    LLMJob("ktas:S4:kb=ktas-train", "ktas", "S4", "ktas-train"),
+    # --- KTAS main evaluation (frozen configuration; full test split, 191 cases) ---
+    LLMJob("ktas:S4:kb=mimic+ktas-train", "ktas", "S4", "mimic-all+ktas-train"),
     LLMJob("ktas:S3:kb=none", "ktas", "S3", "none"),
+    # --- KTAS secondary: KB = MIMIC only (117-case sample; the 74-case extension runs last, if budget allows) ---
+    LLMJob("ktas:S4:kb=mimic-all", "ktas", "S4", "mimic-all", split="test-sample"),
+    LLMJob("ktas:S4:kb=mimic-all:extension", "ktas", "S4", "mimic-all", split="test-rest"),
 ]
+EXTENSIONS = {"ktas:S4:kb=mimic-all:extension": "ktas:S4:kb=mimic-all"}   # extension job -> base job
 DEV_SPLITS = ("development", "dev-old-test")
 
 
@@ -65,16 +71,27 @@ def llm_cases(bundle: Dict, dataset: str, ktas_per_class: int, split: str = "tes
         return bundle["parts"][dataset]["validation"]
     if split == "dev-old-test":
         return bundle["dev_parts"][dataset]["test"]
-    test = bundle["parts"][dataset][split]
-    if dataset == "mimic" or split != "test":
-        return test
-    ids = set(ktas_llm_sample(test, per_class=ktas_per_class))
-    return test[test["case_id"].isin(ids)].reset_index(drop=True)
+    if split in ("test-sample", "test-rest"):
+        test = bundle["parts"][dataset]["test"]
+        ids = set(ktas_llm_sample(test, per_class=ktas_per_class))
+        keep = test["case_id"].isin(ids) if split == "test-sample" else ~test["case_id"].isin(ids)
+        return test[keep].reset_index(drop=True)
+    return bundle["parts"][dataset][split]
+
+
+class KnowledgeBaseLeak(RuntimeError):
+    """An evaluation knowledge base contains a validation/test record."""
 
 
 def kb_frame(bundle: Dict, job: LLMJob):
     if job.kb == "mimic-dev-train":
         return bundle["dev_parts"]["mimic"]["train"]
+    if job.kb == "mimic-all+ktas-train":
+        kb = bundle["parts"]["ktas"]["train"]
+        held = set(bundle["parts"]["ktas"]["validation"]["case_id"]) | set(bundle["parts"]["ktas"]["test"]["case_id"])
+        if held & set(kb["case_id"]):
+            raise KnowledgeBaseLeak("KTAS validation/test records in the evaluation knowledge base")
+        return kb
     if job.kb.endswith("train"):
         return bundle["parts"][job.dataset]["train"]
     return None
@@ -101,5 +118,6 @@ def run_llm_jobs(bundle: Dict, completion: CachedCompletion, ktas_per_class: int
               + (f" -- stopped: {res['stopped_reason']}" if res["stopped_reason"] else ""), flush=True)
         if not res["complete"]:
             all_complete = False
-            exhausted = True
+            # A real budget stop ends the run; an offline cache miss does not (later jobs may be cached).
+            exhausted = not getattr(completion, "offline", False)
     return results, all_complete

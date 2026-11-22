@@ -114,12 +114,16 @@ def _bar_with_ci(dataset: str, systems: Dict[str, Dict], key: str, ci_key: str, 
 
 
 def nurse_vs_system(ds: Dict, out: List[str]) -> None:
-    if "llm_subset" not in ds:
+    """KTAS main evaluation: nurse vs S4 (multi-source KB) vs S3 on the full test split."""
+    if "H" not in ds.get("test", {}):
         return
-    series = {"H nurse": ds["llm_subset"]["systems"]["H"]}
+    series = {"H nurse (KTAS_RN)": ds["test"]["H"]}
     for job, entry in ds.get("llm_systems", {}).items():
-        if "S4" in entry:
-            series[f"S4 KB {job.split('kb=')[-1]}"] = entry["S4"]
+        tag = "" if entry.get("complete") else " partial"
+        if job == "ktas:S4:kb=mimic+ktas-train" and "S4" in entry:
+            series["S4 full system, KB MIMIC-IV-ED + KTAS" + tag] = entry["S4"]
+        if "S3" in entry:
+            series["S3 LLM only" + tag] = entry["S3"]
     if len(series) < 2:
         return
     metrics = [("accuracy", "Accuracy"), ("f1_macro", "Macro-F1"), ("high_recall", "High recall"),
@@ -138,7 +142,7 @@ def nurse_vs_system(ds: Dict, out: List[str]) -> None:
     ax.set_ylabel("Rate (labels in %)")
     ax.grid(axis="x", visible=False)
     ax.legend(loc="upper right", fontsize=8)
-    ax.set_title("KTAS: triage nurse vs full system on the same LLM test sample (truth = KTAS_expert)")
+    ax.set_title("KTAS test split: triage nurse vs LLM systems (truth = KTAS_expert)")
     _save(fig, "nurse_vs_system_ktas.png", out)
 
 

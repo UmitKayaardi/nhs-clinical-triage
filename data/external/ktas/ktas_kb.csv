@@ -1,0 +1,1268 @@
+record_id,complaint,severity,diagnosis,disposition,temperature,heart_rate,resp_rate,o2sat,sbp,dbp
+0,right ocular pain,Low,Corneal abrasion,Discharge,97.9,84.0,18.0,100.0,160.0,100.0
+1,right forearm burn,Low,"Burn of hand, firts degree dorsum",Discharge,97.7,60.0,20.0,,137.0,75.0
+2,"arm pain, Lt",Low,"Fracture of surgical neck of humerus, closed",Ward admission,97.9,102.0,20.0,98.0,130.0,80.0
+3,ascites tapping,Low,Alcoholic liver cirrhosis with ascites,Discharge,97.7,88.0,20.0,,139.0,94.0
+4,"distension, abd",Low,Ascites,Discharge,97.7,93.0,18.0,,91.0,67.0
+5,fever,Low,"Fever, unspecified",Ward admission,100.6,94.0,20.0,98.0,140.0,90.0
+6,With chest discomfort,Medium,"Angina pectoris, unspecified",Discharge,97.2,70.0,20.0,98.0,110.0,70.0
+7,"pain, chest",Medium,Acute coronary syndrome,Discharge,96.8,80.0,20.0,,169.0,86.0
+8,LBP - Low back pain,Low,Herniated disc disease of lumbar spine with radiculopathy,Discharge,97.9,91.0,20.0,,140.0,75.0
+9,"Eczema, Eyelid",Low,Ocular pain,Discharge,97.3,80.0,20.0,97.0,130.0,80.0
+10,acute epigastric pain,Low,Acute gastritis,Discharge,97.7,72.0,16.0,,148.0,104.0
+11,"pain, leg",Low,Gout site unspecified,Discharge,97.9,86.0,18.0,,141.0,81.0
+12,epigastric pain,Low,Infectious or septic colitis,Discharge,97.2,106.0,20.0,98.0,120.0,80.0
+13,abd pain,Low,Acute peritonitis,Ward admission,97.5,80.0,20.0,,121.0,78.0
+14,headache,Low,Infective endocarditis,Ward admission,99.7,106.0,20.0,,135.0,82.0
+15,headache,Low,"Subarachnoid haemorrhage, unspecified",Ward admission,96.8,80.0,20.0,98.0,140.0,100.0
+16,diarrhea,Low,Acute gastroenteritis,Discharge,99.3,85.0,20.0,,121.0,76.0
+17,Open Wound,Medium,"Open wound of other parts of head, face",Ward admission,97.5,100.0,20.0,97.0,130.0,80.0
+18,RUQ pain,Medium,Hepatitis NOS,Discharge,97.5,90.0,20.0,98.0,100.0,60.0
+19,Gingival swelling,Low,Odontogenic infection,Discharge,97.7,109.0,16.0,,133.0,93.0
+20,chin pain,Low,"Closed fracture of humerus, NOS",Ward admission,97.2,80.0,20.0,98.0,110.0,70.0
+21,Finger Injury,Low,Dislocation of finger,Discharge,97.7,68.0,20.0,,140.0,62.0
+22,skin rash,Medium,Anaphylaxis,Discharge,98.6,125.0,20.0,,110.0,66.0
+23,Rt. side motor weakness,Medium,"Intracranial haemorrhage (nontraumatic), unspecified",Ward admission,97.7,88.0,20.0,97.0,140.0,80.0
+24,Lt. hip joint pain,Low,"Fracture of femur, intertrochanter closed",Transfer,98.8,94.0,16.0,,124.0,72.0
+25,face laceration,Low,Acute intoxication of alcohol,Discharge,98.2,76.0,20.0,,118.0,79.0
+26,throat pain,Medium,Acute epiglottitis without obstruction,Ward admission,98.2,98.0,22.0,98.0,140.0,90.0
+27,chest wall pain right,High,"Multiple fracture of involving three ribs,Closed",Ward admission,97.0,98.0,22.0,98.0,80.0,50.0
+28,"pain, arm",Low,"Complex regional pain syndrome, type I multiple site",Discharge,96.8,101.0,18.0,,140.0,90.0
+29,Seizure Like Activity,Medium,Seizure,Discharge,99.3,101.0,18.0,,180.0,82.0
+30,post seizure,Medium,Fracture of mandible open,Ward admission,98.1,101.0,18.0,,124.0,81.0
+31,vomiting,Low,Vomiting,Discharge,97.0,74.0,20.0,,125.0,82.0
+32,palpitation,Medium,Paroxysmal supraventricular tachycardia,Discharge,98.2,145.0,18.0,,91.0,74.0
+33,syncope,Medium,Syncope,Discharge,96.8,75.0,20.0,,162.0,75.0
+34,vomiting,Low,Acute gastritis,Discharge,98.4,64.0,16.0,,116.0,77.0
+35,hematochezia,Medium,"Gastrointestinal haemorrhage, unspecified",Discharge,98.2,84.0,20.0,97.0,120.0,80.0
+36,"injury, finger",Low,Laceration of finger with nail damage,Ward admission,97.3,91.0,16.0,,152.0,76.0
+37,syncope,Low,Syncope,Discharge,97.7,66.0,20.0,,164.0,79.0
+38,laceration,Low,Laceration of oral cavity,Discharge,97.9,76.0,18.0,,141.0,95.0
+39,hyperventilation,Low,Panic attack,Discharge,99.0,98.0,20.0,,196.0,104.0
+40,involuntary movt.,Low,Abnormal involuntary movement,Discharge,97.2,79.0,20.0,,140.0,62.0
+41,Urticarial rash,Low,Acute urticaria,Discharge,97.2,117.0,20.0,,144.0,97.0
+42,Foreign body sensation in neck,Low,Chronic sore throat,Discharge,97.9,106.0,20.0,98.0,120.0,70.0
+43,throat pain,Low,Acute pharyngitis,Discharge,98.4,90.0,20.0,,148.0,90.0
+44,"swelling, facial",Low,Fracture of nasal bone closed,Discharge,97.7,111.0,18.0,,150.0,109.0
+45,post seizure,Medium,Alcohol withdrawal seizure,Ward admission,98.4,111.0,16.0,,140.0,65.0
+46,dyspnea,Medium,Lobar pneumonia,Ward admission,98.1,90.0,20.0,,116.0,76.0
+47,mental change,High,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,Ward admission,97.5,68.0,20.0,98.0,110.0,70.0
+48,fever,Medium,Liver transplant status,Ward admission,98.1,110.0,20.0,98.0,130.0,80.0
+49,melena,Medium,"Acute with haemorrhage, duodenal ulcer",OP from ED,97.2,74.0,20.0,95.0,100.0,60.0
+50,Abdominal pain (finding),Low,"Maternal care for cervical incompetence, 22 weeks or more pregnant ~ less than 34 weeks pregnant",Ward admission,98.2,101.0,20.0,98.0,120.0,80.0
+51,both leg pain,Low,"Rhabdomyolysis, lower leg",Discharge,97.3,93.0,20.0,99.0,130.0,80.0
+52,Left leg pain,Low,"Closed, fracture of shaft of femur",Transfer,96.8,80.0,20.0,98.0,200.0,160.0
+53,knee pain,Low,"Pain in limb, knee joint",Discharge,97.5,88.0,20.0,98.0,110.0,70.0
+54,H-Headache,High,Traumatic subdural hemorrhage without open intracranial wound,Ward admission,96.8,85.0,20.0,95.0,150.0,90.0
+55,needle stick injury,Medium,Needlestick injury,Discharge,97.7,76.0,20.0,,113.0,71.0
+56,Left chest pain,High,Unstable angina,Discharge,98.1,92.0,20.0,96.0,110.0,70.0
+57,palpitation,Medium,Palpitation,Discharge,98.2,93.0,16.0,,119.0,60.0
+58,fever,High,Liver abscess,Ward admission,100.4,126.0,22.0,,156.0,97.0
+59,abd pain,High,Functional gastrointestinal disorder,Discharge,98.6,93.0,20.0,,165.0,80.0
+60,fever,Medium,Fever,Discharge,100.9,85.0,20.0,,132.0,65.0
+61,dyspnea,High,Dyspnoea,Death,97.3,96.0,22.0,78.0,,
+62,vomiting,Medium,Acute gastroenteritis,Discharge,98.8,80.0,20.0,,199.0,93.0
+63,lip laceration,Low,Laceration of oral cavity,Discharge,96.8,76.0,20.0,,138.0,71.0
+64,ant. chest pain,High,Ischaemic chest pain,Discharge,97.3,101.0,20.0,100.0,110.0,80.0
+65,neck pain,Low,Hyperventilation,Discharge,98.2,73.0,16.0,,176.0,103.0
+66,right lower quadrant abdominal pain,Medium,"Benign neoplasm of ovary, right",Discharge,97.9,84.0,20.0,98.0,120.0,80.0
+67,right hemiparesis,High,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,97.3,83.0,20.0,99.0,160.0,100.0
+68,"leg pain, Lt.",Low,Herniated disc disease of lumbar spine,Discharge,98.2,117.0,16.0,,165.0,101.0
+69,left wrist swelling,Low,Rheumatoid arthritis of wrist,Discharge,98.2,81.0,16.0,,144.0,86.0
+70,watery diarrhea,Medium,Acute watery diarrhoea,Discharge,97.7,84.0,20.0,99.0,110.0,70.0
+71,abd pain,Medium,Colitis,Discharge,98.8,87.0,20.0,,170.0,89.0
+72,chest pain rt,Medium,Atypical chest pain,Discharge,96.8,70.0,20.0,,116.0,72.0
+73,epigastric pain,Medium,Epigastric pain,Discharge,97.3,75.0,20.0,,156.0,85.0
+74,epigastric pain,Medium,Infectious or septic colitis,Discharge,96.8,90.0,20.0,98.0,100.0,60.0
+75,V - vomiting,Medium,Nause with vomiting,Ward admission,96.8,72.0,20.0,97.0,110.0,60.0
+76,HA - Headache,Medium,Headache,Ward admission,99.7,84.0,20.0,98.0,100.0,70.0
+77,both eye pain,Medium,Keratoconjunctivitis due to Acanthamoeba (H19.2*),Discharge,97.5,74.0,20.0,98.0,110.0,70.0
+78,leg pain left,Low,Complex regional pain syndrome type II of lower limb,Discharge,97.5,110.0,20.0,98.0,110.0,70.0
+79,tooth pain,Low,Toothache,Discharge,97.2,62.0,20.0,,162.0,107.0
+80,acute epigastric pain,Medium,Functional gastrointestinal disturbance,Discharge,97.7,90.0,18.0,,118.0,71.0
+81,upper abdominal pain,Medium,"Acute pancreatitis, unspecified",Ward admission,97.5,76.0,20.0,98.0,140.0,90.0
+82,"Edema, Cheek",Low,Parotitis,Discharge,99.5,93.0,20.0,,169.0,111.0
+83,headache,Medium,Headache,Discharge,97.7,76.0,20.0,99.0,120.0,70.0
+84,epigastric pain,Medium,Epigastric pain,Discharge,97.5,92.0,20.0,96.0,100.0,60.0
+85,epigastric pain,Medium,Unspecified abdominal pain,Discharge,97.2,60.0,18.0,97.0,140.0,100.0
+86,fever,Medium,Unspecified abdominal pain,Discharge,97.7,64.0,20.0,97.0,150.0,80.0
+87,"pain, low back",Medium,Sprain of cervical spine,Discharge,98.1,73.0,18.0,,136.0,77.0
+88,"Low Back Pain, Undetermined",Medium,"Low back pain, site unspecified",Discharge,98.4,78.0,20.0,99.0,110.0,70.0
+89,"pain, low back",Medium,Acute pyelonephritis,Discharge,98.2,81.0,18.0,,120.0,87.0
+90,hematuria,Medium,Gross hematuria,Discharge,97.9,90.0,20.0,98.0,130.0,80.0
+91,"pain, back",Medium,Non-ST elevation myocardial infarction,ICU admission,98.2,87.0,18.0,,138.0,80.0
+92,both wrist pain,High,Chronic alcoholism,AMA discharge,97.9,64.0,18.0,100.0,100.0,60.0
+93,testis pain,Medium,Torsion of testis,Discharge,97.9,70.0,20.0,99.0,130.0,80.0
+94,right upper abdominal pain,Medium,"Female pelvic inflammatory disease, unspecified",Discharge,97.2,80.0,20.0,98.0,100.0,60.0
+95,Generalized abdominal pain,Medium,Unspecified abdominal pain,Discharge,97.5,108.0,22.0,99.0,120.0,70.0
+96,"pain, low back",Medium,Low back pain lumbar region,Discharge,98.2,64.0,18.0,,141.0,97.0
+97,abd pain,Medium,"Urinary tract infection, site not specified",Discharge,100.8,92.0,22.0,98.0,130.0,90.0
+98,"pain, abdominal",Medium,Urinary tract infection,Discharge,97.7,76.0,18.0,,141.0,74.0
+99,"Pain, Hip",Low,Pelvic pain,Ward admission,100.2,105.0,20.0,,194.0,104.0
+100,acute epigastric pain,Medium,"Upper abdominal pain, unspecified",OP from ED,97.3,60.0,20.0,99.0,120.0,80.0
+101,Abd. pain,Medium,"Calculus of bile duct with cholangitis, With obstruction",Ward admission,98.8,88.0,20.0,97.0,140.0,90.0
+102,Elbow Injury,Medium,"Fracture of humerus, supracondyle closed",Ward admission,99.0,102.0,16.0,,150.0,86.0
+103,fever,High,Acute pyelonephritis,Ward admission,103.6,109.0,20.0,,122.0,73.0
+104,Rt. flank pain,Medium,Acute pyelonephritis,Discharge,97.7,75.0,20.0,98.0,110.0,60.0
+105,H-Headache,Medium,Closed multiple fracture of thoracic spine,Transfer,96.8,80.0,20.0,97.0,110.0,70.0
+106,headache,Medium,Tension-type headache,Discharge,97.5,92.0,20.0,98.0,100.0,60.0
+107,LLQ pain,Medium,"Female pelvic inflammatory disease, unspecified",Discharge,98.2,85.0,20.0,98.0,110.0,60.0
+108,rt flank pain,Medium,Ureteric stone,Discharge,97.2,74.0,20.0,99.0,120.0,80.0
+109,occipital area headache,Medium,"Superficial injury of other parts of head, contusion",Discharge,97.3,88.0,20.0,98.0,150.0,100.0
+110,Lt flank pain,Medium,Unspecified abdominal pain,Discharge,97.2,66.0,20.0,99.0,160.0,80.0
+111,RLQ pain,Medium,Unspecified abdominal pain,Discharge,98.2,80.0,22.0,96.0,130.0,80.0
+112,Lt flank pain,Medium,"Urinary tract infection, site not specified",Discharge,96.8,86.0,20.0,98.0,110.0,60.0
+113,both leg pain,Medium,Cellulitis,Discharge,98.8,81.0,16.0,,214.0,93.0
+114,"ocular pain, Lt.",Medium,Pupillary block glaucoma,Discharge,97.2,103.0,18.0,,135.0,101.0
+115,Open Wound,High,Multiple contusion NOS,Ward admission,96.8,110.0,22.0,98.0,80.0,50.0
+116,leg pain left,Medium,"Complex regional pain syndrome, type I lower leg",Discharge,99.0,119.0,20.0,,178.0,105.0
+117,headache,High,Headache,AMA discharge,97.2,76.0,18.0,,108.0,80.0
+118,Arm Injury,Medium,Fracture of radius head closed,Discharge,97.0,58.0,16.0,,135.0,66.0
+119,HA,High,Headache,Discharge,98.1,50.0,16.0,,152.0,96.0
+120,vomiting,Medium,Acute gastroenteritis,Discharge,97.0,54.0,20.0,,138.0,70.0
+121,dyspnea,High,Dyspnea,Discharge,,,,,,
+122,"Blood Pressure, Low",High,Colitis,ICU admission,,37.0,28.0,,50.0,33.0
+123,"Blood Pressure, Low",High,Hypotension,ICU admission,,37.0,28.0,,50.0,33.0
+124,syncope,Medium,"Compression fracture of lumbar spine L1, closed",Discharge,99.3,77.0,18.0,,145.0,73.0
+125,general weakness,High,Dizziness,Discharge,99.0,66.0,20.0,,214.0,95.0
+126,dyspnea,Medium,Chronic urticaria,Discharge,97.9,68.0,20.0,,142.0,84.0
+127,general weakness,Medium,Alcohol addiction,Discharge,99.3,97.0,18.0,,210.0,114.0
+128,fever,Medium,"Fever, unspecified",Ward admission,100.9,80.0,20.0,99.0,100.0,60.0
+129,fever & chill,High,Fever,Discharge,100.6,130.0,20.0,,143.0,70.0
+130,fever,High,"Fever, unspecified",Transfer,100.4,92.0,20.0,96.0,100.0,60.0
+131,dyspnea,High,"Bradycardia, unspecified",Ward admission,98.1,32.0,20.0,97.0,140.0,90.0
+132,dyspnea,High,"Bacterial pneumonia, unspecified",Ward admission,98.6,116.0,26.0,68.0,150.0,100.0
+133,acute dyspnea,High,"Colon cancer, sigmoid",Transfer,96.8,100.0,30.0,,65.0,45.0
+134,dyspnea,High,"Other specified chronic obstructive pulmonary disease, unspecified",Ward admission,97.7,110.0,26.0,88.0,150.0,90.0
+135,general weakness,Medium,Necrotizing pancreatitis,Ward admission,97.7,120.0,18.0,,129.0,94.0
+136,vomiting,Medium,Acute gastroenteritis,Discharge,97.2,82.0,20.0,,123.0,78.0
+137,weakness,Low,Presyncope,Discharge,97.0,93.0,20.0,,158.0,79.0
+138,diffuse chest discomfort,High,Unstable angina,Ward admission,96.8,60.0,20.0,98.0,100.0,60.0
+139,dizziness,Medium,Dizziness,Discharge,97.7,84.0,20.0,,187.0,98.0
+140,dyspnea,High,,Discharge,97.5,86.0,24.0,89.0,140.0,80.0
+141,dizziness,Medium,"Acute renal failure, unspecified",Ward admission,97.0,58.0,20.0,99.0,140.0,100.0
+142,D - Diarrhea,Low,Illness NOS,Discharge,97.7,108.0,20.0,97.0,160.0,100.0
+143,general weakness,Low,Diabetic neuropathy polyneuropathy,Discharge,98.4,93.0,20.0,,194.0,90.0
+144,dizziness,Medium,Dizziness and giddiness,Discharge,97.5,80.0,20.0,99.0,120.0,80.0
+145,low Hb,Medium,Stomach cancer advanced,Discharge,96.8,100.0,20.0,,96.0,59.0
+146,Suicidal Attempt,High,Suicide tendency,Discharge,98.4,98.0,20.0,,143.0,78.0
+147,chest palpitation,Medium,Panic attack,Discharge,96.8,80.0,20.0,98.0,120.0,80.0
+148,general weakness,Medium,Unspecified abdominal pain,Discharge,97.3,74.0,20.0,97.0,120.0,80.0
+149,AVF site bleeding,High,"Chronic kidney disease, unspecified",OP from ED,96.8,80.0,20.0,95.0,110.0,70.0
+150,mental change,High,End stage kidney disease on dialysis,Ward admission,,,,,,
+151,dyspnea,High,"Hydrocephalus, unspecified",Ward admission,97.3,65.0,20.0,97.0,110.0,70.0
+152,mental change,High,"Encephalopathy, unspecified",Transfer,97.2,140.0,24.0,92.0,110.0,70.0
+153,mental change,High,Traumatic subdural hemorrhage without open intracranial wound,Transfer,96.8,100.0,20.0,94.0,70.0,
+154,acute delirium,Medium,"Encephalopathy, unspecified",Ward admission,97.7,75.0,20.0,98.0,100.0,60.0
+155,Motor weakness,High,Dysarthria,Ward admission,,,,,,
+156,fever,High,Fever,Discharge,100.8,98.0,20.0,,123.0,73.0
+157,fever,High,Community-acquired pneumonia,Discharge,102.9,109.0,20.0,,102.0,81.0
+158,Catheter removal,Low,Percutaneous catheter problem,Discharge,97.7,86.0,18.0,,161.0,69.0
+159,dyspnea,Medium,"Heart failure, unspecified",Ward admission,97.2,64.0,20.0,95.0,100.0,60.0
+160,Generalized abdominal pain,High,Acidosis NOS,Ward admission,96.8,128.0,22.0,99.0,90.0,60.0
+161,melena,High,Hematochezia,ICU admission,99.3,,24.0,,,
+162,hematemesis,High,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.5,100.0,20.0,98.0,80.0,40.0
+163,oliguria,High,"Chronic kidney disease, unspecified",Ward admission,97.5,80.0,20.0,98.0,80.0,40.0
+164,dyspnea,High,Dyspnoea,Transfer,97.9,100.0,,,100.0,60.0
+165,both leg motor weakness,Medium,Hypokalaemic periodic paralysis(familial),Ward admission,98.1,88.0,20.0,98.0,130.0,100.0
+166,Drug Intoxication,High,Drug intoxication,AMA discharge,98.6,97.0,18.0,,105.0,71.0
+167,Amnesia,High,Transient global amnesia,Discharge,97.5,90.0,20.0,98.0,100.0,60.0
+168,limb paresthesia,Medium,Acute pain,Discharge,98.1,79.0,16.0,,164.0,92.0
+169,right hemiparesis,High,Intracerebral haemorrhage in basal ganglia,Ward admission,97.7,64.0,20.0,94.0,160.0,100.0
+170,fever,High,Acute pharyngotonsillitis,Discharge,101.8,109.0,20.0,,124.0,83.0
+171,fever,High,Acute pyelonephritis,Ward admission,103.1,105.0,20.0,,140.0,94.0
+172,AVF malfunction,Low,"Chronic kidney disease, unspecified",Ward admission,97.7,86.0,20.0,97.0,130.0,100.0
+173,post neck pain,Medium,"Cellulitis, unspecified",Ward admission,99.0,82.0,20.0,98.0,130.0,80.0
+174,generalized urticaria,Medium,Allergic urticaria,Discharge,97.0,92.0,20.0,94.0,120.0,80.0
+175,headache,Medium,Headache,Discharge,97.7,95.0,20.0,100.0,120.0,70.0
+176,left facial numbness,Low,Cellulitis of external ear,Transfer,97.5,80.0,20.0,100.0,120.0,80.0
+177,upper abdominal pain,Medium,Observation for suspected malignant neoplasm,Ward admission,97.3,74.0,20.0,98.0,120.0,80.0
+178,Rt. flank pain,Medium,Ureteric stone,Discharge,96.8,70.0,22.0,98.0,110.0,60.0
+179,"arm pain, Rt",Low,Complex regional pain syndrome type II,Discharge,97.7,78.0,20.0,99.0,140.0,100.0
+180,"erection, penile",High,Priapism,Discharge,,,,,,
+181,melena,High,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.2,74.0,20.0,99.0,90.0,50.0
+182,dysarthria,Medium,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,Ward admission,99.0,84.0,20.0,99.0,160.0,90.0
+183,PPROM,Medium,"Preterm labour without delivery, 22 weeks or more and less than 34weeks pregnant",Ward admission,97.7,98.0,20.0,98.0,120.0,80.0
+184,dyspnea,High,"Atrioventricular block, complete",Ward admission,97.2,36.0,20.0,97.0,130.0,80.0
+185,Facial Palsy,Medium,Facial palsy,Discharge,97.7,70.0,20.0,98.0,100.0,60.0
+186,Urticarial rash,Low,Allergic urticaria,Discharge,98.6,72.0,20.0,,196.0,102.0
+187,FB in eye,Low,Foreign body in eye,Discharge,97.3,58.0,18.0,,190.0,110.0
+188,abdomen discomfort,Low,Functional gastrointestinal disorder,Discharge,98.4,118.0,18.0,,151.0,77.0
+189,jaw dislocation,Low,Dislocation of jaw,Discharge,97.3,77.0,20.0,,137.0,76.0
+190,chest pain,High,Chest pain,Discharge,96.6,,16.0,,,
+191,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.2,78.0,20.0,99.0,110.0,70.0
+192,hand tingling sense,Low,Injury of finger,Discharge,98.2,79.0,18.0,,194.0,101.0
+193,Dislocation of Jaw,Low,Dislocation of jaw,Discharge,97.5,82.0,20.0,98.0,130.0,90.0
+194,Foreign body sensation in throat,Low,Chronic sore throat,Discharge,97.3,66.0,20.0,99.0,120.0,80.0
+195,Rt. Chest pain,High,Other chest pain,Discharge,97.9,84.0,20.0,98.0,110.0,80.0
+196,chest wall pain left,Low,Pneumothorax,Ward admission,99.0,79.0,20.0,,143.0,78.0
+197,head trauma,Low,Head trauma,Discharge,97.9,80.0,18.0,,151.0,95.0
+198,HA,Low,Superficial injury of head contusion,Discharge,97.7,75.0,16.0,,142.0,87.0
+199,fever chills-fever/chills,Low,Cellulitis of leg,Ward admission,100.8,104.0,20.0,98.0,120.0,80.0
+200,blurred vision,Low,Hyphaema,Discharge,98.2,80.0,20.0,98.0,110.0,70.0
+201,scalp lac.,Low,Laceration of scalp,Discharge,96.3,103.0,16.0,,142.0,94.0
+202,Rt side numbness,Medium,Cerebrovascular accident NOS,Discharge,97.7,68.0,20.0,98.0,140.0,80.0
+203,epigastric pain,Low,Obstructive ileus NOS,Discharge,96.8,78.0,22.0,99.0,130.0,90.0
+204,vaginal bleeding,High,Carcinoma in situ of cervix,Discharge,98.2,78.0,20.0,,134.0,81.0
+205,vomiting,Low,Acute gastroenteritis,Discharge,97.7,79.0,18.0,,124.0,73.0
+206,"Flank pain, Rt.",Medium,Contusion of front wall of thorax,Ward admission,97.5,80.0,20.0,99.0,130.0,90.0
+207,low abdominal pain,Low,Liver transplant status,Discharge,97.5,74.0,18.0,99.0,100.0,60.0
+208,ant. chest pain,High,Unstable angina,Discharge,97.5,78.0,22.0,96.0,150.0,100.0
+209,Ankle Injury,Low,Sprain of ankle,Discharge,98.1,68.0,16.0,,119.0,74.0
+210,"pain, periumbilical",Low,Acute cholecystitis,Discharge,99.0,98.0,22.0,99.0,130.0,80.0
+211,"abdominal pain, Rt",Low,Renal and perinephric abscess,Ward admission,99.7,74.0,20.0,98.0,130.0,80.0
+212,Arm Injury,Low,Fracture of clavicle closed,Discharge,97.9,74.0,16.0,,129.0,68.0
+213,Abd. pain,Low,Unspecified abdominal pain,Ward admission,97.5,60.0,20.0,98.0,120.0,70.0
+214,"Discomfort, Chest",High,Acute coronary syndrome,Ward admission,97.9,73.0,20.0,,106.0,70.0
+215,mental change,High,Traumatic subdural hemorrhage without open intracranial wound,Ward admission,97.5,88.0,,99.0,160.0,90.0
+216,"pain, flank",Low,Ureter stone,Discharge,97.7,79.0,18.0,,150.0,87.0
+217,Urticarial rash,Low,Urticaria,Discharge,96.8,101.0,20.0,,149.0,92.0
+218,"pain, chest",High,Chest pain,Transfer,96.8,45.0,18.0,,141.0,77.0
+219,abd pain,Low,Symptomatic gallbladder stone without obstruction,Ward admission,97.3,79.0,18.0,,189.0,100.0
+220,"pain, low back",Low,Low back pain sacral and sacrococcygeal region,Discharge,98.2,74.0,18.0,,197.0,109.0
+221,"pain, chest",High,Chest pain,Discharge,98.2,73.0,18.0,,150.0,93.0
+222,LBP - Low back pain,Low,Injury of lower back,Discharge,98.6,71.0,20.0,,155.0,84.0
+223,fever,Low,Fever,Discharge,99.5,100.0,20.0,,180.0,103.0
+224,for A/tapping,Low,Liver cirrhosis Child-Pugh A,Discharge,99.3,69.0,16.0,,131.0,54.0
+225,"Discomfort, Chest",Low,Sprain and strain of rib,Discharge,98.1,70.0,20.0,,131.0,73.0
+226,epigastric pain,Low,Epigastric pain,Discharge,96.8,121.0,20.0,,133.0,101.0
+227,constipation,Low,Constipation,Discharge,96.8,100.0,20.0,,120.0,76.0
+228,HA,Low,Headache,Discharge,99.1,86.0,16.0,,150.0,80.0
+229,headache,Medium,Headache,Discharge,98.2,65.0,20.0,,168.0,87.0
+230,acute epigastric pain,Low,Acute gastritis,Discharge,97.2,58.0,16.0,,141.0,83.0
+231,throat pain,Low,Acute pharyngotonsillitis,Ward admission,102.7,90.0,20.0,,161.0,97.0
+232,H-Headache,Low,"Non-insulin-dependent diabetes of the young, with nonketotic hyperglycemic-hyperosmolar coma(NKHHC)",Ward admission,97.3,76.0,20.0,99.0,100.0,60.0
+233,ocular pain,Low,Acute conjunctivitis,Discharge,97.2,89.0,18.0,,120.0,75.0
+234,PTx - Pneumothorax,Low,Pneumothorax,Discharge,97.7,75.0,20.0,,125.0,66.0
+235,abd pain,Low,"Abdomen pain, generalized",Discharge,98.6,98.0,20.0,,136.0,90.0
+236,Abd. pain,Low,Hirschsprung's disease,Discharge,98.2,80.0,20.0,98.0,110.0,70.0
+237,lower abdominal pain,Low,"Regional colitis, unspecified",Discharge,99.5,104.0,22.0,99.0,110.0,70.0
+238,abd pain,Low,Acute gastroenteritis,Discharge,97.3,105.0,18.0,,120.0,70.0
+239,left knee swelling,Low,Cellulitis,Discharge,98.2,85.0,18.0,,166.0,77.0
+240,sorethroat,Low,Peritonsillar abscess,Ward admission,99.0,83.0,20.0,,126.0,75.0
+241,"laceration, chin",Low,Laceration of face,Discharge,97.2,115.0,18.0,,115.0,82.0
+242,abd pain,Low,Acute gastritis,Discharge,98.6,79.0,20.0,,96.0,71.0
+243,acute epigastric pain,Low,Acute gastroenteritis,Discharge,97.2,111.0,18.0,,128.0,75.0
+244,Vaginal Bleeding,Medium,Vaginal bleeding,Ward admission,98.8,119.0,20.0,,114.0,79.0
+245,"Burn, arm",Low,"Burn, first degree",Discharge,98.1,106.0,20.0,,153.0,80.0
+246,abd pain,Low,Colitis,Ward admission,99.0,109.0,20.0,,140.0,92.0
+247,epigastric pain,Low,Acute gastroenteritis,Discharge,98.1,95.0,18.0,,115.0,70.0
+248,dysuria,Low,Acute cystitis,Discharge,96.8,95.0,20.0,,139.0,67.0
+249,"pain, chest",High,Chest pain,Discharge,96.8,64.0,20.0,,141.0,63.0
+250,Gingival bleeding,Low,Gingival disease,Discharge,97.7,86.0,20.0,,136.0,84.0
+251,anal bleeding,Low,Colitis,Discharge,99.0,87.0,20.0,,148.0,69.0
+252,"pain, chest",Medium,Chest pain,Discharge,98.8,114.0,20.0,,160.0,94.0
+253,"swelling, neck",Low,Acute pharyngotonsillitis,Discharge,98.4,68.0,16.0,,134.0,69.0
+254,headache,Low,Headache,Discharge,96.8,74.0,20.0,,152.0,96.0
+255,FB in pharynx,Low,Foreign body in throat food,Discharge,96.8,80.0,20.0,,117.0,71.0
+256,abdomen pain,Low,Constipation,Discharge,96.8,67.0,20.0,,101.0,66.0
+257,"injury, finger",Low,Laceration of finger without nail damage,Discharge,97.7,74.0,20.0,,159.0,83.0
+258,abd pain,Low,Acute gastroenteritis,Discharge,96.8,74.0,16.0,,121.0,76.0
+259,chest discomfort left,High,Other chest pain,Discharge,97.9,72.0,20.0,98.0,120.0,80.0
+260,LLQ pain,Low,Unspecified abdominal pain,Discharge,97.7,92.0,20.0,97.0,130.0,80.0
+261,vomiting,Low,Vomiting,Discharge,98.1,85.0,16.0,,115.0,74.0
+262,Knee Injury,Low,Multiple abrasion,Discharge,97.2,94.0,16.0,,136.0,79.0
+263,LBP - Low back pain,Low,Fracture of coccyx closed,Discharge,96.8,95.0,20.0,,149.0,90.0
+264,headache,Low,Headache,Discharge,97.7,75.0,18.0,,119.0,95.0
+265,facial injury,Low,Fracture of orbital wall closed,Discharge,97.2,82.0,20.0,,117.0,65.0
+266,epigastric pain,Low,Acute gastroenteritis,Discharge,97.2,73.0,20.0,,145.0,78.0
+267,eyebrow laceration,Low,Laceration of face,Discharge,98.1,106.0,20.0,,148.0,92.0
+268,abd pain,Low,Acute appendicitis,Ward admission,99.1,90.0,20.0,,120.0,72.0
+269,"pain, foot",Low,Contusion of foot,Discharge,97.7,85.0,20.0,,149.0,99.0
+270,blurred vision,Low,Corneal abrasion,Discharge,97.3,86.0,20.0,99.0,100.0,60.0
+271,"pain, chest",Low,Atypical chest pain,Discharge,97.7,82.0,20.0,,134.0,81.0
+272,vomiting,Low,Acute gastroenteritis,Discharge,96.8,97.0,20.0,,138.0,88.0
+273,vaginal spotting,Medium,"Injury of uterus (S376) without open wound, concussion injuries",Discharge,98.6,82.0,20.0,,131.0,63.0
+274,abdomen pain,Low,Acute gastroenteritis,Discharge,96.8,68.0,20.0,,138.0,91.0
+275,Open Wound,Low,"Open wound of other parts of head, face",Discharge,96.8,80.0,20.0,98.0,100.0,60.0
+276,anxiety,Low,Anxiety disorder,Discharge,97.9,80.0,18.0,,156.0,99.0
+277,stomach discomfort,Low,Nausea,Discharge,98.4,111.0,20.0,,199.0,112.0
+278,myalgia,Low,Acute tonsillitis not specified as recurrent,Discharge,99.1,106.0,20.0,,136.0,72.0
+279,headache,Low,Acute gastroenteritis,Discharge,98.8,67.0,20.0,,105.0,77.0
+280,headache,Low,Headache,Discharge,97.9,64.0,16.0,,125.0,83.0
+281,right monoparesis,Medium,"Intracerebral haemorrhage in hemisphere, subcortical",Ward admission,98.4,64.0,20.0,99.0,110.0,70.0
+282,throat pain,Low,Chronic sore throat,Discharge,97.0,98.0,20.0,98.0,100.0,60.0
+283,"pain, periumbilical",Low,"Other Crohn’s disease, unspecified",Ward admission,97.0,74.0,20.0,99.0,100.0,70.0
+284,"pain, low back",Low,Back pain,Discharge,96.8,79.0,16.0,,109.0,77.0
+285,Rt abd pain,Low,Acute gastroenteritis,Discharge,97.2,80.0,16.0,,121.0,86.0
+286,RLQ abd. pain,Low,Acute appendicitis,Ward admission,98.1,94.0,20.0,,114.0,82.0
+287,Lt flank pain,Low,"Fracture of rib other, closed",Discharge,97.7,85.0,20.0,,178.0,122.0
+288,With chest discomfort,High,Other chest pain,Discharge,97.5,68.0,20.0,99.0,120.0,80.0
+289,"ocular pain, Rt.",Low,Corneal abrasion,Discharge,96.8,80.0,20.0,97.0,130.0,80.0
+290,left eyelid laceration,Low,Laceration of face,Discharge,97.7,72.0,20.0,,178.0,102.0
+291,Chest pain NOS (finding),High,Obstructive hypertrophic cardiomyopathy,Ward admission,98.6,83.0,20.0,97.0,100.0,70.0
+292,"ocular pain, Lt.",Low,Epidemic keratoconjunctivitis,Discharge,97.9,74.0,20.0,98.0,110.0,70.0
+293,sorethroat,Low,Acute laryngitis,Discharge,97.9,73.0,20.0,,151.0,97.0
+294,epigastric pain,Low,Acute gastroenteritis,Discharge,98.1,74.0,20.0,,136.0,79.0
+295,Midmenstrual pain,Low,Dysmenorrhea,Discharge,96.8,60.0,16.0,,131.0,79.0
+296,fever,Low,Ureteric stone,Ward admission,97.7,100.0,20.0,99.0,120.0,80.0
+297,diffuse abdominal pain,Low,"Upper abdominal pain, unspecified",Discharge,97.7,76.0,20.0,98.0,110.0,70.0
+298,Eye Injury,Low,Subconjunctival hemorrhage,Discharge,97.7,59.0,20.0,,113.0,76.0
+299,headache,Low,Headache,Transfer,97.5,80.0,20.0,98.0,100.0,60.0
+300,LOC - Loss of consciousness,Medium,Syncope,Discharge,98.2,105.0,20.0,98.0,140.0,80.0
+301,Lt flank pain,Low,Acute gastroenteritis,Discharge,97.7,102.0,20.0,,128.0,87.0
+302,ant. chest pain,High,Unstable angina,Discharge,97.0,76.0,18.0,99.0,140.0,100.0
+303,cough,Medium,Cough,Discharge,98.2,86.0,22.0,,157.0,109.0
+304,abd pain,Low,Epigastric pain,Discharge,99.3,77.0,16.0,,114.0,77.0
+305,painful skin lesion,Low,Herpes zoster,Discharge,97.2,76.0,18.0,,161.0,101.0
+306,ant. chest pain,Medium,Pericardial effusion (noninflammatory),Ward admission,97.0,82.0,20.0,100.0,120.0,80.0
+307,Rt abd pain,Low,Herpes zoster,Discharge,97.2,86.0,16.0,,101.0,79.0
+308,upper abdominal pain,Low,Acute gastritis,Discharge,97.3,86.0,20.0,,138.0,82.0
+309,H-Headache,Low,Headache,Discharge,97.2,62.0,20.0,99.0,120.0,80.0
+310,"Leg pain, NOS",Low,Complex regional pain syndrome type II,Discharge,97.5,80.0,20.0,,110.0,80.0
+311,leg pain,Low,Complex regional pain syndrome type II,Discharge,97.9,88.0,20.0,98.0,120.0,80.0
+312,RLQ pain,Low,Ureter stone,Discharge,98.6,97.0,18.0,,144.0,96.0
+313,abd pain,Low,"Malignant neoplasm of body of stomach, early",Ward admission,97.2,73.0,20.0,98.0,110.0,70.0
+314,Open Wound,Low,"Open wound of head, part unspecified",Discharge,97.9,88.0,20.0,98.0,130.0,90.0
+315,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.5,70.0,18.0,98.0,120.0,70.0
+316,"bleeding, knee",Medium,Hemangioma of knee,Discharge,98.2,70.0,20.0,,129.0,83.0
+317,headache,Low,Headache,Discharge,98.4,108.0,20.0,,148.0,90.0
+318,Rt. flank pain,Low,Ureter stone,Discharge,97.5,75.0,20.0,,123.0,72.0
+319,Rt. flank pain,Low,Acute pyelonephritis,Ward admission,98.2,98.0,20.0,99.0,120.0,80.0
+320,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.7,72.0,20.0,99.0,130.0,90.0
+321,LLQ pain,Low,"Leiomyoma of uterus, unspecified",Discharge,97.5,76.0,18.0,95.0,100.0,60.0
+322,HA,Low,Headache,Discharge,98.6,91.0,16.0,,136.0,97.0
+323,dyspnea,Medium,Acute HIV infection syndrome,Discharge,98.8,102.0,20.0,98.0,130.0,80.0
+324,"Pain, Ankle",Low,"Gout, unspecified, ankle joint",Discharge,96.8,80.0,20.0,98.0,120.0,80.0
+325,Abd. pain,Medium,Unspecified abdominal pain,Discharge,98.4,72.0,20.0,98.0,120.0,80.0
+326,abdomen pain,Low,Acute gastroenteritis,Discharge,96.8,68.0,20.0,,140.0,75.0
+327,chest palpitation,High,Palpitations,Discharge,98.2,86.0,20.0,98.0,100.0,60.0
+328,"pain, neck",Low,Injury of neck,Discharge,97.7,70.0,20.0,,182.0,119.0
+329,"ocular pain, Rt.",Low,Corneal abrasion,Discharge,98.2,80.0,20.0,98.0,110.0,70.0
+330,Foreign Body Sense,Low,Chronic sore throat,Discharge,97.5,100.0,20.0,96.0,120.0,70.0
+331,abd pain,Low,"Acute appendicitis, other and unspecified",OP from ED,97.3,76.0,20.0,98.0,120.0,80.0
+332,Open Wound,Medium,"Open wound of other parts of head, face",Ward admission,97.9,110.0,20.0,97.0,130.0,80.0
+333,Abd. pain,Low,Unspecified abdominal pain,Discharge,97.3,80.0,20.0,98.0,110.0,70.0
+334,mental change,High,Hypo-osmolality and hyponatraemia,Ward admission,96.8,100.0,20.0,90.0,100.0,60.0
+335,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.2,74.0,20.0,98.0,120.0,80.0
+336,HA - Headache,Low,Headache,Discharge,96.8,62.0,20.0,98.0,150.0,90.0
+337,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.9,84.0,20.0,98.0,110.0,80.0
+338,whirling type vertigo,Medium,Anxiety disorder,Discharge,96.8,68.0,20.0,,138.0,98.0
+339,rt flank pain,Low,Kidney and ureter stone,Discharge,97.9,65.0,20.0,,145.0,92.0
+340,rt. side neck pain,Low,Herniated disc disease of cervical spine,Discharge,96.8,74.0,20.0,,144.0,89.0
+341,H-Headache,Low,Headache,Discharge,97.5,98.0,20.0,98.0,150.0,100.0
+342,diffuse abdominal pain,Low,Unspecified abdominal pain,AMA discharge,97.5,98.0,20.0,97.0,150.0,100.0
+343,fever,Low,Abscess of liver,Ward admission,97.9,66.0,20.0,98.0,120.0,80.0
+344,Open Wound,Low,"Open wound of other parts of head, face",Discharge,98.1,88.0,20.0,98.0,110.0,70.0
+345,RUQ pain,Low,Unspecified abdominal pain,Ward admission,98.6,100.0,20.0,98.0,110.0,70.0
+346,ant. chest pain,High,Other chest pain,AMA discharge,97.0,72.0,20.0,99.0,110.0,70.0
+347,arm pain,Low,Complex regional pain syndrome type II,Discharge,97.3,88.0,20.0,98.0,130.0,90.0
+348,finger laceration wound,Low,Laceration of finger without nail damage,Discharge,96.8,80.0,18.0,,182.0,101.0
+349,head trauma,Low,"Injury of head, closed",Discharge,98.1,74.0,20.0,,119.0,78.0
+350,pain on Knee,Low,Alcohol abuse,AMA discharge,97.7,101.0,20.0,,111.0,69.0
+351,abd pain,Low,Acute gastroenteritis,Discharge,98.6,71.0,20.0,,152.0,96.0
+352,Left chest pain,High,Ischaemic chest pain,Ward admission,97.5,68.0,20.0,99.0,150.0,90.0
+353,Epigastric discomfort(+),Low,Epigastric pain,Discharge,97.2,78.0,20.0,97.0,120.0,80.0
+354,both leg pain,Low,Knee pain,Discharge,,,,,,
+355,abd pain,Low,Cholangitis,Ward admission,97.3,81.0,20.0,,155.0,89.0
+356,abd. Distension,Low,Hepatocellular carcinoma,Discharge,97.2,94.0,20.0,98.0,110.0,70.0
+357,epigastric pain,Low,Acute gastroenteritis,Discharge,97.2,56.0,18.0,,111.0,57.0
+358,for medication,Low,Small cell lung cancer left,Discharge,96.8,98.0,20.0,,133.0,74.0
+359,"ocular pain, Rt.",Low,Corneal abrasion,Discharge,96.8,84.0,20.0,97.0,110.0,70.0
+360,Lt flank pain,Low,"Acute pancreatitis, unspecified",Transfer,97.7,96.0,20.0,99.0,120.0,80.0
+361,ant. chest pain,High,Varient angina,Ward admission,97.3,70.0,20.0,99.0,140.0,90.0
+362,headache,Low,Headache,Discharge,97.2,68.0,22.0,98.0,180.0,100.0
+363,Lt hemiparesis,High,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,96.8,55.0,20.0,98.0,150.0,100.0
+364,ant. chest pain,High,Myocardial infarction with non-ST elevation,Ward admission,96.8,70.0,20.0,98.0,140.0,100.0
+365,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.3,60.0,20.0,94.0,110.0,70.0
+366,"abdominal pain, Rt",Low,"Acute pancreatitis, unspecified",Ward admission,97.7,98.0,20.0,97.0,160.0,100.0
+367,Left chest pain,High,Other chest pain,Discharge,97.7,96.0,20.0,98.0,120.0,80.0
+368,ant. chest pain,High,Unstable angina,Discharge,96.8,80.0,20.0,98.0,160.0,100.0
+369,"pain, flank",Low,Ureter stone,Discharge,97.7,69.0,18.0,,128.0,78.0
+370,LLQ pain,Medium,Constipation,Discharge,98.2,135.0,20.0,,142.0,89.0
+371,abd pain,Low,Spasm,Discharge,97.2,71.0,20.0,,163.0,83.0
+372,upper abdominal pain,Low,Obstructive ileus NOS,Transfer,97.7,60.0,20.0,99.0,100.0,60.0
+373,Open Wound,Low,"Open wound of other parts of head, face",Discharge,98.2,80.0,20.0,98.0,120.0,80.0
+374,headache,Low,Granuloma,Discharge,98.2,60.0,20.0,,167.0,86.0
+375,left eye pain,Low,Corneal abrasion,Discharge,97.9,88.0,20.0,97.0,120.0,80.0
+376,Rt hemiparesis,Medium,Cerebral infarction due to thrombosis of basilar artery,Ward admission,96.8,88.0,20.0,98.0,150.0,100.0
+377,ant. chest pain,Low,Contusion of front wall of thorax,Discharge,97.5,84.0,20.0,98.0,100.0,60.0
+378,skin lesion,Low,Rash,Ward admission,98.6,109.0,16.0,,90.0,53.0
+379,ant. chest pain,High,"Pneumonia, unspecified",Discharge,99.3,100.0,20.0,98.0,150.0,90.0
+380,dyspnea,High,"Atrial fibrillation and atrial flutter, unspecified",Ward admission,96.8,67.0,20.0,96.0,110.0,70.0
+381,"abdominal pain, Rt",Low,"Gallstone(impacted) of gallbladder with cholecystitis (chronic), With obstruction",Discharge,97.3,78.0,20.0,98.0,110.0,70.0
+382,head trauma,Low,Head trauma,Discharge,97.3,62.0,20.0,,105.0,58.0
+383,ant. chest pain,High,Varient angina,Ward admission,97.3,78.0,20.0,97.0,130.0,90.0
+384,dizziness,Medium,"Atrial fibrillation and atrial flutter, unspecified",Discharge,97.5,61.0,20.0,97.0,150.0,80.0
+385,Abd. pain,Low,Unspecified abdominal pain,Transfer,97.5,78.0,20.0,96.0,130.0,100.0
+386,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.5,84.0,20.0,99.0,110.0,70.0
+387,VOIDING PAIN,Low,Acute urinary retension,Discharge,97.9,64.0,20.0,,129.0,82.0
+388,upper abdominal pain,Low,Acute gastroenteritis,Discharge,99.5,97.0,20.0,,127.0,63.0
+389,LOC - Loss of consciousness,Medium,Dizziness and giddiness,Discharge,97.7,80.0,20.0,97.0,130.0,80.0
+390,ant. chest pain,High,Other chest pain,Discharge,96.8,63.0,20.0,97.0,120.0,80.0
+391,RLQ pain,Low,"Acute appendicitis, other and unspecified",OP from ED,97.3,88.0,20.0,97.0,120.0,80.0
+392,LOC,High,Syncope,Discharge,96.8,62.0,22.0,95.0,110.0,70.0
+393,"pain, chest",High,Chest pain,Discharge,96.8,96.0,20.0,,140.0,98.0
+394,"Pain, Eye",Low,Absolute glaucoma,Discharge,97.0,78.0,20.0,,150.0,72.0
+395,dizziness,Medium,Dizziness and giddiness,Discharge,97.2,80.0,20.0,99.0,170.0,100.0
+396,left thigh swelling,Medium,Cellulitis,Discharge,98.6,78.0,20.0,,138.0,70.0
+397,abd pain,Low,Acute gastroenteritis,Discharge,97.7,86.0,20.0,,126.0,70.0
+398,diarrhea,Low,Acute watery diarrhoea,Discharge,97.2,80.0,20.0,98.0,140.0,100.0
+399,ant. chest pain,High,Ischaemic chest pain,Discharge,98.1,74.0,20.0,98.0,160.0,90.0
+400,difficulty urinating,Low,Benign prostatic hyperplasia with obstruction,Discharge,98.2,94.0,20.0,,149.0,80.0
+401,abd pain,Low,Observation for suspected malignant neoplasm,Discharge,96.8,80.0,20.0,98.0,170.0,100.0
+402,ant. chest pain,High,"Atrial fibrillation and atrial flutter, unspecified",Discharge,97.7,54.0,20.0,96.0,100.0,60.0
+403,ant. chest pain,High,"Acute myocardial infarction, unspecified",Ward admission,97.2,66.0,20.0,95.0,150.0,80.0
+404,diffuse chest discomfort,High,Pericardial effusion (noninflammatory),Transfer,96.8,99.0,22.0,99.0,100.0,60.0
+405,dyspnea,High,Ischaemic chest pain,OP from ED,97.0,106.0,20.0,93.0,100.0,60.0
+406,epigastric pain,Low,Epigastric pain,Discharge,96.8,97.0,20.0,,125.0,66.0
+407,general weakness,High,"Atrioventricular block, second degree",Ward admission,96.8,51.0,20.0,100.0,140.0,100.0
+408,abdomen pain,Low,Acute abdomen,Discharge,97.2,64.0,20.0,97.0,110.0,70.0
+409,Abd. pain,Low,"Ileus, unspecified",Ward admission,97.5,73.0,20.0,98.0,110.0,70.0
+410,Lower Back Pain,Low,"Vertebra compression fracture, NOS, Lumbar region",Transfer,97.2,96.0,20.0,97.0,140.0,80.0
+411,backache,Low,Herniated disc disease of lumbar spine with radiculopathy,Discharge,98.4,101.0,16.0,,121.0,80.0
+412,abd pain,Medium,Unspecified abdominal pain,Ward admission,98.2,110.0,20.0,91.0,90.0,60.0
+413,left forearm pain,Low,"Fracture of lower end of radius with dorsal angulation, closed",Ward admission,97.9,72.0,18.0,97.0,100.0,60.0
+414,post neck pain,Low,"Superficial injury of head, part unspecified, contusion",Discharge,97.9,72.0,18.0,96.0,100.0,60.0
+415,fever,Medium,Fever,Ward admission,103.1,76.0,20.0,,158.0,59.0
+416,abd pain,Low,Acute abdomen,Discharge,97.9,109.0,16.0,,142.0,85.0
+417,both leg cellulitis,Low,Cellulitis of lower limb,Ward admission,97.3,60.0,20.0,97.0,120.0,80.0
+418,RLQ abdominal pain,Low,Ureteric stone,Discharge,96.8,80.0,20.0,98.0,110.0,70.0
+419,left side motor weakness,High,Intracerebral haemorrhage in thalamus,Transfer,97.9,100.0,20.0,98.0,140.0,100.0
+420,headache,Low,Headache,Discharge,98.6,86.0,20.0,,147.0,89.0
+421,Abd. pain,Low,Chronic viral hepatitis C,Discharge,97.3,98.0,20.0,97.0,120.0,80.0
+422,dyspnea,High,"Heart failure, unspecified",Ward admission,97.5,61.0,20.0,98.0,110.0,70.0
+423,Lt flank pain,Low,Unspecified abdominal pain,Discharge,97.3,67.0,20.0,93.0,120.0,80.0
+424,Low abd discomfort,Low,Abscess of abdominopelvic,OP from ED,98.1,89.0,20.0,96.0,110.0,70.0
+425,fever,Low,"Infective arthritis NOS, pelvic region and thigh",Ward admission,97.7,69.0,20.0,96.0,120.0,80.0
+426,RUQ pain,Low,"Choledocholithiasis with cholangitis, With obstruction",Ward admission,96.8,80.0,20.0,97.0,120.0,80.0
+427,alcohol smell,Low,Acute intoxication of alcohol,Discharge,,,,,,
+428,diffuse chest discomfort,Medium,Unstable angina,Discharge,98.2,82.0,20.0,95.0,150.0,100.0
+429,ant. chest pain,High,Unstable angina,Ward admission,97.5,80.0,20.0,98.0,110.0,70.0
+430,RUQ pain,Low,"Empyema of gallbladder, without calculus",OP from ED,97.2,90.0,20.0,98.0,110.0,70.0
+431,abdomen pain,Low,"Ileus, unspecified",Ward admission,97.5,60.0,20.0,97.0,130.0,80.0
+432,abd pain,Low,Cholangitis,Ward admission,97.9,76.0,20.0,,159.0,95.0
+433,Left chest pain,High,Unstable angina,Discharge,98.2,68.0,20.0,96.0,100.0,60.0
+434,dyspnea,High,Acute and subacute infective endocarditis,Ward admission,96.8,118.0,20.0,76.0,120.0,80.0
+435,abdomen pain,Low,Acute gastroenteritis,Discharge,98.6,106.0,20.0,,142.0,80.0
+436,Voiding Failure,Low,Percutaneous catheter problem,Discharge,99.0,99.0,20.0,,153.0,75.0
+437,dyspnea,Medium,Paroxysmal atrial fibrillation,Ward admission,96.8,95.0,20.0,94.0,100.0,60.0
+438,left motor weakness,Medium,Cerebral infarction due to unspecified occlusion or stenosis of posterior cerebral artery,Ward admission,97.9,65.0,20.0,95.0,130.0,100.0
+439,both eyelid swelling,Medium,Hypo-osmolality and hyponatraemia,Ward admission,97.3,64.0,20.0,96.0,140.0,100.0
+440,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.0,72.0,22.0,93.0,140.0,90.0
+441,Abd. pain,Low,"Choledocholithiasis with cholecystitis (with cholangitis), Without mention of obstruction",Ward admission,97.7,102.0,20.0,97.0,160.0,100.0
+442,cough,Medium,Cough,Ward admission,98.4,92.0,20.0,97.0,110.0,80.0
+443,dizziness,Medium,Dizziness and giddiness,Discharge,98.1,80.0,20.0,95.0,120.0,80.0
+444,Rt hemiparesis,High,Cerebrovascular accident NOS,Ward admission,97.5,80.0,20.0,98.0,140.0,80.0
+445,ant. chest pain,High,Myocardial infarction with non-ST elevation,Ward admission,97.3,66.0,20.0,90.0,110.0,70.0
+446,fever,Low,Viral infection,Discharge,98.1,90.0,22.0,,126.0,79.0
+447,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.9,104.0,24.0,97.0,110.0,70.0
+448,"abdominal pain, LUQ",Low,Unspecified abdominal pain,Discharge,97.0,68.0,20.0,99.0,170.0,100.0
+449,distended abdomen,Medium,Alcoholic liver disease,Ward admission,100.0,105.0,20.0,,155.0,88.0
+450,ascites tapping,Low,Alcoholic liver cirrhosis with ascites,Discharge,96.8,100.0,20.0,,102.0,90.0
+451,"pain, chest",Low,Acute bronchitis,Discharge,98.2,100.0,16.0,,115.0,88.0
+452,"discomfort, chest",High,Atypical chest pain,Discharge,97.0,90.0,20.0,,154.0,99.0
+453,"pain, chest",High,Chest pain,Discharge,96.8,60.0,20.0,,152.0,70.0
+454,palpitation,Medium,Atrial flutter,Ward admission,99.1,148.0,20.0,,118.0,69.0
+455,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.9,82.0,20.0,98.0,120.0,70.0
+456,Ankle Injury,Low,Injury of ankle,Discharge,99.5,80.0,20.0,,114.0,61.0
+457,right forearm laceration,Low,Laceration of forearm,Discharge,98.2,88.0,18.0,,120.0,84.0
+458,Ankle Injury,Low,Injury of ankle,Discharge,96.8,75.0,20.0,,154.0,70.0
+459,H-Headache,Low,Infectious or septic colitis,Discharge,97.5,72.0,20.0,98.0,110.0,70.0
+460,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.7,100.0,20.0,99.0,110.0,70.0
+461,mandibular pain,Low,Injury of mandible,Discharge,96.8,117.0,18.0,,160.0,73.0
+462,Toe injury,Low,Fracture of foot closed,Discharge,97.7,75.0,20.0,,119.0,56.0
+463,both leg pain,Low,Rhabdomyolysis,Ward admission,99.0,79.0,20.0,,115.0,70.0
+464,Convulsion,Medium,"Open wound of other parts of head, face",Discharge,97.5,88.0,20.0,97.0,120.0,80.0
+465,abd pain,Medium,"Pelvic inflammatory disease, female",Discharge,98.1,71.0,20.0,,118.0,64.0
+466,"otalgia, Rt.",Low,Otalgia,Discharge,97.3,89.0,18.0,,138.0,68.0
+467,"pain, chest",Medium,Sprain and strain of rib,Discharge,97.5,88.0,20.0,,112.0,76.0
+468,"otalgia, Lt.",Low,"Acute otitis media, unspecified unilateral or unspecified",Discharge,98.1,62.0,18.0,,137.0,68.0
+469,nausea,High,Toxic effect of unspecified substance,Ward admission,96.8,80.0,20.0,98.0,120.0,80.0
+470,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.9,88.0,20.0,98.0,120.0,80.0
+471,Ankle Injury,Low,Injury of ankle,Discharge,97.7,76.0,20.0,,118.0,66.0
+472,abd pain,Medium,Primary dysmenorrhea,Discharge,98.1,62.0,18.0,,109.0,63.0
+473,"Pain, Hand",Low,Multiple fracture of metacarpal bone closed,Ward admission,98.4,89.0,20.0,,137.0,110.0
+474,Open Wound,Low,"Open wound of other parts of head, face",Discharge,98.1,80.0,20.0,99.0,120.0,70.0
+475,abd pain,Medium,"Crohn’s disease, unspecified, unspecified",Ward admission,97.7,106.0,20.0,98.0,110.0,70.0
+476,facial injury,Low,Open wound of eyelid and periocular area,Discharge,98.2,126.0,18.0,,156.0,93.0
+477,abd pain,Medium,Diverticulitis of large intestine without bleeding,Ward admission,97.5,80.0,16.0,,156.0,89.0
+478,facial injury,Low,Multiple abrasion,Discharge,97.5,61.0,18.0,,179.0,103.0
+479,headache,Medium,"Subarachnoid haemorrhage, unspecified",OP from ED,97.3,76.0,20.0,99.0,140.0,80.0
+480,Arm Injury,Low,Injury of arm,Discharge,96.8,85.0,20.0,,143.0,92.0
+481,Foot Injury,Low,Cellulitis of foot,Discharge,98.4,56.0,20.0,,112.0,72.0
+482,cough,Medium,Upper respiratory infection,Discharge,97.2,85.0,20.0,,148.0,82.0
+483,abd pain,Medium,Acute gastroenteritis,Discharge,99.0,98.0,18.0,,154.0,95.0
+484,"ocular pain, Rt.",Low,Corneal abrasion,Discharge,97.5,68.0,20.0,98.0,140.0,90.0
+485,ankle pain,Low,Fracture of medial malleolus closed,Discharge,98.1,94.0,18.0,,149.0,72.0
+486,Toe redness,Low,Leg skin defect,Ward admission,98.2,103.0,20.0,,149.0,89.0
+487,abd pain,Medium,Acute abdomen,OP from ED,101.7,106.0,20.0,,108.0,71.0
+488,epigastric pain,High,Dehydration,Transfer,96.8,86.0,20.0,98.0,90.0,60.0
+489,ear pain lt,Low,Otalgia,Discharge,96.8,57.0,20.0,,133.0,88.0
+490,toothache,Low,Toothache,Discharge,98.2,74.0,18.0,,176.0,106.0
+491,Throat Pain,Medium,Retropharyngeal and parapharyngeal abscess,OP from ED,97.9,72.0,20.0,98.0,100.0,60.0
+492,Open Wound,Low,Open wound of other parts of wrist and hand,Discharge,97.0,88.0,20.0,96.0,130.0,80.0
+493,ant. chest pain,High,Ischaemic chest pain,Ward admission,96.8,62.0,20.0,99.0,140.0,90.0
+494,"injury, finger",Low,Injury of finger,Discharge,97.7,88.0,20.0,,191.0,94.0
+495,general weakness,Medium,Guillain-Barre syndrome,Ward admission,96.8,50.0,20.0,98.0,140.0,80.0
+496,Open Wound,Low,Traumatic hyphaema,Discharge,97.5,88.0,20.0,98.0,150.0,90.0
+497,facial painful swelling,Low,Cellulitis of nose(septum),OP from ED,99.0,110.0,20.0,98.0,110.0,70.0
+498,dizziness,High,"Atrial fibrillation and atrial flutter, unspecified",Ward admission,98.2,52.0,20.0,96.0,100.0,60.0
+499,"pain, chest",Medium,Gastroesophageal reflux disease,Discharge,97.7,67.0,18.0,,153.0,67.0
+500,"otalgia, Lt.",Low,Otalgia,Discharge,97.5,60.0,20.0,98.0,100.0,60.0
+501,facial injury,Low,Injury of face,Discharge,97.7,78.0,18.0,,93.0,55.0
+502,headache,Medium,Other chest pain,Discharge,97.5,62.0,20.0,97.0,160.0,80.0
+503,left leg pain,Low,"Fracture of trochanteric section of femur, unspecified, closed",Ward admission,97.3,76.0,20.0,98.0,100.0,60.0
+504,diffuse abdominal pain,Medium,Hepatocellular carcinoma,Ward admission,97.5,110.0,20.0,97.0,110.0,70.0
+505,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.9,56.0,20.0,100.0,140.0,90.0
+506,abd pain,Medium,"Cholecystitis with cholelithiasis NOS, With obstruction",OP from ED,97.5,78.0,18.0,98.0,120.0,70.0
+507,Left leg pain,Low,"Pain in limb, hip (joint)",Discharge,97.0,76.0,20.0,98.0,120.0,70.0
+508,ocular pain,Low,"Fracture of medial wall of orbit, closed",Discharge,97.5,72.0,20.0,98.0,120.0,80.0
+509,toe pain,Low,"Contusion of toe(s), NOS",Discharge,98.2,80.0,20.0,98.0,110.0,70.0
+510,Left chest pain,High,Brugada syndrome,Ward admission,98.4,96.0,20.0,97.0,120.0,80.0
+511,Rt abd pain,Low,Gallbladder cancer,Discharge,97.3,103.0,18.0,,115.0,95.0
+512,"pain, foot",Low,Injury of foot,Discharge,98.2,62.0,18.0,,163.0,77.0
+513,epigastric pain,Medium,Acute gastritis,Discharge,97.9,70.0,20.0,,132.0,72.0
+514,RLQ abd. pain,Medium,Acute appendicitis,Transfer,98.6,83.0,16.0,,163.0,94.0
+515,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.5,78.0,18.0,99.0,120.0,80.0
+516,Left chest pain,High,Varient angina,Discharge,97.7,76.0,20.0,99.0,120.0,80.0
+517,"Discomfort, Chest",Medium,Depression,Discharge,98.4,79.0,20.0,,151.0,77.0
+518,facial injury,Low,Laceration of oral cavity,Discharge,98.1,62.0,20.0,,158.0,97.0
+519,ant. chest pain,High,Ischaemic chest pain,Ward admission,96.8,60.0,20.0,99.0,140.0,90.0
+520,left eye swelling,Low,Cellulitis,Discharge,97.3,94.0,18.0,,138.0,76.0
+521,"pain, abdominal",Medium,Colitis,Discharge,97.3,75.0,16.0,,98.0,70.0
+522,abd pain,Medium,Acute gastroenteritis,Discharge,98.2,94.0,20.0,,162.0,96.0
+523,"wrist pain, Lt",Low,Fracture of distal radius closed,Discharge,97.9,70.0,18.0,,141.0,65.0
+524,epigastric pain,Medium,Epigastric pain,Discharge,98.1,73.0,16.0,,157.0,109.0
+525,abd pain,Medium,Urinary retension,Discharge,97.9,137.0,18.0,,198.0,117.0
+526,Open Wound,Medium,"Multiple fracture of unspecified ribs,Closed",Ward admission,97.9,88.0,20.0,97.0,130.0,80.0
+527,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.2,62.0,20.0,99.0,140.0,100.0
+528,Left chest pain,High,Unstable angina,Discharge,96.8,98.0,24.0,99.0,140.0,90.0
+529,low abdominal pain,Medium,Chronic gastritis,Discharge,98.2,75.0,20.0,,129.0,87.0
+530,Lt. side weakness,High,Cerebral infarction due to thrombosis of posterior cerebral artery,Discharge,96.8,78.0,18.0,100.0,160.0,100.0
+531,finger pain,Low,Open wound of finger(s) without damage to nail,Discharge,97.5,66.0,20.0,97.0,140.0,90.0
+532,hypertension,Medium,Hypertension,Discharge,97.3,65.0,16.0,,204.0,109.0
+533,ant. chest pain,High,Supraventricular tachycardia,Discharge,96.8,52.0,20.0,98.0,110.0,70.0
+534,Rt. flank pain,Medium,Ureteric stone,Discharge,97.7,51.0,20.0,98.0,120.0,80.0
+535,Head Injury,Medium,Acute intoxication of alcohol,Discharge,97.3,78.0,20.0,,149.0,94.0
+536,right upper abdominal pain,Medium,Unspecified abdominal pain,Ward admission,97.3,95.0,20.0,99.0,110.0,70.0
+537,Rt abd pain,Low,Acute appendicitis,Ward admission,97.0,71.0,20.0,,124.0,72.0
+538,"shoulder pain, Lt",Low,Injury of arm,Discharge,96.8,94.0,20.0,,131.0,52.0
+539,right leg injury,Low,Multiple abrasion,Discharge,98.2,77.0,16.0,,145.0,84.0
+540,Abd. pain,Medium,"Acute renal failure, unspecified",Ward admission,97.5,63.0,20.0,96.0,120.0,60.0
+541,skin lesion,Low,Herpes zoster,Discharge,97.3,70.0,16.0,,148.0,72.0
+542,"leg swelling, Lt.",Low,"Lymphedema, lower limb",Discharge,99.5,101.0,16.0,,143.0,70.0
+543,"abdominal pain, periumbilical area",Medium,Intussusception,OP from ED,99.1,80.0,20.0,96.0,110.0,70.0
+544,"ocular pain, Lt.",Low,Corneal abrasion,Discharge,97.3,66.0,20.0,97.0,130.0,80.0
+545,Abd. pain,Medium,Acute cholecystitis,Ward admission,98.4,86.0,20.0,97.0,110.0,70.0
+546,diarrhea,Low,Acute watery diarrhoea,Discharge,97.9,78.0,20.0,100.0,100.0,60.0
+547,hip pain Lt.,Low,"Fracture of trochanteric section of femur, unspecified, closed",Ward admission,97.2,88.0,20.0,97.0,150.0,100.0
+548,both ocular pain,Low,Punctate keratatitis,Discharge,97.2,72.0,20.0,98.0,150.0,90.0
+549,"wrist pain, Rt",Low,"Fracture of lower end of radius, unspecified, closed",Ward admission,96.8,76.0,20.0,96.0,120.0,80.0
+550,Abd. pain,Medium,Cholangitis NOS,Ward admission,98.8,110.0,22.0,93.0,100.0,60.0
+551,dyspnea,High,"Asthma, unspecified",Ward admission,97.5,64.0,22.0,96.0,140.0,90.0
+552,abd pain,Medium,Acute gastroenteritis,Discharge,98.2,95.0,16.0,,134.0,83.0
+553,Head pain,Low,"Open wound of head, part unspecified",AMA discharge,97.2,78.0,20.0,98.0,140.0,90.0
+554,Left chest pain,High,Other chest pain,Discharge,96.8,48.0,20.0,95.0,100.0,60.0
+555,abd pain,Medium,Acute pancreatitis,Ward admission,100.2,103.0,16.0,,166.0,88.0
+556,dizziness,Medium,Dizziness,Discharge,97.7,86.0,16.0,,164.0,96.0
+557,"leg swelling, Lt.",Low,Cellulitis,Ward admission,98.4,74.0,16.0,,118.0,73.0
+558,vomiting,Medium,Acute gastroenteritis,Discharge,98.1,74.0,18.0,,167.0,80.0
+559,abd pain,Medium,Hypokalemia,AMA discharge,99.7,111.0,20.0,,131.0,92.0
+560,"pain, chest",High,Chest pain,Discharge,98.6,73.0,20.0,,145.0,83.0
+561,"leg pain, Rt.",Low,Deep vein thrombosis,Ward admission,99.9,78.0,20.0,,177.0,101.0
+562,Femur Lesion,Low,Fracture of femur closed,Discharge,96.8,87.0,20.0,,195.0,90.0
+563,"ocular pain, Lt.",Low,Contusion of eyelid and periocular area,Discharge,97.9,76.0,20.0,98.0,100.0,60.0
+564,abd pain,Medium,Abdominal pain,Discharge,98.6,84.0,16.0,,141.0,75.0
+565,abd pain,Medium,Abdominal pain,Discharge,101.1,109.0,20.0,,107.0,64.0
+566,abd pain,Medium,Acute abdomen,Ward admission,99.0,101.0,20.0,,113.0,58.0
+567,abd pain,Medium,Acute gastroenteritis,Discharge,98.1,109.0,18.0,,143.0,74.0
+568,HA,Medium,Headache,Discharge,98.4,67.0,16.0,,138.0,82.0
+569,Eye Foreign Body,Low,Punctate keratatitis,Discharge,96.8,80.0,20.0,97.0,100.0,60.0
+570,abd pain,Medium,Acute gastroenteritis,Discharge,100.6,111.0,18.0,,132.0,68.0
+571,Hand Injury,Low,Injury of hand,Discharge,97.7,96.0,20.0,,171.0,77.0
+572,headache,Medium,Multiple abrasion,Discharge,97.7,71.0,16.0,,106.0,69.0
+573,"pain, abdominal",Medium,Acute gastritis,Discharge,99.0,129.0,18.0,,183.0,105.0
+574,"pain, abdominal",Medium,Acute gastroenteritis,Discharge,99.0,76.0,18.0,,102.0,72.0
+575,finger lac.,Low,Laceration of finger without nail damage,Discharge,98.4,94.0,18.0,,128.0,62.0
+576,chest discomfort left,High,Ischaemic chest pain,Discharge,97.7,98.0,20.0,98.0,160.0,100.0
+577,RLQ pain,Medium,Diverticulitis of large intestine without bleeding,Discharge,96.8,90.0,20.0,,152.0,88.0
+578,right shoulder pain,Low,"Fracture of clavicle, shaft closed",Discharge,98.2,68.0,16.0,,160.0,88.0
+579,epigastric pain,Medium,Somatization disorder,Discharge,97.2,97.0,20.0,,134.0,97.0
+580,abd pain,Medium,Acute gastroenteritis,Discharge,97.0,70.0,20.0,,144.0,81.0
+581,foot swelling,Low,Injury of ankle,Discharge,97.7,80.0,20.0,,129.0,67.0
+582,abd pain,Medium,Acute pancreatitis,Ward admission,99.5,98.0,16.0,,152.0,85.0
+583,Finger Injury,Low,Laceration of finger without nail damage,Discharge,97.7,82.0,20.0,,138.0,87.0
+584,"pain, abdominal",Medium,Acute gastroenteritis,Discharge,97.7,90.0,16.0,,115.0,71.0
+585,Wrist Injury,Low,Injury of wrist,Discharge,97.7,87.0,16.0,,159.0,82.0
+586,myalgia,Low,Viral infection,Discharge,99.0,94.0,18.0,,136.0,63.0
+587,Open Wound,Low,"Open wound of head, part unspecified",Discharge,97.5,112.0,22.0,99.0,170.0,90.0
+588,abd pain,Medium,Acute gastroenteritis,Discharge,97.7,78.0,20.0,,111.0,67.0
+589,abd pain,Medium,Acute gastroenteritis,Discharge,98.4,98.0,18.0,,91.0,54.0
+590,abd pain,Medium,Acute gastroenteritis,Discharge,98.1,67.0,20.0,,114.0,79.0
+591,skin rash,Low,Acute urticaria,Discharge,99.0,75.0,16.0,,121.0,82.0
+592,abd pain,Medium,Contusion of abdominal wall,Discharge,98.6,97.0,16.0,,119.0,63.0
+593,sorethroat,Medium,Acute pharyngotonsillitis,Discharge,98.8,62.0,20.0,,144.0,87.0
+594,Abdominal pain (finding),Medium,Gastroenteritis and colitis of unspecified origin,Ward admission,96.8,90.0,20.0,98.0,100.0,60.0
+595,fever,Medium,Fever,Ward admission,100.0,91.0,16.0,,144.0,71.0
+596,head injury,Medium,Head trauma,Discharge,97.9,65.0,16.0,,145.0,84.0
+597,elbow painful swelling,Low,Cellulitis,Discharge,98.1,94.0,18.0,,164.0,111.0
+598,headache,Medium,Headache,Discharge,96.8,86.0,16.0,,131.0,83.0
+599,abd pain,Medium,Acute gastroenteritis,Discharge,98.2,79.0,18.0,,135.0,86.0
+600,"pain, chest wall, Rt",Medium,Sprain and strain of thorax,Discharge,99.0,70.0,18.0,,129.0,65.0
+601,"pain, flank",Medium,Ureter stone,Discharge,98.4,78.0,18.0,,163.0,100.0
+602,"Pain, Hip",Low,Fracture of femur shaft closed,Discharge,96.8,80.0,18.0,,145.0,71.0
+603,diffuse abdominal pain,Medium,Other acute pancreatitis,Ward admission,96.8,87.0,20.0,96.0,140.0,90.0
+604,elbow painful swelling lt.,Low,Contusion of elbow,Discharge,97.5,108.0,20.0,98.0,140.0,100.0
+605,ankle pain,Low,Injury of ankle and foot,Discharge,97.3,97.0,18.0,,139.0,80.0
+606,LBP - Low back pain,Low,Sprain of lumbar spine,Discharge,96.8,75.0,20.0,,146.0,88.0
+607,Open Wound,Low,"Superficial injury of head, part unspecified, contusion",Discharge,97.3,93.0,20.0,98.0,130.0,80.0
+608,backache,Medium,Herniated disc disease of lumbar spine with radiculopathy,Ward admission,98.2,57.0,16.0,,116.0,60.0
+609,Open Wound,Low,"Open wound of finger(s), NOS",Discharge,97.9,92.0,20.0,98.0,110.0,60.0
+610,right chest pain,High,Unstable angina,Discharge,97.3,64.0,20.0,99.0,120.0,80.0
+611,Ankle Injury,Low,Sprain of ankle,Discharge,97.7,95.0,20.0,,140.0,86.0
+612,epigastric pain,Medium,Ampulla of vater cancer,Discharge,98.8,86.0,16.0,,121.0,69.0
+613,Foot Injury,Low,Fracture of calcaneus closed,Discharge,97.7,68.0,20.0,,137.0,81.0
+614,"injury, ankle",Low,Fracture of lower leg closed,Discharge,98.6,61.0,20.0,,166.0,80.0
+615,"injury, ankle",Low,Pilon fracture closed,Discharge,98.6,61.0,20.0,,166.0,80.0
+616,ant. chest pain,High,Unstable angina,Discharge,97.5,78.0,18.0,99.0,120.0,80.0
+617,headache,Medium,"Migraine, unspecified",Discharge,96.8,80.0,20.0,98.0,110.0,70.0
+618,abd pain,Medium,"Other and unspecified cirrhosis of liver, Child-Pugh C",Ward admission,97.5,86.0,20.0,100.0,110.0,70.0
+619,FB in eye,Low,Foreign body in eye,Discharge,97.2,74.0,18.0,,149.0,107.0
+620,abdomen pain,Medium,Liver abscess,Ward admission,100.0,129.0,20.0,,137.0,77.0
+621,abdomen pain,Medium,Metastatic cancer to the liver,Ward admission,100.0,129.0,20.0,,137.0,77.0
+622,dizziness,Medium,Stroke,AMA discharge,96.8,115.0,18.0,,143.0,70.0
+623,abd pain,Medium,Abdominal pain,Discharge,97.9,69.0,20.0,,190.0,92.0
+624,Chin swelling,Low,Periodontal abscess,Ward admission,98.8,112.0,20.0,,194.0,84.0
+625,abd pain,Medium,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.3,100.0,20.0,97.0,120.0,80.0
+626,epigastric pain,Medium,Acute gastroenteritis,Discharge,97.5,68.0,20.0,,140.0,87.0
+627,Open Wound,Low,"Localized swelling, mass and lump, neck",Ward admission,99.0,100.0,20.0,97.0,110.0,70.0
+628,"pain, chest",High,Palpitation,Discharge,97.3,57.0,18.0,,169.0,89.0
+629,abdomen pain,Medium,Acute gastroenteritis,Ward admission,99.1,50.0,18.0,,95.0,62.0
+630,Rt. flank pain,Low,Contusion of flank,Discharge,97.9,80.0,20.0,98.0,140.0,90.0
+631,RUQ pain,Medium,Cholangitis,Ward admission,100.6,104.0,20.0,97.0,140.0,100.0
+632,abd pain,Medium,Ureter stone,Discharge,98.1,102.0,20.0,,140.0,84.0
+633,"Pain, Anus",Medium,Urinoma,Discharge,97.7,74.0,20.0,,159.0,94.0
+634,"burn, face",Low,"Burn of first degree of head and neck, multiple sites head, face, and neck",Discharge,97.3,72.0,20.0,97.0,140.0,90.0
+635,Lt. hip joint pain,Low,Contusion of hip,Discharge,98.1,101.0,16.0,,146.0,80.0
+636,abd pain,Medium,Acute gastroenteritis,Discharge,98.2,83.0,20.0,,107.0,58.0
+637,"pain, abdominal",Medium,Abdominal pain,Discharge,97.9,93.0,16.0,,136.0,90.0
+638,Lt flank pain,Medium,"Chronic kidney disease, unspecified",Ward admission,98.1,101.0,20.0,98.0,160.0,90.0
+639,abd pain,Medium,Fecal impaction,Discharge,98.1,79.0,18.0,,141.0,76.0
+640,left leg pain,Low,Chondromalacia patellae,Discharge,97.5,101.0,16.0,,154.0,101.0
+641,abd pain,Medium,Urinary stone,Discharge,97.9,57.0,18.0,,135.0,79.0
+642,voiding difficulty,Low,Acute urinary retension,Discharge,96.8,89.0,20.0,,136.0,84.0
+643,myalgia,Medium,Common cold,Discharge,98.2,93.0,20.0,,134.0,89.0
+644,abd pain,Medium,Constipation,Discharge,98.6,101.0,20.0,,196.0,94.0
+645,ant. chest pain,Medium,Other chest pain,Discharge,97.2,85.0,20.0,95.0,140.0,90.0
+646,Ankle Injury,Low,Fracture of ankle closed,Ward admission,98.8,74.0,16.0,,171.0,72.0
+647,"pain, abdominal",Medium,Hepatic failure without coma,ICU admission,97.3,102.0,16.0,,107.0,73.0
+648,abd pain,Medium,Acute gastroenteritis,Discharge,97.9,60.0,20.0,,149.0,79.0
+649,headache,Medium,Multiple contusion NOS,Ward admission,97.5,88.0,22.0,98.0,120.0,80.0
+650,abd pain,Low,"Ileus, unspecified",Ward admission,97.2,96.0,20.0,98.0,130.0,90.0
+651,Left chest pain,High,Ischaemic chest pain,Ward admission,98.1,108.0,24.0,99.0,150.0,90.0
+652,leg pain,Low,Transient ischemia attack,Ward admission,98.2,64.0,16.0,,165.0,78.0
+653,Urticarial rash,Low,Angioedema,Discharge,98.4,100.0,18.0,,197.0,84.0
+654,headache,Low,Postnasal drip syndrome,Discharge,98.2,80.0,18.0,,163.0,106.0
+655,TMJ pain,Low,Derangement of temporomandibular joint,Discharge,97.9,82.0,20.0,98.0,110.0,70.0
+656,abd pain,Medium,Adenocarcinoma of prostate,Discharge,98.4,103.0,16.0,,143.0,76.0
+657,"shoulder pain, both",Low,Frozen shoulder,Discharge,98.1,86.0,20.0,,163.0,86.0
+658,ant. chest pain,High,"Acute myocardial infarction, unspecified",Ward admission,97.9,68.0,20.0,99.0,170.0,100.0
+659,"shoulder pain, Rt",Low,Contusion of forearm,Discharge,96.8,72.0,20.0,,109.0,65.0
+660,"pain, chest wall",Medium,"Multiple fracture of unspecified ribs,Closed",Discharge,97.3,74.0,20.0,95.0,110.0,70.0
+661,lower chest wall pain,Low,"Abdomen pain, right upper quadrant",Discharge,97.9,88.0,16.0,,202.0,91.0
+662,headache,Medium,Headache,Ward admission,99.3,110.0,20.0,,146.0,63.0
+663,"pain, tooth",Low,Toothache,Discharge,96.8,80.0,20.0,,174.0,89.0
+664,ant. chest pain,High,Unstable angina,Ward admission,97.9,66.0,20.0,96.0,190.0,100.0
+665,"Burn, hand",Low,"Burn, second degree",Discharge,96.8,97.0,20.0,,141.0,61.0
+666,general ache,Low,Pain,Discharge,99.7,72.0,16.0,,137.0,67.0
+667,abd pain,Medium,"Gallstone(impacted) of cystic duct with acute cholecystitis, With obstruction",Ward admission,98.4,80.0,18.0,94.0,110.0,70.0
+668,"pain, chest",High,Gastroesophageal reflux disease,Discharge,97.9,91.0,20.0,,159.0,89.0
+669,"pain, chest",High,Chest pain,Ward admission,97.3,110.0,20.0,,113.0,56.0
+670,visual disturbance,Medium,Injury of eye,Discharge,97.9,103.0,18.0,,157.0,72.0
+671,scrotal pain,Medium,"Epididymo-orchitis, without abscess",Discharge,97.7,70.0,20.0,96.0,140.0,90.0
+672,leg pain,Low,Multiple contusion,Discharge,97.7,74.0,18.0,,123.0,70.0
+673,abd pain,Medium,Acute gastroenteritis,Discharge,97.9,64.0,20.0,,108.0,71.0
+674,Finger Injury,Low,Injury of finger,Ward admission,97.2,108.0,20.0,,159.0,89.0
+675,"pain, abdominal",Medium,Allergic reaction,Discharge,99.7,58.0,18.0,,137.0,92.0
+676,abd pain,Medium,Dysmenorrhea,AMA discharge,96.8,50.0,16.0,,140.0,73.0
+677,foreign body ingestion,Medium,Chronic sore throat,Discharge,97.7,84.0,20.0,,140.0,100.0
+678,Open Wound,Low,"Open wound of forearm, part unspecified",AMA discharge,97.9,88.0,20.0,97.0,120.0,70.0
+679,RLQ pain,Medium,Acute abdomen,Ward admission,96.8,87.0,20.0,,113.0,67.0
+680,headache,Medium,Vascular headache,Discharge,98.4,82.0,20.0,,187.0,120.0
+681,Wrist Injury,Low,Multiple trauma,AMA discharge,96.8,80.0,18.0,,167.0,86.0
+682,Vaginal Bleeding,Low,"Abnormal uterine and vaginal bleeding, unspecified",Discharge,99.3,74.0,20.0,100.0,160.0,100.0
+683,"pain, flank",Medium,Kidney and ureter stone,Discharge,97.2,81.0,20.0,,122.0,78.0
+684,"ocular injury, Lt.",Low,Ocular pain,Discharge,97.0,78.0,18.0,99.0,120.0,80.0
+685,Open Wound,Low,"Open wound of other parts of head, face",Discharge,99.0,72.0,18.0,97.0,100.0,60.0
+686,RUQ pain,Medium,"Calculus of gallbladder with other cholecystitis, Without mention of obstruction",Ward admission,97.7,90.0,20.0,98.0,110.0,60.0
+687,ant. chest pain,High,"Angina pectoris, unspecified",Discharge,97.7,96.0,20.0,98.0,140.0,100.0
+688,headache,Medium,Headache,Discharge,98.2,94.0,26.0,99.0,180.0,100.0
+689,"pain, arm",Low,Contusion of forearm,Discharge,96.8,93.0,16.0,,176.0,78.0
+690,lower extremity paraparesis,High,"Stress fracture of vertebra, Cervical region",Ward admission,96.8,78.0,20.0,94.0,110.0,80.0
+691,Foreign Body Sense,Medium,Foreign body in oesophagus,Discharge,97.3,76.0,20.0,96.0,120.0,80.0
+692,upper back pain,High,Transmural myocardial infarction NOS,Ward admission,97.7,64.0,20.0,97.0,120.0,60.0
+693,"ocular pain, Rt.",Low,Corneal abrasion,Discharge,97.3,61.0,20.0,98.0,110.0,60.0
+694,"pain, low back",Medium,Herniated disc disease of lumbar spine,Discharge,97.3,75.0,18.0,,153.0,85.0
+695,ocular pain,Medium,"Angle closure glaucoma, acute",Discharge,98.8,70.0,18.0,,154.0,99.0
+696,bee sting,Low,Insect bites and stings,Discharge,99.0,66.0,18.0,,142.0,92.0
+697,"pelvic pain, Lt",Low,Fracture of hip closed,Ward admission,98.6,83.0,20.0,,105.0,75.0
+698,right elbow pain,Low,Contusion of elbow,Discharge,97.5,78.0,20.0,,141.0,77.0
+699,palpitation,Medium,Palpitations,Discharge,97.2,73.0,22.0,98.0,130.0,80.0
+700,Left chest pain,High,"Angina pectoris, unspecified",Ward admission,97.7,110.0,20.0,98.0,160.0,100.0
+701,"ocular pain, Lt.",Low,,Discharge,97.7,84.0,20.0,97.0,160.0,100.0
+702,ant. chest pain,High,Acute transmural myocardial infarction of inferior wall,Ward admission,97.2,62.0,20.0,97.0,110.0,60.0
+703,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.3,75.0,20.0,95.0,140.0,100.0
+704,dysuria,Low,Urinary tract obstruction NOS,Discharge,97.9,66.0,20.0,,130.0,60.0
+705,abd pain,High,Contusion of abdomen wall,Death,,,,,,
+706,Left chest pain,High,Ischaemic chest pain,Ward admission,97.2,78.0,20.0,98.0,110.0,80.0
+707,D - Diarrhea,Medium,"Regional colitis, unspecified",Ward admission,97.7,98.0,20.0,99.0,110.0,60.0
+708,facial injury,Medium,"Open wound of head, other part",Discharge,97.3,66.0,20.0,,86.0,44.0
+709,headache,Medium,Tension-type headache,Discharge,98.2,90.0,20.0,98.0,200.0,110.0
+710,RUQ pain,Medium,Acute cholecystitis,Ward admission,98.2,78.0,20.0,98.0,120.0,80.0
+711,epigastric pain,High,Unstable angina,Ward admission,97.5,72.0,20.0,98.0,160.0,100.0
+712,chest discomfort,High,"Angina pectoris, unspecified",Discharge,97.5,70.0,20.0,97.0,150.0,100.0
+713,Rt. shoulder pain,Low,Contusion of shoulder and upper arm,Discharge,98.8,78.0,20.0,,154.0,73.0
+714,Left chest pain,High,Contusion of abdomen wall,OP from ED,97.5,86.0,24.0,94.0,100.0,60.0
+715,"pain, flank",Medium,Hydronephrosis,Ward admission,99.1,65.0,18.0,,168.0,86.0
+716,abd pain,Medium,Parkinsonism,Discharge,98.4,77.0,16.0,,118.0,78.0
+717,ant. chest pain,High,Observation for suspected myocardial infarction,Transfer,97.9,60.0,20.0,96.0,110.0,60.0
+718,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.0,60.0,20.0,98.0,110.0,60.0
+719,headache,High,Intracerebral haemorrhage in cerebellum,OP from ED,97.7,84.0,20.0,97.0,190.0,100.0
+720,Hip joint pain,Low,"Abscess of fascia, buttock",Discharge,98.1,84.0,20.0,97.0,110.0,60.0
+721,"pain, facial",Low,Superficial injury of face contusion,Discharge,97.2,86.0,18.0,,94.0,47.0
+722,ant. chest pain,High,Acute transmural myocardial infarction of unspecified site,Ward admission,97.3,100.0,20.0,99.0,120.0,60.0
+723,RUQ pain,Medium,Acute cholecystitis,Ward admission,96.8,65.0,20.0,95.0,110.0,60.0
+724,epigastric pain,Medium,Acute gastroenteritis,Discharge,96.1,56.0,16.0,,116.0,61.0
+725,abd pain,Medium,Abdominal pain,Ward admission,97.7,88.0,18.0,,133.0,72.0
+726,general weakness,Medium,Liver cirrhosis Child-Pugh A,Ward admission,98.2,96.0,20.0,,144.0,94.0
+727,myalgia,Low,Functional dyspepsia,Discharge,98.2,84.0,18.0,,150.0,98.0
+728,leg pain,Low,Spinal stenosis lumbosacral region,Discharge,96.8,102.0,20.0,,166.0,71.0
+729,buttock pain,Low,Hip pain,Discharge,97.9,98.0,18.0,,108.0,63.0
+730,abd pain,Medium,Abdominal pain,Ward admission,99.1,100.0,16.0,,122.0,55.0
+731,abd pain,Medium,Acute gastroenteritis,Discharge,97.5,78.0,16.0,,159.0,101.0
+732,wrist laceration,Low,Laceration of wrist,Discharge,97.7,93.0,16.0,,182.0,91.0
+733,both leg pain,Low,Complex regional pain syndrome type II,Discharge,97.9,78.0,20.0,97.0,100.0,60.0
+734,both shoulder pain,Low,Whiplash injury,Discharge,97.9,68.0,16.0,,125.0,76.0
+735,abd pain,Medium,Ureter stone,Discharge,97.9,53.0,20.0,,131.0,70.0
+736,"Injury, Leg",Low,Multiple abrasion,Discharge,97.9,96.0,24.0,,135.0,85.0
+737,COCCYGEAL PAIN,Low,"Injury of abdomen, lower back and pelvis",Discharge,98.1,106.0,18.0,,129.0,64.0
+738,abd pain,Medium,Constipation,Discharge,97.7,95.0,20.0,,146.0,81.0
+739,Lt flank pain,Medium,Ureter stone,Discharge,96.8,87.0,16.0,,178.0,108.0
+740,Lt flank pain,Medium,Ureter stone,Discharge,96.1,88.0,16.0,,200.0,105.0
+741,abd pain,Medium,Chronic pancreatitis,AMA discharge,97.5,102.0,16.0,,122.0,82.0
+742,Lt flank pain,Medium,Ureter stone,Discharge,98.1,72.0,20.0,,165.0,85.0
+743,abd pain,Medium,Ileus,Discharge,98.2,76.0,22.0,,190.0,116.0
+744,LLQ pain,Medium,Ureter stone,Discharge,98.4,86.0,24.0,,157.0,115.0
+745,leg pain,Low,Herniated disc disease of lumbar spine,Discharge,98.8,89.0,18.0,,150.0,70.0
+746,"Flank pain, Rt.",Medium,Ureter stone,Discharge,97.0,61.0,24.0,,139.0,63.0
+747,epigastric pain,Medium,Acute gastroenteritis,Discharge,96.8,72.0,22.0,,115.0,74.0
+748,epigastric pain,Medium,Unclassified epithelial ovarian cancer unspecified side,Discharge,95.9,115.0,16.0,,187.0,103.0
+749,"pain, low back",Low,Squamous cell carcinoma of lung left,Discharge,100.2,84.0,18.0,,132.0,74.0
+750,"tooth pain, Lt",Low,Gingivitis,Discharge,97.2,68.0,16.0,,181.0,92.0
+751,abd pain,Medium,Advanced gastric cancer,Discharge,98.1,89.0,16.0,,135.0,72.0
+752,"pain, shoulder",Medium,Unspecified dislocation of shoulder,Discharge,96.8,95.0,20.0,,149.0,66.0
+753,ant. chest pain,High,Myocardial infarction with non-ST elevation,Ward admission,96.8,60.0,20.0,99.0,140.0,90.0
+754,finger pain,Medium,Injury of hand,Ward admission,99.1,71.0,18.0,,202.0,102.0
+755,upper back pain,High,"Abdominal aortic aneurysm, ruptured",Ward admission,96.8,84.0,22.0,100.0,180.0,100.0
+756,abdomen pain,High,Alcoholic liver cirrhosis with ascites,Ward admission,100.6,112.0,28.0,,114.0,71.0
+757,HA,High,Headache,Discharge,98.6,84.0,16.0,,134.0,90.0
+758,"pain, chest",High,Chest pain,Ward admission,97.3,95.0,28.0,,75.0,54.0
+759,dyspnea,Medium,Dyspnea,Ward admission,98.1,88.0,20.0,,164.0,65.0
+760,dizziness,Medium,Dizziness,Discharge,98.2,102.0,18.0,,211.0,105.0
+761,for PEG tube change,Low,Percutaneous catheter problem,Ward admission,98.2,89.0,16.0,,119.0,73.0
+762,Rt.arm weakness,Medium,Borderzone infarction,Ward admission,98.2,90.0,18.0,,179.0,112.0
+763,general weakness,Low,Fever,Ward admission,97.7,115.0,16.0,,94.0,55.0
+764,high BSL,Medium,Hyperglycemia,Ward admission,98.2,63.0,16.0,,197.0,88.0
+765,dyspnea,Medium,Dyspnea,AMA discharge,98.4,113.0,28.0,,139.0,45.0
+766,"Discomfort, Chest",High,Bradycardia,ICU admission,98.1,35.0,16.0,,119.0,65.0
+767,sezure like motion,Low,Meningioma,Ward admission,98.2,63.0,16.0,,120.0,81.0
+768,dizziness,Medium,Benign paroxysmal positional vertigo,Discharge,97.7,84.0,16.0,,173.0,98.0
+769,dizziness,Medium,Orthostatic hypotension,Discharge,98.6,64.0,16.0,,128.0,72.0
+770,general weakness,Medium,Syncope,Discharge,97.2,54.0,16.0,,123.0,66.0
+771,vomiting,Medium,Gastroduodenitis,Ward admission,97.3,68.0,16.0,,120.0,74.0
+772,dizziness,Medium,Dizziness,Discharge,96.3,78.0,18.0,,154.0,96.0
+773,Nasal swelling,Low,Abscess of nose,Discharge,98.4,105.0,16.0,,124.0,84.0
+774,Sudden hearing loss,Medium,Tinnitus,Discharge,97.9,91.0,16.0,,156.0,95.0
+775,for A/tapping,Low,Ascites,Discharge,98.4,72.0,20.0,,199.0,111.0
+776,hematemesis,High,Hematemesis,Transfer,96.8,90.0,20.0,,115.0,78.0
+777,distended abdomen,Low,Alcoholic liver cirrhosis with ascites,Discharge,96.8,83.0,20.0,,121.0,75.0
+778,dizziness,Low,Dizziness,Discharge,97.2,98.0,20.0,,152.0,97.0
+779,"distension, abd",Low,Alcoholic hepatitis with ascites,Discharge,98.2,100.0,16.0,,91.0,61.0
+780,decreased activity,Medium,Liver cirrhosis with hepatitis B Unspecified,Ward admission,98.4,100.0,20.0,,140.0,82.0
+781,for ascites tapping,Low,Hepatocellular carcinoma,Discharge,97.9,62.0,20.0,,137.0,69.0
+782,fever,Medium,Nosocomial pneumonia,Ward admission,98.4,100.0,24.0,,100.0,70.0
+783,sleeping tendency,High,Hepatic encephalopathy without coma,Ward admission,100.0,100.0,20.0,,153.0,64.0
+784,hematochezia,High,Liver cirrhosis with hepatitis C Unspecified,Ward admission,98.2,61.0,16.0,,141.0,83.0
+785,"distension, abd",Low,Hepatocellular carcinoma,Discharge,97.3,73.0,22.0,,135.0,81.0
+786,vomiting,Low,Acute gastroenteritis,Discharge,99.1,66.0,20.0,,147.0,69.0
+787,sezure like motion,Medium,Seizure,Discharge,98.6,118.0,28.0,,,
+788,fever,High,Fever,Ward admission,103.1,114.0,30.0,,139.0,96.0
+789,rt. side weakness,Medium,Stroke,Ward admission,97.2,86.0,20.0,,193.0,115.0
+790,post seizure,High,Seizure,Discharge,96.8,115.0,18.0,,182.0,74.0
+791,"Retention, Bladder",Low,Urinary retension,Discharge,99.1,97.0,18.0,,143.0,90.0
+792,Free voiding,Low,Other urinary difficulty,Discharge,97.7,100.0,18.0,,112.0,80.0
+793,decreased urine output,Low,Benign prostatic hyperplasia,Discharge,97.7,108.0,20.0,,170.0,100.0
+794,facial injury,Low,Head trauma,Discharge,97.2,61.0,20.0,,165.0,89.0
+795,Amnesia,Medium,Amnesia,Discharge,97.9,66.0,20.0,,205.0,102.0
+796,dyspnea,Medium,"Edema, generalized",Discharge,98.2,66.0,18.0,,165.0,89.0
+797,dizziness,Medium,Anxiety disorder,Discharge,95.0,85.0,18.0,,94.0,54.0
+798,fever,Low,Fever,Ward admission,98.2,85.0,16.0,,117.0,60.0
+799,dyspnea,Medium,Anemia,Ward admission,97.0,75.0,20.0,,168.0,73.0
+800,for PEG tube change,Low,Percutaneous catheter problem,Discharge,98.6,69.0,16.0,,99.0,57.0
+801,anxiety,Low,Dementia in Alzheimer`s disease with late onset,Discharge,96.8,66.0,16.0,,158.0,85.0
+802,fever,High,Fever,Ward admission,99.3,65.0,20.0,,80.0,44.0
+803,epistaxis,Medium,Epistaxis,Discharge,98.2,86.0,18.0,,122.0,65.0
+804,mental change,High,"Ruptured aneurysm, anterior communicating artery (AComA)",Ward admission,96.8,61.0,20.0,,80.0,45.0
+805,right hip pain,Medium,Hip pain,Ward admission,96.8,53.0,20.0,,90.0,55.0
+806,"fever chills, cough sputum",Medium,Urinary tract infection,Discharge,101.3,110.0,30.0,,140.0,65.0
+807,for L-tube insertion,Low,Percutaneous catheter problem,Discharge,101.1,102.0,20.0,,116.0,64.0
+808,"swelling, facial",Low,Injury of face,Discharge,96.8,74.0,20.0,,120.0,80.0
+809,fever,High,Aspiration pneumonia,Ward admission,101.5,110.0,24.0,,142.0,86.0
+810,dyspnea,High,End stage renal disease,Ward admission,100.6,120.0,28.0,,275.0,154.0
+811,"Discomfort, Chest",Medium,Type 2 diabetes mellitus with multiple complications,Discharge,97.7,103.0,20.0,,198.0,101.0
+812,hypoglycemic symptom,High,Hypoglycemia,Discharge,98.1,62.0,18.0,,132.0,89.0
+813,epistaxis,Low,Epistaxis,Discharge,98.4,76.0,20.0,,173.0,97.0
+814,anxiety,Medium,Palpitation,Discharge,97.3,64.0,20.0,,201.0,106.0
+815,Voice changes,Low,Hoarseness,Discharge,96.8,80.0,20.0,,137.0,77.0
+816,abnormal lab.,Medium,Atrial fibrillation,Discharge,99.0,84.0,16.0,,137.0,72.0
+817,vomiting,Medium,Acute gastroenteritis,Ward admission,97.7,65.0,20.0,,148.0,81.0
+818,general weakness,Medium,Internal carotid artery occlusion,Ward admission,97.7,81.0,20.0,,168.0,78.0
+819,dyspnea,High,Dyspnea,Ward admission,98.6,112.0,28.0,,116.0,85.0
+820,mental change,High,Cardiac arrest,Transfer,,,,,,
+821,dizziness,Medium,Dizziness,Discharge,97.9,66.0,18.0,,108.0,66.0
+822,dyspnea,High,Dyspnea,Ward admission,98.2,87.0,28.0,,,
+823,dyspnea,High,Heart failure,Ward admission,97.3,61.0,22.0,,181.0,74.0
+824,anemia w/u,Medium,Irritability and anger,Discharge,98.6,100.0,20.0,,110.0,66.0
+825,DZ - Dizziness,Medium,Dizziness,Ward admission,96.8,64.0,20.0,,160.0,76.0
+826,"Discomfort, Chest",High,Dyspnea,Discharge,97.7,75.0,20.0,,119.0,66.0
+827,forehead laceration,Low,Injury of head,Discharge,99.9,81.0,16.0,,137.0,79.0
+828,post seizure,Medium,Seizure,AMA discharge,97.9,94.0,18.0,,132.0,98.0
+829,light headness,Medium,Syncope,Discharge,97.2,68.0,20.0,98.0,100.0,60.0
+830,H-Headache,Medium,(Seizure) Convulsive NOS,Discharge,100.6,128.0,24.0,99.0,90.0,60.0
+831,altered mentality,High,Acute ethanol intoxication,Discharge,97.3,86.0,20.0,,102.0,65.0
+832,eye discomfort,Low,Corneal erosion,Discharge,97.7,91.0,20.0,,132.0,78.0
+833,po medication,Low,Acute urticaria,Discharge,96.8,72.0,16.0,,117.0,70.0
+834,fever,Low,"Fever, unspecified",Discharge,101.1,110.0,20.0,98.0,130.0,80.0
+835,both hand numbness,Low,Hyperventilation,Discharge,96.8,78.0,24.0,98.0,120.0,70.0
+836,abnormal behavior,Low,Schizophrenia,Ward admission,96.8,100.0,20.0,,163.0,85.0
+837,finger laceration,Low,Laceration of finger without nail damage,Discharge,97.5,98.0,18.0,,154.0,86.0
+838,Sexual Abuse of Adult,Medium,Sexual abuse,Discharge,97.7,115.0,18.0,,150.0,87.0
+839,"DI, drug intoxication",High,Poisoning by benzodiazepine,AMA discharge,98.4,87.0,18.0,,113.0,55.0
+840,dyspnea,Medium,Other specified interstitial pulmonary diseases,Ward admission,97.9,108.0,20.0,92.0,130.0,90.0
+841,skin rash,Low,Rash and other nonspecific skin eruption,Discharge,99.1,84.0,20.0,98.0,100.0,60.0
+842,hematemesis,Medium,Mallory - Weiss syndrome,Ward admission,97.9,84.0,20.0,98.0,100.0,60.0
+843,"bleeding, gingival",Low,Gingival hemorrhage,Discharge,97.7,70.0,20.0,,140.0,110.0
+844,palpitations,Low,Palpitation,Discharge,97.9,74.0,20.0,,99.0,65.0
+845,mental change,High,Stupor,Discharge,99.7,98.0,24.0,85.0,100.0,60.0
+846,"laceration, scalp",Low,Laceration of scalp,Discharge,97.7,78.0,18.0,,167.0,105.0
+847,nasal injury,Low,Fracture of nasal bone closed,Discharge,97.5,65.0,18.0,,132.0,77.0
+848,Near syncope,Medium,Syncope,Discharge,96.8,70.0,18.0,,139.0,77.0
+849,po medication,Low,Prescription of emergency contraception,Discharge,98.4,89.0,20.0,,129.0,69.0
+850,dyspnea,Medium,Anaphylaxis NOS,Discharge,96.8,82.0,20.0,99.0,110.0,70.0
+851,post seizure,High,Seizure,Discharge,99.3,88.0,18.0,,144.0,84.0
+852,syncope,Low,Vasovagal syncope,Discharge,98.2,100.0,16.0,,134.0,86.0
+853,vomiting,Medium,Acute gastroenteritis,Discharge,98.4,84.0,16.0,,120.0,75.0
+854,hematochezia,Medium,"Crohn’s disease NOS, unspecified",Ward admission,97.2,90.0,20.0,99.0,130.0,80.0
+855,sexual violence,Medium,Sexual abuse of adult,Discharge,98.6,80.0,18.0,,103.0,66.0
+856,eyelid laceration,Low,Laceration of face,Discharge,97.7,83.0,18.0,,139.0,80.0
+857,dizziness,Low,Dizziness,Discharge,97.7,85.0,20.0,,127.0,73.0
+858,finger laceration,Low,Injury of hand,Discharge,99.5,117.0,20.0,,183.0,92.0
+859,vomiting,Low,Vasovagal syncope,AMA discharge,98.6,81.0,22.0,,168.0,106.0
+860,sexual violence,Low,Sexual abuse of adult,Discharge,96.8,83.0,16.0,,117.0,86.0
+861,vomiting,Low,Acute gastroenteritis,Discharge,98.4,90.0,18.0,,107.0,56.0
+862,dizziness,Medium,Benign paroxysmal positional vertigo,Discharge,96.8,72.0,16.0,,119.0,76.0
+863,"laceration, chin",Low,"Fracture of mandible, condylar process closed",Discharge,96.8,114.0,16.0,,145.0,91.0
+864,"fever chills, cough sputum",Low,Fever,Discharge,99.1,102.0,20.0,,165.0,106.0
+865,general weakness,Low,Dyspepsia,Discharge,97.9,77.0,20.0,,158.0,109.0
+866,cough,Low,Cough,Discharge,96.8,86.0,20.0,,118.0,85.0
+867,depression,Low,Major depressive disorder,Ward admission,97.7,103.0,20.0,,149.0,85.0
+868,dizziness,Medium,Dizziness,Discharge,98.2,80.0,18.0,,177.0,102.0
+869,hematemesis,High,Viral infection,Discharge,98.8,86.0,16.0,,163.0,99.0
+870,fever,High,Aspiration pneumonia,Ward admission,99.1,97.0,16.0,,86.0,77.0
+871,Suicidal Attempt,Medium,Suicide tendency,Ward admission,97.2,96.0,20.0,,110.0,69.0
+872,"alcohol smelling state, drunken state",Low,Acute intoxication of alcohol,Discharge,95.9,96.0,18.0,,122.0,68.0
+873,Facial Palsy,Medium,Bell's palsy,Discharge,98.6,68.0,20.0,,134.0,76.0
+874,finger laceration,Low,Laceration of finger without nail damage,Discharge,98.2,87.0,18.0,,129.0,76.0
+875,eyebrow laceration,Low,Laceration of face,Discharge,97.9,89.0,18.0,,139.0,78.0
+876,skin rash,Low,Allergy,Discharge,97.0,77.0,18.0,,146.0,72.0
+877,diarrhea,Medium,Acute gastroenteritis,Discharge,99.3,126.0,20.0,,138.0,85.0
+878,hallucination,Low,Paranoid schizophrenia,Ward admission,96.8,80.0,20.0,98.0,110.0,70.0
+879,erythematous papule,Low,Allergic urticaria,Discharge,96.8,80.0,20.0,96.0,110.0,70.0
+880,fever & chill,Low,"Fever, unspecified",Discharge,101.7,84.0,20.0,97.0,90.0,50.0
+881,dyspnea,Medium,Cough with dyspnea,Ward admission,98.2,103.0,20.0,98.0,90.0,60.0
+882,Suicidal thoughts (finding),Medium,Melena,Ward admission,97.9,90.0,18.0,,150.0,108.0
+883,right nasal bleeding,Low,Epistaxis,Discharge,97.5,108.0,22.0,98.0,160.0,100.0
+884,fever,Medium,Viral infection,Discharge,98.2,108.0,18.0,,117.0,68.0
+885,post seizure,Medium,Paranoid schizophrenia,Discharge,96.8,111.0,20.0,,164.0,90.0
+886,epistaxis,Low,Epistaxis,Discharge,97.0,100.0,16.0,,136.0,85.0
+887,seizure,High,Seizure,AMA discharge,,,,,,
+888,eye discomfort,Low,Allergy,Discharge,99.0,81.0,20.0,,147.0,87.0
+889,nausea,Low,"Superficial injury of other parts of head, contusion",Discharge,97.0,80.0,20.0,99.0,110.0,70.0
+890,Delusional Idea,Medium,Sore throat,AMA discharge,97.7,123.0,18.0,,156.0,96.0
+891,dyspnea,Medium,Asthma,Discharge,97.9,76.0,20.0,,132.0,77.0
+892,DZ - Dizziness,Medium,Dizziness,Discharge,96.8,76.0,16.0,,117.0,80.0
+893,cerebral concussion,Low,Injury of head,Discharge,96.8,90.0,20.0,,139.0,83.0
+894,fever,Low,Seasonal influenza virus identified influenzal acute upper respiratory infection,Ward admission,96.8,80.0,20.0,98.0,170.0,100.0
+895,fever,Low,Acute pyelonephritis,Ward admission,97.3,87.0,20.0,99.0,110.0,70.0
+896,Convulsion,Medium,Other and unspecified convulsions,Discharge,96.8,95.0,20.0,100.0,130.0,80.0
+897,anterior chest discomfort,Medium,Toxic effect of carbon monoxide,Discharge,99.5,66.0,20.0,99.0,120.0,80.0
+898,Vaginal Bleeding,Medium,Delayed and secondary postpartum haemorrhage,Ward admission,97.7,102.0,20.0,99.0,100.0,60.0
+899,anxiety,Medium,Anxiety disorder,Ward admission,97.9,86.0,20.0,,124.0,75.0
+900,Vaginal Bleeding,Medium,Vaginal bleeding,Discharge,97.5,58.0,20.0,,99.0,64.0
+901,dyspnea,Medium,Dyspnoea,Discharge,97.5,68.0,24.0,100.0,120.0,80.0
+902,vaginal bleeding,Medium,Threatened abortion,Discharge,98.1,58.0,16.0,,129.0,69.0
+903,abd pain,Medium,Abdominal pain,Ward admission,100.4,108.0,18.0,,126.0,65.0
+904,dizziness,Medium,Dizziness,Discharge,96.8,66.0,22.0,,157.0,100.0
+905,dizziness,Medium,Dizziness and giddiness,Discharge,97.5,78.0,20.0,99.0,140.0,90.0
+906,headache,Low,Headache,Discharge,97.3,68.0,20.0,,110.0,60.0
+907,face laceration,Low,Laceration of face,AMA discharge,96.8,109.0,20.0,,163.0,94.0
+908,vaginal bleeding,Medium,Vaginal bleeding,Ward admission,97.2,103.0,20.0,,140.0,90.0
+909,dizziness,Medium,Benign paroxysmal positional vertigo,Discharge,98.8,71.0,20.0,,136.0,88.0
+910,fever,Medium,Liver abscess,Ward admission,102.2,119.0,16.0,,153.0,84.0
+911,Confusion state,High,Hepatorenal syndrome,Ward admission,98.2,72.0,20.0,86.0,80.0,50.0
+912,Vaginal Bleeding,High,Vaginal bleeding,Discharge,97.2,86.0,16.0,,96.0,78.0
+913,anxiety,Low,Anxiety disorder,Discharge,97.7,108.0,18.0,,203.0,104.0
+914,Open Wound,Low,Contusion of other and unspecified parts of foot,Discharge,98.1,80.0,20.0,98.0,110.0,70.0
+915,anxiety,Low,Anxiety state,Discharge,98.1,100.0,18.0,,102.0,80.0
+916,sexual violence,Medium,Sexual abuse,Discharge,99.0,127.0,28.0,,133.0,107.0
+917,scratch wound,Low,Superficial injury of forearm,Discharge,97.7,102.0,18.0,,194.0,130.0
+918,facial injury,Medium,Acute pain,Discharge,98.1,89.0,16.0,,158.0,93.0
+919,scalp lac.,Low,Laceration of scalp,Discharge,97.9,86.0,18.0,,123.0,65.0
+920,diarrhea,Low,Acute gastroenteritis,Discharge,98.8,94.0,16.0,,117.0,71.0
+921,"distension, abd",Medium,Chronic cough,Ward admission,98.2,118.0,20.0,,204.0,115.0
+922,facial palsy left,Medium,Paresthesia,Discharge,97.5,70.0,16.0,,150.0,82.0
+923,FB in esophagus,Low,Foreign body in throat food,Discharge,98.1,75.0,16.0,,126.0,79.0
+924,forehead laceration,Low,Laceration of face,Discharge,97.2,83.0,20.0,,124.0,78.0
+925,left side weakness,High,Muscle weakness other,Ward admission,98.6,,16.0,,,
+926,epistaxis,Low,Head trauma,Discharge,97.7,74.0,20.0,,102.0,64.0
+927,vomiting,Low,Ureter stone,Discharge,98.2,86.0,20.0,,126.0,81.0
+928,Facial Palsy,Medium,Bell's palsy,Discharge,97.5,88.0,20.0,,160.0,94.0
+929,right ocular pain,Low,Corneal abrasion,Discharge,97.5,84.0,20.0,97.0,120.0,80.0
+930,hematemesis,Medium,"Gastrointestinal haemorrhage, unspecified",Transfer,97.7,84.0,20.0,96.0,150.0,70.0
+931,mental change,High,Intracerebral haemorrhage in thalamus,OP from ED,98.1,82.0,22.0,96.0,180.0,100.0
+932,LOC,Medium,Syncope,Ward admission,97.2,75.0,20.0,98.0,100.0,60.0
+933,numbness of hands and feet,Medium,Paresthesia,Ward admission,97.2,51.0,16.0,,139.0,86.0
+934,dizziness,Medium,Benign paroxysmal positional vertigo,Discharge,98.6,70.0,20.0,,170.0,92.0
+935,skin defect,Low,"Amputation of hand and wrist, traumatic",Discharge,96.8,102.0,20.0,,162.0,76.0
+936,skin eruption,Low,Rash and other nonspecific skin eruption,Ward admission,99.5,110.0,20.0,98.0,110.0,60.0
+937,syncope,Medium,Syncope,Ward admission,97.5,82.0,20.0,98.0,100.0,60.0
+938,fever,Medium,Breast cancer left,Discharge,101.5,93.0,20.0,,105.0,62.0
+939,dizziness,Medium,Vestibular neuronitis,Discharge,98.1,67.0,20.0,,145.0,83.0
+940,general weakness,Medium,Hypocalcemia,Ward admission,99.9,88.0,18.0,,122.0,81.0
+941,Chemical Burn,High,Burn of cornea and conjunctival sac,Ward admission,97.7,80.0,20.0,98.0,120.0,80.0
+942,"alcohol smelling state, drunken state",Low,Acute intoxication of alcohol,Discharge,97.5,94.0,16.0,,154.0,81.0
+943,diarrhea,Medium,"Chronic kidney disease, unspecified",Ward admission,97.5,98.0,18.0,99.0,150.0,90.0
+944,Urticarial rash,Low,Allergic urticaria,Discharge,98.2,72.0,22.0,98.0,100.0,60.0
+945,dizziness,Medium,Dizziness,Discharge,97.9,72.0,18.0,,104.0,77.0
+946,palpitation,Medium,Other chest pain,Discharge,98.1,100.0,20.0,92.0,100.0,60.0
+947,Lt. hemiparesis,High,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,Ward admission,97.9,66.0,20.0,98.0,160.0,90.0
+948,knee pain,Low,Headache,Discharge,96.8,71.0,18.0,,121.0,87.0
+949,Suicidal ideation,Medium,Acute intoxication of alcohol,AMA discharge,97.7,114.0,18.0,,132.0,71.0
+950,facial injury,Low,Laceration of chin,Discharge,99.7,79.0,20.0,,210.0,112.0
+951,dizziness,Medium,Benign paroxysmal positional vertigo,Discharge,97.3,59.0,18.0,,102.0,45.0
+952,dyspnea,High,Dyspnea,Ward admission,98.4,125.0,20.0,,79.0,40.0
+953,hematemesis,High,"Esophageal varices with bleeding, Idiopathic",Ward admission,97.2,78.0,18.0,99.0,130.0,80.0
+954,finger laceration,Low,Laceration of finger without nail damage,Discharge,97.7,102.0,18.0,,142.0,87.0
+955,Suicidal Attempt,High,Suicide tendency,AMA discharge,97.7,109.0,18.0,,114.0,76.0
+956,"DI, drug intoxication",High,Drug intoxication,AMA discharge,99.5,121.0,24.0,,210.0,131.0
+957,nausea,Medium,Nausea alone,Discharge,97.3,64.0,22.0,99.0,140.0,90.0
+958,ant. chest pain,Low,Ischaemic chest pain,Discharge,96.8,76.0,20.0,99.0,110.0,60.0
+959,eyelid laceration,Low,Laceration of face,Discharge,97.3,103.0,16.0,,137.0,76.0
+960,Urticarial rash,Medium,Dyspnea,Ward admission,99.3,91.0,22.0,,140.0,73.0
+961,depression,Medium,Depression,Ward admission,98.6,60.0,16.0,,140.0,65.0
+962,skin defect,Low,Injury of face,Discharge,96.8,74.0,16.0,,151.0,93.0
+963,vaginal bleeding,Medium,Other specified abnormal uterine and vaginal bleeding,Discharge,97.2,68.0,20.0,98.0,140.0,100.0
+964,chest palpitation,Low,Supraventricular tachycardia,Discharge,97.2,110.0,20.0,96.0,100.0,60.0
+965,hemoptysis,Medium,Haemoptysis,Discharge,97.3,90.0,20.0,98.0,130.0,90.0
+966,Vaginal Bleeding,Medium,Vaginal bleeding,Discharge,97.0,111.0,18.0,,118.0,54.0
+967,CT film copy,Low,Hepatocellular carcinoma,Discharge,,,,,,
+968,mental change,High,Cardiac arrest with successful resuscitation,Death,96.3,72.0,,86.0,60.0,
+969,whirling type vertigo,Medium,Dizziness and giddiness,Discharge,97.2,72.0,20.0,96.0,140.0,70.0
+970,melena,High,"Gastrointestinal haemorrhage, unspecified",Ward admission,96.8,80.0,20.0,98.0,190.0,100.0
+971,fever,High,Acute pyelonephritis,Ward admission,101.3,80.0,20.0,97.0,70.0,
+972,altered mentality,Medium,Acute intoxication of alcohol,Discharge,96.8,93.0,18.0,,163.0,99.0
+973,dizziness,Medium,Dizziness,Discharge,98.8,70.0,20.0,,169.0,106.0
+974,hematemesis,High,Hepatocellular carcinoma,Ward admission,97.7,86.0,16.0,,119.0,68.0
+975,hematemesis,High,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.9,100.0,20.0,98.0,100.0,60.0
+976,hematemesis,Medium,"Gastrointestinal haemorrhage, unspecified",Ward admission,96.8,84.0,20.0,99.0,130.0,90.0
+977,hematemesis,Medium,"Esophageal varices without bleeding, Sencondary",Ward admission,97.0,110.0,20.0,98.0,100.0,60.0
+978,"Abnormality, Visual Acuity",High,Cerebrovascular accident NOS,Ward admission,97.9,74.0,20.0,95.0,110.0,60.0
+979,diarrhea,Medium,"Chronic kidney disease, unspecified",Ward admission,97.5,84.0,20.0,97.0,100.0,60.0
+980,dizziness,Medium,Vestibular neuritis,Discharge,96.8,62.0,20.0,,221.0,111.0
+981,dizziness,Medium,Peripheral vertigo,Ward admission,97.7,70.0,18.0,,103.0,67.0
+982,head injury,Medium,Laceration of scalp,AMA discharge,98.1,64.0,20.0,,161.0,97.0
+983,dizziness,Medium,Orthostatic hypotension,Discharge,97.2,68.0,18.0,99.0,100.0,60.0
+984,anterior chest discomfort,Medium,"Atrial fibrillation and atrial flutter, unspecified",Ward admission,97.2,104.0,22.0,98.0,130.0,80.0
+985,whirling type vertigo,Medium,Vestibular neuronitis,Discharge,96.8,70.0,20.0,98.0,110.0,70.0
+986,dizziness,High,"Ingested mushrooms, toxic effect of",Ward admission,97.0,80.0,18.0,97.0,130.0,80.0
+987,D - Diarrhea,High,"Pesticide, unspecified, toxic effect of",Ward admission,97.7,101.0,20.0,96.0,130.0,80.0
+988,cough,Medium,Dyspnoea,Ward admission,97.9,108.0,24.0,80.0,180.0,100.0
+989,dysarthria,Medium,Dysarthria,Ward admission,98.4,100.0,20.0,,169.0,110.0
+990,hemoptysis,Medium,Bronchiectasis,Ward admission,97.2,90.0,20.0,97.0,130.0,90.0
+991,urinary Sx.-symptom,Low,Acute cystitis,Discharge,97.5,80.0,20.0,,137.0,78.0
+992,syncope,Medium,Panic attack,Discharge,97.9,80.0,20.0,,134.0,90.0
+993,dizziness,Medium,Headache,Discharge,97.5,64.0,20.0,98.0,200.0,120.0
+994,for examination,Low,Abnormal finding on abdominal and retroperitoneal imaging,Discharge,99.1,90.0,18.0,,135.0,85.0
+995,voiding difficulty,Low,Acute urinary retension,Discharge,96.8,83.0,20.0,,107.0,65.0
+996,Urticarial rash,Low,Allergic urticaria,Discharge,97.9,78.0,20.0,97.0,120.0,70.0
+997,nausea,Medium,Hepatocellular carcinoma,Discharge,97.7,72.0,20.0,97.0,100.0,60.0
+998,right side weakness,Medium,Muscle weakness multiple site,Ward admission,97.7,119.0,18.0,,177.0,100.0
+999,desaturation,High,Dyspnea,Ward admission,98.6,78.0,28.0,,124.0,74.0
+1000,eyebrow laceration,Low,Laceration of face,Discharge,98.2,89.0,16.0,,133.0,67.0
+1001,eye trauma,High,"Hyphema, traumatic",Discharge,96.8,82.0,20.0,,157.0,97.0
+1002,palpitation,Medium,Paroxysmal atrial fibrillation,Discharge,97.7,106.0,20.0,99.0,130.0,90.0
+1003,dysuria,Low,"Urinary tract infection, site not specified",Discharge,97.2,74.0,20.0,98.0,130.0,70.0
+1004,fever,Medium,Hepatitis NOS,Ward admission,98.4,100.0,20.0,98.0,130.0,80.0
+1005,D - Diarrhea,Medium,Acute watery diarrhoea,Discharge,97.2,100.0,18.0,98.0,110.0,60.0
+1006,post-CPR state,High,Cardiac arrest with successful resuscitation,Ward admission,96.8,122.0,,90.0,140.0,80.0
+1007,"Discomfort, Throat",High,"Ingested mushrooms, toxic effect of",Ward admission,98.1,104.0,28.0,94.0,100.0,60.0
+1008,vomiting,High,Nause with vomiting,Discharge,97.5,94.0,22.0,98.0,160.0,100.0
+1009,post-CPR state,High,"Cardiac arrest, unspecified",Death,,,,,,
+1010,facial lesion,Low,Dermatitis,Discharge,97.9,93.0,18.0,,145.0,96.0
+1011,Rt. side motor weakness,Medium,Secondary malignant neoplasm of brain,Discharge,97.3,106.0,20.0,97.0,100.0,60.0
+1012,dizziness,High,"Atrial fibrillation and atrial flutter, unspecified",Transfer,97.5,72.0,20.0,98.0,130.0,90.0
+1013,right motor weakness,High,Cerebral infarction due to thrombosis of unspecified cerebral arteries,Ward admission,98.1,84.0,20.0,98.0,160.0,100.0
+1014,"Fever, Unspecified",Low,"Viral infection, unspecified",Discharge,100.0,88.0,20.0,99.0,140.0,90.0
+1015,melena,Medium,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.7,70.0,20.0,98.0,110.0,60.0
+1016,mental change,High,Traumatic subdural hemorrhage without open intracranial wound,OP from ED,97.7,66.0,20.0,99.0,160.0,100.0
+1017,palpitation,Low,Palpitation,Discharge,96.8,70.0,18.0,,179.0,98.0
+1018,dysarthria,Medium,Stroke,AMA discharge,96.8,66.0,16.0,,196.0,108.0
+1019,itching,Low,Acute urticaria,Discharge,97.5,97.0,18.0,,149.0,100.0
+1020,copy,Low,Stroke,Discharge,,,,,,
+1021,hemoptysis,Medium,Haemoptysis,Discharge,97.3,76.0,20.0,98.0,120.0,80.0
+1022,facial palsy left,Medium,Bell's palsy,Discharge,97.5,85.0,20.0,,149.0,75.0
+1023,DZ - Dizziness,Medium,Vestibular neuritis,Discharge,96.8,81.0,20.0,,146.0,80.0
+1024,Rt. side motor weakness,Low,Cerebrovascular accident NOS,Discharge,98.2,110.0,20.0,95.0,120.0,60.0
+1025,fever,Low,"Choledocholithiasis with cholangitis, With obstruction",Ward admission,96.8,82.0,20.0,98.0,140.0,80.0
+1026,dyspnea,Medium,Dilated cardiomyopathy,Ward admission,97.5,98.0,20.0,99.0,130.0,80.0
+1027,dyspnea,Medium,Dyspnea,Ward admission,98.1,73.0,16.0,,143.0,61.0
+1028,Dental Problem,High,Avulsion of tooth,Discharge,98.8,81.0,20.0,,136.0,71.0
+1029,skin rash,Low,Urticaria,Discharge,97.2,67.0,16.0,,122.0,68.0
+1030,PTBD malfunction,Low,Percutaneous catheter problem,Discharge,97.5,93.0,16.0,,101.0,73.0
+1031,PTBD malfunction,Low,"Cholangiocarcinoma, extrahepatic",Discharge,97.5,93.0,16.0,,101.0,73.0
+1032,dizziness,Medium,Other acute renal failure,Ward admission,97.9,42.0,20.0,98.0,120.0,80.0
+1033,dizziness,Medium,Dizziness and giddiness,Discharge,97.2,54.0,20.0,97.0,100.0,60.0
+1034,dizziness,Medium,Vestibular neuronitis,Ward admission,97.3,68.0,20.0,99.0,100.0,60.0
+1035,Lt. side weakness,Medium,Intracerebral hemorrhage,ICU admission,98.6,86.0,20.0,,233.0,136.0
+1036,mood depression,Medium,Illness NOS,Discharge,96.8,80.0,20.0,99.0,120.0,80.0
+1037,dizziness,Medium,Dizziness and giddiness,Ward admission,96.8,64.0,20.0,98.0,110.0,70.0
+1038,Rt. side motor weakness,High,Cerebrovascular accident NOS,Transfer,97.5,90.0,20.0,98.0,160.0,100.0
+1039,arrest,High,Cardiac arrest,Death,,,,,,
+1040,dyspnea,Medium,"Chronic obstructive pulmonary disease, unspecified, unspecified",Ward admission,97.3,88.0,24.0,94.0,140.0,100.0
+1041,"distension, abd",Low,"Adenocarcinoma of colon, sigmoid",Discharge,98.1,86.0,16.0,,120.0,79.0
+1042,hiccup,Low,Hiccup,Discharge,97.3,77.0,18.0,,131.0,63.0
+1043,rigth side weakness,High,Seizure,Discharge,97.9,100.0,18.0,,155.0,106.0
+1044,dysarthria,Medium,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,97.5,98.0,20.0,98.0,130.0,70.0
+1045,hematochezia,Medium,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.5,80.0,20.0,94.0,120.0,80.0
+1046,Convulsion,Medium,"Type 2 diabetes mellitus, without complications",Transfer,97.5,72.0,20.0,97.0,120.0,70.0
+1047,"distension, abd",Low,Small cell lung cancer right,Discharge,98.6,89.0,16.0,,131.0,72.0
+1048,confuse mentality,High,Acute pyelonephritis,Discharge,105.8,80.0,22.0,,165.0,66.0
+1049,dyspnea,Medium,Chronic obstructive pulmonary disease severe,Discharge,98.1,102.0,24.0,,206.0,96.0
+1050,palpitation,Medium,Palpitation,Discharge,96.8,131.0,20.0,,143.0,87.0
+1051,cough,Medium,Heart failure,Discharge,98.4,89.0,23.0,,161.0,81.0
+1052,hematochezia,Medium,"Cirrhosis (of liver) NOS, unspecified",Ward admission,97.3,74.0,20.0,99.0,130.0,100.0
+1053,mental change,High,Cerebral infarction due to embolism of middle cerebral artery,Ward admission,96.8,70.0,20.0,98.0,120.0,60.0
+1054,loss of consciousness,High,Anaphylaxis NOS,Discharge,97.3,68.0,20.0,91.0,60.0,
+1055,hematemesis,High,"Gastrointestinal haemorrhage, unspecified",Transfer,98.4,90.0,22.0,97.0,130.0,80.0
+1056,Lt. side weakness,High,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,97.2,90.0,20.0,98.0,120.0,80.0
+1057,Motor weakness,Medium,Stroke,Ward admission,98.4,82.0,18.0,,156.0,73.0
+1058,hematemesis,High,Hematemesis,AMA discharge,98.2,81.0,20.0,,162.0,97.0
+1059,myalgia,Low,Liver abscess,Ward admission,99.1,85.0,20.0,,97.0,57.0
+1060,general weakness,Low,Dizziness,Discharge,99.7,93.0,20.0,,101.0,64.0
+1061,left diplopia,Medium,Diplopia,Discharge,97.5,84.0,20.0,98.0,140.0,90.0
+1062,fever,Low,"Fever, unspecified",Discharge,97.3,87.0,20.0,99.0,160.0,100.0
+1063,rotatory vertigo,Medium,Cerebral atherosclerosis,Discharge,98.4,62.0,16.0,,191.0,97.0
+1064,dysarthria,Medium,Transient ischemia attack,Ward admission,98.4,70.0,18.0,,194.0,87.0
+1065,dizziness,Medium,Benign paroxysmal positional vertigo,Discharge,97.3,61.0,16.0,,152.0,56.0
+1066,dysarthria,Medium,Stroke,Ward admission,99.1,84.0,20.0,,160.0,82.0
+1067,vomiting,Low,Vomiting,Discharge,98.8,112.0,16.0,,119.0,94.0
+1068,Urticarial rash,Low,Acute urticaria,Discharge,97.7,84.0,20.0,,97.0,69.0
+1069,AVF malfunction,Low,End stage renal disease,Discharge,97.7,96.0,16.0,,124.0,81.0
+1070,general weakness,Medium,Squamous cell carcinoma of lung unspecified side,Discharge,99.1,103.0,24.0,,97.0,71.0
+1071,dizziness,Medium,Other syncope and collapse,Discharge,97.7,110.0,24.0,98.0,150.0,80.0
+1072,dyspnea,Medium,Other bacterial pneumonia,Ward admission,97.7,100.0,20.0,96.0,110.0,70.0
+1073,mental change,High,Cardiac arrest with successful resuscitation,Ward admission,96.4,114.0,,95.0,,
+1074,drowsy mentality,High,Hypertension,Ward admission,97.3,48.0,16.0,,166.0,71.0
+1075,post seizure,High,Confusion,Discharge,96.8,76.0,20.0,,111.0,63.0
+1076,Motor weakness,Medium,Transient ischemia attack,Ward admission,97.9,100.0,18.0,,163.0,90.0
+1077,hematochezia,Medium,Complete blood count abnormality,Ward admission,98.1,97.0,20.0,,101.0,77.0
+1078,altered mental change,High,Intracerebral hemorrhage,ICU admission,99.1,,,,,
+1079,hypoglycemic,High,Hypoglycemia,Transfer,97.2,59.0,20.0,,80.0,31.0
+1080,"Whole body, skin rash",Low,drug eruption,Discharge,97.9,96.0,20.0,98.0,160.0,80.0
+1081,fever,Low,"Fever, unspecified",Ward admission,97.9,98.0,20.0,98.0,140.0,80.0
+1082,dyspnea,High,Dyspnoea,Ward admission,97.3,76.0,20.0,88.0,160.0,100.0
+1083,dyspnea,Medium,"Cirrhosis (of liver) NOS, unspecified",Death,97.5,94.0,20.0,92.0,130.0,80.0
+1084,dyspnea,Medium,Pleural effusion,Discharge,97.2,115.0,20.0,,137.0,88.0
+1085,Catheter removal,Low,Percutaneous catheter problem,Discharge,98.8,89.0,16.0,,99.0,78.0
+1086,hematochezia,Medium,Hematochezia,Ward admission,97.7,98.0,18.0,,153.0,84.0
+1087,dizziness,Medium,Dizziness,Ward admission,97.9,72.0,20.0,,156.0,85.0
+1088,general weakness,High,Dentoalveolar abscess NOS,Ward admission,97.5,120.0,20.0,99.0,110.0,70.0
+1089,Facial Palsy,Medium,Facial palsy,Discharge,97.2,66.0,20.0,98.0,110.0,70.0
+1090,dyspnea,Medium,"Pleural effusion, NEC",Ward admission,98.1,88.0,20.0,99.0,100.0,70.0
+1091,Urinary frequency,Low,Dysuria,Discharge,98.2,78.0,20.0,98.0,150.0,90.0
+1092,melena,Medium,"Gastrointestinal haemorrhage, unspecified",Discharge,97.9,94.0,20.0,99.0,130.0,90.0
+1093,C - Coughing,Medium,"Pneumonia, unspecified",Ward admission,97.5,100.0,22.0,90.0,130.0,80.0
+1094,dizziness,Medium,Posterior canal benign positional vertigo,Discharge,96.8,100.0,20.0,97.0,150.0,90.0
+1095,DZ - Dizziness,High,Vestibular neuronitis,Discharge,96.8,80.0,20.0,98.0,180.0,100.0
+1096,rotatory vertigo,Medium,Vestibular neuronitis,Discharge,98.4,79.0,20.0,,161.0,96.0
+1097,chest palpitation,Medium,Palpitations,Discharge,97.5,84.0,20.0,94.0,120.0,80.0
+1098,mental change,High,"Other specified diabetes mellitus, with hypoglycemia",Ward admission,97.7,88.0,20.0,99.0,170.0,100.0
+1099,hematuria,Medium,Hematuria,Discharge,98.1,117.0,16.0,,181.0,85.0
+1100,dyspnea,High,Acute respiratory failure,Discharge,97.9,108.0,28.0,,102.0,58.0
+1101,L side weakness,High,Stroke,Ward admission,96.8,102.0,20.0,,220.0,123.0
+1102,palpitation,Medium,Variant angina,Discharge,98.4,86.0,16.0,,165.0,97.0
+1103,voiding difficulty,Low,Benign prostatic hyperplasia with obstruction,Discharge,97.9,101.0,18.0,,152.0,105.0
+1104,dizziness,Medium,Dizziness and giddiness,Discharge,97.9,81.0,20.0,98.0,180.0,90.0
+1105,fever,Medium,"Fever, unspecified",Ward admission,101.1,94.0,20.0,98.0,120.0,80.0
+1106,LOC,High,Syncope,Discharge,96.8,60.0,22.0,94.0,140.0,100.0
+1107,Lt. hemiparesis,High,Cerebrovascular accident NOS,Ward admission,97.7,76.0,20.0,96.0,140.0,90.0
+1108,rigth side weakness,Medium,Metastatic cancer to the brain,Ward admission,100.4,137.0,18.0,,204.0,98.0
+1109,PTBD leaukage,Low,Klatskin tumor,Ward admission,99.5,80.0,16.0,,159.0,85.0
+1110,dyspnea,Medium,Observation for suspected malignant neoplasm,Ward admission,98.1,83.0,22.0,,140.0,87.0
+1111,BST high,High,Hyperosmolar hyperglycemic syndrome,Ward admission,98.2,64.0,20.0,,123.0,87.0
+1112,melena,Medium,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.3,60.0,20.0,99.0,120.0,70.0
+1113,DZ - Dizziness,Medium,Dizziness and giddiness,Discharge,97.5,90.0,20.0,97.0,120.0,70.0
+1114,epistaxis,Medium,Epistaxis,Discharge,96.8,96.0,20.0,,200.0,100.0
+1115,numbness,Medium,Numbness,Discharge,98.1,76.0,16.0,,171.0,80.0
+1116,dizziness,Medium,Psychogenic headache,Discharge,97.7,61.0,24.0,,136.0,69.0
+1117,dyspnea,Medium,"Colon cancer, descending",Ward admission,97.9,122.0,23.0,,95.0,70.0
+1118,right motor weakness,Low,"Transient cerebral ischaemic attack, unspecified",Discharge,98.1,96.0,20.0,96.0,130.0,90.0
+1119,fever,Low,"Fever, unspecified",Discharge,99.3,70.0,20.0,98.0,100.0,60.0
+1120,itching sensation,Low,Eczema NOS,Discharge,97.5,80.0,20.0,98.0,120.0,80.0
+1121,"Aphasia, Motor",High,Cerebrovascular accident NOS,Discharge,97.2,80.0,20.0,98.0,160.0,90.0
+1122,nasal bleeding,Medium,Epistaxis,Discharge,97.9,100.0,22.0,99.0,190.0,100.0
+1123,Seizure Like Activity,Medium,Vasovagal syncope,Discharge,97.3,63.0,14.0,,161.0,97.0
+1124,dizziness,Low,Anemia,Discharge,97.3,63.0,18.0,,147.0,74.0
+1125,fever,Low,Alcoholic liver cirrhosis without ascites,Ward admission,98.8,109.0,16.0,,147.0,84.0
+1126,dizziness,High,Hypoglycemia,Ward admission,99.3,80.0,20.0,,86.0,64.0
+1127,confused mental status,High,"Cirrhosis (of liver) NOS, Child-Pugh C",Ward admission,97.7,74.0,20.0,97.0,170.0,100.0
+1128,mental change,High,"Shock, unspecified",Discharge,96.8,80.0,20.0,98.0,100.0,60.0
+1129,dyspnea,Medium,Ischaemic cardiomyopathy,Ward admission,97.3,84.0,24.0,100.0,130.0,80.0
+1130,dysarthria,Medium,Cerebrovascular accident NOS,Ward admission,97.5,68.0,20.0,99.0,120.0,80.0
+1131,mental change,High,Dyspnea,Ward admission,97.9,68.0,20.0,,70.0,40.0
+1132,mental change,High,Multiple trauma,Death,96.8,100.0,24.0,,99.0,75.0
+1133,acute dyspnea,Medium,Pulmonary thromboembolism,Ward admission,99.5,124.0,20.0,,203.0,105.0
+1134,altered mentality,High,"Subarachnoid hemorrhage, traumatic without open wound",Ward admission,,,,,,
+1135,dizziness,Medium,Dizziness and giddiness,Discharge,97.5,72.0,20.0,99.0,180.0,100.0
+1136,diffuse abdominal discomfort,Low,Liver cell carcinoma,Discharge,96.8,74.0,20.0,98.0,110.0,60.0
+1137,syncope,Medium,Ischaemic chest pain,Ward admission,97.9,60.0,20.0,96.0,160.0,100.0
+1138,Rt. side motor weakness,High,Cerebral infarction due to embolism of middle cerebral artery,Ward admission,97.3,60.0,20.0,98.0,120.0,70.0
+1139,Rt. side motor weakness,Medium,Cerebrovascular accident NOS,Transfer,97.3,78.0,20.0,100.0,120.0,80.0
+1140,dysuria,Low,Dysuria,Discharge,97.7,66.0,20.0,99.0,220.0,110.0
+1141,blurred vision,Low,Optic neuritis,Ward admission,96.8,88.0,20.0,97.0,120.0,80.0
+1142,fever,Medium,Unspecified abdominal pain,OP from ED,97.7,65.0,20.0,99.0,100.0,60.0
+1143,post-CPR state,High,"Cardiac arrest, unspecified",Death,,,,,,
+1144,hematemesis,Medium,Hemoptysis,Discharge,97.7,100.0,18.0,,186.0,102.0
+1145,dizziness,Medium,Dizziness and giddiness,Discharge,97.7,110.0,20.0,97.0,100.0,70.0
+1146,dizziness,Medium,Cerebral infarction due to thrombosis of posterior cerebral artery,Discharge,97.0,70.0,20.0,98.0,140.0,90.0
+1147,dyspnea,Medium,"Bacterial pneumonia, unspecified",Ward admission,97.7,106.0,20.0,93.0,120.0,80.0
+1148,dizziness,Medium,Horizontal canal benign positional vertigo,Discharge,97.2,56.0,20.0,,130.0,80.0
+1149,Lt. motor weakness,High,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,97.5,80.0,18.0,99.0,130.0,70.0
+1150,dizziness,Medium,"Hypertension(arterial, essential, primary, systemic)",Ward admission,97.5,88.0,20.0,98.0,190.0,100.0
+1151,dizziness,Medium,Sudden sensory neural hearing loss unilateral,Discharge,97.3,75.0,20.0,,123.0,77.0
+1152,dyspnea,Medium,Persistent atrial fibrillation,Ward admission,98.2,108.0,22.0,98.0,100.0,60.0
+1153,mental confusion,Medium,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,97.5,75.0,20.0,97.0,180.0,100.0
+1154,dyspnea,Medium,"Heart failure, unspecified",Ward admission,97.2,88.0,20.0,99.0,130.0,90.0
+1155,dizziness,Medium,Dizziness,Discharge,98.2,101.0,16.0,,132.0,63.0
+1156,dizziness,Medium,Gallbladder cancer,Discharge,98.2,101.0,16.0,,132.0,63.0
+1157,general weakness,Low,End stage renal disease,Ward admission,98.2,81.0,16.0,,144.0,75.0
+1158,cold,Low,Cough,Discharge,99.1,95.0,20.0,,197.0,102.0
+1159,confusion mentality,High,Cerebrovascular accident NOS,Ward admission,97.7,74.0,20.0,95.0,140.0,100.0
+1160,dyspnea,Medium,Ischaemic chest pain,Ward admission,96.8,62.0,20.0,97.0,100.0,70.0
+1161,Lt hemiparesis,Medium,Cerebral infarction due to thrombosis of middle cerebral artery,Ward admission,96.8,72.0,20.0,99.0,110.0,70.0
+1162,Difficulty in voiding,Low,Anuria and oliguria,Discharge,97.5,86.0,20.0,99.0,120.0,70.0
+1163,abnormal lab.,Low,Leukocytosis,Discharge,98.4,59.0,16.0,,166.0,69.0
+1164,fever,Low,Fever,Ward admission,99.5,87.0,20.0,,140.0,64.0
+1165,tachycardia,Medium,Paroxysmal supraventricular tachycardia,Discharge,99.5,90.0,22.0,,111.0,58.0
+1166,loss of consciousness,Medium,Syncope,Discharge,97.2,60.0,20.0,96.0,90.0,60.0
+1167,blood tinged sputum,High,Haemoptysis,Death,97.5,60.0,24.0,74.0,130.0,80.0
+1168,dysarthria,High,"Intracerebral haemorrhage, intraventricular",Transfer,98.1,82.0,20.0,90.0,140.0,80.0
+1169,dyspnea,Medium,Gastroenteritis and colitis of unspecified origin,Ward admission,100.0,110.0,26.0,93.0,110.0,70.0
+1170,fever,Low,"Urinary tract infection, site not specified",Ward admission,99.5,102.0,20.0,97.0,120.0,70.0
+1171,acute dyspnea,High,Acute exacerbation of idiopathic pulmonary fibrosis,Ward admission,,,,,,
+1172,general weakness,Medium,Muscle weakness other,Discharge,96.8,64.0,20.0,,116.0,77.0
+1173,mental change,High,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,Ward admission,97.5,64.0,20.0,92.0,150.0,90.0
+1174,mental change,High,Traumatic subdural hemorrhage without open intracranial wound,Ward admission,97.9,110.0,24.0,95.0,140.0,100.0
+1175,general weakness,Medium,"Type 2 diabetes mellitus, with hypoglycemia",Ward admission,96.8,79.0,20.0,98.0,130.0,80.0
+1176,Convulsion,Medium,Cerebrovascular accident NOS,Ward admission,96.8,63.0,20.0,98.0,130.0,100.0
+1177,left motor weakness,High,Other intracerebral haemorrhage,Transfer,96.8,90.0,20.0,99.0,180.0,100.0
+1178,"Numbness, Arm",Medium,Fever,Discharge,101.1,95.0,20.0,,121.0,68.0
+1179,syncope,High,Syncope,Discharge,97.3,75.0,16.0,,156.0,76.0
+1180,hypoglycemic symptom,High,Hypoglycemia,Discharge,96.8,76.0,20.0,,205.0,100.0
+1181,epistaxis,Medium,Epistaxis,Discharge,97.7,60.0,20.0,,130.0,76.0
+1182,dyspnea,Medium,Dyspnoea,Ward admission,97.5,100.0,24.0,94.0,100.0,60.0
+1183,Low abd. pain,Low,Hyperplasia of prostate with obstruction,Discharge,97.9,96.0,20.0,97.0,130.0,80.0
+1184,nasal bleeding,Low,Epistaxis,Discharge,96.8,72.0,20.0,97.0,120.0,80.0
+1185,cold leg,High,"Atherosclerosis obliterans, limb",Ward admission,96.8,79.0,16.0,,127.0,62.0
+1186,perm cath. malfunction,Low,Percutaneous catheter problem,Discharge,97.2,67.0,18.0,,130.0,60.0
+1187,syncope,Medium,Communicationg hydrocephalus,Discharge,97.5,64.0,20.0,99.0,100.0,60.0
+1188,fever,Low,"Fever, unspecified",Ward admission,99.7,92.0,20.0,96.0,140.0,90.0
+1189,dyspnea,Medium,"Pneumonia, unspecified",Discharge,97.5,72.0,20.0,96.0,120.0,70.0
+1190,dyspnea,Medium,Small cell lung cancer unspecified side,Discharge,96.8,100.0,24.0,,124.0,75.0
+1191,acute dyspnea,Medium,Influenza,Discharge,98.6,64.0,22.0,,146.0,66.0
+1192,mental change,High,Hypo-osmolality and hyponatraemia,Ward admission,98.2,84.0,20.0,97.0,150.0,100.0
+1193,dyspnea,Medium,Cough with dyspnea,Discharge,96.8,72.0,20.0,99.0,180.0,80.0
+1194,hematemesis,Medium,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.9,100.0,20.0,96.0,150.0,100.0
+1195,fever,Low,fever of unknown origin,Ward admission,97.3,50.0,20.0,95.0,140.0,80.0
+1196,dysarthria,Medium,Hypokalaemia,Ward admission,97.5,78.0,20.0,90.0,90.0,60.0
+1197,dyspnea,Medium,Pneumonia,Ward admission,97.5,77.0,24.0,,124.0,60.0
+1198,dizziness,Medium,Dizziness,Discharge,98.8,78.0,16.0,,213.0,91.0
+1199,dizziness,Medium,Dizziness,Discharge,99.0,50.0,16.0,,149.0,64.0
+1200,watery diarrhea,Medium,Infectious diarrhoea NOS,Ward admission,97.2,80.0,20.0,99.0,110.0,70.0
+1201,hand laceration,Low,Laceration of hand,Discharge,97.7,71.0,16.0,,146.0,86.0
+1202,dyspnea,Medium,Other acute renal failure,Ward admission,97.7,88.0,24.0,95.0,130.0,80.0
+1203,Convulsion,Medium,(Seizure) Convulsive NOS,Ward admission,97.2,95.0,20.0,98.0,150.0,90.0
+1204,dysarthria,Medium,Dysarthria,OP from ED,98.1,68.0,16.0,,150.0,66.0
+1205,melena,High,"Gastrointestinal haemorrhage, unspecified",Ward admission,97.3,82.0,20.0,97.0,70.0,40.0
+1206,medication,Low,Benign prostatic hyperplasia with obstruction,Discharge,97.7,62.0,18.0,,131.0,76.0
+1207,dizziness,Medium,Dizziness,Discharge,97.9,76.0,18.0,,121.0,70.0
+1208,Hyperkalemia (disorder),Medium,Ascites,Discharge,98.2,58.0,18.0,,137.0,71.0
+1209,general weakness,High,Pericardial effusion (noninflammatory),Ward admission,97.2,68.0,20.0,91.0,90.0,60.0
+1210,nausea,Low,Unspecified abdominal pain,Ward admission,98.2,102.0,22.0,97.0,110.0,60.0
+1211,Open Wound,Medium,"Superficial injury of face NOS, contusion",Discharge,97.3,74.0,20.0,98.0,120.0,80.0
+1212,upper abdominal pain,Low,Unspecified abdominal pain,Discharge,97.5,84.0,20.0,97.0,120.0,80.0
+1213,ant. chest pain,High,Unstable angina,Discharge,96.8,80.0,20.0,94.0,100.0,60.0
+1214,ant. chest pain,High,Unstable angina,Discharge,97.2,108.0,24.0,98.0,150.0,90.0
+1215,Drug Allergy,Low,Angioedema,Discharge,99.7,90.0,20.0,,122.0,70.0
+1216,dyspnea,Medium,"Asthma, unspecified",Ward admission,97.3,75.0,20.0,98.0,110.0,80.0
+1217,Open Wound,Low,"Open wound of finger(s), NOS",Transfer,97.2,80.0,20.0,98.0,120.0,80.0
+1218,For IV injection,Low,Polyneuropathy in neoplastic disease (C00-D48+),Discharge,96.8,99.0,20.0,98.0,110.0,70.0
+1219,ant. chest pain,High,Ischaemic chest pain,Ward admission,97.2,92.0,20.0,98.0,150.0,90.0
+1220,Open Wound,Low,"Open wound of other parts of head, face",Discharge,97.9,80.0,18.0,98.0,110.0,70.0
+1221,ant. chest pain,Low,Ischaemic chest pain,Discharge,97.3,102.0,20.0,96.0,140.0,90.0
+1222,lip laceration,Low,Open wound of lip,Discharge,96.8,84.0,20.0,97.0,110.0,70.0
+1223,"ocular pain, Rt.",Low,Corneal abrasion,Discharge,97.2,78.0,20.0,96.0,120.0,70.0
+1224,right lower abdominal pain,Low,Unspecified abdominal pain,Discharge,97.0,80.0,20.0,98.0,110.0,70.0
+1225,abd pain,Low,"Maternal care for cervical incompetence, less than 22 weeks pregnant",Discharge,97.7,100.0,24.0,100.0,110.0,36.0
+1226,Vaginal Bleeding,Low,"Ectopic pregnancy, unspecified",Discharge,97.5,80.0,20.0,98.0,120.0,80.0
+1227,eye pain left eye,Low,"Open wound of other parts of head, face",Discharge,97.0,66.0,20.0,100.0,110.0,70.0
+1228,Rt. flank pain,Low,Ureteric stone,Discharge,97.3,72.0,20.0,98.0,150.0,100.0
+1229,ant. chest pain,High,Unstable angina,Ward admission,97.5,80.0,20.0,98.0,140.0,100.0
+1230,headache,Low,"Cerebral infarction, unspecified",Ward admission,97.0,80.0,20.0,98.0,120.0,80.0
+1231,dyspnea,Medium,Adrenocortical insufficiency NOS,Discharge,98.1,98.0,20.0,96.0,140.0,80.0
+1232,ant. chest pain,High,Unstable angina,Ward admission,96.8,80.0,20.0,98.0,140.0,90.0
+1233,dyspnea,Low,"Heart failure, unspecified",Ward admission,97.7,65.0,20.0,95.0,110.0,70.0
+1234,epigastric pain,Low,Unspecified abdominal pain,Discharge,97.7,94.0,20.0,99.0,150.0,90.0
+1235,"Pain, Abdomen",Low,"Upper abdominal pain, unspecified",Ward admission,97.5,76.0,20.0,100.0,100.0,60.0
+1236,Vaginal Bleeding,Medium,"Spontaneous preterm labour, 22 weeks or more and less than 34weeks pregnagnt",Ward admission,96.8,80.0,20.0,98.0,120.0,80.0
+1237,Abdominal pain (finding),Medium,"Preterm labour without delivery, 22 weeks or more and less than 34weeks pregnant",Ward admission,97.3,100.0,20.0,98.0,100.0,60.0
+1238,oral bleeding,Low,Traumatic secondary and recurrent haemorrhage,Discharge,97.9,78.0,20.0,98.0,120.0,70.0
+1239,post neck pain,High,Closed fracture of second cervical vertebra,Ward admission,97.2,86.0,20.0,96.0,130.0,80.0
+1240,Lt flank pain,Medium,Unspecified abdominal pain,Discharge,96.8,80.0,20.0,98.0,120.0,80.0
+1241,"ocular pain, both",Low,Ocular pain,Discharge,97.5,96.0,20.0,98.0,130.0,80.0
+1242,"ocular pain, Lt.",Low,Burn of cornea and conjunctival sac,Discharge,97.3,82.0,20.0,96.0,130.0,80.0
+1243,lip laceration,Low,"Open wound of lip and oral cavity, part unspecified",Discharge,97.9,76.0,20.0,98.0,110.0,70.0
+1244,decerased visual acuity,Low,Traumatic hyphaema,Discharge,97.3,64.0,20.0,99.0,130.0,80.0
+1245,ant. chest pain,High,Contusion of abdomen wall,OP from ED,97.2,114.0,24.0,96.0,,
+1246,Foreign body in throat,Low,Swallowed foreign body NOS,Discharge,97.5,68.0,20.0,98.0,120.0,80.0
+1247,swelling,Low,Submandibular abscess,Ward admission,97.0,90.0,20.0,99.0,110.0,80.0
+1248,Vaginal Bleeding,Medium,Threatened abortion,Discharge,97.0,110.0,20.0,100.0,100.0,60.0
+1249,fever,Low,"Viral infection, unspecified",Ward admission,99.1,76.0,20.0,98.0,110.0,60.0
+1250,vaginal discharge,Medium,"Premature rupture of membranes, onset of labor within 24 hours, Unspecified",Ward admission,97.3,69.0,20.0,99.0,100.0,70.0
+1251,dizziness,Medium,Dizziness and giddiness,Discharge,97.7,76.0,20.0,98.0,120.0,80.0
+1252,abdomen distension,Low,"Cirrhosis (of liver) NOS, unspecified",Discharge,97.5,102.0,20.0,97.0,100.0,60.0
+1253,dizziness,Medium,Dizziness and giddiness,Discharge,96.8,80.0,20.0,98.0,120.0,80.0
+1254,behavior change,High,Alcoholic encephalopathy,Discharge,97.0,77.0,20.0,96.0,110.0,70.0
+1255,LOC - Loss of consciousness,Medium,Other syncope and collapse,Ward admission,97.5,63.0,20.0,98.0,130.0,100.0
+1256,general weakness,Medium,"Spondylopathy in other infectious and parasitic diseases classified elsewhere, lumbar region",Ward admission,96.8,80.0,20.0,98.0,110.0,70.0
+1257,Amnesia,Medium,Transient global amnesia,Discharge,96.8,64.0,20.0,96.0,130.0,90.0
+1258,epistaxis,Medium,Epistaxis,Discharge,97.0,96.0,20.0,96.0,140.0,100.0
+1259,dizziness,Medium,Cerebrovascular accident NOS,Ward admission,98.2,68.0,20.0,98.0,150.0,90.0
+1260,syncope,High,"Cerebral infarction, unspecified",Ward admission,97.3,71.0,20.0,100.0,130.0,80.0
+1261,G/W-General weakness,High,Ventricular tachycardia,Ward admission,97.7,74.0,20.0,95.0,80.0,50.0
+1262,mental change,High,Cerebral infarction due to unspecified occlusion or stenosis of middle cerebral artery,Ward admission,97.5,86.0,22.0,95.0,120.0,80.0
+1263,dysuria,Low,Dysuria,Discharge,97.5,94.0,20.0,97.0,120.0,80.0
+1264,dizziness,Medium,Dizziness and giddiness,Discharge,97.2,80.0,20.0,99.0,130.0,90.0
+1265,"Sensory, Decreased",Medium,"Cord compression, unspecified",OP from ED,97.9,78.0,20.0,98.0,170.0,100.0
+1266,orthopnea,Medium,Dyspnoea,Ward admission,97.2,62.0,20.0,98.0,150.0,80.0

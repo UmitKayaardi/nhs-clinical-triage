@@ -9,8 +9,9 @@ live API (app.services.triage_pipeline.run_clinical_agents):
   S4-noNEWS2  The same S4 runs, severity taken before the NEWS2 safety net
               (no extra LLM calls)
 
-Knowledge bases: MIMIC evaluation uses MIMIC-train only (leakage control);
-KTAS uses KB=MIMIC (all 222 stays, the deployed system) and KB=KTAS-train.
+Knowledge bases: MIMIC evaluation uses MIMIC-train only (leakage control).
+KTAS (main evaluation, since 2026-11-22) uses the multi-source KB = all 222 MIMIC-IV-ED stays + the 886 KTAS
+training records (KTAS validation/test never in the KB); a secondary KTAS run uses KB = MIMIC only.
 """
 
 from dataclasses import dataclass
@@ -22,7 +23,7 @@ from app.services import retrieval_service as rs
 from app.services.llm_service import LLMGenerationError
 from app.services.trace import AgentTrace
 from app.services.triage_pipeline import TriageInput, run_clinical_agents
-from evaluation.baselines import build_kb, case_vitals, mimic_index, readonly_mimic_session
+from evaluation.baselines import build_kb, case_vitals, combined_index, mimic_index, readonly_mimic_session
 from evaluation.llm_cache import BudgetExhausted, CachedCompletion
 
 
@@ -31,8 +32,8 @@ class LLMJob:
     name: str            # e.g. "mimic:S4:kb=mimic-train"
     dataset: str         # mimic | ktas
     system: str          # S3 | S4
-    kb: str              # none | mimic-train | mimic-dev-train | mimic-all | ktas-train
-    split: str = "test"  # test | development | dev-old-test
+    kb: str              # none | mimic-train | mimic-dev-train | mimic-all | mimic-all+ktas-train
+    split: str = "test"  # test | development | dev-old-test | test-sample | test-rest (KTAS)
     prompt: str = "v2"   # Agent 3 prompt version (v1 = ablation of the previous release prompt)
 
 
@@ -62,6 +63,8 @@ def make_index(kb: str, train_df: Optional[pd.DataFrame]):
         return mimic_index(train_df["stay_id"])
     if kb == "ktas-train":
         return build_kb("ktas", train_df)
+    if kb == "mimic-all+ktas-train":
+        return combined_index(train_df)
     raise ValueError(kb)
 
 
@@ -100,6 +103,7 @@ def run_job(job: LLMJob, cases: pd.DataFrame, index, completion: CachedCompletio
             top_similarity=out.evidence["top_similarity"],
             n_evidence=len(out.similar_cases),
             neighbour_labels=[c.severity for c in out.similar_cases],
+            neighbour_sources=[c.source for c in out.similar_cases],
             attempts=len(attempts),
             first_pass_valid=bool(attempts and attempts[0]["valid"]),
             repaired=len(attempts) > 1,
