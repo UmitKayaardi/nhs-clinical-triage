@@ -242,7 +242,7 @@ def report_facts():
         L.append(f"- {ds_name.upper()} S2b RF: {ds['tuning']['S2b']['best']['params']} (class_weight balanced)")
         L.append(f"- {ds_name.upper()} best non-LLM system by tuning-set macro-F1 (MIMIC: development set; KTAS: validation split): {ds['best_non_llm_by_validation']}")
     t = m["datasets"]["mimic"]["low_evidence_threshold"]
-    L += [f"- LOW_EVIDENCE_THRESHOLD = {t['config_value']} (top-1 similarity); rule: {t['rule']}; chosen in the development phase, OOF retrieval votes over development-phase train + validation (n={t['n_development']}): "
+    L += [f"- LOW_EVIDENCE_THRESHOLD = {t['config_value']} (top-1 similarity); rule: {t['rule']}; selected on non-test data only, OOF retrieval votes over protocol-v2 train + development (n={t['n_development']}): "
           f"flag rate {t['chosen_row']['flag_rate']}, accuracy flagged {t['chosen_row']['acc_flagged']} vs unflagged {t['chosen_row']['acc_unflagged']}",
           f"- LLM: {m['llm']['model']}, temperature {m['llm']['temperature']}, max_tokens {m['llm']['max_tokens']}, reasoning_effort {m['llm']['reasoning_effort']}, max repairs {m['llm']['max_repair_attempts']}, prompt {s.LLM_PROMPT_VERSION}", ""]
     for ds_name, ds in m["datasets"].items():
@@ -295,9 +295,10 @@ def report_facts():
           "- Step 1 (development set): prompt v1 = previous release prompt ('assign Low if mild and no red flags; NEVER default to Medium or High'); on the 31 development stays of the development-phase test half: 18/31 predicted Low, under-triage 64.5%",
           "- Step 2 (development set): prompt v2 written from the ESI/KTAS level definitions (high-risk complaints High even with normal vitals; danger-zone vitals; resource-based Medium/Low; uncertain -> more urgent)",
           "- Step 3 (development set): v2 checked on the development set (62 stays) -- results in the 'Development set' table",
-          "- Step 4: configuration frozen on 2026-11-21 (prompt v2, weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, repair attempts 2, NEWS2 on, model settings); sha256 " + str(fz.get("sha256", ""))[:16] + "...; stored in evaluation/frozen_config.json; held-out jobs refuse to run if the live configuration differs",
+          "- Step 4: configuration frozen on 2026-11-21 and re-frozen on 2026-11-22 after the non-test threshold re-selection (prompt v2, weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, repair attempts 2, NEWS2 on, model settings); sha256 " + str(fz.get("sha256", ""))[:16] + "...; stored in evaluation/frozen_config.json; held-out jobs refuse to run if the live configuration differs",
           "- Step 5: frozen system evaluated once on the new held-out MIMIC test split (S4, S3, S4-promptv1, S4-noNEWS2 from the same calls) and on KTAS (external, prompt v2 for every KTAS job)",
-          "- LOW_EVIDENCE_THRESHOLD 0.50 chosen in the development phase from out-of-fold retrieval-only votes (Agent 2, no LLM) over the development-phase train + validation stays (176); these 176 stays include the 31 stays later drawn as the held-out test; value frozen before any held-out LLM run",
+          "- LOW_EVIDENCE_THRESHOLD re-selected on 2026-11-22, before any held-out LLM run, with the same rule (largest accuracy drop unflagged - flagged, 10-40% flagged, candidates 0.300-0.700 step 0.025) on non-test data only: 5-fold patient-grouped out-of-fold retrieval votes (Agent 2) over the 114 training + 62 development stays (176); no held-out test stay involved; result 0.50 (flag rate 33.5%, accuracy flagged 61.0% vs unflagged 62.4%) = same value as the first selection, kept",
+          "- Configuration re-frozen on 2026-11-22 after the threshold re-selection; config hash unchanged",
           "", "## Live system facts",
           "- Example local run (High demo case): Agent 2 632 ms, Agent 3 1,224 ms (1,637 tokens), Agent 4 0.1 ms, Agent 5 12 ms (mocked)",
           "- Whisper base.en first transcription incl. model load: 19.3 s on CPU (demo clip, 9 s of speech)",

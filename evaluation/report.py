@@ -317,10 +317,13 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
               "cross_validation": cv, "retrieval_quality": free["retrieval_quality"]}
         if dataset == "mimic":
             # Frozen value: reproduced with the development-phase split it was chosen on.
-            dev = bundle["dev_parts"]["mimic"]
-            ds["low_evidence_threshold"] = tune_threshold(dev["train"], dev["validation"])
-            ds["low_evidence_threshold"]["chosen_on"] = ("development phase: OOF over old train + old validation "
-                                                          "(176 stays); value then frozen")
+            # Re-selected on 2026-11-22 with the same rule on NON-TEST data only: out-of-fold over the protocol-v2
+            # train (114) + development (62) stays; no held-out test stay involved. Result 0.50 = unchanged.
+            ds["low_evidence_threshold"] = tune_threshold(parts["train"], parts["validation"])
+            ds["low_evidence_threshold"]["chosen_on"] = ("non-test data only: 5-fold patient-grouped OOF over protocol-v2 "
+                                                          "train (114) + development (62) stays; held-out test not used")
+            ds["low_evidence_threshold"]["previous_selection"] = ("development phase (21 Nov): same rule over old "
+                                                                   "train + old validation, result 0.50")
             ds["low_evidence_threshold"]["config_value"] = settings.LOW_EVIDENCE_THRESHOLD
         metrics["datasets"][dataset] = ds
         free_preds = free["predictions"]

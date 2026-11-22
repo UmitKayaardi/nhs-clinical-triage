@@ -1,5 +1,5 @@
 {
-  "frozen_on": "2026-11-21",
+  "frozen_on": "2026-11-22",
   "reason": "prompt v2 developed on the MIMIC development set; held-out MIMIC test and KTAS are evaluated once with this configuration",
   "config": {
     "prompt_version": "v2",
@@ -23,5 +23,33 @@
     "evidence_min_agreement": 0.6,
     "news2_safety_net": true
   },
-  "sha256": "77522c1b1d9594774df9aa1902885fc3c826d9cbf0c0b008205a5d10d3749924"
+  "sha256": "77522c1b1d9594774df9aa1902885fc3c826d9cbf0c0b008205a5d10d3749924",
+  "history": [
+    {
+      "frozen_on": "2026-11-21",
+      "sha256": "77522c1b1d9594774df9aa1902885fc3c826d9cbf0c0b008205a5d10d3749924",
+      "note": "first freeze after prompt development"
+    },
+    {
+      "frozen_on": "2026-11-22",
+      "note": "LOW_EVIDENCE_THRESHOLD re-selected on non-test data only (train 114 + development 62, OOF); same rule; result 0.50 unchanged; re-frozen before any held-out LLM run"
+    }
+  ],
+  "low_evidence_threshold_selection": {
+    "date": "2026-11-22",
+    "data": "protocol-v2 train (114) + development (62) stays, 5-fold patient-grouped OOF; held-out test not used",
+    "rule": "largest accuracy drop (unflagged - flagged) with 10-40% of cases flagged",
+    "signal": "top-1 similarity, production retrieval weights, k=5",
+    "chosen": 0.5,
+    "chosen_row": {
+      "threshold": 0.5,
+      "n_flagged": 59.0,
+      "flag_rate": 0.335,
+      "acc_flagged": 0.61,
+      "acc_unflagged": 0.624,
+      "accuracy_drop": 0.014
+    },
+    "previous_value": 0.5,
+    "changed": false
+  }
 }

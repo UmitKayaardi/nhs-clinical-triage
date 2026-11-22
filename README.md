@@ -69,7 +69,7 @@ Severity genuinely differs with age, so an age × severity association is report
 
 ### Weak-evidence warning (WP2)
 
-After retrieval, Agent 2 rates the evidence: **weak** when the top-1 similarity is below `LOW_EVIDENCE_THRESHOLD` (0.50, chosen on the MIMIC development split without touching the test split), **strong** when top-1 and mean top-5 similarity are both above it and at least 60% of the cases agree on the severity, otherwise **moderate**. Weak evidence is written into the LLM prompt (the model must say so and may not report High confidence), and the doctor's card shows a yellow banner: *Weak historical evidence — treat this recommendation with caution.*
+After retrieval, Agent 2 rates the evidence: **weak** when the top-1 similarity is below `LOW_EVIDENCE_THRESHOLD` (0.50, selected on non-test data only — out-of-fold over the 114 training + 62 development stays — and frozen before the held-out run), **strong** when top-1 and mean top-5 similarity are both above it and at least 60% of the cases agree on the severity, otherwise **moderate**. Weak evidence is written into the LLM prompt (the model must say so and may not report High confidence), and the doctor's card shows a yellow banner: *Weak historical evidence — treat this recommendation with caution.*
 
 ### Safety net (NEWS2)
 

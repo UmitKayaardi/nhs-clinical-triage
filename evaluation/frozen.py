@@ -48,11 +48,13 @@ def config_hash(cfg: Dict) -> str:
     return hashlib.sha256(json.dumps(cfg, sort_keys=True).encode("utf-8")).hexdigest()
 
 
-def freeze() -> Dict:
+def freeze(frozen_on: str = "2026-11-21", history: list = None, threshold_selection: Dict = None) -> Dict:
     cfg = current_config()
-    record = {"frozen_on": "2026-11-21", "reason": "prompt v2 developed on the MIMIC development set; "
+    record = {"frozen_on": frozen_on, "reason": "prompt v2 developed on the MIMIC development set; "
               "held-out MIMIC test and KTAS are evaluated once with this configuration",
-              "config": cfg, "sha256": config_hash(cfg)}
+              "config": cfg, "sha256": config_hash(cfg), "history": history or []}
+    if threshold_selection:
+        record["low_evidence_threshold_selection"] = threshold_selection
     write_json(FROZEN_PATH, record)
     return record
 
