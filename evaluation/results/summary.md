@@ -2,7 +2,7 @@
 
 Protocol: MIMIC protocol v2: development set = old validation + old test splits (62 stays, 26 patients; prompt v1 -> v2 developed here, LLM-free tuning uses it); held-out test = 31 stays from 9 patients drawn from the old training patients only (never an LLM query before), evaluated once with the frozen configuration; knowledge base and ML training data for the test run = remaining 114 stays / 21 patients. KTAS: MAIN evaluation with the frozen configuration (prompt v2), never used for development: full test split (191 cases); S4 knowledge base = all MIMIC-IV-ED stays (222) + KTAS training split only (886), KTAS validation/test never in the knowledge base; S3 on the same 191 cases; secondary S4 with KB = MIMIC-IV-ED only on the same 191 cases (117-case stratified sample first, then the other 74). Frozen configuration sha256 77522c1b1d959477... (live config matches: True).
 
-Generated 2026-11-26T03:38:21Z by `python scripts/evaluate.py --all`; seed 42. LLM: openai/gpt-oss-20b, temperature 0.0, reasoning_effort low. All LLM runs complete: False.
+Generated 2026-11-27T13:24:55Z by `python scripts/evaluate.py --all`; seed 42. LLM: openai/gpt-oss-20b, temperature 0.0, reasoning_effort low. All LLM runs complete: False.
 
 ## MIMIC
 
@@ -79,11 +79,11 @@ Method: 5-fold StratifiedGroupKFold on subject_id (train + development set, held
 
 | Job | Cases | First-pass valid | Repair rate | Failed | NEWS2 overrides | Weak-evidence flags | Agent 2 ms (median) | Agent 3 ms (median / p95) | Agent 4 ms (median) | Tokens/case |
 |---|---|---|---|---|---|---|---|---|---|---|
-| DEVELOPMENT mimic-dev:S4:kb=mimic-dev-train | 62 | 100.0% | 0.0% | 0 | 0 | 29.0% | 2.5 | 598 / 973 | 0.09 | 1671 |
-| DEVELOPMENT mimic-dev:S4-promptv1:kb=mimic-dev-train | 31 | 100.0% | 0.0% | 0 | 0 | 38.7% | 2.5 | 635 / 5642 | 0.09 | 1452 |
-| mimic:S4:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 0 | 22.6% | 2.1 | 528 / 980 | 0.09 | 1643 |
-| mimic:S3:kb=none | 31 | 100.0% | 0.0% | 0 | 0 | 100.0% | 0.0 | 502 / 641 | 0.08 | 1176 |
-| mimic:S4-promptv1:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 1 | 22.6% | 2.2 | 440 / 810 | 0.09 | 1435 |
+| DEVELOPMENT mimic-dev:S4:kb=mimic-dev-train | 62 | 100.0% | 0.0% | 0 | 0 | 29.0% | 2.9 | 598 / 973 | 0.11 | 1671 |
+| DEVELOPMENT mimic-dev:S4-promptv1:kb=mimic-dev-train | 31 | 100.0% | 0.0% | 0 | 0 | 38.7% | 2.7 | 635 / 5642 | 0.11 | 1452 |
+| mimic:S4:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 0 | 22.6% | 2.3 | 528 / 980 | 0.11 | 1643 |
+| mimic:S3:kb=none | 31 | 100.0% | 0.0% | 0 | 0 | 100.0% | 0.0 | 502 / 641 | 0.07 | 1176 |
+| mimic:S4-promptv1:kb=mimic-train | 31 | 100.0% | 0.0% | 0 | 1 | 22.6% | 2.3 | 440 / 810 | 0.11 | 1435 |
 
 ### Weak-evidence flag (S4)
 
@@ -147,9 +147,9 @@ Triage nurse on all KTAS records:
 |---|---|---|---|---|---|---|---|---|---|---|
 | S4 [kb=mimic+ktas-train] | 191 | 60.2% [53.4%, 67.0%] | 63.5% | 0.603 [0.534, 0.671] | 0.597 | 0.474 | 81.1% | 15.2% [9.9%, 20.4%] | 24.6% | – |
 | S4-noNEWS2 [kb=mimic+ktas-train] | 191 | 61.8% [55.5%, 69.1%] | 64.8% | 0.620 [0.554, 0.688] | 0.612 | 0.500 | 81.1% | 15.2% [9.9%, 20.4%] | 23.0% | – |
-| S3 [kb=none] (INCOMPLETE 114/191) | 114 | 57.0% [47.4%, 65.8%] | 60.1% | 0.582 [0.488, 0.673] | 0.569 | 0.419 | 78.3% | 14.9% [8.8%, 21.9%] | 28.1% | – |
-| S4 [kb=mimic-all] (INCOMPLETE 28/117) | 28 | 64.3% [46.4%, 82.1%] | 62.5% | 0.622 [0.415, 0.787] | 0.633 | 0.511 | 80.0% | 10.7% [0.0%, 21.4%] | 25.0% | – |
-| S4-noNEWS2 [kb=mimic-all] (INCOMPLETE 28/117) | 28 | 64.3% [46.4%, 82.1%] | 62.5% | 0.622 [0.415, 0.787] | 0.633 | 0.511 | 80.0% | 10.7% [0.0%, 21.4%] | 25.0% | – |
+| S3 [kb=none] | 191 | 60.7% [53.4%, 67.5%] | 63.6% | 0.613 [0.542, 0.679] | 0.604 | 0.463 | 78.4% | 15.2% [9.9%, 20.4%] | 24.1% | – |
+| S4 [kb=mimic-all] (INCOMPLETE 80/117) | 80 | 62.5% [51.2%, 72.5%] | 63.3% | 0.612 [0.494, 0.711] | 0.613 | 0.530 | 87.0% | 11.2% [5.0%, 18.8%] | 26.2% | – |
+| S4-noNEWS2 [kb=mimic-all] (INCOMPLETE 80/117) | 80 | 61.3% [50.0%, 72.5%] | 61.9% | 0.601 [0.483, 0.700] | 0.604 | 0.514 | 82.6% | 12.5% [5.0%, 21.2%] | 26.2% | – |
 
 ### Same 117-case KTAS sample (secondary job, KB = MIMIC-IV-ED only) -- LLM-free systems and nurse
 
@@ -194,26 +194,26 @@ Method: 5-fold StratifiedKFold (train+validation, test untouched)
 | ktas:S4:kb=mimic+ktas-train vs S2b | 21 | 41 | 0.0151 |
 | ktas:S4:kb=mimic+ktas-train vs S4-noNEWS2 | 0 | 3 | 0.2500 |
 | ktas:S4:kb=mimic+ktas-train vs H | 15 | 68 | 0.0000 |
-| ktas:S4:kb=mimic+ktas-train vs ktas:S3:kb=none | 19 | 9 | 0.0872 |
-| ktas:S4:kb=mimic-all vs S2b | 6 | 4 | 0.7539 |
-| ktas:S4:kb=mimic-all vs S4-noNEWS2 | 0 | 0 | 1.0000 |
-| ktas:S4:kb=mimic-all vs H | 9 | 4 | 0.2668 |
-| ktas:S4:kb=mimic-all vs ktas:S3:kb=none | 6 | 4 | 0.7539 |
+| ktas:S4:kb=mimic+ktas-train vs ktas:S3:kb=none | 24 | 25 | 1.0000 |
+| ktas:S4:kb=mimic-all vs S2b | 12 | 15 | 0.7011 |
+| ktas:S4:kb=mimic-all vs S4-noNEWS2 | 1 | 0 | 1.0000 |
+| ktas:S4:kb=mimic-all vs H | 9 | 24 | 0.0135 |
+| ktas:S4:kb=mimic-all vs ktas:S3:kb=none | 13 | 11 | 0.8388 |
 
 ### Agent performance
 
 | Job | Cases | First-pass valid | Repair rate | Failed | NEWS2 overrides | Weak-evidence flags | Agent 2 ms (median) | Agent 3 ms (median / p95) | Agent 4 ms (median) | Tokens/case |
 |---|---|---|---|---|---|---|---|---|---|---|
-| ktas:S4:kb=mimic+ktas-train | 191 | 100.0% | 0.0% | 0 | 3 | 9.4% | 18.5 | 565 / 873 | 0.10 | 1524 |
-| ktas:S3:kb=none | 114 | 100.0% | 0.0% | 0 | 1 | 100.0% | 0.0 | 355 / 732 | 0.07 | 1170 |
-| ktas:S4:kb=mimic-all | 28 | 100.0% | 0.0% | 0 | 0 | 17.9% | 3.9 | 487 / 798 | 0.10 | 1654 |
+| ktas:S4:kb=mimic+ktas-train | 191 | 100.0% | 0.0% | 0 | 3 | 9.4% | 19.6 | 565 / 873 | 0.11 | 1524 |
+| ktas:S3:kb=none | 191 | 100.0% | 0.0% | 0 | 3 | 100.0% | 0.0 | 406 / 783 | 0.07 | 1179 |
+| ktas:S4:kb=mimic-all | 80 | 100.0% | 0.0% | 0 | 1 | 25.0% | 4.1 | 538 / 1002 | 0.11 | 1615 |
 
 ### Weak-evidence flag (S4)
 
 | Job | Flagged n | Flagged acc. | Flagged under-triage | Not flagged n | Not flagged acc. | Not flagged under-triage |
 |---|---|---|---|---|---|---|
 | ktas:S4:kb=mimic+ktas-train | 18 | 38.9% | 16.7% | 173 | 62.4% | 15.0% |
-| ktas:S4:kb=mimic-all | 5 | 100.0% | 0.0% | 23 | 56.5% | 13.0% |
+| ktas:S4:kb=mimic-all | 20 | 75.0% | 10.0% | 60 | 58.3% | 11.7% |
 
 ### Subgroups (LLM case set)
 
@@ -234,11 +234,11 @@ Method: 5-fold StratifiedKFold (train+validation, test untouched)
 | S4 (mimic-all+ktas-train) | age_band | 40-64 | 67 | 59.7% | 0.604 | 17.9% |
 | S4 (mimic-all+ktas-train) | age_band | 65+ | 72 | 56.9% | 0.562 | 16.7% |
 | S4 (mimic-all+ktas-train) | age_band | <40 | 52 | 65.4% | 0.544 | 9.6% |
-| S4 (mimic-all) | sex | F | 12 | 58.3% | 0.442 | 25.0% |
-| S4 (mimic-all) | sex | M | 16 | 68.8% | 0.688 | 0.0% |
-| S4 (mimic-all) | age_band | 40-64 | 9 | 55.6% | 0.528 | 22.2% |
-| S4 (mimic-all) | age_band | 65+ | 9 | 77.8% | 0.508 | 0.0% |
-| S4 (mimic-all) | age_band | <40 | 10 | 60.0% | 0.544 | 10.0% |
+| S4 (mimic-all) | sex | F | 37 | 54.1% | 0.542 | 21.6% |
+| S4 (mimic-all) | sex | M | 43 | 69.8% | 0.658 | 2.3% |
+| S4 (mimic-all) | age_band | 40-64 | 29 | 58.6% | 0.499 | 13.8% |
+| S4 (mimic-all) | age_band | 65+ | 25 | 68.0% | 0.611 | 8.0% |
+| S4 (mimic-all) | age_band | <40 | 26 | 61.5% | 0.615 | 11.5% |
 
 ## Figures
 
