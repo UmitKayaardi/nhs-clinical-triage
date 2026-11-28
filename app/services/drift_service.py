@@ -1,5 +1,5 @@
 """
-Agent 7 -- Drift Detection & Bias Monitor.
+Agent 7 -- Drift Detection & Bias Monitor Agent.
 
 Runs over the last MONITORING_WINDOW_DAYS (default 30) of triage
 sessions and answers three questions:

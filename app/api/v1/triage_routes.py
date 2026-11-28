@@ -79,7 +79,7 @@ def dispatch_alert(twilio: TwilioService, n8n: N8nOrchestrator, db: Session, tra
                    news2_score: Optional[int], low_evidence: Optional[bool], created_at: str,
                    patient_id: Optional[str]) -> Optional[AlertDispatchSchema]:
     """
-    Agent 5 -- Orchestrator & Action. Alerting severity -> n8n webhook (when
+    Agent 5 -- Orchestrator & Action Agent. Alerting severity -> n8n webhook (when
     configured) -> on failure, direct Twilio WhatsApp -> "mocked" in test mode.
     """
     with trace.step(5, input={"severity": severity, "alert_on": settings.ALERT_ON_SEVERITIES,
@@ -288,7 +288,7 @@ async def process_triage(
         try:
             with trace.step(1, input={"audio_format": original_ext, "bytes": len(contents),
                                       "model": f"whisper {settings.WHISPER_MODEL_NAME}"},
-                            messages_to=["Agent 2"]) as step:
+                            messages_to=["Agent 2"], stage="speech-to-text") as step:
                 transcript = await run_in_threadpool(audio_service.transcribe_audio, temp_path)
                 step["output"] = {"transcript": transcript, "characters": len(transcript)}
                 step["summary"] = f"{len(transcript)} characters transcribed"
@@ -331,7 +331,7 @@ async def process_triage_structured(
         complaint = body.chief_complaint.strip()
         with trace.step(1, input={"intake_mode": "structured",
                                   "fields": sorted(body.model_dump(exclude_none=True))},
-                        messages_to=["Agent 2"], agent_name="Intake (structured, no transcription needed)") as step:
+                        messages_to=["Agent 2"], stage="structured intake, no transcription needed") as step:
             step["output"] = {"chief_complaint": complaint,
                               "vitals": body.vitals.model_dump(exclude_none=True) if body.vitals else None}
             step["summary"] = "typed complaint accepted"

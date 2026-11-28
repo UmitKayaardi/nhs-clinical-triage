@@ -1,5 +1,6 @@
 {
-  "agent": "4 Medical Guardrail",
+  "agent": "4 Medical Guardrail Agent",
+  "stage": "schema validation",
   "input": {
     "attempt": 1
   },

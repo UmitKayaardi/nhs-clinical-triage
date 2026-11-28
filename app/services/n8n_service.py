@@ -1,5 +1,5 @@
 """
-Agent 5 -- Orchestrator & Action, n8n channel (WP5).
+Agent 5 -- Orchestrator & Action Agent, n8n channel (WP5).
 
 The submitted workflow routes alerts through an n8n workflow engine. When
 N8N_WEBHOOK_URL is set, Agent 5 POSTs a JSON event to the n8n webhook

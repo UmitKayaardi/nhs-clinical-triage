@@ -4,9 +4,9 @@ shared by the live API (app/api/v1/triage_routes.py) and the offline
 evaluation (evaluation/llm_runner.py), so the evaluated system is exactly
 the deployed one.
 
-  Agent 2  Evidence Retrieval    top-k similar historical cases + evidence strength (WP2)
-  Agent 3  Clinical Reasoning    LLM draft, grounded in Agent 2's evidence
-  Agent 4  Medical Guardrail     schema validation + repair loop (WP3.1)
+  Agent 2  Evidence Retrieval Agent    top-k similar historical cases + evidence strength (WP2)
+  Agent 3  Clinical Reasoning Agent    LLM draft, grounded in Agent 2's evidence
+  Agent 4  Medical Guardrail Agent     schema validation + repair loop (WP3.1)
                                  + NEWS2 clinical safety net (WP3.2): may raise, never lower, severity
 """
 
@@ -118,7 +118,7 @@ def run_clinical_agents(
     # --- Agent 4: NEWS2 clinical safety net (raise-only) ---
     with trace.step(4, input={"llm_severity": llm_severity, "vitals": vitals or None,
                               "consciousness": data.consciousness},
-                    messages_to=["Persistence", "Agent 5"], agent_name="Medical Guardrail (NEWS2 safety net)") as step:
+                    messages_to=["Persistence", "Agent 5"], stage="NEWS2 safety net") as step:
         t0 = time.perf_counter()
         news2 = calculate_news2(vitals, data.consciousness)
         if news2_enabled:

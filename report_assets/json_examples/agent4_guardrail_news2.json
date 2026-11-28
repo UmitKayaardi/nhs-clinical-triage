@@ -1,5 +1,6 @@
 {
-  "agent": "4 Medical Guardrail (NEWS2 safety net)",
+  "agent": "4 Medical Guardrail Agent",
+  "stage": "NEWS2 safety net",
   "input": {
     "llm_severity": "Low",
     "vitals": {

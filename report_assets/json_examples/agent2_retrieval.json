@@ -1,5 +1,6 @@
 {
-  "agent": "2 Evidence Retrieval",
+  "agent": "2 Evidence Retrieval Agent",
+  "stage": null,
   "input": {
     "query_text": "Cold and shivery after waiting outside for a long time, otherwise I feel fine",
     "vitals": {
@@ -57,7 +58,7 @@
     "threshold": 0.5
   },
   "status": "ok",
-  "duration_ms": 570.3,
+  "duration_ms": 826.8,
   "messages_to": [
     "Agent 3"
   ]

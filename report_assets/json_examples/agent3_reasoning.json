@@ -1,5 +1,6 @@
 {
-  "agent": "3 Clinical Reasoning",
+  "agent": "3 Clinical Reasoning Agent",
+  "stage": null,
   "input": {
     "attempt": 1,
     "repair": false,
@@ -10,7 +11,7 @@
     "raw_output": "{\"Symptoms\":[\"cold\",\"shivery\"],\"Duration\":\"after waiting outside for a long time\",\"Possible_Conditions\":[\"exposure hypothermia\",\"viral infection\",\"dehydration\"],\"Severity\":\"Low\",\"Confidence\":\"Low\",\"Reasoning\":\"Patient is 79, alert, normal vitals, no pain or distress; presentation is low-risk and likely requires minimal resources. Historical evidence is weak and not directly applicable.\",\"Required_Actions\":[\"Reassess temperature in 30 minutes\",\"Encourage warm blankets and fluids\",\"Monitor for signs of worsening hypothermia\"]}"
   },
   "status": "ok",
-  "duration_ms": 1044.5,
+  "duration_ms": 1027.2,
   "messages_to": [
     "Agent 4"
   ]

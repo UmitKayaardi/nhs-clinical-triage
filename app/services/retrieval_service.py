@@ -1,5 +1,5 @@
 """
-Agent 2 -- Evidence Retrieval (multi-source knowledge base).
+Agent 2 -- Evidence Retrieval Agent (multi-source knowledge base).
 
 Finds the historical cases most similar to the current patient and
 returns them as grounding evidence for the LLM. Since 2026-11-22 the

@@ -1,5 +1,5 @@
 """
-Agent 5 -- Orchestrator & Action (Twilio WhatsApp).
+Agent 5 -- Orchestrator & Action Agent (Twilio WhatsApp).
 
 Sends an instant WhatsApp alert to the on-call clinician when a triage
 session is classified at an alerting severity (High by default, see

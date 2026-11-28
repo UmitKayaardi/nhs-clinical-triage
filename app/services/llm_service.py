@@ -1,5 +1,5 @@
 """
-Agents 3 and 4 -- Clinical Reasoning (Groq LLM) and the Medical Guardrail
+Agents 3 and 4 -- Clinical Reasoning Agent (Groq LLM) and the Medical Guardrail Agent
 repair loop.
 
 Agent 3 turns the patient statement, any structured intake data (vitals,
@@ -343,7 +343,7 @@ def generate_triage_report(
                 trace.add(4, input={"attempt": attempt}, output={"valid": False, "error": last_error,
                                                                  "action": "repair requested" if retry else "fail safely"},
                           status="error", summary=f"rejected attempt {attempt}: {last_error[:80]}",
-                          messages_to=["Agent 3"] if retry else [],
+                          messages_to=["Agent 3"] if retry else [], stage="schema validation",
                           duration_ms=guardrail_ms)
             messages = messages[:2] + [
                 {"role": "assistant", "content": (raw or "")[:4000]},
@@ -364,7 +364,7 @@ def generate_triage_report(
                               "confidence": result.Confidence, "confidence_capped": record.get("confidence_capped", False)},
                       status="repaired" if attempt > 1 else "ok",
                       summary=f"schema valid on attempt {attempt}", messages_to=["NEWS2 safety net"],
-                      duration_ms=guardrail_ms)
+                      stage="schema validation", duration_ms=guardrail_ms)
         return result
 
     raise LLMGenerationError(
