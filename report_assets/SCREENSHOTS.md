@@ -7,6 +7,7 @@ scale 1.5) after the final evaluation and deployment. Session IDs used: `report_
 |---|---|
 | `python scripts/take_screenshots.py` | 01-12: local app on a fresh copy of the database (n8n not configured -> alerts `mocked`) |
 | `python scripts/take_n8n_screenshots.py` | 12b-19: local n8n (local-only owner account, test mode) + local app with `N8N_WEBHOOK_URL` set |
+| `python scripts/take_n8n_screenshots.py --add-case Low` | 14b, 19b: one more case (Low) through the same local n8n |
 | `python scripts/take_space_screenshots.py` | 20-22: live Hugging Face Space |
 | `python scripts/build_architecture_diagram.py` | `figures/architecture.png` (300 dpi) + `figures/architecture.svg` |
 
@@ -34,20 +35,23 @@ scale 1.5) after the final evaluation and deployment. Session IDs used: `report_
 
 ## n8n orchestration (Agent 5, local, Twilio test mode)
 
-For this run only `ALERT_ON_SEVERITIES=["High","Medium"]`, so the backend also forwards the Medium case and the n8n
-workflow itself decides "skipped". The Twilio node has a placeholder credential (n8n 2.x requires one to publish);
+For these runs only `ALERT_ON_SEVERITIES` was widened (`["High","Medium"]`, then `["High","Medium","Low"]` for the
+Low case), so the backend also forwards Medium and Low cases and the n8n workflow itself decides "skipped"
+(default: only High is forwarded). The Twilio node has a placeholder credential (n8n 2.x requires one to publish);
 the test-mode branch never calls Twilio.
 
 | # | File | Shows | Report section |
 |---|---|---|---|
-| 12b | `screenshots/12b_console_log_n8n.txt` | Console lines: `[Agent 5 \| Orchestrator & Action] n8n webhook -> mocked` (High) and `-> skipped` (Medium) | 4.1 Agent 5 |
+| 12b | `screenshots/12b_console_log_n8n.txt` | Console lines: `[Agent 5 \| Orchestrator & Action] n8n webhook -> mocked` (High), `-> skipped` (Medium, Low) | 4.1 Agent 5 |
 | 13 | `screenshots/13_card_high_alert_via_n8n.png` | High card with `Alert (Agent 5): mocked via n8n` | 4.1 Agent 5 |
 | 14 | `screenshots/14_card_medium_n8n_skipped.png` | Medium card with `Alert (Agent 5): skipped via n8n` | 4.1 Agent 5 |
+| 14b | `screenshots/14b_card_low_n8n_skipped.png` | Low card (ankle sprain, evidence moderate, NEWS2 0) with `Alert (Agent 5): skipped via n8n` | 4.1 Agent 5 |
 | 15 | `screenshots/15_admin_health_n8n_reachable.png` | Admin system health with n8n reachable; alert log rows with channel `n8n` | 4.1 Agent 5, 4.2 admin |
 | 16 | `screenshots/16_n8n_workflow_canvas.png` | n8n editor: workflow `NHS Triage - Agent 5 alert orchestration` (10 nodes, Published) | 4.1 Agent 5, 2.3 tools |
 | 17 | `screenshots/17_n8n_executions_list.png` | n8n Executions: 2 successful runs; latest (Medium) path highlighted | 4.1 Agent 5, 4.2 external |
 | 18 | `screenshots/18_n8n_execution_high_mocked.png` | High execution: Webhook -> Check secret -> Severity needs alert? (true) -> Twilio test mode? (true) -> Respond mocked | 4.1 Agent 5 |
 | 19 | `screenshots/19_n8n_execution_medium_skipped.png` | Medium execution: Severity needs alert? (false) -> Respond skipped | 4.1 Agent 5 |
+| 19b | `screenshots/19b_n8n_execution_low_skipped.png` | Low execution (3rd run in the list): Severity needs alert? (false) -> Respond skipped | 4.1 Agent 5 |
 
 ## Live Hugging Face Space
 

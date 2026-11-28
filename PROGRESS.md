@@ -19,6 +19,7 @@ Python: global `Python 3.12.10` (no project venv; all requirements already insta
 - **Final wrap-up (28 Nov):**
   - [x] All automated screenshots re-captured (`scripts/take_screenshots.py`, 01-12): evidence tables with source labels, weak-evidence card, NEWS2 card (Agent 3 Low -> High), trace, Evaluation, Admin (KB 1,489 by source), FastAPI docs, console log
   - [x] n8n screenshots (`scripts/take_n8n_screenshots.py`, 12b-19): local n8n 2.48.7, local-only owner account (UI setup, password in git-ignored `.local/n8n-shots/owner_local_only.json`), repo workflow imported + published, placeholder Twilio credential; High -> `mocked via n8n`, Medium -> `skipped via n8n` (ALERT_ON_SEVERITIES High,Medium for that run only); canvas, executions list, both execution views; n8n stopped
+  - [x] Low case through local n8n (`--add-case Low`): `skipped via n8n`; card 14b + execution 19b (3 executions in the list)
   - [x] Live Space screenshots (`scripts/take_space_screenshots.py`, 20-22)
   - [x] `report_assets/SCREENSHOTS.md` rewritten (every file -> report section; student list: S4 WhatsApp on phone, S6 Space secrets page)
   - [x] Architecture diagram `report_assets/figures/architecture.png` (300 dpi) + `.svg` (`scripts/build_architecture_diagram.py`; agent names from the submitted workflow PDF)
