@@ -202,7 +202,7 @@ def add_case(demo: str) -> int:
         log.close()
 
     lines = app_log_path.read_text(encoding="utf-8", errors="replace").splitlines()
-    keep = [ln for ln in lines if "agent_trace" in ln and any(f"Agent {n}" in ln for n in (2, 3, 4, 5))]
+    keep = [ln for ln in lines if "| agent_trace |" in ln and any(f"Agent {n}" in ln for n in (2, 3, 4, 5))]
     with open(OUT / "12b_console_log_n8n.txt", "a", encoding="utf-8") as fh:
         fh.write("\n".join(keep) + "\n")
     sessions = OUT / "sessions.json"
@@ -325,7 +325,7 @@ def main() -> int:
 
     if not args.editor_only:
         app_lines = (N8N_DIR / "app.log").read_text(encoding="utf-8", errors="replace").splitlines()
-        agent5 = [ln for ln in app_lines if "agent_trace" in ln and any(f"Agent {n}" in ln for n in (2, 3, 4, 5))]
+        agent5 = [ln for ln in app_lines if "| agent_trace |" in ln and any(f"Agent {n}" in ln for n in (2, 3, 4, 5))]
         (OUT / "12b_console_log_n8n.txt").write_text("\n".join(agent5) + "\n", encoding="utf-8")
         sessions = OUT / "sessions.json"
         merged = json.loads(sessions.read_text(encoding="utf-8")) if sessions.exists() else {}

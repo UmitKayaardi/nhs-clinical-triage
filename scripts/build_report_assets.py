@@ -120,11 +120,12 @@ def json_examples():
     for s in steps:
         key = names.get(s["agent_no"], f"agent{s['agent_no']}")
         if s["agent_no"] == 4:
-            key += "_news2" if "NEWS2" in s["agent_name"] else "_schema"
+            key += "_news2" if "NEWS2" in ((s.get("stage") or "") + s["agent_name"]) else "_schema"
         if key in seen:
             continue
         seen[key] = True
-        _save(f"{key}.json", {"agent": f"{s['agent_no']} {s['agent_name']}", "input": s["input"], "output": s["output"],
+        _save(f"{key}.json", {"agent": f"{s['agent_no']} {s['agent_name']}", "stage": s.get("stage"),
+                              "input": s["input"], "output": s["output"],
                               "status": s["status"], "duration_ms": s["duration_ms"], "messages_to": s["messages_to"]})
 
     _save("structured_request.json", {

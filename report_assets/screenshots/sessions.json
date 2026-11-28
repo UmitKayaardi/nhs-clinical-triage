@@ -1,8 +1,10 @@
 {
-  "High": "7f518067-cad1-47c1-9836-f1791062bad4",
+  "High": "c3d25613-f31a-4550-a0b6-d008a66719ad",
   "Medium": "29718d4a-aa93-4e5d-abfa-f2278d6c1417",
   "Low": "01f5983e-6b55-41c2-ac2a-54857200b5b5",
   "Weak evidence": "96f618b3-f2d5-403a-af58-8ef4c519b16c",
   "NEWS2 safety net": "35d4d2d9-51ee-4b92-834f-6ca38a70c805",
-  "n8n Low": "3ac1b8ac-2729-4ff4-aea1-1030e41d3956"
+  "n8n Low": "d7d48de2-157b-4b19-aba7-184fb5008010",
+  "n8n High": "74fa1590-d268-47c2-9c26-f6291673a17e",
+  "n8n Medium": "419087b0-946b-4421-a788-c2054b3f0108"
 }

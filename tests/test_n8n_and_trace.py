@@ -96,7 +96,7 @@ def test_structured_triage_returns_trace_news2_override_and_evidence(client, db)
     assert body["alert"]["channel"] == "mocked"                  # no n8n, Twilio in test mode
 
     stored = client.get(f"/api/v1/sessions/{body['session_id']}/trace").json()
-    assert stored["count"] == len(body["trace"]) and stored["steps"][1]["agent_name"] == "Evidence Retrieval"
+    assert stored["count"] == len(body["trace"]) and stored["steps"][1]["agent_name"] == "Evidence Retrieval Agent"
     listed = client.get("/api/v1/sessions").json()["data"][0]
     assert listed["safety_override"] is True and listed["has_trace"] is True
 
@@ -147,3 +147,33 @@ def test_system_health_never_leaks_errors(client, monkeypatch):
     assert body["groq"]["reachable"] is False and "secret" not in r.text
     assert body["database"]["rows"]["ed_stays (MIMIC KB)"] == 8
     assert body["models"]["agent3_llm"] == "openai/gpt-oss-20b"
+
+
+WORKFLOW_AGENT_NAMES = {   # exactly as in the submitted workflow (Umit_Kayaardi_3231603_Workflow.pdf)
+    1: "Data Intake & Transcription Agent",
+    2: "Evidence Retrieval Agent",
+    3: "Clinical Reasoning Agent",
+    4: "Medical Guardrail Agent",
+    5: "Orchestrator & Action Agent",
+    6: "Post-Deployment Monitor Agent",
+    7: "Drift Detection & Bias Monitor Agent",
+}
+
+
+def test_agent_names_match_the_submitted_workflow():
+    from app.services.trace import AGENT_NAMES
+    assert {k: v for k, v in AGENT_NAMES.items() if k} == WORKFLOW_AGENT_NAMES
+
+
+def test_multi_step_agents_keep_their_name_and_label_the_stage(caplog):
+    import logging
+    from app.services.trace import AgentTrace
+    trace = AgentTrace()
+    with caplog.at_level(logging.INFO, logger="agent_trace"):
+        with trace.step(4, stage="NEWS2 safety net") as s:
+            s["summary"] = "NEWS2 6"
+        trace.add(4, input={}, output={}, stage="schema validation")
+    steps = trace.as_list()
+    assert [x["agent_name"] for x in steps] == ["Medical Guardrail Agent"] * 2
+    assert [x["stage"] for x in steps] == ["NEWS2 safety net", "schema validation"]
+    assert "[Agent 4 | Medical Guardrail Agent | NEWS2 safety net] NEWS2 6" in caplog.text

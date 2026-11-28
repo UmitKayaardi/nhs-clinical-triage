@@ -1,5 +1,5 @@
 """
-Agent 6 -- Post-Deployment Monitor.
+Agent 6 -- Post-Deployment Monitor Agent.
 
 Turns clinician feedback on triage sessions into post-market
 surveillance (PMS) metrics:

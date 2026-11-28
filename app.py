@@ -380,7 +380,7 @@ def render_trace(steps) -> str:
         label = f"Agent {s['agent_no']}" if s.get("agent_no") else "Persistence"
         cards.append(f"""
         <div class="trace-card status-{_esc(str(s.get('status', 'ok')))}">
-          <div class="trace-title">{label} · {_esc(str(s.get('agent_name', '')))}</div>
+          <div class="trace-title">{label} · {_esc(str(s.get('agent_name', '')))}{(' — ' + _esc(str(s['stage']))) if s.get('stage') else ''}</div>
           <div class="trace-meta">{_esc(str(s.get('started_at', '')))} · {s.get('duration_ms', 0)} ms ·
             status <b>{_esc(str(s.get('status')))}</b> · sends to: {_esc(', '.join(s.get('messages_to') or []) or '—')}</div>
           <div><b>What it did:</b> {_esc(str(s.get('summary') or ''))}</div>

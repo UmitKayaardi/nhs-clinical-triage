@@ -65,7 +65,9 @@ def main() -> int:
     p.add_argument("--demos", default="High,Medium,Low,Weak evidence,NEWS2 safety net",
                    help="comma-separated demo cases to run in Clinician Intake")
     p.add_argument("--skip-kiosk", action="store_true")
+    p.add_argument("--only", default="", help="comma-separated screenshot names to save (default: all)")
     args = p.parse_args()
+    only = {x.strip() for x in args.only.split(",") if x.strip()}
     wanted = [d.strip() for d in args.demos.split(",") if d.strip()]
     OUT.mkdir(parents=True, exist_ok=True)
     from playwright.sync_api import sync_playwright
@@ -89,6 +91,8 @@ def main() -> int:
             page.get_by_role("tab", name="Patient Kiosk").wait_for()
 
             def shot(name):
+                if only and name not in only:
+                    return
                 page.wait_for_timeout(800)
                 page.screenshot(path=str(OUT / f"{name}.png"), full_page=True)
                 print("saved", name, flush=True)
@@ -203,7 +207,7 @@ def main() -> int:
         log_file.close()
 
     raw = (ROOT / ".local" / "screenshot_run.log").read_text(encoding="utf-8", errors="replace")
-    lines = [ln for ln in raw.splitlines() if "agent_trace" in ln or "Built evidence index" in ln]
+    lines = [ln for ln in raw.splitlines() if "| agent_trace |" in ln or "Built evidence index" in ln]
     LOG.write_text("\n".join(lines) + "\n", encoding="utf-8")
     render_log_png("\n".join(lines), OUT / "12_console_log.png")
     merged = json.loads((OUT / "sessions.json").read_text(encoding="utf-8")) if (OUT / "sessions.json").exists() else {}

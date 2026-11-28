@@ -1,5 +1,6 @@
 {
-  "agent": "1 Intake (structured, no transcription needed)",
+  "agent": "1 Data Intake & Transcription Agent",
+  "stage": "structured intake, no transcription needed",
   "input": {
     "intake_mode": "structured",
     "fields": [

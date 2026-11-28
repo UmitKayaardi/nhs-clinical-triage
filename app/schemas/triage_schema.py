@@ -5,7 +5,7 @@ The field names on TriageResult intentionally match the exact JSON
 contract required by the LLM prompt (Symptoms, Duration,
 Possible_Conditions, Severity, Reasoning, Required_Actions) so that the
 LLM's raw JSON output can be parsed directly into this model with no key
-remapping. This model *is* Agent 4 (Medical Guardrail): anything that
+remapping. This model *is* Agent 4 (Medical Guardrail Agent): anything that
 does not validate against it is rejected before it reaches a clinician.
 """
 

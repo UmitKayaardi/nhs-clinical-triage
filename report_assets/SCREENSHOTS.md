@@ -1,7 +1,11 @@
 # Screenshot checklist (maps every screenshot to a report section)
 
 All screenshots below were re-captured on 28 Nov 2026 with Playwright (headless Chromium, light theme, 1366 px wide,
-scale 1.5) after the final evaluation and deployment. Session IDs used: `report_assets/screenshots/sessions.json`.
+scale 1.5) after the final evaluation and deployment. Agent names are exactly those of the submitted workflow
+(e.g. "Drift Detection & Bias Monitor Agent"); every screenshot that shows agent names (6, 6a, 12, 12b) was
+re-captured after the rename (`python scripts/take_screenshots.py --demos High --only 06a_agent_trace_intake,06_agent_trace_doctor_portal`
+plus the two n8n runs). Agents with two steps keep their name and show the step as a stage, e.g.
+`[Agent 4 | Medical Guardrail Agent | NEWS2 safety net]`. Session IDs used: `report_assets/screenshots/sessions.json`.
 
 | Script | Captures |
 |---|---|
@@ -24,14 +28,14 @@ scale 1.5) after the final evaluation and deployment. Session IDs used: `report_
 | 3c | `screenshots/03c_card_low.png` | Low card: ankle sprain, evidence moderate, NEWS2 0 | 4.1 output |
 | 4 | `screenshots/04_card_weak_evidence.png` | Weak-evidence card: 0 cases found, yellow banner | 2.2 innovation (WP2), 4.1 |
 | 5 | `screenshots/05_card_news2_safety_net.png` | NEWS2 safety net: Agent 3 said Low (evidence weak, top similarity 0.47), NEWS2 single-parameter score 3 (temperature 94.6 °F) raised it to High | 2.2 innovation (WP3), 4.1 Agent 4 |
-| 6 | `screenshots/06_agent_trace_doctor_portal.png` | Agent Trace view: one card per agent with input, action, output, time, status | 4.1 step-by-step (Agents 1-5) |
+| 6 | `screenshots/06_agent_trace_doctor_portal.png` | Agent Trace view: one card per agent (workflow names + stage) with input, action, output, time, status | 4.1 step-by-step (Agents 1-5) |
 | 6a | `screenshots/06a_agent_trace_intake.png` | Same trace under the Clinician Intake result | 4.1 |
 | 7 | `screenshots/07_feedback_and_accuracy.png` | Clinician review saved -> 30-day accuracy updated (Agent 6) | 4.1 Agent 6, 4.2 |
 | 8 | `screenshots/08_drift_bias_panel.png` | Drift & bias report JSON (Agent 7); same page as 7 with the panel expanded | 4.1 Agent 7 |
 | 9 | `screenshots/09_evaluation_tab.png` | Evaluation tab: KTAS main results first, nurse line, MIMIC secondary check, figures | 3.3 evaluation, lecturer's metrics request |
 | 10 | `screenshots/10_admin_supervisor.png` | Admin / Supervisor tab: system health (knowledge base 1,489 cases by source), alert log with channel, accuracy / drift / bias, PMS | 4.2 admin / supervisor UI |
 | 11 | `screenshots/11_fastapi_docs.png` | FastAPI OpenAPI `/docs` (all endpoints) | 4.2 external interaction, 3.1 |
-| 12 | `screenshots/12_console_log.png` + `.txt` | Console log of the full run: `[Agent n \| name] ... ms (status)` lines for Agents 1-7 | 4.1 processing evidence |
+| 12 | `screenshots/12_console_log.png` + `.txt` | Console log: `[Agent n \| name \| stage] ... ms (status)` lines for Agents 1-7 (voice + structured High case, review, drift check) | 4.1 processing evidence |
 
 ## n8n orchestration (Agent 5, local, Twilio test mode)
 
@@ -42,7 +46,7 @@ the test-mode branch never calls Twilio.
 
 | # | File | Shows | Report section |
 |---|---|---|---|
-| 12b | `screenshots/12b_console_log_n8n.txt` | Console lines: `[Agent 5 \| Orchestrator & Action] n8n webhook -> mocked` (High), `-> skipped` (Medium, Low) | 4.1 Agent 5 |
+| 12b | `screenshots/12b_console_log_n8n.txt` | Console lines: `[Agent 5 \| Orchestrator & Action Agent] n8n webhook -> mocked` (High), `-> skipped` (Medium, Low) | 4.1 Agent 5 |
 | 13 | `screenshots/13_card_high_alert_via_n8n.png` | High card with `Alert (Agent 5): mocked via n8n` | 4.1 Agent 5 |
 | 14 | `screenshots/14_card_medium_n8n_skipped.png` | Medium card with `Alert (Agent 5): skipped via n8n` | 4.1 Agent 5 |
 | 14b | `screenshots/14b_card_low_n8n_skipped.png` | Low card (ankle sprain, evidence moderate, NEWS2 0) with `Alert (Agent 5): skipped via n8n` | 4.1 Agent 5 |

@@ -21,27 +21,39 @@ A clinical decision support system (CDSS) for Emergency Departments. A patient d
 ## The 7 agents
 
 ```text
- audio ─► [1 Intake/Whisper] ─┐
- typed symptoms + vitals ─────┴► [2 Evidence Retrieval] ─► [3 Clinical Reasoning] ⇄ [4 Guardrail]
-                                   (MIMIC-IV-ED + KTAS,      (Groq gpt-oss-20b)      (Pydantic schema,
-                                    source label, strength)                           repair loop, NEWS2)
-                                                                                           │
-                         TriageSession + agent trace saved ◄───────────────────────────────┤
-                                                                                           ▼
- clinician feedback ─► [6 Post-Deployment Monitor] ─► [7 Drift & Bias Monitor]   [5 Orchestrator]
-                       accuracy, hallucinations,      KS / Jensen-Shannon /      n8n webhook → Twilio
-                       monthly PMS report             chi-squared, alerts        WhatsApp (High only)
+ audio (Patient Kiosk) / typed symptoms + vitals (Clinician Intake)
+        │
+        ▼
+ [1 Data Intake & Transcription Agent]   Whisper base.en; structured intake skips transcription
+        │ transcript + vitals
+        ▼
+ [2 Evidence Retrieval Agent]            multi-source knowledge base (MIMIC-IV-ED + KTAS),
+        │ evidence block                 source label per case, evidence strength, weak-evidence flag
+        ▼
+ [3 Clinical Reasoning Agent]  ⇄  [4 Medical Guardrail Agent]
+   Groq gpt-oss-20b                 Pydantic schema + repair loop (max 2), NEWS2 safety net (raise only)
+                                          │ final severity → TriageSession + agent trace saved
+                                          ▼
+                                 [5 Orchestrator & Action Agent]   n8n webhook → Twilio WhatsApp (High only),
+                                                                   direct Twilio fallback
+
+ clinician feedback ─► [6 Post-Deployment Monitor Agent] ─► [7 Drift Detection & Bias Monitor Agent]
+                       accuracy, hallucinations,             KS / Jensen-Shannon / chi-squared,
+                       monthly PMS report                    alerts
 ```
+
+Agent names are exactly those of the submitted workflow; the same names appear in the agent trace, the console
+log and the app.
 
 | # | Agent | Code | What it does |
 |---|-------|------|--------------|
-| 1 | Data Intake & Transcription | `app/services/audio_service.py` | Whisper `base.en` on CPU turns audio into text. Silent or empty audio is rejected with a clear message. A structured endpoint accepts typed symptoms and vitals instead. |
-| 2 | Evidence Retrieval | `app/services/retrieval_service.py` | Searches a **multi-source knowledge base**: all 222 MIMIC-IV-ED stays (all six tables) + all 1,267 KTAS records = 1,489 cases. Returns the top 5 with their **source** (`MIMIC-IV-ED` or `KTAS`), diagnoses, vitals, ED treatments and a similarity score in [0, 1]. |
-| 3 | Clinical Reasoning | `app/services/llm_service.py` | Groq `openai/gpt-oss-20b` at temperature 0. Returns symptoms, duration, possible conditions, severity, **reasoning** and **required actions**. |
-| 4 | Medical Guardrail | `app/schemas/triage_schema.py`, `app/services/llm_service.py`, `app/services/news2.py` | Strict Pydantic `TriageResult` schema. A rejected draft goes back to Agent 3 with the validation error (max 2 repairs, then HTTP 502). The NEWS2 safety net can raise, never lower, the severity. |
-| 5 | Orchestrator & Action | `app/services/n8n_service.py`, `n8n/`, `app/services/twilio_service.py` | High-severity cases go to the n8n workflow (webhook → secret check → Twilio WhatsApp). If n8n is not configured or unreachable, Twilio is called directly. The channel (`n8n`, `twilio_direct`, `mocked`) is logged in `alert_log`. |
-| 6 | Post-Deployment Monitor | `app/services/monitoring_service.py` | Clinicians mark sessions correct or incorrect. Computes 30-day accuracy and hallucination rate, keeps a review queue of flagged sessions, and produces the monthly PMS CSV. |
-| 7 | Drift & Bias Monitor | `app/services/drift_service.py` | Detects performance drift, data drift and bias. Raises alerts and emails the admin. |
+| 1 | Data Intake & Transcription Agent | `app/services/audio_service.py` | Whisper `base.en` on CPU turns audio into text. Silent or empty audio is rejected with a clear message. A structured endpoint accepts typed symptoms and vitals instead. |
+| 2 | Evidence Retrieval Agent | `app/services/retrieval_service.py` | Searches a **multi-source knowledge base**: all 222 MIMIC-IV-ED stays (all six tables) + all 1,267 KTAS records = 1,489 cases. Returns the top 5 with their **source** (`MIMIC-IV-ED` or `KTAS`), diagnoses, vitals, ED treatments and a similarity score in [0, 1]. |
+| 3 | Clinical Reasoning Agent | `app/services/llm_service.py` | Groq `openai/gpt-oss-20b` at temperature 0. Returns symptoms, duration, possible conditions, severity, **reasoning** and **required actions**. |
+| 4 | Medical Guardrail Agent | `app/schemas/triage_schema.py`, `app/services/llm_service.py`, `app/services/news2.py` | Strict Pydantic `TriageResult` schema. A rejected draft goes back to Agent 3 with the validation error (max 2 repairs, then HTTP 502). The NEWS2 safety net can raise, never lower, the severity. |
+| 5 | Orchestrator & Action Agent | `app/services/n8n_service.py`, `n8n/`, `app/services/twilio_service.py` | High-severity cases go to the n8n workflow (webhook → secret check → Twilio WhatsApp). If n8n is not configured or unreachable, Twilio is called directly. The channel (`n8n`, `twilio_direct`, `mocked`) is logged in `alert_log`. |
+| 6 | Post-Deployment Monitor Agent | `app/services/monitoring_service.py` | Clinicians mark sessions correct or incorrect. Computes 30-day accuracy and hallucination rate, keeps a review queue of flagged sessions, and produces the monthly PMS CSV. |
+| 7 | Drift Detection & Bias Monitor Agent | `app/services/drift_service.py` | Detects performance drift, data drift and bias. Raises alerts and emails the admin. |
 
 ### Agent 2: how retrieval scores a case
 
@@ -91,11 +103,15 @@ Agent 4 computes the NHS **NEWS2** score (RCP 2017 chart) from respiratory rate,
 Every request records one step per agent (input, output, status, duration, which agent receives the output). It is returned in the response as `trace`, stored in `triage_sessions.agent_trace`, served by `GET /api/v1/sessions/{id}/trace`, shown in the Doctor Portal's **Agent Trace** panel, and logged like this:
 
 ```text
-[Agent 2 | Evidence Retrieval] 5 cases, top similarity 0.77, evidence strong, 631.8 ms (ok)
-[Agent 3 | Clinical Reasoning] attempt 1, 1637 tokens, 1223.7 ms (ok)
-[Agent 4 | Medical Guardrail] schema valid on attempt 1, 0.1 ms (ok)
-[Agent 4 | Medical Guardrail (NEWS2 safety net)] NEWS2 6, final severity High, 0.1 ms (ok)
-[Agent 5 | Orchestrator & Action] mocked -> mocked, 11.5 ms (mocked)
+[Agent 1 | Data Intake & Transcription Agent | structured intake, no transcription needed] typed complaint accepted, 0.0 ms (ok)
+[Agent 2 | Evidence Retrieval Agent] 5 cases, top similarity 0.71, evidence strong, 39.9 ms (ok)
+[Agent 3 | Clinical Reasoning Agent] attempt 1, 1500 tokens, 507.2 ms (ok)
+[Agent 4 | Medical Guardrail Agent | schema validation] schema valid on attempt 1, 0.1 ms (ok)
+[Agent 4 | Medical Guardrail Agent | NEWS2 safety net] NEWS2 6, final severity High, 0.0 ms (ok)
+[Step | Persistence] session c3d25613 saved, 15.0 ms (ok)
+[Agent 5 | Orchestrator & Action Agent] mocked -> mocked, 7.3 ms (mocked)
+[Agent 6 | Post-Deployment Monitor Agent] clinician verdict 'correct' recorded, 0.0 ms (ok)
+[Agent 7 | Drift Detection & Bias Monitor Agent] 2 sessions checked, drift score n/a, 62.1 ms (ok)
 ```
 
 Clinician feedback (Agent 6) appends its own step to the session trace; a drift run (Agent 7) returns a trace step too.
