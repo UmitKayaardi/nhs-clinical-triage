@@ -33,7 +33,8 @@ from evaluation.metrics import (
     mcnemar,
     summarise_cv,
 )
-from evaluation.runner import LLM_JOBS, llm_cases
+from evaluation.frozen import config_hash, current_config, frozen_record
+from evaluation.runner import DEV_SPLITS, EXTENSIONS, LLM_JOBS, llm_cases
 
 SYSTEM_NAMES = {
     "S0": "Majority class",
@@ -45,7 +46,27 @@ SYSTEM_NAMES = {
     "S4-noNEWS2": "Full system without NEWS2 safety net",
     "S4-promptv1": "Full system with the previous release prompt (v1)",
     "H": "Triage nurse (KTAS_RN)",
+    "S1-mk": "Retrieval-only vote, multi-source KB (MIMIC-IV-ED + KTAS train)",
 }
+KTAS_MAIN_JOB = "ktas:S4:kb=mimic+ktas-train"
+MAIN_KB = {"mimic": "mimic-train", "ktas": "mimic-all+ktas-train"}
+
+
+def merge_extensions(job_results: Dict) -> Dict:
+    """Folds a completed extension job (e.g. KTAS KB=MIMIC on the other 74 test cases) into its base job.
+    Until both parts are complete the base job is reported alone (117-case sample)."""
+    out = {k: v for k, v in job_results.items() if k not in EXTENSIONS}
+    for ext, base in EXTENSIONS.items():
+        e, b = job_results.get(ext), job_results.get(base)
+        if b and e and b["complete"] and e["complete"]:
+            merged = dict(b)
+            merged["records"] = list(b["records"]) + list(e["records"])
+            merged["n_target"] = b["n_target"] + e["n_target"]
+            merged["n_done"] = b["n_done"] + e["n_done"]
+            merged["job"] = dict(b["job"], split="test")
+            merged["extended"] = True
+            out[base] = merged
+    return out
 AGE_BANDS = [(0, 39.999, "<40"), (40, 64.999, "40-64"), (65, 200, "65+")]
 
 
@@ -77,7 +98,8 @@ def llm_free(dataset: str, parts: Dict[str, pd.DataFrame]) -> Dict:
         "S1": {"best": s1_tune["best"], "grid_size": len(s1_tune["grid"]), "top5": s1_tune["grid"][:5]},
         "S2a": {"best": lr_tune["best"], "grid": lr_tune["grid"]},
         "S2b": {"best": rf_tune["best"], "grid": rf_tune["grid"]},
-        "selection": "macro-F1 on the validation split (ties: accuracy, then smaller k)",
+        "selection": ("macro-F1 on the development set" if dataset == "mimic" else "macro-F1 on the validation split")
+                     + " (ties: accuracy, then smaller k)",
     }
     k, weights = s1_tune["best"]["k"], s1_tune["best"]["weights"]
 
@@ -98,6 +120,14 @@ def llm_free(dataset: str, parts: Dict[str, pd.DataFrame]) -> Dict:
         out["test"][name] = _full_metrics(y, p, pr if name in ("S1", "S2a", "S2b") else None)
         out["predictions"][name] = dict(zip(test["case_id"], p))
 
+    if dataset == "ktas":
+        mk = retrieve_all(test, make_index("mimic-all+ktas-train", train), weights, 10)
+        p_mk, pr_mk = s1_predict(mk, k, prior_of(train["label"]))
+        out["s1_multi_source"] = _full_metrics(y, p_mk, pr_mk)
+        out["s1_multi_source"]["note"] = ("S1 vote with the S4 multi-source knowledge base (all MIMIC-IV-ED stays + "
+                                          "KTAS train), same k and weights as S1")
+        out["s1_multi_source"]["neighbour_source_share_top5"] = _source_share(mk, 5)
+
     # Retrieval quality on the test split (production weights, k = 1/3/5) for the KB used by S4.
     out["retrieval_quality"] = retrieval_quality(dataset, parts)
     out["s1_config"] = {"k": k, "weights": weights}
@@ -106,7 +136,8 @@ def llm_free(dataset: str, parts: Dict[str, pd.DataFrame]) -> Dict:
 
 def retrieval_quality(dataset: str, parts: Dict[str, pd.DataFrame]) -> Dict:
     test = parts["test"]
-    kbs = {"mimic-train": parts["train"]} if dataset == "mimic" else {"ktas-train": parts["train"], "mimic-all": None}
+    kbs = ({"mimic-train": parts["train"]} if dataset == "mimic" else
+           {"mimic-all+ktas-train": parts["train"], "ktas-train": parts["train"], "mimic-all": None})
     res = {}
     for kb, train_df in kbs.items():
         index = make_index(kb, train_df)
@@ -121,12 +152,17 @@ def retrieval_quality(dataset: str, parts: Dict[str, pd.DataFrame]) -> Dict:
     return res
 
 
+def _source_share(retrieved, k: int) -> Dict[str, float]:
+    srcs = [c.source for cases in retrieved for c in cases[:k]]
+    return {src: float(np.mean([x == src for x in srcs])) for src in sorted(set(srcs))} if srcs else {}
+
+
 def cross_validation(dataset: str, parts: Dict[str, pd.DataFrame], s1_cfg: Dict, tuning: Dict) -> Dict:
     dev = pd.concat([parts["train"], parts["validation"]], ignore_index=True)
     if dataset == "mimic":
         splitter = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=SEED)
         folds = list(splitter.split(dev, dev["label"], dev["group_id"]))
-        method = "5-fold StratifiedGroupKFold on subject_id (train+validation, test untouched)"
+        method = "5-fold StratifiedGroupKFold on subject_id (train + development set, held-out test untouched)"
     else:
         splitter = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)
         folds = list(splitter.split(dev, dev["label"]))
@@ -152,6 +188,8 @@ def cross_validation(dataset: str, parts: Dict[str, pd.DataFrame], s1_cfg: Dict,
 def llm_section(job_results: Dict[str, Dict], bundle: Dict, ktas_per_class: int) -> Dict:
     out = {}
     for job in LLM_JOBS:
+        if job.name in EXTENSIONS:
+            continue
         res = job_results.get(job.name)
         cases = llm_cases(bundle, job.dataset, ktas_per_class, job.split)
         if not res:
@@ -160,7 +198,12 @@ def llm_section(job_results: Dict[str, Dict], bundle: Dict, ktas_per_class: int)
         recs = [r for r in res["records"]]
         ok = [r for r in recs if not r.get("failed")]
         entry = {"job": res["job"], "complete": res["complete"], "n_done": res["n_done"], "n_target": res["n_target"],
-                 "n_failed": len(recs) - len(ok), "stopped_reason": res.get("stopped_reason")}
+                 "n_failed": len(recs) - len(ok), "stopped_reason": res.get("stopped_reason"),
+                 "extended_to_full_test": bool(res.get("extended"))}
+        if ok and "neighbour_sources" in ok[0]:
+            srcs = [s for r in ok for s in (r.get("neighbour_sources") or [])]
+            entry["evidence_source_share"] = ({src: float(np.mean([x == src for x in srcs]))
+                                               for src in sorted(set(srcs))} if srcs else {})
         if ok:
             y = [r["true"] for r in ok]
             if job.system == "S3":
@@ -266,6 +309,7 @@ def errors_csv(dataset: str, cases: pd.DataFrame, recs: List[Dict], path) -> int
             "top1_similarity": r.get("top_similarity"), "evidence_strength": r.get("evidence_strength"),
             "low_evidence_flag": r.get("low_evidence"), "news2_score": r.get("news2_score"),
             "news2_override": r.get("safety_override"), "kb": r.get("kb"),
+            "evidence_sources": ";".join(r.get("neighbour_sources") or []),
             **({"nurse_label": c["nurse_label"]} if dataset == "ktas" else {}),
         })
     pd.DataFrame(rows).to_csv(path, index=False, encoding="utf-8")
@@ -289,11 +333,27 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
                 "max_repair_attempts": settings.LLM_MAX_REPAIR_ATTEMPTS, "run_stats": llm_stats,
                 "all_llm_runs_complete": llm_complete},
         "datasets": {},
+        "protocol": {
+            "mimic": ("protocol v2: development set = old validation + old test splits (62 stays, 26 patients; prompt "
+                      "v1 -> v2 developed here, LLM-free tuning uses it); held-out test = 31 stays from 9 patients drawn "
+                      "from the old training patients only (never an LLM query before), evaluated once with the frozen "
+                      "configuration; knowledge base and ML training data for the test run = remaining 114 stays / 21 "
+                      "patients"),
+            "ktas": ("MAIN evaluation with the frozen configuration (prompt v2), never used for development: full "
+                     "test split (191 cases); S4 knowledge base = all MIMIC-IV-ED stays (222) + KTAS training split "
+                     "only (886), KTAS validation/test never in the knowledge base; S3 on the same 191 cases; "
+                     "secondary S4 with KB = MIMIC-IV-ED only on the same 191 cases (117-case stratified sample "
+                     "first, then the other 74)"),
+            "knowledge_base": frozen_record().get("knowledge_base"),
+            "frozen_config": frozen_record(),
+            "live_config_matches_frozen": config_hash(current_config()) == frozen_record()["sha256"],
+        },
     }
 
     # Preprocessing log -> metrics + report_assets/preprocessing.md
     metrics["preprocessing"] = {k: v.as_dict() for k, v in bundle["logs"].items()}
 
+    job_results = merge_extensions(job_results)
     for dataset in ("mimic", "ktas"):
         print(f"[report] {dataset}: LLM-free systems, tuning, CV ...", flush=True)
         parts = bundle["parts"][dataset]
@@ -303,29 +363,44 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
         ds = {"split_summary": describe(bundle["data"][dataset], bundle["splits"][dataset]),
               "tuning": free["tuning"], "s1_config": free["s1_config"], "test": free["test"],
               "cross_validation": cv, "retrieval_quality": free["retrieval_quality"]}
+        if dataset == "ktas":
+            full = bundle["data"]["ktas"]
+            ds["s1_multi_source"] = free["s1_multi_source"]
+            ds["nurse_all_records"] = _full_metrics(full["label"].tolist(), full["nurse_label"].tolist())
+            ds["nurse_all_records"]["note"] = "KTAS_RN vs KTAS_expert on every KTAS record (no split)"
         if dataset == "mimic":
+            # Frozen value: reproduced with the development-phase split it was chosen on.
+            # Re-selected on 2026-11-22 with the same rule on NON-TEST data only: out-of-fold over the protocol-v2
+            # train (114) + development (62) stays; no held-out test stay involved. Result 0.50 = unchanged.
             ds["low_evidence_threshold"] = tune_threshold(parts["train"], parts["validation"])
+            ds["low_evidence_threshold"]["chosen_on"] = ("non-test data only: 5-fold patient-grouped OOF over protocol-v2 "
+                                                          "train (114) + development (62) stays; held-out test not used")
+            ds["low_evidence_threshold"]["previous_selection"] = ("development phase (21 Nov): same rule over old "
+                                                                   "train + old validation, result 0.50")
             ds["low_evidence_threshold"]["config_value"] = settings.LOW_EVIDENCE_THRESHOLD
         metrics["datasets"][dataset] = ds
         free_preds = free["predictions"]
 
         # LLM systems + like-for-like subset
-        jobs = [j for j in LLM_JOBS if j.dataset == dataset]
+        jobs = [j for j in LLM_JOBS if j.dataset == dataset and j.name not in EXTENSIONS]
         llm = llm_section({j.name: job_results.get(j.name) for j in jobs if job_results.get(j.name)}, bundle, ktas_pc)
-        ds["llm_systems"] = {j.name: llm[j.name] for j in jobs if j.split == "test" and j.name in llm}
-        ds["llm_validation"] = {j.name: llm[j.name] for j in jobs if j.split == "validation" and j.name in llm}
+        ds["llm_systems"] = {j.name: llm[j.name] for j in jobs if j.split not in DEV_SPLITS and j.name in llm}
+        ds["llm_development"] = {j.name: llm[j.name] for j in jobs if j.split in DEV_SPLITS and j.name in llm}
         cases = llm_cases(bundle, dataset, ktas_pc)
         y_sub = cases["label"].tolist()
         if dataset == "ktas":
-            sub = {name: _full_metrics(y_sub, [free_preds[name][i] for i in cases["case_id"]])
+            sample = llm_cases(bundle, dataset, ktas_pc, "test-sample")
+            y_sample = sample["label"].tolist()
+            sub = {name: _full_metrics(y_sample, [free_preds[name][i] for i in sample["case_id"]])
                    for name in ("S0", "S1", "S2a", "S2b", "H")}
-            ds["llm_subset"] = {"n": len(cases), "class_counts": cases["label"].value_counts().to_dict(),
-                                "note": f"stratified sample of the KTAS test split, up to {ktas_pc} per class "
-                                        f"(High has only {int((parts['test']['label'] == 'High').sum())} test cases)",
+            ds["llm_subset"] = {"n": len(sample), "class_counts": sample["label"].value_counts().to_dict(),
+                                "note": f"stratified sample of the KTAS test split used by the secondary S4 job "
+                                        f"(KB = MIMIC-IV-ED only), up to {ktas_pc} per class (High has only "
+                                        f"{int((parts['test']['label'] == 'High').sum())} test cases)",
                                 "systems": sub}
 
         # Comparisons, subgroup, low-evidence, errors
-        s4_jobs = [j for j in jobs if j.system == "S4" and j.split == "test" and j.prompt == "v2"]
+        s4_jobs = [j for j in jobs if j.system == "S4" and j.split not in DEV_SPLITS and j.prompt == "v2"]
         best_free = max(("S1", "S2a", "S2b"), key=lambda s: free["tuning"][s]["best"]["f1_macro"])
         ds["best_non_llm_by_validation"] = best_free
         comparisons, low_ev, subgroups = {}, {}, {}
@@ -345,13 +420,29 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
             comparisons[f"{job.name} vs S4-noNEWS2"] = mcnemar(y, s4, [r["llm_severity"] for r in recs])
             if dataset == "ktas":
                 comparisons[f"{job.name} vs H"] = mcnemar(y, s4, [free_preds["H"][i] for i in ids])
+            for other in [j for j in jobs if j.split not in DEV_SPLITS and j.name != job.name
+                          and ((j.kb in (job.kb, "none") and (j.system == "S3" or j.prompt == "v1"))
+                               # main multi-source KB vs the single-source KB (same S4, same prompt)
+                               or (job.kb == MAIN_KB[dataset] and j.system == "S4" and j.prompt == "v2"))]:
+                ores = job_results.get(other.name)
+                if not ores or not ores["records"]:
+                    continue
+                omap = {r["case_id"]: r for r in ores["records"] if not r.get("failed")}
+                common = [r for r in recs if r["case_id"] in omap]
+                if common:
+                    key = "llm_severity" if other.system == "S3" else "pred"
+                    comparisons[f"{job.name} vs {other.name}"] = mcnemar(
+                        [r["true"] for r in common], [r["pred"] for r in common],
+                        [omap[r["case_id"]][key] for r in common])
             low_ev[job.name] = low_evidence_analysis(recs)
             subgroup_preds[f"S4 ({job.kb})"] = {r["case_id"]: r["pred"] for r in recs}
-            if job.kb in ("mimic-train", "mimic-all"):
+            if job.kb == MAIN_KB[dataset]:
                 n_err = errors_csv(dataset, cases, recs, RESULTS_DIR / f"errors_{dataset}.csv")
                 ds["errors_file"] = {"path": f"evaluation/results/errors_{dataset}.csv", "rows": n_err, "system": job.name}
-            if job.kb == "ktas-train":
-                errors_csv(dataset, cases, recs, RESULTS_DIR / f"errors_{dataset}_kb-ktas.csv")
+            elif dataset == "ktas" and job.kb == "mimic-all":
+                n_err = errors_csv(dataset, cases, recs, RESULTS_DIR / "errors_ktas_kb-mimic.csv")
+                ds["errors_file_secondary"] = {"path": "evaluation/results/errors_ktas_kb-mimic.csv", "rows": n_err,
+                                               "system": job.name}
         ds["mcnemar"] = comparisons
         ds["low_evidence_analysis"] = low_ev
         ds["subgroups"] = subgroup_table(sub_df, subgroup_preds, dataset)
@@ -398,6 +489,9 @@ HEADER = ("| System | n | Accuracy [95% CI] | Balanced acc. | Macro-F1 [95% CI] 
 
 def summary_markdown(metrics: Dict) -> str:
     lines = ["# Evaluation summary (tables only)", "",
+             f"Protocol: MIMIC {metrics['protocol']['mimic']}. KTAS: {metrics['protocol']['ktas']}. "
+             f"Frozen configuration sha256 {metrics['protocol']['frozen_config']['sha256'][:16]}... "
+             f"(live config matches: {metrics['protocol']['live_config_matches_frozen']}).", "",
              f"Generated {metrics['generated_at']} by `python scripts/evaluate.py --all`; seed {metrics['seed']}. "
              f"LLM: {metrics['llm']['model']}, temperature {metrics['llm']['temperature']}, reasoning_effort "
              f"{metrics['llm']['reasoning_effort']}. All LLM runs complete: {metrics['llm']['all_llm_runs_complete']}.", ""]
@@ -407,25 +501,39 @@ def summary_markdown(metrics: Dict) -> str:
         for name, s in ds["split_summary"].items():
             c = s["class_counts"]
             lines.append(f"| {name} | {s['n_cases']} | {s['n_groups']} | {c['Low']} | {c['Medium']} | {c['High']} |")
-        lines += ["", "### Test split -- LLM-free systems", "", HEADER]
+        lines += ["", "### {} -- LLM-free systems".format("Held-out test split" if dataset == "mimic" else "Test split"),
+                  "", HEADER]
         for name, m in ds["test"].items():
             lines.append(_row(f"{name} {SYSTEM_NAMES[name]}", m))
-        lines += ["", "### LLM systems (test split{})".format(" sample" if dataset == "ktas" else ""), "", HEADER]
+        if dataset == "ktas" and ds.get("s1_multi_source"):
+            lines.append(_row("S1-mk " + SYSTEM_NAMES["S1-mk"], ds["s1_multi_source"]))
+            lines += ["", "Triage nurse on all KTAS records:", "", HEADER,
+                      _row("H Triage nurse (KTAS_RN), all records", ds["nurse_all_records"])]
+        lines += ["", "### LLM systems ({})".format("KTAS test split, MAIN evaluation, frozen configuration; KB "
+                                                    "mimic+ktas-train = all MIMIC-IV-ED + KTAS train"
+                                                    if dataset == "ktas" else
+                                                    "MIMIC held-out test split, frozen configuration, run once"),
+                  "", HEADER]
         for job, entry in ds["llm_systems"].items():
             for sysname in ("S3", "S4", "S4-noNEWS2", "S4-promptv1"):
                 if sysname in entry:
                     tag = "" if entry["complete"] else f" (INCOMPLETE {entry['n_done']}/{entry['n_target']})"
                     lines.append(_row(f"{sysname} [{job.split(':')[-1]}]{tag}", entry[sysname]))
-        if ds.get("llm_validation"):
-            lines += ["", "### LLM systems on the validation split (prompt check before the test run)", "", HEADER]
-            for job, entry in ds["llm_validation"].items():
-                if "S4" in entry:
-                    lines.append(_row(f"S4 validation [{job.split(':')[-1]}]", entry["S4"]))
+        if ds.get("llm_development"):
+            lines += ["", "### Development set results (prompt development v1 -> v2; NOT held-out)", "",
+                      "Development set = old validation + old test splits; knowledge base = old training split.", "",
+                      HEADER]
+            for job, entry in ds["llm_development"].items():
+                for sysname in ("S4", "S4-noNEWS2", "S4-promptv1"):
+                    if sysname in entry:
+                        lines.append(_row(f"{sysname} development [{job.split(':')[-1]}]", entry[sysname]))
         if dataset == "ktas" and "llm_subset" in ds:
-            lines += ["", f"### Same {ds['llm_subset']['n']}-case KTAS subset -- LLM-free systems and nurse", "", HEADER]
+            lines += ["", f"### Same {ds['llm_subset']['n']}-case KTAS sample (secondary job, KB = MIMIC-IV-ED only) "
+                          "-- LLM-free systems and nurse", "", HEADER]
             for name, m in ds["llm_subset"]["systems"].items():
                 lines.append(_row(f"{name} {SYSTEM_NAMES[name]}", m))
-        lines += ["", "### 5-fold cross-validation (development = train + validation)", "",
+        tune_name = "development set" if dataset == "mimic" else "validation split"
+        lines += ["", "### 5-fold cross-validation (train + {}; held-out test untouched)".format(tune_name), "",
                   f"Method: {ds['cross_validation']['method']}", "",
                   "| System | Accuracy mean ± sd | Macro-F1 mean ± sd | Balanced acc. mean ± sd | Under-triage mean ± sd |",
                   "|---|---|---|---|---|"]
@@ -434,12 +542,12 @@ def summary_markdown(metrics: Dict) -> str:
                          f"{_f(cvm['f1_macro']['mean'])} ± {_f(cvm['f1_macro']['std'])} | "
                          f"{_f(cvm['balanced_accuracy']['mean'])} ± {_f(cvm['balanced_accuracy']['std'])} | "
                          f"{_f(cvm['under_triage_rate']['mean'])} ± {_f(cvm['under_triage_rate']['std'])} |")
-        lines += ["", "### Tuned hyperparameters (validation macro-F1)", "",
+        lines += ["", f"### Tuned hyperparameters (macro-F1 on the {tune_name})", "",
                   f"- S1: k={ds['s1_config']['k']}, weights={ds['s1_config']['weights']} "
                   f"(val macro-F1 {_f(ds['tuning']['S1']['best']['f1_macro'])})",
                   f"- S2a: {ds['tuning']['S2a']['best']['params']} (val macro-F1 {_f(ds['tuning']['S2a']['best']['f1_macro'])})",
                   f"- S2b: {ds['tuning']['S2b']['best']['params']} (val macro-F1 {_f(ds['tuning']['S2b']['best']['f1_macro'])})",
-                  f"- Best non-LLM system by validation macro-F1: {ds['best_non_llm_by_validation']}"]
+                  f"- Best non-LLM system by {tune_name} macro-F1: {ds['best_non_llm_by_validation']}"]
         lines += ["", "### Retrieval quality (production weights, test queries)", "",
                   "| KB | Queries | No-evidence rate | Mean top-1 similarity | P@1 | P@3 | P@5 |", "|---|---|---|---|---|---|---|"]
         for kb, r in ds["retrieval_quality"].items():
@@ -450,7 +558,9 @@ def summary_markdown(metrics: Dict) -> str:
                       "|---|---|---|---|"]
             for k, v in ds["mcnemar"].items():
                 lines.append(f"| {k} | {v['a_correct_b_wrong']} | {v['a_wrong_b_correct']} | {v['p_value_exact']:.4f} |")
-        perf = [(k, v["agent_performance"]) for k, v in ds["llm_systems"].items() if "agent_performance" in v]
+        perf = ([(f"DEVELOPMENT {k}", v["agent_performance"]) for k, v in ds.get("llm_development", {}).items()
+                 if "agent_performance" in v]
+                + [(k, v["agent_performance"]) for k, v in ds["llm_systems"].items() if "agent_performance" in v])
         if perf:
             lines += ["", "### Agent performance", "",
                       "| Job | Cases | First-pass valid | Repair rate | Failed | NEWS2 overrides | Weak-evidence flags | "

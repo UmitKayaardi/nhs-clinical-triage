@@ -92,8 +92,8 @@ def run_clinical_agents(
         db_context = retrieval_service.format_cases_as_context(cases)
         timings["agent2_retrieval"] = (time.perf_counter() - t0) * 1000
         step["output"] = {
-            "cases": [{"stay_id": c.stay_id, "chief_complaint": c.chief_complaint, "severity": c.severity,
-                       "similarity": c.similarity_score} for c in cases],
+            "cases": [{"source": c.source, "case_ref": c.case_ref, "chief_complaint": c.chief_complaint,
+                       "severity": c.severity, "similarity": c.similarity_score} for c in cases],
             **evidence,
         }
         step["summary"] = (f"{len(cases)} cases, top similarity {evidence['top_similarity']:.2f}, "
@@ -108,8 +108,11 @@ def run_clinical_agents(
         completion_fn=completion_fn, trace=trace, attempts_out=attempts,
         **({"prompt_version": prompt_version} if prompt_version else {}),
     )
-    timings["agent3_4_reasoning_guardrail"] = (time.perf_counter() - t0) * 1000
+    timings["agent3_4_wall"] = (time.perf_counter() - t0) * 1000
+    # Agent 3 = API latency reported by the completion (the original latency for cached calls);
+    # Agent 4 = guardrail validation time measured directly for every attempt (never derived by subtraction).
     timings["agent3_llm"] = sum((a.get("latency_ms") or 0.0) for a in attempts)
+    timings["agent4_guardrail"] = sum((a.get("guardrail_ms") or 0.0) for a in attempts)
     llm_severity = result.Severity.value
 
     # --- Agent 4: NEWS2 clinical safety net (raise-only) ---
@@ -141,5 +144,5 @@ def run_clinical_agents(
         news2=news2.as_dict(),
         safety=safety,
         attempts=attempts,
-        timings_ms={k: round(v, 1) for k, v in timings.items()},
+        timings_ms={k: round(v, 3) for k, v in timings.items()},
     )

@@ -1,6 +1,6 @@
 # Development and simulation environment (facts only)
 
-Generated 2026-11-21 by `python scripts/build_report_assets.py`.
+Generated 2026-11-28 by `python scripts/build_report_assets.py`.
 
 ## Platform
 

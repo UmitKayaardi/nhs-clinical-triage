@@ -8,11 +8,11 @@ app_file: app.py
 pinned: false
 ---
 
-**Doctor Portal / Admin PIN: 1234** — demo-only PIN for markers. The system holds no real patient data (MIMIC-IV-ED Demo and invented demo cases only).
+**Doctor Portal / Admin PIN: 1234** — demo-only PIN for markers. The system holds no real patient data (the de-identified MIMIC-IV-ED Demo, the open KTAS dataset and invented demo cases only).
 
 # AI-Powered Clinical Triage Assistant
 
-A clinical decision support system (CDSS) for Emergency Departments. A patient describes their symptoms by voice (or a clinician types them), the system retrieves similar historical cases from MIMIC-IV-ED, an LLM proposes a 3-tier triage level (High / Medium / Low) grounded in that evidence, and on-call staff are alerted on WhatsApp for High-priority cases. Clinicians review every decision, and the system monitors its own accuracy, data drift and bias after deployment.
+A clinical decision support system (CDSS) for Emergency Departments. A patient describes their symptoms by voice (or a clinician types them), the system retrieves similar historical cases from a **multi-source knowledge base** (MIMIC-IV-ED + KTAS: about 1,500 records from two datasets (three emergency departments: one in the USA, two in South Korea)), an LLM proposes a 3-tier triage level (High / Medium / Low) grounded in that evidence, and on-call staff are alerted on WhatsApp for High-priority cases. Clinicians review every decision, and the system monitors its own accuracy, data drift and bias after deployment.
 
 > **Decision support only.** Every output is a draft for clinician review. The system never makes the final triage decision.
 
@@ -23,8 +23,8 @@ A clinical decision support system (CDSS) for Emergency Departments. A patient d
 ```text
  audio ─► [1 Intake/Whisper] ─┐
  typed symptoms + vitals ─────┴► [2 Evidence Retrieval] ─► [3 Clinical Reasoning] ⇄ [4 Guardrail]
-                                   (all 6 MIMIC tables,      (Groq gpt-oss-20b)      (Pydantic schema,
-                                    evidence strength)                                repair loop, NEWS2)
+                                   (MIMIC-IV-ED + KTAS,      (Groq gpt-oss-20b)      (Pydantic schema,
+                                    source label, strength)                           repair loop, NEWS2)
                                                                                            │
                          TriageSession + agent trace saved ◄───────────────────────────────┤
                                                                                            ▼
@@ -36,7 +36,7 @@ A clinical decision support system (CDSS) for Emergency Departments. A patient d
 | # | Agent | Code | What it does |
 |---|-------|------|--------------|
 | 1 | Data Intake & Transcription | `app/services/audio_service.py` | Whisper `base.en` on CPU turns audio into text. Silent or empty audio is rejected with a clear message. A structured endpoint accepts typed symptoms and vitals instead. |
-| 2 | Evidence Retrieval | `app/services/retrieval_service.py` | Scores every historical stay across **all six** MIMIC-IV-ED tables and returns the top 5 with diagnoses, vitals, ED treatments and a similarity score in [0, 1]. |
+| 2 | Evidence Retrieval | `app/services/retrieval_service.py` | Searches a **multi-source knowledge base**: all 222 MIMIC-IV-ED stays (all six tables) + all 1,267 KTAS records = 1,489 cases. Returns the top 5 with their **source** (`MIMIC-IV-ED` or `KTAS`), diagnoses, vitals, ED treatments and a similarity score in [0, 1]. |
 | 3 | Clinical Reasoning | `app/services/llm_service.py` | Groq `openai/gpt-oss-20b` at temperature 0. Returns symptoms, duration, possible conditions, severity, **reasoning** and **required actions**. |
 | 4 | Medical Guardrail | `app/schemas/triage_schema.py`, `app/services/llm_service.py`, `app/services/news2.py` | Strict Pydantic `TriageResult` schema. A rejected draft goes back to Agent 3 with the validation error (max 2 repairs, then HTTP 502). The NEWS2 safety net can raise, never lower, the severity. |
 | 5 | Orchestrator & Action | `app/services/n8n_service.py`, `n8n/`, `app/services/twilio_service.py` | High-severity cases go to the n8n workflow (webhook → secret check → Twilio WhatsApp). If n8n is not configured or unreachable, Twilio is called directly. The channel (`n8n`, `twilio_direct`, `mocked`) is logged in `alert_log`. |
@@ -45,7 +45,16 @@ A clinical decision support system (CDSS) for Emergency Departments. A patient d
 
 ### Agent 2: how retrieval scores a case
 
-Each historical stay gets a weighted score:
+The knowledge base has two sources (Feature 2, multi-source evidence-grounded reasoning):
+
+| Source | Records | From | Fields used as evidence |
+|---|---|---|---|
+| `MIMIC-IV-ED` | 222 ED stays | MIMIC-IV-ED Demo, one US hospital ED (Boston) | complaint, diagnoses, triage + time-series vitals, medications, disposition, ESI-based severity |
+| `KTAS` | 1,267 ED records | Moon et al. (2019), two Korean EDs | complaint, ED diagnosis, vitals, disposition, KTAS_expert-based severity (`data/external/ktas/ktas_kb.csv`, built by `scripts/build_ktas_kb.py`) |
+
+Every retrieved case is shown with its source (API `evidence_cases[].source`, the Agent 2 trace, the Clinician Intake and Doctor Portal tables), and the LLM sees `Source: MIMIC-IV-ED` / `Source: KTAS` in front of each case. `KB_INCLUDE_KTAS=false` switches the live system back to MIMIC-IV-ED only.
+
+Each historical case gets a weighted score:
 
 | Component | Source tables | Weight |
 |-----------|---------------|--------|
@@ -54,6 +63,8 @@ Each historical stay gets a weighted score:
 | Vitals | `triage.csv`, `vitalsign.csv` (mean) | 0.5 (only when vitals are supplied) |
 | Medications | `medrecon.csv`, `pyxis.csv` | 0.3 |
 | Stay / disposition | `edstays.csv` | context returned to the LLM |
+
+KTAS records have no medication data, so their medication component is 0.
 
 Text similarity is TF-IDF cosine after clinical normalisation. MIMIC abbreviations (`SOB`, `N/V`, `ABD PAIN`, `S/P FALL`) and lay phrasing ("can't catch my breath", "stomach", "threw up") map onto shared tokens. This is deliberately lexical rather than a neural embedding model: the Space stays CPU-only and every match can be explained. Vitals similarity uses a Gaussian kernel on clinically scaled differences. Weights can be changed with the `RETRIEVAL_WEIGHT_*` settings.
 
@@ -69,7 +80,7 @@ Severity genuinely differs with age, so an age × severity association is report
 
 ### Weak-evidence warning (WP2)
 
-After retrieval, Agent 2 rates the evidence: **weak** when the top-1 similarity is below `LOW_EVIDENCE_THRESHOLD` (0.50, chosen on the MIMIC development split without touching the test split), **strong** when top-1 and mean top-5 similarity are both above it and at least 60% of the cases agree on the severity, otherwise **moderate**. Weak evidence is written into the LLM prompt (the model must say so and may not report High confidence), and the doctor's card shows a yellow banner: *Weak historical evidence — treat this recommendation with caution.*
+After retrieval, Agent 2 rates the evidence: **weak** when the top-1 similarity is below `LOW_EVIDENCE_THRESHOLD` (0.50, selected on non-test data only — out-of-fold over the 114 training + 62 development stays — and frozen before the held-out run), **strong** when top-1 and mean top-5 similarity are both above it and at least 60% of the cases agree on the severity, otherwise **moderate**. Weak evidence is written into the LLM prompt (the model must say so and may not report High confidence), and the doctor's card shows a yellow banner: *Weak historical evidence — treat this recommendation with caution.*
 
 ### Safety net (NEWS2)
 
@@ -100,7 +111,9 @@ python scripts/evaluate.py --all              # everything; LLM calls are cached
 python scripts/evaluate.py --all --offline    # reproduce every number from the committed cache, no API calls
 ```
 
-- Splits: MIMIC patient-grouped stratified 70/15/15 (145/31/31 stays), KTAS stratified 70/15/15 (886/190/191). Saved in `evaluation/splits/`. Seed 42.
+- **Main evaluation: KTAS** (Moon et al., 2019), stratified 70/15/15 (886/190/191), never used for development. S4 (full system) and S3 (LLM only) run on the **full 191-case test split** with the frozen configuration. S4's knowledge base = all 222 MIMIC-IV-ED stays + the **KTAS training split only** (886 records); KTAS validation and test records are never in the evaluation knowledge base (`evaluation/runner.py::kb_frame` refuses, and a unit test checks it). The triage nurse (`KTAS_RN`) and the LLM-free baselines are scored on the same 191 cases, and the nurse also on all 1,267 records. A secondary S4 run uses KB = MIMIC-IV-ED only on the same 191 cases (a 117-case stratified sample first, then the other 74), so all three KTAS LLM jobs cover the same 191 cases.
+- **Secondary check: MIMIC held-out.** Prompt v1 → v2 was developed on a **development set** (62 stays, 26 patients). The configuration (prompt v2, retrieval weights, k, evidence threshold, repair attempts, NEWS2) was then **frozen** (`evaluation/frozen_config.json`; held-out runs refuse to start if it changes) and evaluated **once** on a new **held-out test split** (31 stays, 9 patients that were never an LLM query; `evaluation/splits/mimic_split_v2.json`). Training / knowledge base: the remaining 114 stays (21 patients). No patient is in two sets.
+- The knowledge-base change (2026-11-22) was decided before any result of the affected KTAS jobs; everything else in the frozen configuration is unchanged (see the `knowledge_base` block and history in `evaluation/frozen_config.json`). Seed 42 everywhere.
 - Leakage control: during MIMIC evaluation the evidence index holds training stays only (`find_similar_cases(..., allowed_stay_ids=...)` / `index=`); a test proves a test stay never retrieves itself.
 - Systems: S0 majority, S1 retrieval-only vote, S2a logistic regression, S2b random forest, S3 LLM without evidence, **S4 full system**, S4-noNEWS2, S4-promptv1 (previous prompt), H triage nurse (KTAS).
 - Metrics: accuracy, balanced accuracy, precision/recall/F1 (macro, weighted, per class), confusion matrices, linear-weighted kappa, under-/over-triage, High recall, ROC-AUC, 95% bootstrap CIs, 5-fold CV, McNemar, retrieval P@k, latency per agent, guardrail repair rate, NEWS2 overrides, weak-evidence analysis, subgroups by sex and age band.
@@ -114,9 +127,11 @@ Headline numbers: see `evaluation/results/summary.md` (regenerated by the comman
 | Dataset | Use | Size | Labels |
 |---|---|---|---|
 | MIMIC-IV-ED Demo v2.2 (`data/*.csv`, loaded into `triage_data.db`) | Knowledge base for Agent 2 + internal evaluation | 64 patients, 222 ED stays, 207 with ESI acuity | ESI 1–2 High (115), 3 Medium (90), 4–5 Low (2) |
-| KTAS, Moon et al. (2019) *PLoS ONE* 14(9) e0216972 (`data/external/ktas/`, CC BY 4.0) | External validation only, never loaded by the live system | 1,267 adult ED visits, 2 Korean EDs | `KTAS_expert` (truth): High 246, Medium 487, Low 534; `KTAS_RN` = nurse baseline |
+| KTAS, Moon et al. (2019) *PLoS ONE* 14(9) e0216972 (`data/external/ktas/`, CC BY 4.0) | Second knowledge-base source for Agent 2 (live: all records; evaluation: training split only) + **main evaluation** | 1,267 adult ED visits, 2 Korean EDs | `KTAS_expert` (truth): High 246, Medium 487, Low 534; `KTAS_RN` = nurse baseline (never in the knowledge base) |
 
-`python -m scripts.download_ktas` re-downloads the KTAS file from the journal and checks its SHA-256. Cleaning steps and row counts: `report_assets/preprocessing.md`.
+The live knowledge base holds 1,489 cases: **about 1,500 records from two datasets (three emergency departments: one in the USA, two in South Korea)**.
+
+`python -m scripts.download_ktas` re-downloads the KTAS file from the journal and checks its SHA-256; `python scripts/build_ktas_kb.py` rebuilds the KTAS knowledge-base file from it. Cleaning steps and row counts: `report_assets/preprocessing.md`.
 
 ## API
 
@@ -179,7 +194,7 @@ python -m scripts.seed_monitoring_demo --purge
 pytest
 ```
 
-121 tests cover retrieval ranking and synonyms, leakage control, Twilio retry, mock and failure logging, n8n success/failure/fallback, the guardrail repair loop, the NEWS2 chart, the agent trace, feedback and accuracy maths, the monthly report, drift/bias statistics, the evaluation metrics, splits and KTAS cleaning, the LLM cache, and the full API flow (audio → triage → alert → feedback → accuracy). Whisper, Groq, Twilio and n8n are mocked, so no network access, GPU or credentials are needed and no WhatsApp message is ever sent.
+133 tests cover retrieval ranking and synonyms, the multi-source knowledge base (source labels, no KTAS validation/test record in the evaluation knowledge base), leakage control, Twilio retry, mock and failure logging, n8n success/failure/fallback, the guardrail repair loop, the NEWS2 chart, the agent trace, feedback and accuracy maths, the monthly report, drift/bias statistics, the evaluation metrics, splits and KTAS cleaning, the LLM cache, and the full API flow (audio → triage → alert → feedback → accuracy). Whisper, Groq, Twilio and n8n are mocked, so no network access, GPU or credentials are needed and no WhatsApp message is ever sent.
 
 ### Docker (PostgreSQL)
 
@@ -222,7 +237,7 @@ Note: Space storage is ephemeral unless persistent storage is enabled, so sessio
 │   ├── schemas/         triage_schema.py (Agent 4 guardrail), monitoring_schema.py
 │   └── services/        audio, retrieval, llm, triage_pipeline, news2, vitals, trace, n8n, twilio, alert, monitoring, drift
 ├── alembic/             migrations
-├── data/                MIMIC-IV-ED demo CSV subset; external/ktas/ (KTAS validation data + SOURCE.md)
+├── data/                MIMIC-IV-ED demo CSV subset; external/ktas/ (KTAS raw data, ktas_kb.csv knowledge-base file, SOURCE.md)
 ├── evaluation/          offline evaluation package (splits, metrics, baselines, LLM cache, results)
 ├── n8n/                 Agent 5 workflow JSON + setup guide
 ├── report_assets/       facts, tables, JSON examples, figures, screenshots for the report
@@ -235,4 +250,4 @@ Note: Space storage is ephemeral unless persistent storage is enabled, so sessio
 
 ## Data
 
-The system uses the de-identified MIMIC-IV-ED demo subset: `edstays`, `triage`, `diagnosis`, `vitalsign`, `medrecon`, `pyxis`. MIMIC timestamps are date-shifted, so they don't reflect real dates.
+The system uses the de-identified MIMIC-IV-ED demo subset (`edstays`, `triage`, `diagnosis`, `vitalsign`, `medrecon`, `pyxis`) and the open KTAS dataset (CC BY 4.0) as its two knowledge-base sources. MIMIC timestamps are date-shifted, so they don't reflect real dates.

@@ -166,7 +166,7 @@ async def _run_pipeline(
             severity=triage_result.Severity,
             reasoning=triage_result.Reasoning,
             required_actions=json.dumps(triage_result.Required_Actions),
-            evidence_stay_ids=json.dumps([case.stay_id for case in similar_cases]),
+            evidence_stay_ids=json.dumps([case.case_ref for case in similar_cases]),
             evidence_scores=json.dumps([case.similarity_score for case in similar_cases]),
             patient_id=patient.patient_id,
             age=patient.age,
@@ -211,6 +211,8 @@ async def _run_pipeline(
                 vitals=case.vitals,
                 treatments=case.treatments,
                 similarity_score=case.similarity_score,
+                source=case.source,
+                case_ref=str(case.case_ref),
             )
             for case in similar_cases
         ],

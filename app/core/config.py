@@ -55,6 +55,13 @@ class Settings(BaseSettings):
     MIN_KEYWORD_LENGTH: int = Field(default=4)  # matches PoC rule: words > 4 chars
     MAX_SIMILAR_CASES: int = Field(default=5)
 
+    # --- Agent 2: multi-source knowledge base (decided 2026-11-22) ---
+    # Live system: all MIMIC-IV-ED stays (database) + all KTAS records (preprocessed CSV,
+    # built by scripts/build_ktas_kb.py). The offline evaluation builds its own knowledge
+    # bases (training data only) and never uses this switch.
+    KB_INCLUDE_KTAS: bool = Field(default=True)
+    KTAS_KB_PATH: str = Field(default="data/external/ktas/ktas_kb.csv")
+
     # --- Agent 2: retrieval weights (exact complaint > diagnosis > vitals) ---
     RETRIEVAL_WEIGHT_COMPLAINT: float = Field(default=1.0)
     RETRIEVAL_WEIGHT_DIAGNOSIS: float = Field(default=0.7)

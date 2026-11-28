@@ -23,6 +23,7 @@ os.environ["GROQ_API_KEY"] = "test-key"
 os.environ["TWILIO_TEST_MODE"] = "true"
 os.environ["ADMIN_API_KEY"] = ""
 os.environ["SMTP_HOST"] = ""
+os.environ["KB_INCLUDE_KTAS"] = "false"   # unit tests use the small MIMIC sample only; see test_multi_source_kb.py
 os.environ["AUDIO_TEMP_DIR"] = os.path.join(_TMP_DIR, "audio")
 
 sys.modules.setdefault("whisper", types.SimpleNamespace(load_model=lambda *a, **k: None))

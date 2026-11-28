@@ -36,7 +36,7 @@ from app.models.monitoring_models import AlertLog, DriftMetrics, TriageSessionFe
 from app.services.n8n_service import N8nOrchestrator
 from app.services.trace import AgentTrace
 from app.schemas.monitoring_schema import AlertRequest, AlertResponse, FeedbackRequest, FeedbackResponse
-from app.services import drift_service, monitoring_service
+from app.services import drift_service, monitoring_service, retrieval_service
 from app.services.alert_service import raise_alert
 from app.services.monitoring_service import SessionNotFoundError
 
@@ -135,6 +135,15 @@ def get_drift(
     return result
 
 
+def _kb_summary(db: Session) -> dict:
+    """Live multi-source knowledge base (Agent 2): cases per source."""
+    try:
+        counts = retrieval_service.knowledge_base_summary(db)
+    except Exception as exc:  # pragma: no cover - health must never fail
+        return {"error": str(exc)[:200]}
+    return {"sources": counts, "total": sum(counts.values()), "ktas_enabled": get_settings().KB_INCLUDE_KTAS}
+
+
 @router.get("/admin/system-health", summary="Groq and n8n reachability, DB row counts, models and versions")
 def system_health(db: Session = Depends(get_db)) -> dict:
     import fastapi
@@ -166,6 +175,7 @@ def system_health(db: Session = Depends(get_db)) -> dict:
                 "drift_metrics": db.query(DriftMetrics).count(),
             },
         },
+        "knowledge_base": _kb_summary(db),
         "models": {
             "agent1_whisper": settings.WHISPER_MODEL_NAME,
             "agent3_llm": settings.GROQ_MODEL_NAME,

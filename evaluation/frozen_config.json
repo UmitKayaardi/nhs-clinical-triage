@@ -1,0 +1,77 @@
+{
+  "frozen_on": "2026-11-22",
+  "reason": "prompt v2 developed on the MIMIC development set; held-out MIMIC test and KTAS are evaluated once with this configuration",
+  "config": {
+    "prompt_version": "v2",
+    "prompt_v2_template_sha256": "bfa91ab6845331470b88efe9afb0fd34287b5fbf338c443289cee3ed338364c9",
+    "prompt_v1_template_sha256": "de0bf5043e036300c315b039e6a323db04315c1260a3ac73aecabd6459df85e5",
+    "weak_rule_sha256": "4f79876ca5d73f4c039ce9817576f9ee8f56eced275b351b2416e6d65e81911b",
+    "repair_template_sha256": "044a1cd28937cd4c57d591ceca0b9b9a5ed57865f10cc4ac869dc3ad0bd7f96c",
+    "model": "openai/gpt-oss-20b",
+    "temperature": 0.0,
+    "max_tokens": 1024,
+    "reasoning_effort": "low",
+    "max_repair_attempts": 2,
+    "max_similar_cases": 5,
+    "retrieval_weights": [
+      1.0,
+      0.7,
+      0.5,
+      0.3
+    ],
+    "low_evidence_threshold": 0.5,
+    "evidence_min_agreement": 0.6,
+    "news2_safety_net": true
+  },
+  "sha256": "77522c1b1d9594774df9aa1902885fc3c826d9cbf0c0b008205a5d10d3749924",
+  "history": [
+    {
+      "frozen_on": "2026-11-21",
+      "sha256": "77522c1b1d9594774df9aa1902885fc3c826d9cbf0c0b008205a5d10d3749924",
+      "note": "first freeze after prompt development"
+    },
+    {
+      "frozen_on": "2026-11-22",
+      "note": "LOW_EVIDENCE_THRESHOLD re-selected on non-test data only (train 114 + development 62, OOF); same rule; result 0.50 unchanged; re-frozen before any held-out LLM run"
+    },
+    {
+      "frozen_on": "2026-11-22",
+      "note": "knowledge-base change: Agent 2 multi-source KB (MIMIC-IV-ED + KTAS). Live = all MIMIC + all KTAS; KTAS evaluation = all MIMIC + KTAS train (886) only. Decided before any result of the affected KTAS jobs. Hashed configuration unchanged."
+    },
+    {
+      "frozen_on": "2026-11-22",
+      "note": "KTAS secondary job (KB = MIMIC-IV-ED only) extended from the 117-case sample to all 191 test cases (student decision); hashed configuration unchanged"
+    }
+  ],
+  "low_evidence_threshold_selection": {
+    "date": "2026-11-22",
+    "data": "protocol-v2 train (114) + development (62) stays, 5-fold patient-grouped OOF; held-out test not used",
+    "rule": "largest accuracy drop (unflagged - flagged) with 10-40% of cases flagged",
+    "signal": "top-1 similarity, production retrieval weights, k=5",
+    "chosen": 0.5,
+    "chosen_row": {
+      "threshold": 0.5,
+      "n_flagged": 59.0,
+      "flag_rate": 0.335,
+      "acc_flagged": 0.61,
+      "acc_unflagged": 0.624,
+      "accuracy_drop": 0.014
+    },
+    "previous_value": 0.5,
+    "changed": false
+  },
+  "knowledge_base": {
+    "decided_on": "2026-11-22",
+    "decided_before_results": "decided before any result of the affected KTAS jobs was seen (KTAS S4 KB=MIMIC+KTAS-train and S3 on 191 cases had not run)",
+    "live_system": "all MIMIC-IV-ED Demo stays (222) + all KTAS records (1,267) = 1,489 cases, two sources",
+    "evaluation_ktas_main": "all MIMIC-IV-ED Demo stays (222) + KTAS training split only (886) = 1,108 cases; KTAS validation (190) and test (191) never in the knowledge base",
+    "evaluation_ktas_secondary": "MIMIC-IV-ED only (222 stays) on the same 191 KTAS test cases (117-case sample first, then the other 74; extension made required on 2026-11-22)",
+    "evaluation_mimic_heldout": "MIMIC protocol-v2 training stays only (114); unchanged, not re-run",
+    "source_labels": [
+      "MIMIC-IV-ED",
+      "KTAS"
+    ],
+    "llm_evidence_text": "each retrieved case is prefixed with 'Source: <label>' when the knowledge base has more than one source; single-source evidence text is byte-identical to before",
+    "unchanged": "prompt v2, weak-evidence rule, repair template, model settings, retrieval weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, agreement 0.6, repairs 2, NEWS2 on (config hash unchanged)"
+  }
+}

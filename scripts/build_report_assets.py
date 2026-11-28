@@ -219,44 +219,67 @@ def report_facts():
          "- KTAS ground truth = KTAS_expert: High 246, Medium 487, Low 534; nurse baseline KTAS_RN: High 232, Medium 447, Low 588",
          "- KTAS inputs excluded (leak answer / post-triage): KTAS_RN, KTAS_expert, Error_group, mistriage, Diagnosis in ED, Disposition, Length of stay_min, KTAS duration_min",
          "- KTAS cleaning: 19 distinct Korean complaints (21 rows) translated; 'F/C, C/S' expanded (2 rows); Greek alpha folded (1 row); 0 rows dropped",
-         "- KTAS vitals: Korean '측불' (unmeasurable) -> missing (SBP 25, DBP 29, HR 20, RR 22, BT 18, SpO2 9); SpO2 not recorded at the local ED (688 rows); BT deg C -> deg F", ""]
+         "- KTAS vitals: Korean '측불' (unmeasurable) -> missing (SBP 25, DBP 29, HR 20, RR 22, BT 18, SpO2 9); SpO2 not recorded at the local ED (688 rows); BT deg C -> deg F", "",
+         "## Knowledge base (Agent 2, multi-source; change decided 2026-11-22 before any result of the affected KTAS jobs)",
+         "- Sources: two datasets -- MIMIC-IV-ED Demo (Beth Israel Deaconess Medical Center ED, Boston, USA; ESI) and KTAS (two Korean EDs, local + regional; KTAS_expert)",
+         "- Live system (Space) knowledge base: all 222 MIMIC-IV-ED stays + all 1,267 KTAS records = 1,489 cases: about 1,500 records from two datasets (three emergency departments: one in the USA, two in South Korea)",
+         "- Evaluation knowledge base for the KTAS main run: all 222 MIMIC-IV-ED stays + KTAS training split only (886) = 1,108 cases; KTAS validation (190) and test (191) records are never in it (runner.kb_frame raises KnowledgeBaseLeak; unit test)",
+         "- MIMIC held-out evaluation unchanged: knowledge base = 114 protocol-v2 training stays; not re-run",
+         "- Each retrieved case carries its source label ('MIMIC-IV-ED' or 'KTAS'): API field evidence_cases[].source / case_ref, Agent 2 trace output, Clinician Intake and Doctor Portal evidence tables",
+         "- LLM evidence text: each case prefixed 'Source: <label>' when the knowledge base has more than one source; single-source evidence text unchanged (cached MIMIC calls stay valid)",
+         "- KTAS knowledge-base file: data/external/ktas/ktas_kb.csv (scripts/build_ktas_kb.py; same preprocessing as the evaluation; fields complaint, KTAS_expert severity, ED diagnosis, disposition, vitals; KTAS_RN not included)",
+         "- Frozen configuration unchanged (sha256 unchanged); knowledge-base change recorded in evaluation/frozen_config.json (knowledge_base block + history entry dated 2026-11-22)", ""]
     L += ["## Splits"]
     for ds_name, ds in m["datasets"].items():
         for split, sm in ds["split_summary"].items():
             c = sm["class_counts"]
             L.append(f"- {ds_name.upper()} {split}: {sm['n_cases']} cases, {sm['n_groups']} "
                      f"{'patients' if ds_name == 'mimic' else 'rows'} ({100 * sm['share']:.0f}%); Low {c['Low']}, Medium {c['Medium']}, High {c['High']}")
-    L += ["- MIMIC split method: patient-grouped stratified 70/15/15 (no patient in two splits)",
+    L += ["- MIMIC protocol v2 splits: train 114 stays / 21 patients (knowledge base + ML training), development 62 stays / 26 patients (= development-phase validation + test splits), held-out test 31 stays / 9 patients",
+          "- MIMIC held-out test drawn only from development-phase training patients (previously knowledge-base only); patient-grouped; stratified on High/Medium; max 9 stays per test patient; seed 42; file evaluation/splits/mimic_split_v2.json",
+          "- No patient in two of train / development / test",
+          "- Development-phase split (kept for the development results): patient-grouped stratified 70/15/15, 145/31/31 stays, file evaluation/splits/mimic_split.json",
           "- KTAS split method: stratified 70/15/15 on the 3-class expert label",
-          f"- KTAS LLM sample: {m['datasets']['ktas'].get('llm_subset', {}).get('n', 'n/a')} test cases (40 Low, 40 Medium, all 37 High test cases)",
-          "- MIMIC evaluation knowledge base: training stays only (leakage control; unit test proves no test stay is retrieved)",
-          "- KTAS knowledge bases: KB=MIMIC (all 222 stays, deployed system) and KB=KTAS-train (886 rows)", ""]
-    L += ["## Hyperparameters chosen on validation"]
+          "- KTAS main LLM evaluation: full test split, 191 cases (Low 81, Medium 73, High 37): S4 with KB = MIMIC-IV-ED + KTAS train, S3 on the same 191 cases",
+          f"- KTAS secondary S4 (KB = MIMIC-IV-ED only): stratified sample of {m['datasets']['ktas'].get('llm_subset', {}).get('n', 'n/a')} test cases (40 Low, 40 Medium, all 37 High) first, then the other 74 test cases, so all three KTAS LLM jobs (S4 multi-source KB, S3, S4 MIMIC-only KB) cover the same 191 cases",
+          "- MIMIC held-out test knowledge base: the 114 training stays only (leakage control; unit test proves no test stay is retrieved)",
+          "- LLM-free systems S0-S2: trained on the 114 training stays, tuned on the 62-stay development set, 5-fold patient-grouped CV on train + development (176 stays)",
+          "- KTAS knowledge bases: main KB = MIMIC-IV-ED (222) + KTAS train (886); secondary KB = MIMIC-IV-ED only (222); the planned KB=KTAS-train-only LLM job was replaced by the multi-source job (S1 retrieval-only still reported for KB=KTAS-train and the multi-source KB)", ""]
+    L += ["## Hyperparameters chosen on the tuning set (MIMIC: development set; KTAS: validation split)"]
     for ds_name, ds in m["datasets"].items():
         L.append(f"- {ds_name.upper()} S1: k={ds['s1_config']['k']}, weights {ds['s1_config']['weights']}")
         L.append(f"- {ds_name.upper()} S2a LR: {ds['tuning']['S2a']['best']['params']} (class_weight balanced)")
         L.append(f"- {ds_name.upper()} S2b RF: {ds['tuning']['S2b']['best']['params']} (class_weight balanced)")
-        L.append(f"- {ds_name.upper()} best non-LLM system by validation macro-F1: {ds['best_non_llm_by_validation']}")
+        L.append(f"- {ds_name.upper()} best non-LLM system by tuning-set macro-F1 (MIMIC: development set; KTAS: validation split): {ds['best_non_llm_by_validation']}")
     t = m["datasets"]["mimic"]["low_evidence_threshold"]
-    L += [f"- LOW_EVIDENCE_THRESHOLD = {t['config_value']} (top-1 similarity); rule: {t['rule']}; chosen on MIMIC development OOF (n={t['n_development']}): "
+    L += [f"- LOW_EVIDENCE_THRESHOLD = {t['config_value']} (top-1 similarity); rule: {t['rule']}; selected on non-test data only, OOF retrieval votes over protocol-v2 train + development (n={t['n_development']}): "
           f"flag rate {t['chosen_row']['flag_rate']}, accuracy flagged {t['chosen_row']['acc_flagged']} vs unflagged {t['chosen_row']['acc_unflagged']}",
           f"- LLM: {m['llm']['model']}, temperature {m['llm']['temperature']}, max_tokens {m['llm']['max_tokens']}, reasoning_effort {m['llm']['reasoning_effort']}, max repairs {m['llm']['max_repair_attempts']}, prompt {s.LLM_PROMPT_VERSION}", ""]
     for ds_name, ds in m["datasets"].items():
-        L += [f"## Results -- {ds_name.upper()} test"]
+        L += [f"## Results -- {ds_name.upper()} " + ("held-out test (frozen configuration, evaluated once)" if ds_name == "mimic"
+                                                     else "test split, 191 cases (MAIN evaluation, frozen configuration)")]
         for name, met in ds["test"].items():
             L.append(_sys_line(f"{name} ({m['systems'][name]})", met))
+        if ds.get("s1_multi_source"):
+            L.append(_sys_line(f"S1-mk ({m['systems'].get('S1-mk', 'S1 multi-source KB')})", ds["s1_multi_source"]))
+            share = ds["s1_multi_source"].get("neighbour_source_share_top5") or {}
+            L.append("- Multi-source KB, top-5 neighbours of the 191 KTAS test queries by source: "
+                     + ", ".join(f"{k} {_p(v)}" for k, v in share.items()))
+        if ds.get("nurse_all_records"):
+            L.append(_sys_line("H triage nurse (KTAS_RN) on ALL KTAS records", ds["nurse_all_records"]))
         for job, entry in ds.get("llm_systems", {}).items():
             for sname in ("S3", "S4", "S4-noNEWS2", "S4-promptv1"):
                 if sname in entry:
                     tag = "" if entry["complete"] else f" [INCOMPLETE {entry['n_done']}/{entry['n_target']}]"
                     L.append(_sys_line(f"{sname} KB={job.split('kb=')[-1]}{tag}", entry[sname]))
         if "llm_subset" in ds:
-            L.append(f"- Same {ds['llm_subset']['n']}-case KTAS LLM sample:")
+            L.append(f"- Same {ds['llm_subset']['n']}-case KTAS sample (used by the secondary S4 job, KB = MIMIC-IV-ED only):")
             for name, met in ds["llm_subset"]["systems"].items():
                 L.append("  " + _sys_line(f"{name} ({m['systems'][name]})", met))
-        for job, entry in ds.get("llm_validation", {}).items():
-            if "S4" in entry:
-                L.append(_sys_line(f"S4 on VALIDATION ({job})", entry["S4"]))
+        for job, entry in ds.get("llm_development", {}).items():
+            for sname in ("S4", "S4-promptv1"):
+                if sname in entry:
+                    L.append(_sys_line(f"DEVELOPMENT SET (not held-out) {sname} {job}", entry[sname]))
         cv = ds["cross_validation"]
         L.append(f"- 5-fold CV ({cv['method']}): " + "; ".join(
             f"{k} macro-F1 {v['f1_macro']['mean']:.3f} ± {v['f1_macro']['std']:.3f}, accuracy {v['accuracy']['mean']:.3f} ± {v['accuracy']['std']:.3f}"
@@ -275,6 +298,9 @@ def report_facts():
                          f"median latency Agent 2 {lat['agent2_retrieval'].get('median', 0):.1f} ms / Agent 3 {lat['agent3_llm'].get('median', 0):.0f} ms "
                          f"(p95 {lat['agent3_llm'].get('p95', 0):.0f}) / Agent 4 {lat['agent4_guardrail_news2'].get('median', 0):.2f} ms, "
                          f"tokens per case {a['mean_tokens_per_case'] or 0:.0f}")
+            if v.get("evidence_source_share"):
+                L.append(f"- Evidence sources {k} (all retrieved cases): "
+                         + ", ".join(f"{src} {_p(x)}" for src, x in v["evidence_source_share"].items()))
         for k, v in ds.get("low_evidence_analysis", {}).items():
             fw, nf = v["flagged_weak"], v["not_flagged"]
             L.append(f"- Weak-evidence flag {k}: flagged n={fw['n']} accuracy {_p(fw.get('accuracy'))} under-triage {_p(fw.get('under_triage_rate'))}; "
@@ -284,19 +310,26 @@ def report_facts():
                 L.append(f"- Subgroup {system} by {gname}: " + "; ".join(
                     f"{g} n={v['n']} acc {_p(v['accuracy'])} under {_p(v['under_triage_rate'])}" for g, v in gres.items()))
         L.append("")
-    L += ["## Prompt change (process fact)",
-          "- Prompt v1 = previous release prompt ('assign Low if mild and no red flags; NEVER default to Medium or High')",
-          "- Prompt v2 = ESI/KTAS-aligned definitions (high-risk complaints High even with normal vitals; uncertain -> more urgent)",
-          "- v2 was written after v1 produced 18/31 'Low' predictions on the MIMIC test split; v2 was checked on the MIMIC validation split before its test run",
+    fz = m.get("protocol", {}).get("frozen_config", {})
+    L += ["## Development process (facts)",
+          "- Step 1 (development set): prompt v1 = previous release prompt ('assign Low if mild and no red flags; NEVER default to Medium or High'); on the 31 development stays of the development-phase test half: 18/31 predicted Low, under-triage 64.5%",
+          "- Step 2 (development set): prompt v2 written from the ESI/KTAS level definitions (high-risk complaints High even with normal vitals; danger-zone vitals; resource-based Medium/Low; uncertain -> more urgent)",
+          "- Step 3 (development set): v2 checked on the development set (62 stays) -- results in the 'Development set' table",
+          "- Step 4: configuration frozen on 2026-11-21 and re-frozen on 2026-11-22 after the non-test threshold re-selection (prompt v2, weights, k=5, LOW_EVIDENCE_THRESHOLD 0.50, repair attempts 2, NEWS2 on, model settings); sha256 " + str(fz.get("sha256", ""))[:16] + "...; stored in evaluation/frozen_config.json; held-out jobs refuse to run if the live configuration differs",
+          "- Step 5: frozen system evaluated once on the new held-out MIMIC test split (S4, S3, S4-promptv1, S4-noNEWS2 from the same calls) and on KTAS (external, prompt v2 for every KTAS job)",
+          "- LOW_EVIDENCE_THRESHOLD re-selected on 2026-11-22, before any held-out LLM run, with the same rule (largest accuracy drop unflagged - flagged, 10-40% flagged, candidates 0.300-0.700 step 0.025) on non-test data only: 5-fold patient-grouped out-of-fold retrieval votes (Agent 2) over the 114 training + 62 development stays (176); no held-out test stay involved; result 0.50 (flag rate 33.5%, accuracy flagged 61.0% vs unflagged 62.4%) = same value as the first selection, kept",
+          "- Configuration re-frozen on 2026-11-22 after the threshold re-selection; config hash unchanged",
+          "- Step 6 (2026-11-22, decided before any result of the affected KTAS jobs): multi-source knowledge base (MIMIC-IV-ED + KTAS) as in Feature 2 'Multi-Source Evidence-Grounded Reasoning' of the submitted workflow; KTAS becomes the main evaluation (full 191-case test split; S4 KB = all MIMIC + KTAS train; S3 on the same cases); KB=KTAS-train-only job replaced; KB=MIMIC-only job kept (117-case sample); MIMIC held-out (31 stays) kept as a secondary check, not re-run; all other frozen settings unchanged",
+          "- Step 7 (2026-11-22, student decision): the KB=MIMIC-only KTAS job is extended from the 117-case sample to all 191 test cases (74 more calls), so S4 multi-source KB, S3 and S4 MIMIC-only KB are compared on the same 191 cases",
           "", "## Live system facts",
           "- Example local run (High demo case): Agent 2 632 ms, Agent 3 1,224 ms (1,637 tokens), Agent 4 0.1 ms, Agent 5 12 ms (mocked)",
           "- Whisper base.en first transcription incl. model load: 19.3 s on CPU (demo clip, 9 s of speech)",
           f"- Weak-evidence banner text: 'Weak historical evidence — treat this recommendation with caution.'",
           "- NEWS2 assumption: room air (supplemental oxygen not captured); SpO2 scale 1",
           "", "## Limitations (facts)",
-          "- MIMIC-IV-ED Demo is small: 207 labelled stays; test split 31 stays from 11 patients; MIMIC Low class has 2 stays in total (1 test)",
+          "- MIMIC-IV-ED Demo is small: 207 labelled stays; held-out test split 31 stays from 9 patients; MIMIC Low class has 2 stays in total (1 in held-out test, 1 in development, 0 in training)",
           "- KTAS (Korea) and ESI (MIMIC, USA) are different 5-level scales; both mapped to the same 3 tiers",
-          "- KB=MIMIC for KTAS is a cross-site, cross-scale transfer",
+          "- Secondary KB=MIMIC-only run for KTAS is a cross-site, cross-scale transfer; in the main multi-source KB most KTAS test neighbours come from KTAS train",
           "- Groq free tier: 1,000 requests/day, 8,000 tokens/minute; LLM evaluation run over several days with a response cache",
           "- The Hugging Face Space cannot reach a locally running n8n; Space uses direct Twilio / mocked alerts",
           "- Decision support only: every recommendation is reviewed by a clinician",

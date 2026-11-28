@@ -1,8 +1,18 @@
 """
-Agent 2 -- Evidence Retrieval.
+Agent 2 -- Evidence Retrieval (multi-source knowledge base).
 
-Finds the historical MIMIC-IV-ED stays most similar to the current
-patient and returns them as grounding evidence for the LLM.
+Finds the historical cases most similar to the current patient and
+returns them as grounding evidence for the LLM. Since 2026-11-22 the
+knowledge base has two sources, and every retrieved case carries its
+source label:
+
+  "MIMIC-IV-ED"  ED stays from the MIMIC-IV-ED Demo (Boston, USA; ESI labels), from the database
+  "KTAS"         ED records from Moon et al. (2019) (two Korean EDs; KTAS_expert labels), from
+                 data/external/ktas/ktas_kb.csv (scripts/build_ktas_kb.py)
+
+The live system uses all MIMIC stays + all KTAS records
+(settings.KB_INCLUDE_KTAS); the offline evaluation builds explicit
+knowledge bases from training data only (build_index).
 
 Unlike the original PoC (a single ILIKE on chief_complaint), every stay
 is scored across all six MIMIC-IV-ED tables:
@@ -32,10 +42,12 @@ process (the MIMIC data is static reference data) and cached.
 import logging
 import math
 import re
+import csv
 import threading
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Dict, Iterable, List, Optional
+from pathlib import Path
+from typing import Dict, Iterable, List, Optional, Union
 
 from sqlalchemy.orm import Session, selectinload
 
@@ -108,6 +120,9 @@ _VITAL_SCALES = {
 
 _MIN_SCORE = 0.05
 
+SOURCE_MIMIC = "MIMIC-IV-ED"
+SOURCE_KTAS = "KTAS"
+
 
 @dataclass
 class SimilarCase:
@@ -122,6 +137,15 @@ class SimilarCase:
     treatments: List[str] = field(default_factory=list)
     disposition: Optional[str] = None
     similarity_score: float = 0.0
+    source: str = SOURCE_MIMIC
+    # True when the case came from a knowledge base with more than one source; the LLM
+    # evidence text then names the source of every case (single-source text is unchanged).
+    multi_source_kb: bool = field(default=False, repr=False)
+
+    @property
+    def case_ref(self) -> Union[int, str]:
+        """Stable reference: the MIMIC stay_id (int) or "KTAS-<record id>"."""
+        return self.stay_id if self.source == SOURCE_MIMIC else f"{self.source}-{self.stay_id}"
 
 
 def _normalise(text: str) -> List[str]:
@@ -177,6 +201,7 @@ class _StayRecord:
     treatments: List[str]
     disposition: Optional[str]
     medication_text: str = ""
+    source: str = SOURCE_MIMIC
 
 
 class _EvidenceIndex:
@@ -185,6 +210,11 @@ class _EvidenceIndex:
         self.complaint = complaint
         self.diagnosis = diagnosis
         self.medication = medication
+        self.source_counts = dict(Counter(r.source for r in records))
+
+    @property
+    def multi_source(self) -> bool:
+        return len(self.source_counts) > 1
 
 
 _index: Optional[_EvidenceIndex] = None
@@ -252,6 +282,52 @@ def records_from_db(db: Session, allowed_stay_ids: Optional[Iterable[int]] = Non
     return records
 
 
+def ktas_record(record_id: int, complaint: str, severity: str, diagnosis: Optional[str],
+                vitals: Dict[str, Optional[float]], disposition: Optional[str]) -> _StayRecord:
+    """One KTAS record as knowledge-base evidence (no medication data in KTAS)."""
+    return _StayRecord(
+        stay_id=int(record_id),
+        chief_complaint=complaint,
+        complaint_tokens=_normalise(complaint),
+        severity=severity,
+        diagnoses=[diagnosis] if diagnosis else [],
+        vitals={k: vitals.get(k) for k in _VITAL_SCALES},
+        treatments=[],
+        disposition=disposition or None,
+        medication_text="",
+        source=SOURCE_KTAS,
+    )
+
+
+def _float_or_none(value: str) -> Optional[float]:
+    try:
+        return float(value) if value not in ("", None) else None
+    except ValueError:
+        return None
+
+
+def load_ktas_kb_records(path: Optional[Union[str, Path]] = None,
+                         allowed_record_ids: Optional[Iterable[int]] = None) -> List[_StayRecord]:
+    """Reads the preprocessed KTAS knowledge-base CSV (scripts/build_ktas_kb.py)."""
+    path = Path(path or settings.KTAS_KB_PATH)
+    if not path.is_absolute():
+        path = Path(__file__).resolve().parents[2] / path
+    if not path.exists():
+        logger.warning("KTAS knowledge-base file %s not found; using MIMIC-IV-ED only.", path)
+        return []
+    allowed = None if allowed_record_ids is None else {int(i) for i in allowed_record_ids}
+    records = []
+    with path.open(encoding="utf-8", newline="") as fh:
+        for row in csv.DictReader(fh):
+            rid = int(row["record_id"])
+            if allowed is not None and rid not in allowed:
+                continue
+            records.append(ktas_record(rid, row["complaint"], row["severity"], row.get("diagnosis") or None,
+                                       {k: _float_or_none(row.get(k, "")) for k in _VITAL_SCALES},
+                                       row.get("disposition") or None))
+    return records
+
+
 def build_index(records: List[_StayRecord]) -> _EvidenceIndex:
     """
     Builds the TF-IDF evidence index from an explicit list of records.
@@ -260,6 +336,11 @@ def build_index(records: List[_StayRecord]) -> _EvidenceIndex:
     training split only (so a test case can never retrieve itself), and by
     the KTAS in-domain setting where records come from KTAS-train.
     """
+    keys = [(r.source, r.stay_id) for r in records]
+    if len(set(keys)) != len(keys):
+        raise ValueError("duplicate (source, id) in knowledge base")
+    if len({r.stay_id for r in records}) != len(records):
+        raise ValueError("record ids collide across sources")
     complaint_docs, diagnosis_docs, medication_docs = {}, {}, {}
     for rec in records:
         if not rec.complaint_tokens:
@@ -267,7 +348,8 @@ def build_index(records: List[_StayRecord]) -> _EvidenceIndex:
         complaint_docs[rec.stay_id] = rec.complaint_tokens
         diagnosis_docs[rec.stay_id] = _normalise(" ".join(rec.diagnoses))
         medication_docs[rec.stay_id] = _normalise(rec.medication_text or " ".join(rec.treatments))
-    logger.info("Built evidence index over %d historical stays.", len(records))
+    logger.info("Built evidence index over %d historical cases (%s).", len(records),
+                dict(Counter(r.source for r in records)))
     return _EvidenceIndex(
         records,
         _TfidfField(complaint_docs),
@@ -276,8 +358,21 @@ def build_index(records: List[_StayRecord]) -> _EvidenceIndex:
     )
 
 
+def live_records(db: Session) -> List[_StayRecord]:
+    """Live knowledge base: all MIMIC-IV-ED stays + (KB_INCLUDE_KTAS) all KTAS records."""
+    records = records_from_db(db)
+    if settings.KB_INCLUDE_KTAS:
+        records += load_ktas_kb_records()
+    return records
+
+
 def _build_index(db: Session) -> _EvidenceIndex:
-    return build_index(records_from_db(db))
+    return build_index(live_records(db))
+
+
+def knowledge_base_summary(db: Session) -> Dict[str, int]:
+    """Number of indexed cases per source in the live knowledge base."""
+    return dict(_get_index(db).source_counts)
 
 
 def _get_restricted_index(db: Session, allowed_stay_ids: Iterable[int]) -> _EvidenceIndex:
@@ -395,6 +490,8 @@ def find_similar_cases(
             treatments=rec.treatments[:5],
             disposition=rec.disposition,
             similarity_score=round(score, 3),
+            source=rec.source,
+            multi_source_kb=index.multi_source,
         )
         for score, rec in scored[:limit]
     ]
@@ -419,9 +516,10 @@ def format_cases_as_context(cases: List[SimilarCase]) -> str:
         return "No matching historical cases were found in the database for this complaint."
 
     lines = []
+    show_source = any(c.multi_source_kb for c in cases)
     for i, case in enumerate(cases, start=1):
         lines.append(
-            f"{i}. Chief Complaint: \"{case.chief_complaint}\" | "
+            f"{i}. " + (f"Source: {case.source} | " if show_source else "") + f"Chief Complaint: \"{case.chief_complaint}\" | "
             f"Diagnoses: {'; '.join(case.diagnoses) or case.icd_title} | "
             f"Vitals: {_fmt_vitals(case.vitals)} | "
             f"ED Treatments: {', '.join(case.treatments) or 'none recorded'} | "

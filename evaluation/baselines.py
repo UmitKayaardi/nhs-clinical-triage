@@ -54,22 +54,21 @@ def mimic_index(stay_ids: Iterable[int]):
     return rs.build_index(records)
 
 
+def ktas_records(df: pd.DataFrame) -> List:
+    """KTAS rows as knowledge-base records (same builder as the live KTAS knowledge base)."""
+    return [rs.ktas_record(int(row.stay_id), row.complaint, row.label, row.diagnosis_ed or None,
+                           {k: (None if pd.isna(getattr(row, k)) else float(getattr(row, k))) for k in VITAL_KEYS},
+                           row.disposition if isinstance(row.disposition, str) else None)
+            for row in df.itertuples()]
+
+
 def ktas_index(train_df: pd.DataFrame):
-    records = []
-    for row in train_df.itertuples():
-        diag = [row.diagnosis_ed] if row.diagnosis_ed else []
-        records.append(rs._StayRecord(
-            stay_id=int(row.stay_id),
-            chief_complaint=row.complaint,
-            complaint_tokens=rs._normalise(row.complaint),
-            severity=row.label,
-            diagnoses=diag,
-            vitals={k: (None if pd.isna(getattr(row, k)) else float(getattr(row, k))) for k in VITAL_KEYS},
-            treatments=[],
-            disposition=row.disposition,
-            medication_text="",
-        ))
-    return rs.build_index(records)
+    return rs.build_index(ktas_records(train_df))
+
+
+def combined_index(ktas_train_df: pd.DataFrame):
+    """Multi-source evaluation KB: all MIMIC-IV-ED stays + the given KTAS records (KTAS train only)."""
+    return rs.build_index(rs.records_from_db(readonly_mimic_session()) + ktas_records(ktas_train_df))
 
 
 def build_kb(dataset: str, kb_df: pd.DataFrame):

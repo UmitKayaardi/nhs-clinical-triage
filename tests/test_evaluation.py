@@ -133,3 +133,32 @@ def test_llm_cache_hit_and_miss(tmp_path, monkeypatch):
         c2([{"role": "user", "content": "other"}], params)
     with pytest.raises(llm_cache.BudgetExhausted):
         llm_cache.CachedCompletion(max_calls=0, path=path)([{"role": "user", "content": "new"}], params)
+
+
+def test_mimic_v2_heldout_split_is_clean():
+    from evaluation.splits import V2_PATH
+
+    data = load_mimic()
+    old = json.loads((SPLITS_DIR / "mimic_split.json").read_text(encoding="utf-8"))["splits"]
+    v2 = json.loads(V2_PATH.read_text(encoding="utf-8"))["splits"]
+    groups = {k: set(subset(data, ids)["group_id"]) for k, ids in v2.items()}
+    assert not (groups["test"] & groups["development"]) and not (groups["test"] & groups["train"])
+    assert not (groups["train"] & groups["development"])
+    # Development = the development-phase validation + test splits; held-out test only from old-train patients.
+    assert sorted(v2["development"]) == sorted(old["validation"] + old["test"])
+    assert set(v2["test"]) <= set(old["train"]) and set(v2["train"]) <= set(old["train"])
+    assert sum(len(v) for v in v2.values()) == 207 and 28 <= len(v2["test"]) <= 34
+
+
+def test_frozen_configuration_guard(monkeypatch):
+    from app.core.config import get_settings
+    from evaluation.frozen import ConfigNotFrozen, assert_frozen
+    from evaluation.runner import LLM_JOBS
+
+    for job in LLM_JOBS:
+        if job.dataset == "ktas":
+            assert job.prompt == "v2"
+    assert_frozen()  # the live configuration equals evaluation/frozen_config.json
+    monkeypatch.setattr(get_settings(), "LOW_EVIDENCE_THRESHOLD", 0.42)
+    with pytest.raises(ConfigNotFrozen):
+        assert_frozen()
