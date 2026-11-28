@@ -141,8 +141,9 @@
 - Step 7 (2026-11-22, student decision): the KB=MIMIC-only KTAS job is extended from the 117-case sample to all 191 test cases (74 more calls), so S4 multi-source KB, S3 and S4 MIMIC-only KB are compared on the same 191 cases
 
 ## Live system facts
-- Example local run (High demo case): Agent 2 632 ms, Agent 3 1,224 ms (1,637 tokens), Agent 4 0.1 ms, Agent 5 12 ms (mocked)
-- Whisper base.en first transcription incl. model load: 19.3 s on CPU (demo clip, 9 s of speech)
+- Example local run (28 Nov 2026, High demo case, structured intake, multi-source KB): Agent 2 40.7 ms, Agent 3 537.6 ms (1,483 tokens, attempt 1), Agent 4 guardrail 0.1 ms + NEWS2 0.1 ms, Agent 5 10.7 ms (mocked)
+- First request after start-up: Agent 2 950 ms (includes building the 1,489-case index)
+- Whisper base.en, Patient Kiosk demo clip (9 s of speech, synthetic voice): 7.8 s on CPU, first transcription of the 28 Nov 2026 local run (19.3 s incl. model load on 21 Nov)
 - Weak-evidence banner text: 'Weak historical evidence — treat this recommendation with caution.'
 - NEWS2 assumption: room air (supplemental oxygen not captured); SpO2 scale 1
 
@@ -153,4 +154,4 @@
 - Groq free tier: 1,000 requests/day, 8,000 tokens/minute; LLM evaluation run over several days with a response cache
 - The Hugging Face Space cannot reach a locally running n8n; Space uses direct Twilio / mocked alerts
 - Decision support only: every recommendation is reviewed by a clinician
-- Retrieval synonym map sends 'blood' -> 'bleed' (e.g. 'blood pressure tablets' matched a GI-bleed case at 0.53)
+- Retrieval synonym map sends 'blood' -> 'bleed': with the MIMIC-only knowledge base 'blood pressure tablets' matched a GI-bleed case at 0.53; with the live multi-source knowledge base 'I take blood pressure tablets and feel dizzy' retrieves KTAS dizziness cases (0.66)
