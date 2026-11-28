@@ -14,45 +14,50 @@
   "output": {
     "cases": [
       {
-        "stay_id": 32095131,
+        "source": "KTAS",
+        "case_ref": "KTAS-1185",
+        "chief_complaint": "cold leg",
+        "severity": "High",
+        "similarity": 0.472
+      },
+      {
+        "source": "KTAS",
+        "case_ref": "KTAS-1158",
+        "chief_complaint": "cold",
+        "severity": "Low",
+        "similarity": 0.435
+      },
+      {
+        "source": "KTAS",
+        "case_ref": "KTAS-643",
+        "chief_complaint": "myalgia",
+        "severity": "Medium",
+        "similarity": 0.258
+      },
+      {
+        "source": "MIMIC-IV-ED",
+        "case_ref": 32095131,
         "chief_complaint": "L Foot pain",
         "severity": "Medium",
-        "similarity": 0.211
+        "similarity": 0.223
       },
       {
-        "stay_id": 37036523,
-        "chief_complaint": "HYPOTHERMIA",
-        "severity": "High",
-        "similarity": 0.206
-      },
-      {
-        "stay_id": 34820898,
+        "source": "MIMIC-IV-ED",
+        "case_ref": 34820898,
         "chief_complaint": "Dizziness, Diplopia",
         "severity": "High",
-        "similarity": 0.204
-      },
-      {
-        "stay_id": 36132883,
-        "chief_complaint": "L Foot swelling, L Foot pain",
-        "severity": "Medium",
-        "similarity": 0.2
-      },
-      {
-        "stay_id": 31226423,
-        "chief_complaint": "N/V",
-        "severity": "Medium",
-        "similarity": 0.188
+        "similarity": 0.215
       }
     ],
     "evidence_strength": "weak",
     "low_evidence": true,
-    "top_similarity": 0.211,
-    "mean_similarity": 0.202,
-    "label_agreement": 0.6,
+    "top_similarity": 0.472,
+    "mean_similarity": 0.321,
+    "label_agreement": 0.4,
     "threshold": 0.5
   },
   "status": "ok",
-  "duration_ms": 4.8,
+  "duration_ms": 570.3,
   "messages_to": [
     "Agent 3"
   ]

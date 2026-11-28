@@ -1,7 +1,7 @@
 {
   "agent": "4 Medical Guardrail (NEWS2 safety net)",
   "input": {
-    "llm_severity": "Medium",
+    "llm_severity": "Low",
     "vitals": {
       "temperature": 94.6,
       "heart_rate": 72.0,
@@ -39,7 +39,7 @@
     },
     "final_severity": "High",
     "safety_override": true,
-    "override_reason": "NEWS2 single-parameter score of 3 (temperature): severity raised from Medium to High",
+    "override_reason": "NEWS2 single-parameter score of 3 (temperature): severity raised from Low to High",
     "enabled": true
   },
   "status": "overridden",
