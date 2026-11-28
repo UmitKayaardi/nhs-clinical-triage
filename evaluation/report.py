@@ -421,8 +421,9 @@ def build_everything(bundle: Dict, job_results: Dict, llm_stats: Dict, llm_compl
             if dataset == "ktas":
                 comparisons[f"{job.name} vs H"] = mcnemar(y, s4, [free_preds["H"][i] for i in ids])
             for other in [j for j in jobs if j.split not in DEV_SPLITS and j.name != job.name
-                          and j.kb in (job.kb, "none")
-                          and (j.system == "S3" or j.prompt == "v1")]:
+                          and ((j.kb in (job.kb, "none") and (j.system == "S3" or j.prompt == "v1"))
+                               # main multi-source KB vs the single-source KB (same S4, same prompt)
+                               or (job.kb == MAIN_KB[dataset] and j.system == "S4" and j.prompt == "v2"))]:
                 ores = job_results.get(other.name)
                 if not ores or not ores["records"]:
                     continue
