@@ -8,3 +8,8 @@
 2026-11-28 17:46:02,327 | INFO | agent_trace | [Agent 4 | Medical Guardrail] schema valid on attempt 1, 0.1 ms (ok)
 2026-11-28 17:46:02,327 | INFO | agent_trace | [Agent 4 | Medical Guardrail (NEWS2 safety net)] NEWS2 1, final severity Medium, 0.0 ms (ok)
 2026-11-28 17:46:02,423 | INFO | agent_trace | [Agent 5 | Orchestrator & Action] n8n webhook -> skipped, 82.0 ms (ok)
+2026-11-28 18:14:28,862 | INFO | agent_trace | [Agent 2 | Evidence Retrieval] 5 cases, top similarity 0.54, evidence moderate, 756.9 ms (ok)
+2026-11-28 18:14:29,876 | INFO | agent_trace | [Agent 3 | Clinical Reasoning] attempt 1, 1451 tokens, 1014.2 ms (ok)
+2026-11-28 18:14:29,877 | INFO | agent_trace | [Agent 4 | Medical Guardrail] schema valid on attempt 1, 0.2 ms (ok)
+2026-11-28 18:14:29,879 | INFO | agent_trace | [Agent 4 | Medical Guardrail (NEWS2 safety net)] NEWS2 0, final severity Low, 0.1 ms (ok)
+2026-11-28 18:14:30,378 | INFO | agent_trace | [Agent 5 | Orchestrator & Action] n8n webhook -> skipped, 479.8 ms (ok)

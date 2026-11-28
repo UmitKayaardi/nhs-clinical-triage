@@ -14,6 +14,7 @@ n8n screenshots for Agent 5 (local only, test mode -- no WhatsApp message is eve
 
   python scripts/take_n8n_screenshots.py                 # full run (fresh n8n home, app, editor)
   python scripts/take_n8n_screenshots.py --editor-only   # editor screenshots from the previous run's executions
+  python scripts/take_n8n_screenshots.py --add-case Low  # one more case (Low) through the same n8n -> "skipped"
 
 Needs Node.js (npx) and Playwright. Two demo triages cost two Groq calls.
 """
@@ -130,6 +131,88 @@ def editor_shots(ctx, page, owner, shot) -> None:
         shot(name, full=False)
 
 
+CASE_FILES = {"Low": ("14b_card_low_n8n_skipped", "19b_n8n_execution_low_skipped")}
+
+
+def add_case(demo: str) -> int:
+    """Reuses the n8n home of a previous full run, sends one more demo case through n8n and captures the
+    result card and its (newest) execution view. Appends the console lines to 12b_console_log_n8n.txt."""
+    from playwright.sync_api import sync_playwright
+
+    card_name, exec_name = CASE_FILES[demo]
+    owner = json.loads((N8N_DIR / "owner_local_only.json").read_text(encoding="utf-8"))
+    webhook_secret = secrets.token_urlsafe(32)
+    env_n8n = {**os.environ, "N8N_USER_FOLDER": str(N8N_DIR), "N8N_BLOCK_ENV_ACCESS_IN_NODE": "false",
+               "TRIAGE_WEBHOOK_SECRET": webhook_secret, "TWILIO_WHATSAPP_FROM": "+14155238886",
+               "DOCTOR_WHATSAPP_NUMBER": "+440000000000", "N8N_DIAGNOSTICS_ENABLED": "false",
+               "N8N_PERSONALIZATION_ENABLED": "false", "N8N_VERSION_NOTIFICATIONS_ENABLED": "false",
+               "N8N_SECURE_COOKIE": "false", "N8N_PORT": "5678"}
+    log = open(N8N_DIR / f"run_add_{demo.lower()}.log", "w", encoding="utf-8")
+    app_log_path = N8N_DIR / f"app_add_{demo.lower()}.log"
+    n8n = subprocess.Popen([NPX, "--yes", N8N_PKG, "start"], cwd=ROOT, env=env_n8n, stdout=log,
+                           stderr=subprocess.STDOUT)
+    app = None
+    try:
+        wait_until(lambda: requests.get(f"{N8N}/healthz", timeout=3).status_code == 200, "n8n")
+        wait_until(lambda: "POST" in requests.get(WEBHOOK, timeout=3).text, "n8n webhook registration")
+        env_app = {**os.environ, "PYTHONIOENCODING": "utf-8", "TRIAGE_WEBHOOK_SECRET": webhook_secret,
+                   "ALERT_ON_SEVERITIES": '["High","Medium","Low"]', "TWILIO_TEST_MODE": "true"}
+        app = subprocess.Popen([sys.executable, "-u", str(ROOT / "scripts" / "run_local_demo.py"), "--n8n-url", WEBHOOK],
+                               cwd=ROOT, env=env_app, stdout=open(app_log_path, "w", encoding="utf-8"),
+                               stderr=subprocess.STDOUT)
+        wait_until(lambda: requests.get("http://127.0.0.1:8000/health", timeout=3).status_code == 200, "backend")
+        wait_until(lambda: requests.get("http://127.0.0.1:7860/", timeout=3).status_code == 200, "Gradio")
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch()
+            ctx = browser.new_context(viewport={"width": 1366, "height": 900}, device_scale_factor=1.5)
+            page = ctx.new_page()
+
+            def shot(name, full=True):
+                page.wait_for_timeout(1000)
+                page.screenshot(path=str(OUT / f"{name}.png"), full_page=full)
+                print("saved", name, flush=True)
+
+            page.goto(APP)
+            page.get_by_role("tab", name="Clinician Intake").click()
+            page.get_by_role("button", name=f"Demo: {demo}", exact=True).click()
+            page.wait_for_timeout(1500)
+            page.get_by_role("button", name="Run triage").click()
+            page.locator(".clinical-card .card-header").first.wait_for(timeout=120000)
+            page.wait_for_timeout(1500)
+            sid = page.locator(".clinical-card .card-header").first.inner_text().split(":")[-1].strip()
+            shot(card_name)
+
+            page.set_viewport_size({"width": 1600, "height": 900})
+            n8n_sign_in(page, owner)
+            page.goto(f"{N8N}/workflow/{WF_ID}")
+            page.locator(".vue-flow").first.wait_for(timeout=90000)
+            page.wait_for_timeout(2000)
+            page.locator("[data-test-id='radio-button-executions']").first.click(force=True)
+            page.wait_for_timeout(5000)
+            items = page.locator("a[href*='/executions/']")
+            print("n8n executions listed:", items.count(), flush=True)
+            items.nth(0).click()                 # newest first = this case
+            page.wait_for_timeout(6000)
+            shot(exec_name, full=False)
+            browser.close()
+    finally:
+        if app is not None:
+            kill_tree(app)
+        kill_tree(n8n)
+        log.close()
+
+    lines = app_log_path.read_text(encoding="utf-8", errors="replace").splitlines()
+    keep = [ln for ln in lines if "agent_trace" in ln and any(f"Agent {n}" in ln for n in (2, 3, 4, 5))]
+    with open(OUT / "12b_console_log_n8n.txt", "a", encoding="utf-8") as fh:
+        fh.write("\n".join(keep) + "\n")
+    sessions = OUT / "sessions.json"
+    merged = json.loads(sessions.read_text(encoding="utf-8")) if sessions.exists() else {}
+    merged[f"n8n {demo}"] = sid
+    sessions.write_text(json.dumps(merged, indent=2), encoding="utf-8")
+    print("n8n and app stopped", flush=True)
+    return 0
+
+
 def main() -> int:
     import argparse
 
@@ -138,7 +221,11 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--editor-only", action="store_true",
                    help="reuse .local/n8n-shots (workflow + executions of a previous run); editor screenshots only")
+    p.add_argument("--add-case", choices=sorted(CASE_FILES),
+                   help="reuse .local/n8n-shots and send one more demo case through n8n (all severities forwarded)")
     args = p.parse_args()
+    if args.add_case:
+        return add_case(args.add_case)
 
     if args.editor_only:
         owner = json.loads((N8N_DIR / "owner_local_only.json").read_text(encoding="utf-8"))
